@@ -1,0 +1,241 @@
+/*Pantalla1*/
+/*@media (min-width: 991px)  and (max-width: 1400px){
+.card-title{
+    text-align: center;
+}
+
+.card{
+    background-color:  #ffffff; 
+   
+    margin-top: 60px;
+   
+   
+}
+.card-header{
+    background-color:#FFFFFF;
+    
+}
+.container{
+    margin-top: 60px;
+    margin-left: 160px;
+   
+}
+
+.col-sm-6.col-md-4.col-lg-3.col-xl-2.mt-3{
+    width: 250px;
+
+}
+.cora{
+    width: 50px; 
+    height: 40px;
+    border-radius: 50%; 
+   background-color: #FFFFFF;
+    margin-left: 160px;
+    margin-top: 10px;
+    border: none;
+}
+.favorito {
+   color: rgb(255, 0, 43);
+}
+
+
+  
+  .money.oferta .normal-price {
+    text-decoration: line-through;
+    color: gray;
+    
+  }
+  
+  .money.oferta .offer-price {
+    color: red;
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-left: 10px
+  }
+  .pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .pagination-button {
+   
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+  }
+  
+  .pagination-button:hover {
+    background-color: #45a049; 
+  }
+  
+  .pagination-button:disabled {
+    background-color: #cccccc; 
+    cursor: not-allowed;
+  }
+  .mujer{
+    display: flex;
+    justify-content: center;
+    margin-top: 10vh;
+  }
+}
+
+@media (min-width: 1500px)  and (max-width: 2000px){
+    .card-title{
+        text-align: center;
+    }
+    
+    .card{
+       
+    
+        background-color:  #EDEDED; 
+        border: none; 
+        margin-top: 60px;
+       
+       
+       
+    }
+    .card-header{
+        background-color:#FFFFFF;
+        
+        
+        
+    }
+    .container{
+        margin-top: 60px;
+        margin-left: 250px;
+        overflow: hidden;
+       
+    }
+    
+    .col-sm-6.col-md-4.col-lg-3.col-xl-2.mt-3{
+        width: 25%;
+        float: left;
+        
+    
+    }
+    button{
+        width: 50px; 
+        height: 40px;
+        border-radius: 50%; 
+       background-color: #FFFFFF;
+        margin-left: 230px;
+        margin-top: 10px;
+        border: none;
+    }
+    .favorito {
+       color: pink;
+    }
+    
+    
+      
+      .money.oferta .normal-price {
+        text-decoration: line-through;
+        color: gray;
+        
+      }
+      
+      .money.oferta .offer-price {
+        color: red;
+        font-weight: bold;
+        font-size: 1.2em;
+        margin-left: 10px
+      }
+    }*/
+    .card-title{
+      text-align: center;
+  }
+  
+  .card{
+      background-color:  #ffffff; 
+     
+      margin-top: 60px;
+     
+     
+  }
+  .card-header{
+      background-color:#FFFFFF;
+      
+  }
+  .container{
+      margin-top: 60px;
+      margin-left: 160px;
+     
+  }
+  
+  .col-sm-6.col-md-4.col-lg-3.col-xl-2.mt-3{
+      width: 250px;
+  
+  }
+  .cora{
+      width: 50px; 
+      height: 40px;
+      border-radius: 50%; 
+     background-color: #FFFFFF;
+      margin-left: 160px;
+      margin-top: 10px;
+      border: none;
+  }
+  .favorito {
+     color: rgb(255, 0, 43);
+  }
+  
+  
+    
+    .money.oferta .normal-price {
+      text-decoration: line-through;
+      color: gray;
+      
+    }
+    
+    .money.oferta .offer-price {
+      color: red;
+      font-weight: bold;
+      font-size: 1.2em;
+      margin-left: 10px
+    }
+    .pagination {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+      text-align: center;
+    }
+    
+    .pagination-button {
+      background-color: #4CAF50; /* Color de fondo */
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+    
+    .pagination-button:hover {
+      background-color: #45a049; /* Cambio de color al pasar el mouse */
+    }
+    
+    .pagination-button:disabled {
+      background-color: #cccccc; /* Color de fondo cuando está desactivado */
+      cursor: not-allowed;
+    }
+    .mujer{
+      display: flex;
+      justify-content: center;
+      margin-top: 10vh;
+    }
+  

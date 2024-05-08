@@ -1,0 +1,77 @@
+<input type="text" placeholder="Buscar por nombre..." (keyup)="filterArticulos($event)">
+<h1 class="mujer">Ropa Hombre</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2 mt-3" *ngFor="let articulo of paginatedArticulosHombre">
+          <div class="card" >
+              <button class="cora" (click)="toggleFavorite(articulo)" [ngClass]="{ 'favorito': articulo.favorite , 'no-favorito': !articulo.favorite }">
+                  <i [ngClass]="{ 'bi bi-suit-heart-fill': articulo.favorite , 'bi bi-suit-heart': !articulo.favorite }"></i>
+              </button>
+              <a [routerLink]="['/articuloinv', articulo._id]" routerLinkActive="active">
+                  <img [src]="articulo.imagen" class="card-img-top"  alt="Imagen vestidos {{articulo.name}}">
+                </a>
+              <div class="card-header">
+                  <div class="card-title">
+                    
+                    <strong> <p>{{articulo.name}}</p></strong> 
+                    <strong> <p>{{articulo.category}}</p></strong> 
+                     
+                    <div class="product-price">
+                      <p class="money" *ngIf="!articulo.oferta">
+                        {{ articulo.price| currency:'EUR' }}
+                      </p>
+                      <p class="money oferta" *ngIf="articulo.oferta">
+                        <span class="normal-price">{{ articulo.price| currency:'EUR' }}</span>
+                        <span class="offer-price">{{ articulo.oferta| currency:'EUR' }}</span>
+                      </p>
+                    </div>
+                  </div>
+              </div>
+             
+          </div>
+          
+      </div>
+  </div>
+  <div class="pagination">
+    <button class="pagination-button" (click)="previousPageHombre()" [disabled]="currentPageHombre === 1">Anterior</button>
+    <span>{{ currentPageHombre }} de {{ totalPagesHombre }}</span>
+    <button class="pagination-button" (click)="nextPageHombre()" [disabled]="currentPageHombre === totalPagesHombre">Siguiente</button>
+  </div>
+  <h1 class="mujer">Ropa Mujer</h1>
+  <div class="row">
+    <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2 mt-3" *ngFor="let articulo of paginatedArticulosMujer" >
+      <div class="card" >
+        <button class="cora" (click)="toggleFavorite(articulo)" [ngClass]="{ 'favorito': articulo.favorite , 'no-favorito': !articulo.favorite }">
+            <i [ngClass]="{ 'bi bi-suit-heart-fill': articulo.favorite , 'bi bi-suit-heart': !articulo.favorite }"></i>
+        </button>
+        <a [routerLink]="['/articuloinv', articulo._id]" routerLinkActive="active">
+            <img [src]="articulo.imagen" class="card-img-top"  alt="Imagen vestidos {{articulo.name}}">
+          </a>
+        <div class="card-header">
+            <div class="card-title">
+              
+              <strong> <p>{{articulo.name}}</p></strong> 
+              <strong> <p>{{articulo.category}}</p></strong> 
+               
+              <div class="product-price">
+                <p class="money" *ngIf="!articulo.oferta">
+                  {{ articulo.price| currency:'EUR' }}
+                </p>
+                <p class="money oferta" *ngIf="articulo.oferta">
+                  <span class="normal-price">{{ articulo.price| currency:'EUR' }}</span>
+                  <span class="offer-price">{{ articulo.oferta| currency:'EUR' }}</span>
+                </p>
+              </div>
+            </div>
+        </div>
+       
+    </div>
+    </div>
+  </div>
+  <div class="pagination">
+    <button class="pagination-button" (click)="previousPageMujer()" [disabled]="currentPageMujer === 1">Anterior</button>
+    <span>{{ currentPageMujer }} de {{ totalPagesMujer }}</span>
+    <button class="pagination-button" (click)="nextPageMujer()" [disabled]="currentPageMujer === totalPagesMujer">Siguiente</button>
+  </div>
+</div>
+

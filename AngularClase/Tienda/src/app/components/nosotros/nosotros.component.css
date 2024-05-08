@@ -1,0 +1,35 @@
+
+.texto {
+    text-align: justify;
+    margin-top: 100px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    line-height: 1.6;
+    color: #333;
+}
+
+.texto h1 {
+    text-align: center;
+    font-size: 32px;
+    color: #007bff;
+}
+
+.texto p:first-of-type {
+    margin-top: 0;
+}
+
+.texto a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.texto a:hover {
+    text-decoration: underline;
+}
+
+.texto em {
+    font-style: italic;
+}

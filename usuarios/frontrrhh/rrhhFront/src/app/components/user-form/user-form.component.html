@@ -1,0 +1,52 @@
+
+<form *ngIf="usuario" #userForm="ngForm" name="itemForm" role="form" novalidate autocomplete="off">
+   <div class="form-group">
+    <label for="id">Id</label>
+    <input type="number" [(ngModel)]="usuario.id" name="id" class="form-control" id="price" #price="ngModel" >
+   </div>
+
+   <div class="form-group">
+    <label for="nombre">Nombre</label>
+    <input type="text" [(ngModel)]="usuario.nombre" name="nombre" class="form-control" id="nombre" #price="ngModel" >
+   </div>
+
+   <div class="form-group">
+    <label for="apellidos">apellidos</label>
+    <input type="text" [(ngModel)]="usuario.apellidos" name="apellidos" class="form-control" id="apellidos" #price="ngModel" >
+   </div>
+
+  
+   <div class="form-group">
+    <label for="email">email</label>
+    <input type="text" [(ngModel)]="usuario.email" name="email" class="form-control" id="email" #price="ngModel" >
+   </div>
+
+   <div class="form-group">
+    <label for="rol">rol</label>
+    <input type="text" [(ngModel)]="usuario.rol" name="rol" class="form-control" id="rol" #price="ngModel" >
+   </div>
+   <div class="buttonForm">
+    <button (click)="saveUser()" [routerLink]="['/usuario','list']">Guardar</button>
+   </div>
+   
+  </form>
+  <div class="buttonForm">
+   <button data-bs-toggle="modal" data-bs-target="#askConfiDelite">cancelar</button>
+  </div>
+  <div class="modal fade" id="askConfiDelite" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+     <div class="modal-content">
+       <div class="modal-header">
+         <h1 class="modal-title fs-5" id="exampleModalLabel">Confirmacion de borrado</h1>
+         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+       </div>
+       <div class="modal-body">
+         Quieres borrar este usuario se borraran los datos?
+       </div>
+       <div class="modal-footer">
+         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+         <button type="button" class="btn btn-primary" data-bs-dismiss="modal" routerLinkActive="active" [routerLink]="['/usuario','list']" >Accet</button>
+       </div>
+     </div>
+   </div>
+ </div>

@@ -1,0 +1,110 @@
+<!--Adrian Tebar Galvez-->
+<link rel="icon" type="image/x-icon" href="assets/img/Captura-removebg-preview.png">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="inicio.component.css" >
+
+
+<body>
+  <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="../../../assets/img/1.jpg" class="d-block imgCarrusel" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="../../../assets/img/2.jpg" class="d-block imgCarrusel" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="../../../assets/img/3.jpg" class="d-block imgCarrusel" alt="...">
+      </div>
+    </div>
+  </div>
+ <div id="novedades">
+  <div class="titulo"><h1><strong>NOVEDADES</strong></h1></div>
+<div  class="novedades">
+<div class="card" *ngFor="let producto of novedades">
+      <div class="img-box">
+        <img [src]="producto.imagen" class="" alt="...">
+      </div>
+    <div class="details">
+      <h3>{{ producto.name }} <br /><span>{{ producto.category }}</span></h3>
+      <p>{{ producto.descripcion }}</p>
+      <h4>Size</h4>
+      <ul class="size">
+        <button *ngFor="let talla of ['36','38', '40', '42', '44']"
+        [disabled]="!producto.tallasDisponiblesZapato.includes(talla)"
+        [ngClass]="{ 'disabled-button': !producto.tallasDisponiblesZapato.includes(talla) }"
+        class="size-button">{{ talla }}</button>
+      </ul>
+      <div class="product-price">
+        <h3 class="money" *ngIf="!producto.oferta">
+          {{ producto.price| currency:'EUR' }}
+          <button  class="añadir" (click)="addToPedido(producto)">COMPRAR YA</button>
+        </h3>
+       
+        <p class="money oferta" *ngIf="producto.oferta">
+          <span class="normal-price">{{ producto.price| currency:'EUR' }}</span>
+          <span class="offer-price">{{ producto.oferta| currency:'EUR' }}</span> 
+          <button  class="añadir" (click)="addToPedido(producto)">COMPRAR YA</button>
+          
+        </p>
+      
+      </div>
+     
+    </div>
+
+     
+</div>
+
+
+</div>
+</div>
+ <div class="titulo titulo-category">
+<h1><strong>Shop by Gategory</strong></h1>
+</div> 
+<div class="category ">
+  <div>
+  <section class="portfolio-experiment">
+    <a class="link-header" >
+      <span class="text2"><strong>Home</strong></span>
+      <span class="line -right"></span>
+      <span class="line -top"></span>
+      <span class="line -left"></span>
+      <span class="line -bottom"></span>
+    </a>
+  </section>
+  </div>
+  <div>
+    <section class="portfolio-experiment " routerLink="/ropahombre" routerLinkActive="active">
+      <a class="link-header"> 
+        <span class="text2"><strong>Ofertas</strong> </span>
+        <span class="line -right"></span>
+        <span class="line -top"></span>
+        <span class="line -left"></span>
+        <span class="line -bottom"></span>
+      </a>
+    </section>
+  </div>
+  <div >
+    <section class="portfolio-experiment " routerLink="/nosotros" routerLinkActive="active">
+      <a class="link-header" >
+        <span class="text2" ><strong>Blog</strong></span>
+        <span class="line -right"></span>
+        <span class="line -top"></span>
+        <span class="line -left"></span>
+        <span class="line -bottom"></span>
+      </a>
+    </section>
+  </div>
+                    
+</div>
+<div class="container">
+  <div class="imgContainer">
+    <div *ngFor="let slide of slides; let i = index" class="slide_div" [id]="'slider_' + (i + 1)">
+      <a [routerLink]="'/ropahombre'" routerLinkActive="active">
+        <img [src]="slide.src" alt="" class="img" [id]="'img' + (i + 1)" >
+      </a>
+    </div>
+  </div>
+</div>
+
+</body>

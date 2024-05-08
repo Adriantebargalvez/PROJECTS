@@ -1,0 +1,30 @@
+
+
+    div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center; 
+        text-align: center;
+        margin-top: 150px; 
+    }
+    
+    .btn{
+        display: flex;
+        width: 150px;
+        height: 60px;
+        margin-top: 50px; 
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        background-color: #efefef;
+        border: none;
+        border-radius: 25px;
+        color: #424242;
+        box-shadow: -6px -6px 10px #f9f9f9,
+        6px 6px 10px #00000026;
+    }
+    .btn:hover{
+        box-shadow: 2px 2px 2px #f9f9f9,
+        -2px -2px 2px #00000026 ;
+    }

@@ -1,0 +1,78 @@
+
+<div class="centered-container" *ngIf="articulo">
+  <div class="product-card" >
+    <div class="content01" >
+      <img [src]="articulo.imagen" alt="Cotton striped T-Shirt" class="product-image">
+    </div>
+    <div class="product-details">
+      <div class="product-ratings">
+        <span class="star" [ngClass]="{'filled': i < articulo.rating}" 
+              *ngFor="let i of [1, 2, 3, 4, 5]" 
+              (click)="calificarProducto(i)">
+          &#9733;
+        </span>
+        <strong>Reviews ({{ mediaClasificaciones }})</strong>
+      </div>
+      <div class="product-category">{{articulo.category}}</div>
+      <div class="product-title">{{articulo.name}}</div>
+      <div class="product-price" *ngIf="articulo.oferta">
+        <p class="money">{{ articulo.oferta| currency:'EUR' }}</p>
+      </div>
+      <div class="product-price" *ngIf="!articulo.oferta">
+        <p class="money">{{ articulo.price| currency:'EUR' }}</p>
+      </div>
+      <div class="product-color">Color:<strong> Grey</strong></div>
+      <div class="content02">
+        <img [src]="articulo.imagen" alt="Cotton striped T-Shirt" class="product-image2">
+      </div>
+     
+      <div class="product-size" *ngIf="articulo.category === 'Men\'s Shoe'">
+        Size:<strong> Choose shoe size</strong>
+        <div class="size-buttons">
+          <button class="size-button" 
+                  *ngFor="let talla of ['36','38', '40', '42', '44']"
+                  [disabled]="!articulo.tallasDisponiblesZapato.includes(talla)"
+                  [ngClass]="{ 'disabled-button': !articulo.tallasDisponiblesZapato.includes(talla) }">
+            {{ talla }}
+          </button>
+        </div>
+      </div>  
+      <div class="product-size" *ngIf="articulo.category === 'Ropa Hombre' || articulo.category === 'Ropa Hombre'">
+        Size:<strong> Choose clothing size</strong>
+        <div class="size-buttons">
+          <button class="size-button" 
+                  *ngFor="let talla of ['4XL', '2XL', 'XS', '2XS', '3XS', 'SM', 'XL', 'MD', '3XL']"
+                  [disabled]="!articulo.tallasDisponibles.includes(talla)"
+                  [ngClass]="{ 'disabled-button': !articulo.tallasDisponibles.includes(talla) }">
+            {{ talla }}
+          </button>
+        </div>
+      </div>  
+        <button  class="añadir" (click)="addToPedido(articulo)">Añadir carrito</button>
+      </div>  
+      </div>
+    </div>
+
+  <div class="comment-section" *ngIf="articulo">
+    <h3 class="comment-heading">¡Opina y Comparte!</h3>
+    <ul class="comment-list">
+      <li class="comment-item" *ngFor="let comment of comentarios">
+        <div class="comment">
+          <div class="comment-info">
+            <span class="comment-author">{{ comment.displayName }}</span>
+            <span class="comment-date">{{ comment.fecha }}</span>
+          </div>
+          <p class="comment-content">{{ comment.comentario }}</p>
+        </div>
+      </li>
+    </ul>
+    <textarea class="comment-input" [(ngModel)]="newComment" placeholder="¿Qué opinas? ¡Déjanos tu comentario!"></textarea>
+    <button class="comment-btn" (click)="agregarComentario()">¡Comentar!</button>
+  </div>
+  
+  
+
+
+
+
+

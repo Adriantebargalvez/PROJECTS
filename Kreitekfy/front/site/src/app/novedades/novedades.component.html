@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <div *ngIf="isAuthenticated()">
+    <h1 class="nove">Novedades</h1>
+    <select [(ngModel)]="selectedEstilo" (change)="filtrarPorEstilo()">
+        <option value="">Todos los estilos</option>
+        <option *ngFor="let estilo of estilos" [value]="estilo">{{ estilo }}</option>
+    </select>
+    <div class="container">
+      <div class="item" *ngFor="let cancion of ultimasCanciones">
+        <a [routerLink]="'/cancion/' + cancion.id">
+          <img  [src]="cancion.imagen" alt="{{ cancion.titulo }}">
+          <p>{{ cancion.titulo }}</p>
+        </a>
+      </div>
+    </div>
+    <h2 class="nove">Más Escuchadas</h2>
+    
+    <div class="container">
+      <div class="item" *ngFor="let cancion of masEscuchadas">
+        <a [routerLink]="'/cancion/' + cancion.id">
+          <img  [src]="cancion.imagen" alt="{{ cancion.titulo }}">
+          <p>{{ cancion.titulo }}</p>
+          <p>Reproducciones: {{ cancion.reproducciones }}</p> <!-- Muestra el número de reproducciones -->
+        </a>
+      </div>
+    </div>
+    <h2 class="nove">Para Ti</h2>
+    
+    <div class="container">
+      <div class="item" *ngFor="let cancion of parati">
+        <a [routerLink]="'/cancion/' + cancion.id">
+          <img  [src]="cancion.imagen" alt="{{ cancion.titulo }}">
+          <p>{{ cancion.titulo }}</p>
+          <p>Reproducciones: {{ cancion.reproducciones }}</p>
+          <p>Puntuacion: {{ cancion.puntuacion }}</p> <!-- Muestra el número de reproducciones -->
+        </a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

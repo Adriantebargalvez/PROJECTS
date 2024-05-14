@@ -1,0 +1,44 @@
+body {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+   
+}
+.item a {
+    text-decoration: none;
+    color: black; 
+}
+.nove {
+    text-align: center;
+    margin-bottom: 20px; 
+    animation: bounce 2s infinite;
+}
+
+.container {
+    display: flex;
+    justify-content: center; 
+}
+
+.item {
+    margin: 10px; 
+}
+
+img {
+    width: 250px;
+    height: 250px;
+    display: block; 
+}
+
+p {
+    text-align: center;
+
+}
+
+@keyframes bounce {
+    0% { transform: translateY(0); }
+    25% { transform: translateY(-5px); }
+    50% { transform: translateY(0); }
+    75% { transform: translateY(-5px); }
+    100% { transform: translateY(0); }
+}

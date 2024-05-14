@@ -1,0 +1,36 @@
+body {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    background-color: rgb(27, 26, 26);
+}
+h1{
+    background-color: aliceblue;
+    color: rgb(0, 0, 0);
+    font-size: 36px;
+    text-align: center;
+    
+}
+table {
+    width: 100%;
+    color: rgb(240, 255, 255);
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+th {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+img {
+    width: 100px;
+    height: auto;
+}
+.filtro-label {
+    color: gold;
+    font-weight: bold;
+}

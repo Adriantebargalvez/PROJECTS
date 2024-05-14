@@ -1,0 +1,55 @@
+/* login.component.css o login.component.scss */
+h2{
+  text-align: center;
+  margin-bottom: 30px;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 400px;
+  margin: auto;
+}
+
+input {
+  margin-bottom: 1rem;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff; /* Azul para ser consistente con el botón de registro */
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #0056b3; /* Un tono más oscuro de azul para el efecto hover */
+  }
+}
+
+.register-link {
+  text-align: center;
+  margin-top: 1rem;
+
+  a {
+    color: #007bff;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.alert-danger {
+  color: red;
+  margin-top: 1rem;
+  font-size: 0.9em;
+}
+

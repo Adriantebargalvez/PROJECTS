@@ -1,0 +1,45 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Esto centra el contenido verticalmente */
+   
+    margin-top: 150px;
+  }
+  
+  .detalle {
+    background-color: #ffffff; /* Fondo blanco */
+    padding: 40px; /* Aumentamos el padding para dar más espacio */
+    border-radius: 12px; /* Aumentamos el radio del borde */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+    max-width: 600px; /* Ancho máximo del contenedor */
+    width: 90%; /* Ajusta el ancho al contenido */
+  }
+  
+  .detalle img {
+    width: 100%; /* Llenar el ancho del contenedor */
+    max-height: 300px; /* Altura máxima de la imagen */
+    border-radius: 12px; /* Borde redondeado */
+    margin-bottom: 30px; /* Espacio entre la imagen y el texto */
+  }
+  
+  .detalle h5 {
+    font-size: 32px; /* Tamaño de la fuente más grande */
+    margin-bottom: 20px; /* Aumentamos el espacio */
+  }
+  
+  .detalle p {
+    font-size: 20px; /* Tamaño de la fuente más grande */
+    margin-bottom: 15px; /* Aumentamos el espacio */
+  }
+  .icon{
+   font-size: 56px;
+    text-align: center;
+  }
+  button{
+    border: none;
+    background-color: transparent;
+  }
+  .bi-star-fill {
+    color: yellow;
+  }

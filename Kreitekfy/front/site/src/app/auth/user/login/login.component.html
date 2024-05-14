@@ -1,0 +1,14 @@
+<h2>Login</h2>
+<form>
+  <input type="text" [(ngModel)]="credentials.username" name="username" placeholder="Username" required>
+  <input type="password" [(ngModel)]="credentials.password" name="password" placeholder="Password" required>
+  <!-- Mensaje de error -->
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+  <button  (click)="login()">Login</button>
+  <button (click)="cancel()" type="button">Cancelar</button>
+</form>
+<div  class="register-link">
+  <p>¿No tienes una cuenta? <a routerLink="/register">Regístrate</a></p>
+</div>

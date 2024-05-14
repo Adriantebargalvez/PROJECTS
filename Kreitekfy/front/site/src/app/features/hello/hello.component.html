@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="hello.component.css"> 
+    <title>Document</title>
+    
+</head>
+<body>
+<app-novedades></app-novedades>
+<div *ngIf="isAuthenticated()">
+    <h1>TODAS LAS CANCIONES</h1>
+    <form>
+        <div class="row">
+          <div class="form-group" class="col-12 col-md-6">
+            <label for="nombre" class="filtro-label">Nombre</label>
+            <input type="text" [(ngModel)]="nombreFilter" name="nombre" class="form-control" (input)="searchByFilters()">
+          <label for="estilo" class="filtro-label">Estilo</label>
+          <input type="text" [(ngModel)]="estiloFilter" name="estilo" class="form-control" (input)="searchByFilters()">
+          <label for="album" class="filtro-label">Álbum</label>
+          <input type="text" [(ngModel)]="albumFilter" name="album" class="form-control" (input)="searchByFilters()">
+          <label for="artista" class="filtro-label">Artista</label>
+          <input type="text" [(ngModel)]="artistaFilter" name="artista" class="form-control" (input)="searchByFilters()">
+          </div>
+        
+        </div>
+      </form>
+    <table>
+        <thead>
+            <tr>
+                <th>Portada</th>
+                <th>Título</th>
+                <th>Artista</th>
+                <th>Álbum</th>
+                <th>Estilo</th>
+                <th>Duración</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let cancion of canciones">
+              <td> <a [routerLink]="'/cancion/' + cancion.id">
+                  <img  [src]="cancion.imagen" alt="Portada de la canción">
+                 
+                </a></td>
+                <td>{{ cancion.titulo }}</td>
+                <td>{{ cancion.artista }}</td>
+                <td>{{ cancion.album }}</td>
+                <td>{{ cancion.estilo }}</td>
+                <td>{{ cancion.duracion }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="botoneraPaginacion">
+        <button [disabled]="first" class="btn btn-secondary btnAtras" (click)="previusPage()">Anterior</button>
+      <span>Pagina{{(page+1)}} de {{totalPages}} Elementos {{totalElements}}</span>
+        <button [disabled]="last" class="btn btn-secondary btnSiguiente" (click)="nextPage()">Siguiente</button>
+      </div>
+    </div>
+</body>
+</html>
+
+  

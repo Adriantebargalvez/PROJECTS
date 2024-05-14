@@ -1,0 +1,82 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<form>
+  <div class="row">
+    <div class="form-group" class="col-12 col-md-6">
+      <label for="nombre">Nombre</label>
+    <input type="text" [(ngModel)]="nombreFilter" name="nombre" class="form-control" >
+    </div>
+    <div class="form-group" class="col-12 col-md-6">
+      <label for="apellidos">Apellido</label>
+    <input type="text" [(ngModel)]="apellidosFilter" name="apellidos" class="form-control" >
+    </div>
+    <div class="form-group" class="col-12 col-md-6">
+      <label for="rol">Rol</label>
+    <input type="text" [(ngModel)]="rolFilter" name="rol" class="form-control" >
+    </div>
+    <div class="col-12 col-md-3"><button id="btnSearch" class="btn btn-secondary" (click)="searchByFliters();">Buscar</button> </div>
+  </div>
+</form>
+  <div><button routerLinkActive="active" [routerLink]="['/usuario','new']">Crear Usuario</button></div>
+   
+   <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">NOMBRE</th>
+        <th scope="col">APELLIDOS</th>
+        <th scope="col">EMAIL</th>
+        <th scope="col">ROL</th>
+        <th scope="col">ACCION</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let usuarios of usuario">
+        <td>{{usuarios.id}}</td>
+        <td>{{usuarios.nombre}}</td>
+        <td>{{usuarios.apellidos}}</td>
+        <td>{{usuarios.email}}</td>
+        <td>{{usuarios.rol}}</td>
+        <td class="link"><button  [routerLink]="['/usuario', usuarios.id]"><i class="bi bi-pencil-square"></i></button><button data-bs-toggle="modal" data-bs-target="#askConfiDelite" (click)="prepareUserDelete(usuarios.id!)"><i class="bi bi-trash"></i></button></td>
+       
+      </tr>
+      
+    
+    </tbody>
+  </table>
+</body>
+</html>
+
+
+<!-- Modal -->
+<div class="modal fade" id="askConfiDelite" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Confirmacion de borrado</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Quieres borrar este usuario?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="deleteUser();" >Accet</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="botoneraPaginacion">
+  <button [disabled]="first" class="btn btn-secondary btnAtras" (click)="previusPage()">Anterior</button>
+<span>Pagina{{(page+1)}} de {{totalPages}} Elementos {{totalElements}}</span>
+  <button [disabled]="last" class="btn btn-secondary btnSiguiente" (click)="nextPage()">Siguiente</button>
+</div>
+

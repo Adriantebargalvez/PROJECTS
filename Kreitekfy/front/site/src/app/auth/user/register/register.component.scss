@@ -1,0 +1,47 @@
+/* register.component.css o register.component.scss */
+h2{
+  text-align: center;
+  margin-bottom: 30px;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  width: 100%; /* Ajusta el ancho según prefieras */
+  max-width: 400px; /* O el ancho máximo que prefieras */
+  margin: auto; /* Centrar el formulario en la página */
+}
+
+input {
+  margin-bottom: 1rem; /* Espaciado entre controles de formulario */
+  padding: 8px; /* Ajusta para un mejor aspecto y sensación */
+  border: 1px solid #ccc; /* Borde estándar para los inputs */
+  border-radius: 4px; /* Bordes redondeados para los inputs */
+}
+
+button {
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff; /* Color de fondo para el botón */
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Transición suave para efectos hover */
+
+  &:hover {
+    background-color: #0056b3; /* Color de fondo al pasar el ratón por encima */
+  }
+}
+
+.register-link {
+  text-align: center; /* Centra el texto del enlace de registro */
+  margin-top: 1rem; /* Espaciado después del botón */
+
+  a {
+    color: #007bff;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

@@ -1,0 +1,18 @@
+<div class="container" *ngIf="cancion">
+  <div class="detalle">
+    <img [src]="cancion.imagen" alt="Imagen de la canción">
+    <h5>{{ cancion.titulo }}</h5>
+    <p>Artista: {{ cancion.artista }}</p>
+    <p>Estilo: {{ cancion.estilo }}</p>
+    <p>Álbum: {{ cancion.album }}</p>
+    <p>Duración: {{ cancion.duracion }}</p>
+    <div class="icon">
+      <button  (click)="reproducirCancion()"><i class="bi bi-play-circle-fill"></i></button>
+      <p>Valora</p>
+      <span *ngFor="let star of [1, 2, 3, 4]">
+        <i class="bi bi-star" (click)="valorarCancion(star)" [ngClass]="{ 'bi bi-star-fill': star <= cancion.puntuacion, 'bi bi-star': star > cancion.puntuacion }"></i>
+      </span>
+      
+    </div>
+  </div>
+</div>

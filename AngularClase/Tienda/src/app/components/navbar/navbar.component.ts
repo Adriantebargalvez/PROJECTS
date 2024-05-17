@@ -13,6 +13,11 @@ export class NavbarComponent {
   constructor(private authService: AuthService, private router: Router, private ropahombreService: RopahombreService){
 
   }
+  
+  isAdrianLoggedIn(): boolean {
+    const currentUserEmail = this.authService.getCurrentUserEmail();
+    return currentUserEmail === 'adrian@gmail.com';
+  }
   goToUsersOrProfile() {
     this.authService.isUserAuthenticatedInFirebase().then(authenticated => {
       if (authenticated) {

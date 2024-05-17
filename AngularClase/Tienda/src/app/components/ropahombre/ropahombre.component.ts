@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RopahombreService } from 'src/app/services/ropahombre.service';
 import { Root2 } from 'src/app/common/ropa';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-ropahombre',
@@ -20,12 +21,29 @@ export class RopahombreComponent implements OnInit {
   paginatedArticulosHombre: Root2[] = [];
   paginatedArticulosMujer: Root2[] = [];
 
-  constructor(private ropahombreService: RopahombreService){}
+  constructor(private ropahombreService: RopahombreService, private authService: AuthService){}
 
   ngOnInit(): void {
     this.loadRopa();
   }
-
+  eliminarArticulo(id: string): void {
+    if (confirm('¿Seguro que quieres eliminar este artículo?')) {
+      this.ropahombreService.deleteRopahombre(id).subscribe({
+        next: response => {
+          console.log(response);
+          // Recargar los datos después de la eliminación
+          this.loadRopa();
+        },
+        error: err => {
+          console.error(err);
+        }
+      });
+    }
+  }
+  isAdrianLoggedIn(): boolean {
+    const currentUserEmail = this.authService.getCurrentUserEmail();
+    return currentUserEmail === 'adrian@gmail.com';
+  }
   private loadRopa(): void {
     this.ropahombreService.getAll().subscribe({
       next: value =>{

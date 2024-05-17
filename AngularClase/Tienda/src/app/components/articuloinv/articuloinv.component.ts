@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { RopahombreService } from 'src/app/services/ropahombre.service';
-import { ActivatedRoute, ActivationEnd } from '@angular/router';
+import { ActivatedRoute, ActivationEnd, Router } from '@angular/router';
 import { Root2 } from 'src/app/common/ropa';
 import { AuthService } from 'src/app/services/auth.service';
 import { User } from 'src/app/common/user';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormValidators } from 'src/app/validators/FormValidators';
 
 @Component({
   selector: 'app-articuloinv',
@@ -15,14 +17,32 @@ export class ArticuloinvComponent implements OnInit {
   currentUser: User | null = null;
   newComment: string = ''; 
   mediaClasificaciones: number = 0;
+  mediaCalificaciones: number = 0;
   comentarios: { displayName: string, comentario: string, fecha: string }[] = [];
 
-  constructor(private ropahombreService: RopahombreService, private ar: ActivatedRoute, private authService: AuthService) {}
+  allTallas = ['4XL', '2XL', 'XS', '2XS', '3XS', 'SM', 'XL', 'MD', '3XL'];
+  allTallasZapato = ['36', '38', '40', '42', '44'];
+  formSport: FormGroup  = this.formBuilder.group({
+    name: ['', [Validators.required, Validators.minLength(5), FormValidators.notOnlyWhitespace]],
+    price: ['0', [Validators.required, Validators.min(0)]],
+    tallasDisponibles: [this.allTallas],
+    tallasDisponiblesZapato: [this.allTallasZapato],
+    favorite: [false],
+    oferta: ['0', [Validators.required, Validators.min(0)]],
+    category: ['', [Validators.required, Validators.minLength(3), FormValidators.notOnlyWhitespace]],
+    imagen: ['', [Validators.required]],
+    descripcion: ['',[Validators.required, FormValidators.notsex]],
+    rating: [0]
+  });
+
+  constructor( private formBuilder: FormBuilder,private router: Router,
+    private arou: ActivatedRoute,private ropahombreService: RopahombreService, private ar: ActivatedRoute, private authService: AuthService) {}
 
   ngOnInit(): void {
     this.loadropa();
-   
+    this.loadSport();
   }
+  
 
   private loadropa() {
     const id = this.ar.snapshot.params['id'];
@@ -32,6 +52,9 @@ export class ArticuloinvComponent implements OnInit {
         this.articulo = value;
         this.cargarcomentario();
         this.calcularPromedioCalificaciones();
+        this.authService.calcularMediaCalificaciones(this.articulo._id).subscribe(media => {
+          this.mediaCalificaciones = media;
+        });
       },
       error: err => {
         console.log(err);
@@ -40,6 +63,10 @@ export class ArticuloinvComponent implements OnInit {
         console.log("Complete");
       }
     });
+  }
+  isAdrianLoggedIn(): boolean {
+    const currentUserEmail = this.authService.getCurrentUserEmail();
+    return currentUserEmail === 'adrian@gmail.com';
   }
   addToPedido(articulo: Root2) {
     this.ropahombreService.addRopaToCarritoUsuario(articulo);
@@ -103,5 +130,92 @@ export class ArticuloinvComponent implements OnInit {
         this.mediaClasificaciones = 0;
       }
     });
+  }
+   // Método para eliminar una talla del array de tallas disponibles
+ toggleTalla(talla: string, controlName: string) {
+  const tallas = this.formSport.get(controlName)?.value as string[];
+  const index = tallas.indexOf(talla);
+  if (index !== -1) {
+    // Si la talla ya está presente, quítala
+    tallas.splice(index, 1);
+  } else {
+    // Si no está presente, agrégala
+    tallas.push(talla);
+  }
+  this.formSport.get(controlName)?.setValue(tallas);
+}
+
+  // Métodos para acceder a los controles del formulario
+  get name() {
+    return this.formSport.get('name');
+  }
+
+  get price() {
+    return this.formSport.get('price');
+  }
+
+  get tallasDisponibles() {
+    return this.formSport.get('tallasDisponibles');
+  }
+
+  get tallasDisponiblesZapato() {
+    return this.formSport.get('tallasDisponiblesZapato');
+  }
+
+  get oferta() {
+    return this.formSport.get('oferta');
+  }
+
+  get category() {
+    return this.formSport.get('category');
+  }
+
+  get imagen() {
+    return this.formSport.get('imagen');
+  }
+
+  get descripcion() {
+    return this.formSport.get('descripcion');
+  }
+
+  get rating() {
+    return this.formSport.get('rating');
+  }
+
+  private loadSport() {
+    const id = this.arou.snapshot.params['id'];
+    this.ropahombreService.getOne(id).subscribe({
+      next: value => {
+        this.formSport.patchValue(value);
+      },
+      error: err => {
+        console.error(err);
+      }
+    });
+  }
+
+  updateSport() {
+    const ropaForm = this.formSport.value;
+    if (this.articulo._id) {
+      this.ropahombreService.updateRopahombre(this.articulo._id, ropaForm).subscribe({
+        next: (response) => {
+          console.log("Producto actualizado:", response);
+          this.router.navigate(['/ropa-list']);
+        },
+        error: (err) => {
+          console.error("Error al actualizar el producto:", err);
+        }
+      });
+    } else {
+      this.ropahombreService.addRopahombre(ropaForm).subscribe({
+        next: (response) => {
+          console.log("Producto agregado:", response);
+          this.router.navigate(['/ropa-list']);
+        },
+        error: (err) => {
+          console.error("Error al agregar el producto:", err);
+        }
+      });
+    }
   }
 }

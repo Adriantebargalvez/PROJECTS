@@ -2,6 +2,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Root2 } from 'src/app/common/ropa';
@@ -17,8 +18,8 @@ export class PedidoComponent implements OnInit {
   pedidosFirebase: Observable<Root2[]> | undefined;
   precioTotalFirebase: Observable<number> | undefined;
   isAuthenticated: boolean = false;
-
-  constructor(private afs: AngularFirestore, private authService: AuthService) { }
+  allowNavigation: boolean = false; 
+  constructor(private afs: AngularFirestore, private authService: AuthService,private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.authService.isUserAuthenticatedInFirebase().then(authenticated => {
@@ -40,12 +41,31 @@ export class PedidoComponent implements OnInit {
         this.precioTotalFirebase = this.pedidosFirebase.pipe(
           map(pedidos => pedidos.reduce((total, articulo) => total + (articulo.oferta || articulo.price), 0))
         );
+        this.pedidosFirebase.subscribe(pedidos => {
+          this.allowNavigation = pedidos.length > 0;
+        })
       }
     });
   }
-
+  showNotification() {
+    // Verificar si el array de pedidos está vacío
+    this.pedidosFirebase?.subscribe(pedidos => {
+      if (pedidos.length === 0) {
+        this.snackBar.open('Debes añadir algún producto', 'Cerrar', {
+          duration: 3000,
+          panelClass: ['mat-toolbar', 'mat-primary']
+        });
+        this.disableButton();
+      }
+    });
+  }
+  disableButton() {
+    this.isAuthenticated = false;
+}
   buyDisabled() {
+     
     return !this.isAuthenticated;
+    
   }
   
   

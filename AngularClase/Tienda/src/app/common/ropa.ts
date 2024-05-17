@@ -2,7 +2,7 @@
 export type Root = Root2[]
 
 export interface Root2 {
-  rating: number
+  
   _id: string
   name: string
   price: number
@@ -14,5 +14,6 @@ export interface Root2 {
   imagen: string
   __v: number
   descripcion:String;
+  rating: number
   
 }

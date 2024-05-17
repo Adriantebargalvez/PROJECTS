@@ -12,6 +12,7 @@ import { BuyComponent } from './components/buy/buy.component';
 import { UsersComponent } from './components/users/users.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { FavoriteComponent } from './components/favorite/favorite.component';
+import { CreateComponent } from './components/create/create.component';
 
 
 
@@ -61,6 +62,10 @@ const routes: Routes = [
 {
   path:'footer',
   component: FooterComponent
+},
+{
+  path:'create',
+  component: CreateComponent
 },
 {
   path:'nosotros',

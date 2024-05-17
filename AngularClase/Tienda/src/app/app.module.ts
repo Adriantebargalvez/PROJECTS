@@ -18,11 +18,12 @@ import { enviroment } from 'src/enviroment/enviroment';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FavoriteComponent } from './components/favorite/favorite.component';
-
+import { CreateComponent } from './components/create/create.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 
@@ -43,6 +44,7 @@ import { FavoriteComponent } from './components/favorite/favorite.component';
     UsersComponent,
     PerfilComponent,
     FavoriteComponent,
+    CreateComponent
   
    
    
@@ -57,8 +59,9 @@ import { FavoriteComponent } from './components/favorite/favorite.component';
     AngularFirestoreModule,
     AngularFireAuthModule,
     FormsModule,
-    BrowserAnimationsModule 
-    
+    BrowserAnimationsModule ,
+    ReactiveFormsModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

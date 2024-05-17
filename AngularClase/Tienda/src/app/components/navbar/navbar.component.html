@@ -98,11 +98,11 @@
       </ul>
     
       
-      <i class="bi bi-chat link-header "></i>
+      <i *ngIf="isAdrianLoggedIn()" routerLink="/create" routerLinkActive="active" class="bi bi-gear "></i>
      <a (click)="goToUsersOrProfile()" routerLinkActive="active"><i class="bi bi-person "></i></a> 
     
       <i  routerLink="/favorite" routerLinkActive="active"  class="bi bi-heart "></i>
-      <a routerLink="/pedido" routerLinkActive="active"><i class="bi bi-cart2 "></i></a>
+      <a routerLink="/pedido" routerLinkActive="active"  ><i  class="bi bi-cart2 "></i></a>
    
   
 </div>

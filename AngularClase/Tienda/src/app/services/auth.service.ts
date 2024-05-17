@@ -4,7 +4,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore , AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
 import { User } from '../common/user';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 
 
 
@@ -26,7 +26,9 @@ userData:any;
       }
     });
   })}
-
+  getCurrentUserEmail(): string {
+    return this.userData ? this.userData.email : '';
+  }
   getCurrentUser(): Observable<any> {
     return this.afAuth.authState;
   }
@@ -111,7 +113,8 @@ obtenerComentarios(articuloId: string): Observable<any[]> {
 guardarCalificacion(articuloId: string, rating: number) {
   return this.afs.collection(`articulos/${articuloId}/calificaciones`).add({
     userId: this.userData.uid,
-    rating: rating
+    rating: rating,
+    
   });
 }
 
@@ -122,5 +125,16 @@ obtenerCalificaciones(articuloId: string): Observable<any[]> {
 obtenerTodasCalificaciones(): Observable<any[]> {
   return this.afs.collectionGroup('calificaciones').valueChanges();
 }
+calcularMediaCalificaciones(articuloId: string): Observable<number> {
+  return this.obtenerCalificaciones(articuloId).pipe(
+    map(calificaciones => {
+      if (calificaciones.length > 0) {
+        const sum = calificaciones.reduce((total, current) => total + current.rating, 0);
+        return sum / calificaciones.length;
+      } else {
+        return 0;
+      }
+    })
+  );
 }
-
+}

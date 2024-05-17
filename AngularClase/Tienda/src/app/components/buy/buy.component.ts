@@ -1,12 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import gsap from 'gsap';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-buy',
   templateUrl: './buy.component.html',
   styleUrls: ['./buy.component.css']
 })
-export class BuyComponent {
+export class BuyComponent implements OnInit { 
+  currentUser: any;
+  constructor(private authService: AuthService,private snackBar: MatSnackBar){}
+  ngOnInit(): void {
+    this.authService.getCurrentUser().subscribe(user => {
+      this.currentUser = user;
+    });
+  }
   animarBoton() {
     const button = document.querySelector('.truck-button');
     const box = button?.querySelector('.box') as HTMLElement;
@@ -23,6 +32,7 @@ export class BuyComponent {
           '--box-o': 1,
           duration: 0.3,
           delay: 0.5
+         
         });
 
         gsap.to(box, {
@@ -101,7 +111,18 @@ export class BuyComponent {
         y: -6
       });
     }
+    const message = this.currentUser ? `Tu pedido está preparándose. Te contactaremos al correo próximamente para informarte (${this.currentUser.email}).` : "Tu pedido está preparándose.";
+
+    this.snackBar.open(message, 'Cerrar', {
+      duration: 5000,
+      panelClass: ['mat-toolbar', 'mat-primary']
+    });
   }
+ 
+   
+  
 }
+  
+
 
 

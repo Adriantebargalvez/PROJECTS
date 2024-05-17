@@ -23,6 +23,17 @@ preciocarrito: BehaviorSubject<number>=new BehaviorSubject<number>(0);
   constructor(private http: HttpClient, private authService: AuthService,private afs: AngularFirestore, private router: Router) { 
     
   }
+  updateRopahombre(id: string, root2: Root2): Observable<Root2> {
+    return this.http.patch<Root2>(`${this.URI}update/${id}`, root2);
+  }
+  addRopahombre(root2: Root2): Observable<Root2> {
+    return this.http.post<Root2>(this.URI + 'insertar', root2);
+  }
+  deleteRopahombre(id: string): Observable<any> {
+    return this.http.delete<any>(`${this.URI}delete/${id}`);
+  }
+  
+  
   scrollToNovedades() {
     // Busca el elemento con la clase 'titulo' que contiene la palabra 'NOVEDADES'
     const novedadesElement = document.querySelector('.titulo') as HTMLElement;

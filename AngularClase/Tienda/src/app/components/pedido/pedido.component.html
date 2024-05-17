@@ -35,14 +35,19 @@
     </div>
    
  
-  <div>
-    
+    <div class="col-2 offset-10" *ngIf="(pedidosFirebase | async)?.length">
+      <h1>Total</h1>
+    </div>
+    <div class="col-2 offset-10" *ngIf="(pedidosFirebase | async)?.length">
+      {{precioTotalFirebase | async | currency: 'EUR'}}
+    </div>
 
-    <div class="col-2 offset-10"><h1>Total</h1></div>
-    <div class="col-2 offset-10">{{precioTotalFirebase | async | currency: 'EUR'}}</div>
-   </div>
-   <a routerLink="/buy" routerLinkActive="active">
-    <button class="buy" [disabled]="buyDisabled()" >      
+  
+  
+
+<ng-container *ngIf="allowNavigation">
+  <a routerLink="/buy" routerLinkActive="active">
+    <button class="buy" [disabled]="buyDisabled()" (click)="showNotification()">      
       <h1>
         <span style="--i: 1">B</span>
         <span style="--i: 2">U</span>
@@ -50,4 +55,5 @@
       </h1>
     </button>
   </a>
+</ng-container>
     

@@ -1,4 +1,4 @@
-<input type="text" placeholder="Buscar por nombre..." (keyup)="filterArticulos($event)">
+<input class="filtroNombre" type="text" placeholder="Buscar por nombre..." (keyup)="filterArticulos($event)">
 <h1 class="mujer">Ropa Hombre</h1>
 <div class="container">
   <div class="row">
@@ -26,8 +26,12 @@
                       </p>
                     </div>
                   </div>
+                  
               </div>
-             
+              <div *ngIf="isAdrianLoggedIn()">
+                <button (click)="eliminarArticulo(articulo._id)" class="btn btn-danger">Eliminar</button>
+              </div>
+              </div>
           </div>
           
       </div>
@@ -64,7 +68,9 @@
               </div>
             </div>
         </div>
-       
+        <div *ngIf="isAdrianLoggedIn()">
+          <button (click)="eliminarArticulo(articulo._id)" class="btn btn-danger">Eliminar</button>
+        </div>
     </div>
     </div>
   </div>
@@ -73,5 +79,4 @@
     <span>{{ currentPageMujer }} de {{ totalPagesMujer }}</span>
     <button class="pagination-button" (click)="nextPageMujer()" [disabled]="currentPageMujer === totalPagesMujer">Siguiente</button>
   </div>
-</div>
 

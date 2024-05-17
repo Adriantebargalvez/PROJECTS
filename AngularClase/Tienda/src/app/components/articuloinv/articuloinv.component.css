@@ -301,3 +301,9 @@ height: 40px;
 .star.filled {
   color: yellow;
 }
+.actulizar{
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}

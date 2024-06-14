@@ -13,6 +13,8 @@ import { FormValidators } from 'src/app/validators/FormValidators';
   styleUrls: ['./articuloinv.component.css']
 })
 export class ArticuloinvComponent implements OnInit {
+  
+  paginatedArticulosHombre: Root2[] = [];
   articulo!: Root2;
   currentUser: User | null = null;
   newComment: string = ''; 
@@ -31,6 +33,8 @@ export class ArticuloinvComponent implements OnInit {
     oferta: ['0', [Validators.required, Validators.min(0)]],
     category: ['', [Validators.required, Validators.minLength(3), FormValidators.notOnlyWhitespace]],
     imagen: ['', [Validators.required]],
+    imagenLado:['', [Validators.required]],
+    imagenDetras:['', [Validators.required]],
     descripcion: ['',[Validators.required, FormValidators.notsex]],
     rating: [0]
   });
@@ -173,7 +177,12 @@ export class ArticuloinvComponent implements OnInit {
   get imagen() {
     return this.formSport.get('imagen');
   }
-
+  get imagenLado() {
+    return this.formSport.get('imagenLado');
+  }
+  get imagenDetras() {
+    return this.formSport.get('imagenDetras');
+  }
   get descripcion() {
     return this.formSport.get('descripcion');
   }

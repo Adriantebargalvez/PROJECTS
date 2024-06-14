@@ -10,7 +10,10 @@ export const RopahombreSchema: Schema = new Schema({
     oferta: {type: Number, required: true},
     category: {type: String, required: true},
     imagen: {type: String, required: true},
+    imagenLado: {type: String, required: true},
+    imagenDetras: {type: String, required: true},
     descripcion: {type: String, required: true},
+   
 
  
 })

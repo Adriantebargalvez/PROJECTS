@@ -13,6 +13,8 @@ import { UsersComponent } from './components/users/users.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { FavoriteComponent } from './components/favorite/favorite.component';
 import { CreateComponent } from './components/create/create.component';
+import { RopamujerComponent } from './components/ropamujer/ropamujer.component';
+import { FiltroybottonesComponent } from './components/filtroybottones/filtroybottones.component';
 
 
 
@@ -35,6 +37,15 @@ const routes: Routes = [
   path:'ropahombre',
   component: RopahombreComponent
 },
+{
+  path:'ropamujer',
+  component: RopamujerComponent
+},
+{
+  path:'filtroybottones',
+  component: FiltroybottonesComponent
+},
+
 {
   path:'pedido',
   component: PedidoComponent

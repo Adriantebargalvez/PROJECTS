@@ -4,6 +4,32 @@
     <div class="content01" >
       <img [src]="articulo.imagen" alt="Cotton striped T-Shirt" class="product-image">
     </div>
+    <div class="container">
+      <div class="card">
+          <div class="card--image">
+              <img [src]="articulo.imagen" alt="Cotton striped T-Shirt" class="product-image" alt="image">
+          </div>
+          <div class="card--info info--1">
+              <span class="info--text">Side</span>
+              <div class="icon">
+                 
+              </div>
+              <div class="info--image">
+                  <img [src]="articulo.imagenLado"  alt="info image">
+              </div>
+          </div>
+          <div class="card--info info--2">
+              <span class="info--text">Behind</span>
+              <div class="icon">
+               
+              </div>
+              <div class="info--image">
+                  <img [src]="articulo.imagenDetras"  alt="info image">
+              </div>
+          </div>
+      </div>
+  </div>
+  
     <div class="product-details">
       <div class="product-ratings">
         <span class="star" [ngClass]="{'filled': i < articulo.rating}" 
@@ -70,7 +96,7 @@
     <button class="comment-btn" (click)="agregarComentario()">¡Comentar!</button>
   </div>
   
-  
+
 
 
  <div *ngIf="isAdrianLoggedIn()">
@@ -167,6 +193,22 @@
             <label for="imagen">Imagen</label>
             <div *ngIf="imagen?.invalid && (imagen?.touched || imagen?.dirty)" class="alert alert-danger mt-2">
               <div *ngIf="imagen?.errors?.['required']"><span class="small">La Imagen es obligatorio</span></div>
+            </div>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" formControlName="imagenLado" id="imagenLado" placeholder="imagenLado">
+            <label for="imagenLado">imagenLado</label>
+            <div *ngIf="imagenLado?.invalid && (imagenLado?.touched || imagenLado?.dirty)" class="alert alert-danger mt-2">
+              <div *ngIf="imagenLado?.errors?.['required']"><span class="small">La Imagen es obligatorio</span></div>
+            </div>
+          </div>
+  
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" formControlName="imagenDetras" id="imagenDetras" placeholder="imagenDetras">
+            <label for="imagenDetras">imagenDetras</label>
+            <div *ngIf="imagenDetras?.invalid && (imagenDetras?.touched || imagenDetras?.dirty)" class="alert alert-danger mt-2">
+              <div *ngIf="imagenDetras?.errors?.['required']"><span class="small">La Imagen es obligatorio</span></div>
             </div>
           </div>
   

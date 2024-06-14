@@ -81,6 +81,7 @@ isUserAuthenticatedInFirebase(): Promise<boolean> {
     });
   });
 }
+
 logout(): Promise<void> {
   return this.afAuth.signOut()
     .then(() => {

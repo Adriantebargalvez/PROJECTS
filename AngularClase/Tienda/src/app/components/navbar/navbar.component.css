@@ -194,3 +194,21 @@ font-size: small;
     margin-bottom: 10px;
   }
 }
+.notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #FFE333; /* Color de fondo */
+  border: 1px solid rgb(255, 255, 255); /* Borde rojo */
+  padding: 10px;
+  border-radius: 5px;
+  z-index: 9999; /* Asegura que esté por encima de otros elementos */
+}
+
+.notification p {
+  margin: 0;
+}
+
+.notification button {
+  margin-top: 5px;
+}

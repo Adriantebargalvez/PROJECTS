@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { RopahombreService } from 'src/app/services/ropahombre.service';
-import { Root2 } from 'src/app/common/ropa';
-import { AuthService } from 'src/app/services/auth.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { combineLatest, map } from 'rxjs';
+import { Root2 } from 'src/app/common/ropa';
+import { AuthService } from 'src/app/services/auth.service';
+import { RopahombreService } from 'src/app/services/ropahombre.service';
 
 @Component({
-  selector: 'app-ropahombre',
-  templateUrl: './ropahombre.component.html',
-  styleUrls: ['./ropahombre.component.css']
+  selector: 'app-ropamujer',
+  templateUrl: './ropamujer.component.html',
+  styleUrls: ['./ropamujer.component.css']
 })
-export class RopahombreComponent implements OnInit {
- 
+export class RopamujerComponent implements OnInit{
+
   articulos: Root2[] = [];
   pageSize: number = 8;
   currentPageHombre: number = 1;
@@ -24,6 +24,7 @@ export class RopahombreComponent implements OnInit {
   paginatedArticulosMujer: Root2[] = [];
   favoritos: Root2[] = [];
   highestRatedArticuloId: string | null = null;
+
   constructor(private ropahombreService: RopahombreService, private authService: AuthService,private afs: AngularFirestore){}
 
   ngOnInit(): void {

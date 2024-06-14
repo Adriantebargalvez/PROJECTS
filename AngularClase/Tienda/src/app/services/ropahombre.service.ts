@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, map } from 'rxjs';
 import { Root2 } from '../common/ropa';
 import { AuthService } from './auth.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
@@ -33,7 +33,15 @@ preciocarrito: BehaviorSubject<number>=new BehaviorSubject<number>(0);
     return this.http.delete<any>(`${this.URI}delete/${id}`);
   }
   
-  
+  getCalificacionPromedio(articuloId: string): Observable<number> {
+    return this.afs.collection(`articulos/${articuloId}/calificaciones`).valueChanges().pipe(
+      map((calificaciones: any[]) => {
+        const sum = calificaciones.reduce((total, current) => total + current.rating, 0);
+        return calificaciones.length > 0 ? sum / calificaciones.length : 0;
+      })
+    );
+  }
+
   scrollToNovedades() {
     // Busca el elemento con la clase 'titulo' que contiene la palabra 'NOVEDADES'
     const novedadesElement = document.querySelector('.titulo') as HTMLElement;

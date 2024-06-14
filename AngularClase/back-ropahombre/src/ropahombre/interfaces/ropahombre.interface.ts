@@ -7,6 +7,8 @@ export class RopahombreDto {
   oferta: number;
   category: string;
   imagen: string;
-  descripcion: String;
+  imagenLado: string;
+  imagenDetras: string;
+  descripcion: string;
   
 }

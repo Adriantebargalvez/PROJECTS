@@ -1,8 +1,8 @@
 <app-filtroybottones></app-filtroybottones>
 <input class="filtroNombre" type="text" placeholder="Search for clothing" (keyup)="filterArticulos($event)">
-  <div class="container">
+<div class="container">
     <div class="row">
-	<div class="product-card" *ngFor="let articulo of paginatedArticulosHombre">
+	<div class="product-card" *ngFor="let articulo of paginatedArticulosMujer">
     <div class="product-card" [ngClass]="{ 'hot': articulo.isHot }">
 		<div class="product-tumb" [routerLink]="['/articuloinv', articulo._id]" routerLinkActive="active">
       <img [src]="articulo.imagen" alt="Imagen vestidos {{articulo.name}}">
@@ -30,9 +30,13 @@
     </div>
 </div>
 	</div>
-  </div>
+ 
   <div class="pagination">
     <button class="pagination-button" (click)="previousPageHombre()" [disabled]="currentPageHombre === 1">Anterior</button>
     <span>{{ currentPageHombre }} de {{ totalPagesHombre }}</span>
     <button class="pagination-button" (click)="nextPageHombre()" [disabled]="currentPageHombre === totalPagesHombre">Siguiente</button>
   </div>
+
+   
+
+

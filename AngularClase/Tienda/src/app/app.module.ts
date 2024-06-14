@@ -24,6 +24,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FavoriteComponent } from './components/favorite/favorite.component';
 import { CreateComponent } from './components/create/create.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { FiltroybottonesComponent } from './components/filtroybottones/filtroybottones.component';
+import { RopamujerComponent } from './components/ropamujer/ropamujer.component';
+
 
 
 
@@ -44,10 +47,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     UsersComponent,
     PerfilComponent,
     FavoriteComponent,
-    CreateComponent
-  
-   
-   
+    CreateComponent,
+    FiltroybottonesComponent,
+   RopamujerComponent
   ],
   imports: [
     BrowserModule,

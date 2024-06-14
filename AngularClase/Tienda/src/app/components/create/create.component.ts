@@ -22,8 +22,11 @@ export class CreateComponent  {
     oferta: ['0', [Validators.required, Validators.min(0)]],
     category: ['', [Validators.required, Validators.minLength(3), FormValidators.notOnlyWhitespace]],
     imagen: ['', [Validators.required]],
+    imagenLado:['', [Validators.required]],
+    imagenDetras:['', [Validators.required]],
     descripcion: ['',[Validators.required, FormValidators.notsex]],
-    rating: [0]
+    rating: [0],
+    
   });
   constructor(
     private formBuilder: FormBuilder,
@@ -74,15 +77,20 @@ export class CreateComponent  {
   get imagen() {
     return this.formSport.get('imagen');
   }
-
+  get imagenLado() {
+    return this.formSport.get('imagenLado');
+  }
+  get imagenDetras() {
+    return this.formSport.get('imagenDetras');
+  }
   get descripcion() {
     return this.formSport.get('descripcion');
   }
-
+ 
   get rating() {
     return this.formSport.get('rating');
   }
-
+ 
   private loadSport() {
     const id = this.arou.snapshot.params['id'];
     this.ropahombreService.getOne(id).subscribe({

@@ -12,8 +12,10 @@ export interface Root2 {
   oferta: number
   category: string
   imagen: string
+  imagenLado: string
+  imagenDetras: string
   __v: number
-  descripcion:String;
+  descripcion:string
   rating: number
-  
+  isHot: boolean; // Nueva propiedad para indicar si es "Hot"
 }

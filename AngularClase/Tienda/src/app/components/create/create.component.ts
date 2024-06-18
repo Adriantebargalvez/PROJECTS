@@ -22,8 +22,8 @@ export class CreateComponent  {
     oferta: ['0', [Validators.required, Validators.min(0)]],
     category: ['', [Validators.required, Validators.minLength(3), FormValidators.notOnlyWhitespace]],
     imagen: ['', [Validators.required]],
-    imagenLado:['', [Validators.required]],
-    imagenDetras:['', [Validators.required]],
+    imagenLado: ['', [Validators.required]],
+    imagenDetras: ['', [Validators.required]],
     descripcion: ['',[Validators.required, FormValidators.notsex]],
     rating: [0],
     

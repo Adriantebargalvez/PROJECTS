@@ -214,4 +214,7 @@ export class RopamujerComponent implements OnInit{
       }
     });
   }
+  truncateName(name: string): string {
+    return name.length > 19 ? name.substring(0,19 ) + '...' : name;
+  }
 }

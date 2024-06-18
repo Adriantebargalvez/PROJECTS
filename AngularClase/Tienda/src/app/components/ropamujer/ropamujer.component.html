@@ -9,7 +9,7 @@
 		</div>
 		<div class="product-details">
 			<span class="product-catagory">{{articulo.category}}</span>
-			<h4><a href="">{{articulo.name}}</a></h4>
+			<h4><a href="">{{truncateName(articulo.name)}}</a></h4>
 			<p>{{articulo.descripcion}}</p>
 			<div class="product-bottom-details">
 				<div class="product-price"><small>{{ articulo.oferta| currency:'EUR' }}</small>{{ articulo.price| currency:'EUR' }}</div>

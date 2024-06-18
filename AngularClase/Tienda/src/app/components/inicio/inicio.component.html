@@ -5,19 +5,34 @@
 
 
 <body>
-  <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img src="../../../assets/img/1.jpg" class="d-block imgCarrusel" alt="...">
+  <div class="videos">
+    <div class="video-container">
+      <div class="overlay">
+          <div class="text-overlay">
+              <div class="title-overlay">Camiseta refrescante</div>
+              <div class="description-overlay">Tejido que absorbe la humedad y transpirable que
+                te mantiene con buen aspecto y cool.</div>
+                <button class="button-overlay">Camisetas De Hombre</button>
+          </div>
+         
       </div>
-      <div class="carousel-item">
-        <img src="../../../assets/img/2.jpg" class="d-block imgCarrusel" alt="...">
-      </div>
-      <div class="carousel-item">
-        <img src="../../../assets/img/3.jpg" class="d-block imgCarrusel" alt="...">
-      </div>
-    </div>
+      <video class="js-video" autoplay="" muted="" loop="" preload="auto" playsinline="" src="https://img.hollisterco.com/is/content/anf/hco-2024-JuneWk4-D-HP-CoolingTee.mp4" aria-describedby="anf-video-description-video-description" type="video/mp4"></video>
   </div>
+  <div class="video-container">
+      <div class="overlay">
+          <div class="text-overlay">
+              <div class="title-overlay">Vestido de tirantes</div>
+              <div class="description-overlay">Nosotros lo hicimos favorecedor, tú lo convertiste en nuestra superventa.
+                Ponte el nuevo vestido de festival favorito del verano.</div>
+          </div>
+          <button class="button-overlay">Vestidos De Mujer </button>
+      </div>
+      <video class="js-video" autoplay="" muted="" loop="" preload="auto" playsinline="" src="https://img.hollisterco.com/is/content/anf/hco-2024-JuneWk4-D-HP-SlipDress.mp4" aria-describedby="anf-video-description-video-description" type="video/mp4"></video>
+  </div>
+</div>
+
+
+ 
  <div id="novedades">
   <div class="titulo"><h1><strong>NOVEDADES</strong></h1></div>
 <div  class="novedades">
@@ -100,7 +115,7 @@
 <div class="container">
   <div class="imgContainer">
     <div *ngFor="let slide of slides; let i = index" class="slide_div" [id]="'slider_' + (i + 1)">
-      <a [routerLink]="'/ropahombre'" routerLinkActive="active">
+      <a [routerLink]="slide.src.includes('hombre') ? '/ropahombre' : '/ropamujer'" routerLinkActive="active">
         <img [src]="slide.src" alt="" class="img" [id]="'img' + (i + 1)" >
       </a>
     </div>

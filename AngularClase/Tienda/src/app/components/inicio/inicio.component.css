@@ -1,4 +1,57 @@
+.videos{
+  display: flex;
+  margin-top: 1em;
+  justify-content: space-between; 
+}
+.videos .js-video{
+  width: 41.9em;
+}
+.video-container {
+  position: relative;
+  width: 45%;
+  margin-right:4em;
+}
 
+.video-container video {
+  display: block;
+  width: 100%;
+  
+}
+.overlay {
+  position: absolute;
+  top: 15em;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: 1;
+  width: 90%;
+}
+.button-overlay {
+  background-color: transparent;
+  color: white;
+  border: 2px solid white; /* Asegurarse de que el borde sea visible y blanco */
+  border-radius: 40em;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-top: 2em;
+  transition: background-color 0.3s, color 0.3s;
+}
+.button-overlay:hover {
+  background-color: white;
+  color: black; /* Cambiar el color del texto al pasar el cursor para contraste */
+}
+.text-overlay {
+  color: white;
+  padding: 5px 10px;
+  margin-bottom: 10px;
+}
+.title-overlay {
+  font-size: 2em;
+}
+.description-overlay {
+  font-size: 1.2em;
+  margin-top: 5px;
+}
    /*SCSS BOTTONS*/
    .portfolio-experiment {
     display: flex;

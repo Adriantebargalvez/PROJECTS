@@ -49,7 +49,8 @@ import { RopamujerComponent } from './components/ropamujer/ropamujer.component';
     FavoriteComponent,
     CreateComponent,
     FiltroybottonesComponent,
-   RopamujerComponent
+   RopamujerComponent,
+   
   ],
   imports: [
     BrowserModule,

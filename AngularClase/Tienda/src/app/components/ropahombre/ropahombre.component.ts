@@ -49,6 +49,9 @@ export class RopahombreComponent implements OnInit {
     const currentUserEmail = this.authService.getCurrentUserEmail();
     return currentUserEmail === 'adrian@gmail.com';
   }
+  truncateName(name: string): string {
+    return name.length > 19 ? name.substring(0,19 ) + '...' : name;
+  }
   private loadRopa(): void {
     this.ropahombreService.getAll().subscribe({
       next: value => {

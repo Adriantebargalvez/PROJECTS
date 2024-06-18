@@ -9,9 +9,9 @@ export const RopahombreSchema: Schema = new Schema({
     favorite: { type: Boolean, required: true, default: false },
     oferta: {type: Number, required: true},
     category: {type: String, required: true},
-    imagen: {type: String, required: true},
-    imagenLado: {type: String, required: true},
-    imagenDetras: {type: String, required: true},
+    imagen: {type: String, required: true, maxlength: 1048576000000 },
+    imagenLado: {type: String, required: true, maxlength: 104857600000  },
+    imagenDetras: {type: String, required: true, maxlength: 104857600000 },
     descripcion: {type: String, required: true},
    
 

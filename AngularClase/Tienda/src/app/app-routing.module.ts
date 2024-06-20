@@ -15,6 +15,7 @@ import { FavoriteComponent } from './components/favorite/favorite.component';
 import { CreateComponent } from './components/create/create.component';
 import { RopamujerComponent } from './components/ropamujer/ropamujer.component';
 import { FiltroybottonesComponent } from './components/filtroybottones/filtroybottones.component';
+import { CamisetasComponent } from './components/camisetas/camisetas.component';
 
 
 
@@ -82,6 +83,9 @@ const routes: Routes = [
   path:'nosotros',
   component: NosotrosComponent
 },
+
+  { path: 'camisetas', component: CamisetasComponent, data: { category: 'Camiseta Hombre' } },
+  { path: 'vestidos-mujer', component: CamisetasComponent, data: { category: 'Vestido Mujer' } },
 {
   path:'**',
   redirectTo:'Tienda',

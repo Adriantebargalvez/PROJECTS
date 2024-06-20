@@ -26,6 +26,7 @@ import { CreateComponent } from './components/create/create.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FiltroybottonesComponent } from './components/filtroybottones/filtroybottones.component';
 import { RopamujerComponent } from './components/ropamujer/ropamujer.component';
+import { CamisetasComponent } from './components/camisetas/camisetas.component';
 
 
 
@@ -50,6 +51,7 @@ import { RopamujerComponent } from './components/ropamujer/ropamujer.component';
     CreateComponent,
     FiltroybottonesComponent,
    RopamujerComponent,
+   CamisetasComponent,
    
   ],
   imports: [

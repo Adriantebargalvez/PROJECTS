@@ -37,14 +37,11 @@
         </div>
     </div>
    
- 
-    <div class="col-2 offset-10" *ngIf="(pedidosFirebase | async)?.length">
-      <h1>Total</h1>
+ <div class="precio">
+    <div class="total" *ngIf="(pedidosFirebase | async)?.length">
+      <h6>Total =  {{precioTotalFirebase | async | currency: 'EUR'}}</h6>
     </div>
-    <div class="col-2 offset-10" *ngIf="(pedidosFirebase | async)?.length">
-      {{precioTotalFirebase | async | currency: 'EUR'}}
-    </div>
-
+  </div>
   
   
 

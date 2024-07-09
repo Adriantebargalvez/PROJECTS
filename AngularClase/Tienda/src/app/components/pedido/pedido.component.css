@@ -1,3 +1,34 @@
+.precio {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 75%;
+  background-color: #fff; /* Fondo blanco */
+  border: 2px solid #000; /* Borde negro */
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  color: #000; /* Color del texto negro */
+  font-weight: bold; /* Letra en negrita */
+  max-width: 200px;
+}
+.precio .total {
+  text-align: center;
+}
+
+.precio-numero {
+  color: #808080; /* Color gris */
+  font-style: italic; /* Letra cursiva para un estilo bonito */
+}
+p {
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  unicode-bidi: isolate;
+}
+
 .NoPedido{
   width: 65em;
   display: flex;

@@ -12,6 +12,7 @@ import { RopahombreService } from 'src/app/services/ropahombre.service';
 export class NavbarComponent implements OnInit {
   AlertPedidos: boolean = false; 
   AlertFavoritos: boolean = false; 
+
   constructor(private authService: AuthService, private router: Router, private ropahombreService: RopahombreService,private afs: AngularFirestore ){
 
   }
@@ -56,7 +57,7 @@ export class NavbarComponent implements OnInit {
       console.error("Error al verificar la autenticación del usuario en Firebase:", error);
     });
   }
-
+ 
   goToUsersOrProfile() {
     this.authService.isUserAuthenticatedInFirebase().then(authenticated => {
       if (authenticated) {
@@ -92,6 +93,7 @@ export class NavbarComponent implements OnInit {
   closeFavoritos() {
     this.AlertFavoritos = false;
   }
+ 
 }
 
 

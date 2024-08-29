@@ -12,6 +12,7 @@ import { Observable, map } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
+ 
 userData:any;
   getUserID: any;
   constructor(private afs: AngularFirestore, private afAuth: AngularFireAuth,private router: Router,private firestore: AngularFirestore) { this.afAuth.authState.subscribe(user=>{

@@ -207,4 +207,242 @@
              .cart-icon i:hover {
                color: green; /* Cambia el color del carrito a verde al pasar el ratón por encima */
              }
-         
+             @media (min-width: 2399px) and (max-width: 2699px)  {
+
+              .container {
+                margin-left: 650px;
+                margin-right: auto;
+                display: block; /* Asegura que se comporte como un bloque para centrar */
+                width: fit-content;
+              }
+              .product-card {
+                width: 240px;
+                margin-right: 70px; /* Añade más espacio entre las tarjetas */
+              }
+              .filtroNombre {
+                font-size: 52px;
+                padding: 10px; /* Añade un relleno interior para un aspecto más espacioso */
+                text-align: center; /* Centra el texto dentro del input */
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: 140px;
+                display: block; /* Asegura que se comporte como un bloque para centrar */
+                width: fit-content;
+              }
+            }
+            
+            /* Pantallas ultra grandes (monitores 5K y superiores) */
+            @media (min-width: 2100px) and (max-width: 2399px) {
+              .container {
+                margin-left: 450px;
+                margin-right: auto;
+                display: block; /* Asegura que se comporte como un bloque para centrar */
+                width: fit-content;
+              }
+              .product-card {
+                width: 240px;
+                margin-right: 70px; /* Añade más espacio entre las tarjetas */
+              }
+              .filtroNombre {
+                font-size: 40px;
+                padding: 10px; /* Añade un relleno interior para un aspecto más espacioso */
+                text-align: center; /* Centra el texto dentro del input */
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: 140px;
+                display: block; /* Asegura que se comporte como un bloque para centrar */
+                width: fit-content;
+              }
+            }
+            /* Pantallas extra grandes (monitores ultra anchos, 4K, 5K) */
+            @media (min-width: 1800px) and (max-width: 2099px)  {
+              .container {
+                margin-left: 350px;
+                margin-right: auto;
+                display: block; /* Asegura que se comporte como un bloque para centrar */
+                width: fit-content;
+              }
+              .product-card {
+                width: 250px;
+                margin-right: 60px; /* Añade más espacio entre las tarjetas */
+            
+              }
+              .filtroNombre {
+                font-size: 44px;
+                padding: 10px; /* Añade un relleno interior para un aspecto más espacioso */
+                text-align: center; /* Centra el texto dentro del input */
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: 120px;
+                display: block; /* Asegura que se comporte como un bloque para centrar */
+                width: fit-content;
+              }
+            }
+            
+            /* Pantallas muy grandes (monitores grandes, 4K y superiores) */
+            @media (min-width: 1500px) and (max-width: 1799px)  {
+              .container {
+                margin-left: 180px;
+                margin-right: auto;
+                display: block; /* Asegura que se comporte como un bloque para centrar */
+                width: fit-content;
+              }
+              .product-card {
+                width: 240px;
+                margin-right: 50px; /* Añade más espacio entre las tarjetas */
+            
+              }
+              .filtroNombre {
+                font-size: 42px;
+                padding: 10px; /* Añade un relleno interior para un aspecto más espacioso */
+                text-align: center; /* Centra el texto dentro del input */
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: 100px;
+                display: block; /* Asegura que se comporte como un bloque para centrar */
+                width: fit-content;
+              }
+            }
+            /* Pantallas grandes (desktops y monitores grandes) */
+            @media (min-width: 1200px ) and (max-width: 1499px)  {
+              .container {
+                margin-left: 130px;
+              }
+              .product-card {
+                width: 220px;
+                margin-right: 40px; /* Añade un margen inferior para separar verticalmente */
+              }
+              .filtroNombre {
+                font-size:38px;
+                padding: 10px; /* Añade un relleno interior para un aspecto más espacioso */
+                text-align: center; /* Centra el texto dentro del input */
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: 80px;
+                display: block; /* Asegura que se comporte como un bloque para centrar */
+                width: fit-content;
+                
+              }
+            }
+            
+            
+            /* Desktops y tablets en modo horizontal */
+            @media (min-width: 992px) and (max-width: 1199px) {
+              .container {
+                margin-left: 200px;
+               
+              }
+              .product-card {
+                width: 300px;
+                
+              }
+              .filtroNombre {
+                font-size: 22px;
+                padding: 10px; /* Añade un relleno interior para un aspecto más espacioso */
+                text-align: center; /* Centra el texto dentro del input */
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: 80px;
+                display: block; /* Asegura que se comporte como un bloque para centrar */
+                width: fit-content;
+                
+              }
+            }
+            
+            /* Tablets y iPads */
+            @media (min-width: 768px) and (max-width: 991px) {
+              .container {
+                margin-left: auto;
+                margin-right: auto;
+                display: block; /* Asegura que se comporte como un bloque para centrar */
+                width: fit-content;
+                
+              }
+              .product-card {
+                width: 300px;
+              }
+              .filtroNombre {
+                font-size: 18px;
+                padding: 10px; /* Añade un relleno interior para un aspecto más espacioso */
+                text-align: center; /* Centra el texto dentro del input */
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: 80px;
+                display: block; /* Asegura que se comporte como un bloque para centrar */
+                width: fit-content;
+                
+              }
+            }
+            
+            /* Smartphones en modo horizontal */
+            @media (min-width: 576px) and (max-width: 767px) {
+              .container {
+                margin-left: auto;
+                margin-right: auto;
+                display: block; /* Asegura que se comporte como un bloque para centrar */
+                width: fit-content;
+              }
+              .product-card {
+                width: 240px;
+              }
+              .filtroNombre {
+                font-size: 18px;
+                padding: 10px; /* Añade un relleno interior para un aspecto más espacioso */
+                text-align: center; /* Centra el texto dentro del input */
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: 80px;
+                display: block; /* Asegura que se comporte como un bloque para centrar */
+                width: fit-content;
+                
+              }
+            }
+            
+            /* Smartphones en modo vertical */
+            @media (min-width: 360px) and (max-width: 575px) {
+              .container {
+                margin-left: 10px;
+              }
+              .product-card {
+                width: 90%;
+                
+              }
+              .filtroNombre {
+                font-size: 18px;
+                padding: 10px; /* Añade un relleno interior para un aspecto más espacioso */
+                text-align: center; /* Centra el texto dentro del input */
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: 80px;
+                display: block; /* Asegura que se comporte como un bloque para centrar */
+                width: fit-content;
+                
+              }
+            }
+            
+            /* Dispositivos muy pequeños (smartphones muy pequeños) */
+            @media (max-width: 359px) {
+              .container {
+                margin-left: 6px;
+              }
+              .product-card {
+                width: 90%;
+              }
+              
+              .filtroNombre {
+                font-size: 16px;
+                padding: 10px; /* Añade un relleno interior para un aspecto más espacioso */
+                text-align: center; /* Centra el texto dentro del input */
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: 80px;
+                display: block; /* Asegura que se comporte como un bloque para centrar */
+                width: fit-content;
+                
+              }
+              .pagination-button {
+                font-size: 14px;
+                padding: 8px 16px;
+              }
+            }
+            

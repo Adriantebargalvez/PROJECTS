@@ -30,29 +30,8 @@ export class RopahombreComponent implements OnInit {
     this.loadRopa();
     this.loadFavoritos();
   }
-
-  eliminarArticulo(id: string): void {
-    if (confirm('¿Seguro que quieres eliminar este artículo?')) {
-      this.ropahombreService.deleteRopahombre(id).subscribe({
-        next: response => {
-          console.log(response);
-          // Recargar los datos después de la eliminación
-          this.loadRopa();
-        },
-        error: err => {
-          console.error(err);
-        }
-      });
-    }
-  }
-  isAdrianLoggedIn(): boolean {
-    const currentUserEmail = this.authService.getCurrentUserEmail();
-    return currentUserEmail === 'adrian@gmail.com';
-  }
-  truncateName(name: string): string {
-    return name.length > 19 ? name.substring(0,19 ) + '...' : name;
-  }
-  private loadRopa(): void {
+  
+ private loadRopa(): void {
     this.ropahombreService.getAll().subscribe({
       next: value => {
         this.articulos = value;
@@ -85,6 +64,28 @@ export class RopahombreComponent implements OnInit {
     });
   }
 
+  eliminarArticulo(id: string): void {
+    if (confirm('¿Seguro que quieres eliminar este artículo?')) {
+      this.ropahombreService.deleteRopahombre(id).subscribe({
+        next: response => {
+          console.log(response);
+          // Recargar los datos después de la eliminación
+          this.loadRopa();
+        },
+        error: err => {
+          console.error(err);
+        }
+      });
+    }
+  }
+  isAdrianLoggedIn(): boolean {
+    const currentUserEmail = this.authService.getCurrentUserEmail();
+    return currentUserEmail === 'adrian@gmail.com';
+  }
+  truncateName(name: string): string {
+    return name.length > 19 ? name.substring(0,19 ) + '...' : name;
+  }
+ 
   private setHighestRatedArticulo(): void {
       if (this.articulos.length > 0) {
       const highestRatedArticulo = this.articulos

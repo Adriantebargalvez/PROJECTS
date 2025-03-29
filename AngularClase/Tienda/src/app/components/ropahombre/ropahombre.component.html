@@ -12,7 +12,7 @@
 			<h4><a href="">{{truncateName(articulo.name)}}</a></h4>
 			<p>{{articulo.descripcion}}</p>
 			<div class="product-bottom-details">
-				<div class="product-price"><small>{{ articulo.oferta| currency:'EUR' }}</small>{{ articulo.price| currency:'EUR' }}</div>
+				<div class="product-price"><small>{{ articulo.price| currency:'EUR' }}</small>{{ articulo.oferta| currency:'EUR' }}</div>
         <div class="product-links">
           <a (click)="confirmarFavorito(articulo)" (click)="toggleFavorite(articulo)" [ngClass]="{ 'favorito': articulo.favorite , 'no-favorito': !articulo.favorite }">
             <i class="fa fa-heart"></i>

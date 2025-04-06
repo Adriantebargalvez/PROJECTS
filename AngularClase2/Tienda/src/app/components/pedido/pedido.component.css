@@ -1,0 +1,136 @@
+.precio {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 75%;
+  background-color: #fff; /* Fondo blanco */
+  border: 2px solid #000; /* Borde negro */
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  color: #000; /* Color del texto negro */
+  font-weight: bold; /* Letra en negrita */
+  max-width: 200px;
+}
+.precio .total {
+  text-align: center;
+}
+
+.precio-numero {
+  color: #808080; /* Color gris */
+  font-style: italic; /* Letra cursiva para un estilo bonito */
+}
+p {
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  unicode-bidi: isolate;
+}
+
+.NoPedido{
+  width: 65em;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+}
+.card-img-top{
+  height: 270px;
+      }
+    .container{
+      display: flex;
+      width: 100%;
+      height: auto;
+    }
+    .card-title{
+      text-align: center;
+  }
+  
+  .card{
+      background-color:  #ffffff; 
+     
+      margin-top: 60px;
+     
+     
+  }
+  .card-header{
+      background-color:#FFFFFF;
+      
+  }
+  .container{
+      margin-top: 60px;
+      margin-left: 160px;
+     
+  }
+  
+  .col-sm-6.col-md-4.col-lg-3.col-xl-2.mt-3{
+      width: 250px;
+  
+  }
+  .cora{
+      width: 50px; 
+      height: 40px;
+      border-radius: 50%; 
+     background-color: #FFFFFF;
+      margin-left: 160px;
+      margin-top: 10px;
+      border: none;
+  }
+  .favorito {
+     color: rgb(255, 0, 43);
+  }
+  
+  
+    
+    .money.oferta .normal-price {
+      text-decoration: line-through;
+      color: gray;
+      
+    }
+    
+    .money.oferta .offer-price {
+      color: red;
+      font-weight: bold;
+      font-size: 1.2em;
+      margin-left: 10px
+    }
+    .buy{
+      border: none;
+      background-color: #ffffff;
+      margin-left: 45%;
+      margin-top: 100px;
+    }
+    button h1 {
+      font-size: 30px;
+      color: #000080;
+     
+      height: 50px;
+   
+     }
+   
+     button span {
+   
+       position: relative;
+       top: 1px;
+       animation: move 1.0s ease-in-out infinite alternate;
+       animation-delay: calc(var(--i) * 0.15s);
+      }
+   
+   @keyframes move {
+   
+     100%{
+   
+        top: -30px;
+        text-shadow: 0 3px #008000, 
+                     0 6px #FFD700, 
+                     0 9px #FFA500, 
+                     0 11px #FFB6C1, 
+                     0 13px #800080, 
+                     0 14px #800080, 
+                     0 15px #808080;
+   
+    }
+   
+    }

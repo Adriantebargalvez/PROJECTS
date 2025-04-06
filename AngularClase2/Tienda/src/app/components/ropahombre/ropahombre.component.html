@@ -1,0 +1,38 @@
+<app-filtroybottones></app-filtroybottones>
+<input class="filtroNombre" type="text" placeholder="Search for clothing" (keyup)="filterArticulos($event)">
+  <div class="container">
+    <div class="row">
+	<div class="product-card" *ngFor="let articulo of paginatedArticulosHombre">
+    <div class="product-card" [ngClass]="{ 'hot': articulo.isHot }">
+		<div class="product-tumb" [routerLink]="['/articuloinv', articulo._id]" routerLinkActive="active">
+      <img [src]="articulo.imagen" alt="Imagen vestidos {{articulo.name}}">
+		</div>
+		<div class="product-details">
+			<span class="product-catagory">{{articulo.category}}</span>
+			<h4><a href="">{{truncateName(articulo.name)}}</a></h4>
+			<p>{{articulo.descripcion}}</p>
+			<div class="product-bottom-details">
+				<div class="product-price"><small>{{ articulo.oferta| currency:'EUR' }}</small>{{ articulo.price| currency:'EUR' }}</div>
+        <div class="product-links">
+          <a (click)="confirmarFavorito(articulo)" (click)="toggleFavorite(articulo)" [ngClass]="{ 'favorito': articulo.favorite , 'no-favorito': !articulo.favorite }">
+            <i class="fa fa-heart"></i>
+          </a>
+          <a (click)="addToPedido(articulo)" class="cart-icon">
+            <i class="fa fa-shopping-cart"></i>
+          </a>
+        </div>
+			</div>
+		</div>
+    <div *ngIf="isAdrianLoggedIn()">
+      <button (click)="eliminarArticulo(articulo._id)" class="btn btn-danger">Eliminar</button>
+    </div>
+    <div class="badge" *ngIf="articulo.isHot">Hot</div> 
+    </div>
+</div>
+	</div>
+  </div>
+  <div class="pagination">
+    <button class="pagination-button" (click)="previousPageHombre()" [disabled]="currentPageHombre === 1">Anterior</button>
+    <span>{{ currentPageHombre }} de {{ totalPagesHombre }}</span>
+    <button class="pagination-button" (click)="nextPageHombre()" [disabled]="currentPageHombre === totalPagesHombre">Siguiente</button>
+  </div>

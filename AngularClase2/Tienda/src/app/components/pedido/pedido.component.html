@@ -1,0 +1,59 @@
+
+<div class="container">
+    <div class="row">
+      <div class="NoPedido" *ngIf="!(pedidosFirebase | async)?.length">
+        <h4>No Hay Ningun Pedido</h4>
+      </div>
+        <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2 mt-3" *ngFor="let articulo of pedidosFirebase | async" >
+            <div class="card" >
+                <button class="cora" [ngClass]="{ 'favorito': articulo.favorite , 'no-favorito': !articulo.favorite }">
+                    <i [ngClass]="{ 'bi bi-suit-heart-fill': articulo.favorite , 'bi bi-suit-heart': !articulo.favorite }"></i>
+                </button>
+                <a [routerLink]="['/articuloinv', articulo._id]" routerLinkActive="active">
+                    <img [src]="articulo.imagen" class="card-img-top"  alt="Imagen vestidos {{articulo.name}}">
+                  </a>
+                <div class="card-header">
+                    <div class="card-title">
+                      
+                      <strong> <p>{{articulo.name}}</p></strong> 
+                      <strong> <p>{{articulo.category}}</p></strong> 
+                       
+                      <div class="product-price">
+                        <p class="money" *ngIf="!articulo.oferta">
+                          {{ articulo.price| currency:'EUR' }}
+                        </p>
+                        <p class="money oferta" *ngIf="articulo.oferta">
+                          <span class="normal-price">{{ articulo.price | currency:'EUR' }}</span>
+                          <span class="offer-price">{{ articulo.oferta | currency:'EUR' }}</span>
+                        </p>
+                      </div>
+                      <button (click)="confirmarEliminacion(articulo)" class="btn btn-danger">Eliminar del Pedido</button> <!-- Botón para eliminar el producto -->
+                    </div>
+                    </div>
+                </div>
+              
+            </div>
+            
+        </div>
+    </div>
+   
+ <div class="precio">
+    <div class="total" *ngIf="(pedidosFirebase | async)?.length">
+      <h6>Total =  {{precioTotalFirebase | async | currency: 'EUR'}}</h6>
+    </div>
+  </div>
+  
+  
+
+<ng-container *ngIf="allowNavigation">
+  <a routerLink="/buy" routerLinkActive="active">
+    <button class="buy" [disabled]="buyDisabled()" (click)="showNotification()">      
+      <h1>
+        <span style="--i: 1">B</span>
+        <span style="--i: 2">U</span>
+        <span style="--i: 3">Y</span>
+      </h1>
+    </button>
+  </a>
+</ng-container>
+    

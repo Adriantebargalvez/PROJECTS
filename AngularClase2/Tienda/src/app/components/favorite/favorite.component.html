@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row">
+    <div class="NoFavo" *ngIf="!(favoritosFirebase | async)?.length">
+      <h4>No Hay Ningun Favorito</h4>
+    </div>
+    <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2 mt-3" *ngFor="let articulo of (favoritosFirebase | async)">
+      <div class="card">
+        <!-- Agrega tu contenido para mostrar los favoritos -->
+        <button class="cora" (click)="confirmarFavorito(articulo)" [ngClass]="{ 'favorito': articulo.favorite, 'no-favorito': !articulo.favorite }">
+          <i [ngClass]="{ 'bi bi-suit-heart-fill': articulo.favorite, 'bi bi-suit-heart': !articulo.favorite }"></i>
+        </button>
+        <a [routerLink]="['/articuloinv', articulo._id]" routerLinkActive="active">
+          <img [src]="articulo.imagen" class="card-img-top"  alt="Imagen {{articulo.name}}">
+        </a>
+        <div class="card-header">
+          <div class="card-title">
+            <strong><p>{{articulo.name}}</p></strong> 
+            <strong><p>{{articulo.category}}</p></strong> 
+            <div class="product-price">
+              <p class="money" *ngIf="!articulo.oferta">
+                {{ articulo.price| currency:'EUR' }}
+              </p>
+              <p class="money oferta" *ngIf="articulo.oferta">
+                <span class="normal-price">{{ articulo.price | currency:'EUR' }}</span>
+                <span class="offer-price">{{ articulo.oferta | currency:'EUR' }}</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

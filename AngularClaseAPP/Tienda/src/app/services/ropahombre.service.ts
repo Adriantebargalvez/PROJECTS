@@ -14,7 +14,9 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class RopahombreService {
-private URI ='http://localhost:3000/api/ropahombre/'
+//private URI ='http://localhost:3000/api/ropahombre/'
+private URI ='https://10.0.2.2:3000/api/ropahombre/'
+
 favoritos: BehaviorSubject<Root2[]> = new BehaviorSubject<Root2[]>([]);
 carrito: BehaviorSubject<Root2[]> = new BehaviorSubject<Root2[]>([]);
 preciocarrito: BehaviorSubject<number>=new BehaviorSubject<number>(0);

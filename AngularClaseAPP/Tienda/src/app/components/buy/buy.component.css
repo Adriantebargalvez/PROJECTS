@@ -1,0 +1,403 @@
+* {
+  box-sizing: border-box;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Anaheim');
+@import url('https://fonts.googleapis.com/css?family=Inconsolata');
+
+body {
+  background: url('http://pmullen.com/codepen/h97pmPj.png') repeat;
+  min-height: 100vh;
+  display: flex;
+  font-family: 'Inter UI', 'Inter', Arial;
+  justify-content: center;
+  align-items: center;
+  background: #eceffc;
+}
+
+.card {
+  margin: 10vh auto;
+  width: 90%;
+  max-width: 600px;
+  border-radius: 3em;
+  background: #212121;
+  box-shadow: 0.625em 0.625em 1.25em rgb(25, 25, 25), -0.625em -0.625em 1.25em rgb(60, 60, 60);
+}
+
+.cc {
+  background: #174395;
+  border-radius: 1.25em;
+  height: 29.375em;
+  margin: 2.5em;
+  overflow: hidden;
+  padding: 1.25em;
+  position: relative;
+}
+
+.shine {
+  background: rgba(255, 255, 255, 0.05);
+  left: 6.25em;
+  top: 0;
+  margin: 0 0.9375em 0 0;
+  padding: 0;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  transform: skew(50deg);
+}
+
+.shine-layer-two {
+  transform: skew(80deg);
+}
+
+h2 {
+  font: 1.375em Anaheim;
+  color: #fff;
+  margin: 0.625em 0.625em 0.625em auto;
+  padding: 0;
+  text-align: right;
+}
+
+span {
+  text-transform: uppercase;
+}
+
+.number,
+.date {
+  margin-bottom: 0.625em;
+}
+
+.provider {
+  display: inline-block;
+  margin: 0.625em 0.625em 0.625em auto;
+  width: 4.375em;
+  height: 2.75em;
+}
+
+.mastercard,
+.visa,
+.amex {
+  background: url('http://pmullen.com/codepen/63JxOEI.png');
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.amex {
+  background-position: 4.375em 0;
+}
+
+.visa {
+  background-position: 7.375em 0;
+}
+
+input {
+  background: #ececec;
+  border: 0;
+  border-radius: 0.625em;
+  font: 1.25em Inconsolata, sans-serif;
+  color: #303030;
+  margin: 0.3125em 0.3125em 0.46875em 0;
+  padding: 0.625em 0.625em;
+  text-align: center;
+  width: 25%;
+  box-shadow: 0.0625em 0.0625em 0.0625em 0.0625em #0e306e;
+  position: relative;
+  z-index: 10;
+}
+
+input:nth-child(4) {
+  margin-right: 0;
+}
+
+.date input {
+  margin-right: 1.25em;
+}
+
+.valid {
+  position: relative;
+  margin-right: 0.625em;
+  width: 4.0625em;
+}
+
+.full-name {
+  width: 100%;
+  text-align: left;
+}
+
+.instructions {
+  letter-spacing: 0.0625em;
+  font: 0.75em Anaheim, sans-serif;
+  color: #ace4fa;
+  margin-left: 3em;
+}
+
+.truck-button {
+  margin-top: 2.5em;
+  margin-left: 40%;
+  --color: #fff;
+  --background: #2b3044;
+  --tick: #16bf78;
+  --base: #0d0f18;
+  --wheel: #2b3044;
+  --wheel-inner: #646b8c;
+  --wheel-dot: #fff;
+  --back: #6d58ff;
+  --back-inner: #362a89;
+  --back-inner-shadow: #2d246b;
+  --front: #a6accd;
+  --front-shadow: #535a79;
+  --front-light: #fff8b1;
+  --window: #2b3044;
+  --window-shadow: #404660;
+  --street: #646b8c;
+  --street-fill: #404660;
+  --box: #dcb97a;
+  --box-shadow: #b89b66;
+  padding: 0.75em 0;
+  width: 10.75em;
+  cursor: pointer;
+  text-align: center;
+  position: relative;
+  border: none;
+  outline: none;
+  color: var(--color);
+  background: var(--background);
+  border-radius: var(--br, 0.3125em);
+  transform-style: preserve-3d;
+  transform: rotateX(var(--rx, 0deg)) translateZ(0);
+  transition: transform 0.5s, border-radius 0.3s linear var(--br-d, 0s);
+}
+
+.truck-button:before,
+.truck-button:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 0.375em;
+  display: block;
+  background: var(--b, var(--street));
+  transform-origin: 0 100%;
+  transform: rotateX(90deg) scaleX(var(--sy, 1));
+}
+
+.truck-button:after {
+  --sy: var(--progress, 0);
+  --b: var(--street-fill);
+}
+
+.truck-button .default,
+.truck-button .success {
+  display: block;
+  font-weight: 500;
+  font-size: 0.875em;
+  line-height: 1.5em;
+  opacity: var(--o, 1);
+  transition: opacity 0.3s;
+}
+
+.truck-button .success {
+  --o: 0;
+  position: absolute;
+  top: 0.625em;
+  left: 0;
+  right: 0;
+}
+
+.truck-button .success svg {
+  width: 0.75em;
+  height: 0.625em;
+  display: inline-block;
+  vertical-align: top;
+  fill: none;
+  margin: 0.4375em 0 0 0.25em;
+  stroke: var(--tick);
+  stroke-width: 0.125em;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1em;
+  stroke-dashoffset: var(--offset, 1em);
+  transition: stroke-dashoffset 0.4s ease 0.45s;
+}
+
+.truck-button .truck {
+  position: absolute;
+  width: 4.5em;
+  height: 1.75em;
+  transform: rotateX(90deg) translate3d(var(--truck-x, 0.25em), calc(var(--truck-y-n, -1.625) * 0.0625em), 0.75em);
+}
+
+.truck-button .truck:before,
+.truck-button .truck:after {
+  content: '';
+  position: absolute;
+  bottom: -0.375em;
+  left: var(--l, 1.125em);
+  width: 0.625em;
+  height: 0.625em;
+  border-radius: 50%;
+  z-index: 2;
+  box-shadow: inset 0 0 0 0.125em var(--wheel), inset 0 0 0 0.25em var(--wheel-inner);
+  background: var(--wheel-dot);
+  transform: translateY(calc(var(--truck-y) * -0.0625em)) translateZ(0);
+}
+
+.truck-button .truck:after {
+  --l: 3.375em;
+}
+
+.truck-button .truck .wheel,
+.truck-button .truck .wheel:before {
+  position: absolute;
+  bottom: var(--b, -0.375em);
+  left: var(--l, 0.375em);
+  width: 0.625em;
+  height: 0.625em;
+  border-radius: 50%;
+  background: var(--wheel);
+  transform: translateZ(0);
+}
+
+.truck-button .truck .wheel {
+  transform: translateY(calc(var(--truck-y) * -0.0625em)) translateZ(0);
+}
+
+.truck-button .truck .wheel:before {
+  --l: 2.1875em;
+  --b: 0;
+  content: '';
+}
+
+.truck-button .truck .front,
+.truck-button .truck .back,
+.truck-button .truck .box {
+  position: absolute;
+}
+
+.truck-button .truck .back {
+  left: 0;
+  bottom: 0;
+  z-index: 1;
+  width: 2.9375em;
+  height: 1.75em;
+  border-radius: 0.0625em 0.0625em 0 0;
+  background: linear-gradient(68deg, var(--back-inner) 0%, var(--back-inner) 22%, var(--back-inner-shadow) 22.1%, var(--back-inner-shadow) 100%);
+}
+
+.truck-button .truck .back:before,
+.truck-button .truck .back:after {
+  content: '';
+  position: absolute;
+}
+
+.truck-button .truck .back:before {
+  left: 0.6875em;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  border-radius: 0 0.0625em 0 0;
+  background: var(--back);
+}
+
+.truck-button .truck .back:after {
+  border-radius: 0.0625em;
+  width: 4.5625em;
+  height: 0.125em;
+  left: -0.0625em;
+  bottom: -0.125em;
+  background: var(--base);
+}
+
+.truck-button .truck .front {
+  left: 2.9375em;
+  bottom: -0.0625em;
+  height: 1.375em;
+  width: 1.5em;
+  clip-path: polygon(55% 0, 72% 44%, 100% 58%, 100% 100%, 0 100%, 0 0);
+  background: linear-gradient(84deg, var(--front-shadow) 0%, var(--front-shadow) 10%, var(--front) 12%, var(--front) 100%);
+}
+
+.truck-button .truck .front:before,
+.truck-button .truck .front:after {
+  content: '';
+  position: absolute;
+}
+
+.truck-button .truck .front:before {
+  width: 0.4375em;
+  height: 0.5em;
+  background: #fff;
+  left: 0.4375em;
+  top: 0.125em;
+  clip-path: polygon(0 0, 60% 0%, 100% 100%, 0% 100%);
+  background: linear-gradient(59deg, var(--window) 0%, var(--window) 57%, var(--window-shadow) 55%, var(--window-shadow) 100%);
+}
+
+.truck-button .truck .front:after {
+  width: 0.1875em;
+  height: 0.125em;
+  right: 0;
+  bottom: 0.1875em;
+  background: var(--front-light);
+}
+
+.truck-button .truck .box {
+  width: 0.8125em;
+  height: 0.8125em;
+  right: 3.5em;
+  bottom: 0;
+  z-index: 1;
+  border-radius: 0.0625em;
+  overflow: hidden;
+  transform: translate(calc(var(--box-x, -1.5) * 0.625em), calc(var(--box-y, -0.375) * 0.0625em)) scale(var(--box-s, 0.5));
+  opacity: var(--box-o, 0);
+  background: linear-gradient(68deg, var(--box) 0%, var(--box) 50%, var(--box-shadow) 50.2%, var(--box-shadow) 100%);
+  background-size: 250% 100%;
+  background-position-x: calc(var(--bx, 0) * 1%);
+}
+
+.truck-button .truck .box:before,
+.truck-button .truck .box:after {
+  content: '';
+  position: absolute;
+}
+
+.truck-button .truck .box:before {
+  background: rgba(255, 255, 255, .2);
+  left: 0;
+  right: 0;
+  top: 0.375em;
+  height: 0.0625em;
+}
+
+.truck-button .truck .box:after {
+  width: 0.375em;
+  left: 100%;
+  top: 0;
+  bottom: 0;
+  background: var(--back);
+  transform: translateX(calc(var(--hx, 0) * 0.625em));
+}
+
+.truck-button.animation {
+  --rx: -90deg;
+  --br: 0;
+}
+
+.truck-button.animation .default {
+  --o: 0;
+}
+
+.truck-button.animation.done {
+  --rx: 0deg;
+  --br: 0.3125em;
+  --br-d: 0.2s;
+}
+
+.truck-button.animation.done .success {
+  --o: 1;
+  --offset: 0;
+}

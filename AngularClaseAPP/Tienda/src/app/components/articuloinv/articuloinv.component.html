@@ -1,0 +1,261 @@
+
+<div class="centered-container" *ngIf="articulo">
+  <div class="product-card" >
+    <div class="content01" >
+      <img [src]="articulo.imagen" alt="Cotton striped T-Shirt" class="product-image">
+    </div>
+    <div class="container">
+      <div class="card">
+          <div class="card--image">
+              <img [src]="articulo.imagen" alt="Cotton striped T-Shirt" class="product-image" alt="image">
+          </div>
+          <div class="card--info info--1">
+              <span class="info--text">Side</span>
+              <div class="icon">
+                 
+              </div>
+              <div class="info--image">
+                  <img [src]="articulo.imagenLado"  alt="info image">
+              </div>
+          </div>
+          <div class="card--info info--2">
+              <span class="info--text">Behind</span>
+              <div class="icon">
+               
+              </div>
+              <div class="info--image">
+                  <img [src]="articulo.imagenDetras"  alt="info image">
+              </div>
+          </div>
+      </div>
+  </div>
+  
+    <div class="product-details">
+      <div class="product-ratings">
+        <span class="star" [ngClass]="{'filled': i < articulo.rating}" 
+              *ngFor="let i of [1, 2, 3, 4, 5]" 
+              (click)="calificarProducto(i)">
+          &#9733;
+        </span>
+        <strong>Reviews ({{ mediaCalificaciones }})</strong>
+      </div>
+      <div class="product-category">{{articulo.category}}</div>
+      <div class="product-title">{{articulo.name}}</div>
+      <div class="product-price" *ngIf="articulo.oferta">
+        <p class="money">{{ articulo.oferta| currency:'EUR' }}</p>
+      </div>
+      <div class="product-price" *ngIf="!articulo.oferta">
+        <p class="money">{{ articulo.price| currency:'EUR' }}</p>
+      </div>
+
+      <div class="content02">
+        <img [src]="articulo.imagen" alt="Cotton striped T-Shirt" class="product-image2">
+      </div>
+     
+      <div class="product-size" *ngIf="articulo.category === 'Men\'s Shoe'">
+        Size:<strong> Choose shoe size</strong>
+        <div class="size-buttons">
+          <button class="size-button" 
+                  *ngFor="let talla of ['36','38', '40', '42', '44']"
+                  [disabled]="!articulo.tallasDisponiblesZapato.includes(talla)"
+                  [ngClass]="{ 'disabled-button': !articulo.tallasDisponiblesZapato.includes(talla) }">
+            {{ talla }}
+          </button>
+        </div>
+      </div>  
+      <div class="product-size" *ngIf="articulo.category === 'Ropa Hombre' || articulo.category === 'Ropa Mujer' || articulo.category === 'Vestido Mujer' || articulo.category === 'Camiseta Hombre'">
+        Size:<strong> Choose clothing size</strong>
+        <div class="size-buttons">
+          <button class="size-button" 
+                  *ngFor="let talla of ['4XL', '2XL', 'XS', '2XS', '3XS', 'SM', 'XL', 'MD', '3XL']"
+                  [disabled]="!articulo.tallasDisponibles.includes(talla)"
+                  [ngClass]="{ 'disabled-button': !articulo.tallasDisponibles.includes(talla) }">
+            {{ talla }}
+          </button>
+        </div>
+      </div>  
+        <button  class="añadir" (click)="addToPedido(articulo)">Añadir carrito</button>
+      </div>  
+      </div>
+    </div>
+
+  <div class="comment-section" *ngIf="articulo">
+    <h3 class="comment-heading">¡Opina y Comparte!</h3>
+    <ul class="comment-list">
+      <li class="comment-item" *ngFor="let comment of comentarios">
+        <div class="comment">
+          <div class="comment-info">
+            <span class="comment-author">{{ comment.displayName }}</span>
+            <span class="comment-date">{{ comment.fecha }}</span>
+          </div>
+          <p class="comment-content">{{ comment.comentario }}</p>
+        </div>
+      </li>
+    </ul>
+    <textarea class="comment-input" [(ngModel)]="newComment" placeholder="¿Qué opinas? ¡Déjanos tu comentario!"></textarea>
+    <button class="comment-btn" (click)="agregarComentario()">¡Comentar!</button>
+  </div>
+  
+
+
+
+ <div *ngIf="isAdrianLoggedIn()">
+  <h1 class="actulizar">ACTUALIZA TU NUEVO PRODUCTO</h1>
+  <div class="container">
+      
+    <div class="row">
+  
+      <div class="col-md-4 offset-md-2">
+        <form [formGroup]="formSport">
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" formControlName="name" id="name" placeholder="name">
+            <label for="name">Nombre</label>
+            <div *ngIf="name?.invalid && (name?.touched || name?.dirty)" class="alert alert-danger mt-2">
+              <div *ngIf="name?.errors?.['required']"><span class="small">El name es obligatorio</span></div>
+              <div *ngIf="name?.errors?.['notOnlyWhitespace']"><span class="small">El name no puede contener espacios en blanco</span></div>
+              <div *ngIf="name?.errors?.['minlength']"><span class="small">el name como minimo 7 letras</span></div>
+              <div *ngIf="name?.errors?.['notsex']"><span class="small">No se puede esa palabra</span></div>
+            </div>
+          </div>
+  
+          <div class="form-floating mb-3">
+            <input type="number" class="form-control" formControlName="price" id="price" placeholder="price" >
+            <label for="price">Precio</label>
+            <div *ngIf="price?.invalid && (price?.touched || price?.dirty)" class="alert alert-danger mt-2">
+              <div *ngIf="price?.errors?.['required']"><span class="small">El Precio es obligatorio</span></div>
+              <div *ngIf="price?.errors?.['min']"><span class="small">El Precio no puede ser negativo</span></div>
+            </div>
+          </div>
+  
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" formControlName="tallasDisponibles" id="tallasDisponibles" placeholder="tallasDisponibles">
+            <label for="tallasDisponibles">Tallas Disponibles</label>
+            <div class="form-text">Apuntes: 4XL 2XL XS 2XS 3XS SM XL MD 3XL</div>
+            <!-- Botones para agregar y quitar tallas -->
+            <div>
+              <!-- Repite estos botones para cada talla -->
+              <button type="button" class="btn btn-sm btn-primary" (click)="toggleTalla('4XL', 'tallasDisponibles')">4XL</button>
+              <button type="button" class="btn btn-sm btn-primary" (click)="toggleTalla('2XL', 'tallasDisponibles')">2XL</button>
+              <button type="button" class="btn btn-sm btn-primary" (click)="toggleTalla('XS', 'tallasDisponibles')">XS</button>
+              <button type="button" class="btn btn-sm btn-primary" (click)="toggleTalla('2XS', 'tallasDisponibles')">2XS</button>
+              <button type="button" class="btn btn-sm btn-primary" (click)="toggleTalla('3XS', 'tallasDisponibles')">3XS</button>
+              <button type="button" class="btn btn-sm btn-primary" (click)="toggleTalla('SM', 'tallasDisponibles')">SM</button>
+              <button type="button" class="btn btn-sm btn-primary" (click)="toggleTalla('XL', 'tallasDisponibles')">XL</button>
+              <button type="button" class="btn btn-sm btn-primary" (click)="toggleTalla('MD', 'tallasDisponibles')">MD</button>
+              <button type="button" class="btn btn-sm btn-primary" (click)="toggleTalla('3XL', 'tallasDisponibles')">3XL</button>
+              <!-- Repite para las demás tallas -->
+            </div>
+            <div *ngIf="tallasDisponibles?.invalid && (tallasDisponibles?.touched || tallasDisponibles?.dirty)" class="alert alert-danger mt-2">
+            
+            </div>
+          </div>
+          
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" formControlName="tallasDisponiblesZapato" id="tallasDisponiblesZapato" placeholder="tallasDisponiblesZapato">
+            <label for="tallasDisponiblesZapato">Tallas Disponibles (Zapato)</label>
+            <div class="form-text">Apuntes: 36 38 40 42 44</div>
+            <!-- Botones para agregar y quitar tallas -->
+            <div>
+              <!-- Repite estos botones para cada talla -->
+              <button type="button" class="btn btn-sm btn-primary" (click)="toggleTalla('36', 'tallasDisponiblesZapato')">36</button>
+              <button type="button" class="btn btn-sm btn-primary" (click)="toggleTalla('38', 'tallasDisponiblesZapato')">38</button>
+              <button type="button" class="btn btn-sm btn-primary" (click)="toggleTalla('40', 'tallasDisponiblesZapato')">40</button>
+              <button type="button" class="btn btn-sm btn-primary" (click)="toggleTalla('42', 'tallasDisponiblesZapato')">42</button>
+              <button type="button" class="btn btn-sm btn-primary" (click)="toggleTalla('44', 'tallasDisponiblesZapato')">44</button>
+              <!-- Repite para las demás tallas -->
+            </div>
+            <div *ngIf="tallasDisponiblesZapato?.invalid && (tallasDisponiblesZapato?.touched || tallasDisponiblesZapato?.dirty)" class="alert alert-danger mt-2">
+              <div *ngIf="tallasDisponiblesZapato?.errors?.['required']"><span class="small">El Tallas es obligatorio</span></div>
+            </div>
+          </div>
+          
+          <div class="form-floating mb-3">
+            <input type="number" class="form-control" formControlName="oferta" id="oferta" placeholder="oferta">
+            <label for="oferta">Oferta</label>
+            <div *ngIf="oferta?.invalid && (oferta?.touched || oferta?.dirty)" class="alert alert-danger mt-2">
+              <div *ngIf="oferta?.errors?.['required']"><span class="small">El Oferta es obligatorio</span></div>
+              <div *ngIf="oferta?.errors?.['min']"><span class="small">El Oferta no puede ser negativo</span></div>
+            </div>
+          </div>
+  
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" formControlName="category" id="category" placeholder="category"  >
+            <label for="category">Categoría</label>
+            <div class="form-text">Apuntes: Ropa Hombre, Ropa Mujer y Men's Shoe</div>
+            <div *ngIf="category?.invalid && (category?.touched || category?.dirty)" class="alert alert-danger mt-2">
+              <div *ngIf="category?.errors?.['required']"><span class="small">El Categoría es obligatorio</span></div>
+              <div *ngIf="category?.errors?.['notsex']"><span class="small">No se puede esa palabra</span></div>
+            </div>
+          </div>
+  
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" formControlName="imagen" id="imagen" placeholder="imagen">
+            <label for="imagen">Imagen</label>
+            <div *ngIf="imagen?.invalid && (imagen?.touched || imagen?.dirty)" class="alert alert-danger mt-2">
+              <div *ngIf="imagen?.errors?.['required']"><span class="small">La Imagen es obligatorio</span></div>
+            </div>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" formControlName="imagenLado" id="imagenLado" placeholder="imagenLado">
+            <label for="imagenLado">imagenLado</label>
+            <div *ngIf="imagenLado?.invalid && (imagenLado?.touched || imagenLado?.dirty)" class="alert alert-danger mt-2">
+              <div *ngIf="imagenLado?.errors?.['required']"><span class="small">La Imagen es obligatorio</span></div>
+            </div>
+          </div>
+  
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" formControlName="imagenDetras" id="imagenDetras" placeholder="imagenDetras">
+            <label for="imagenDetras">imagenDetras</label>
+            <div *ngIf="imagenDetras?.invalid && (imagenDetras?.touched || imagenDetras?.dirty)" class="alert alert-danger mt-2">
+              <div *ngIf="imagenDetras?.errors?.['required']"><span class="small">La Imagen es obligatorio</span></div>
+            </div>
+          </div>
+  
+          <div class="form-floating mb-3">
+            <textarea class="form-control" formControlName="descripcion" id="descripcion" placeholder="descripcion"></textarea>
+            <label for="descripcion">Descripción</label>
+            <div *ngIf="descripcion?.errors?.['maxlength']"><span class="small">tamaño 1</span></div>
+            <div *ngIf="descripcion?.errors?.['notsex']"><span class="small">No se puede esa palabra</span></div>
+            <div *ngIf="descripcion?.errors?.['required']"><span class="small">La Descripcion es obligatoria</span></div>
+          </div>
+  
+          <div class="d-flex justify-content-center">
+            <button type="button" class="btn btn-success" (click)="updateSport()">UPDATE</button>
+          </div>
+        </form>
+        
+            </div>  
+  
+            </div>  
+            </div>
+        <div class="product-card" >
+          <div class="content01" >
+            <img [src]="imagen?.value" alt="Cotton striped T-Shirt" class="product-image">
+          </div>
+          <div class="product-details">
+          
+            <div class="product-category">{{category?.value}}</div>
+            <div class="product-title">{{name?.value}}</div>
+            <div class="product-price" *ngIf="oferta?.value">
+              <p class="money">{{ oferta?.value| currency:'EUR' }}</p>
+            </div>
+            <div class="product-price" *ngIf="!oferta?.value">
+              <p class="money">{{ price?.value| currency:'EUR' }}</p>
+            </div>
+            <div class="content02">
+              <img [src]="imagen?.value" alt="Cotton striped T-Shirt" class="product-image2">
+            </div>
+            <button class="size-button" 
+                    *ngFor="let talla of ['4XL', '2XL', 'XS', '2XS', '3XS', 'SM', 'XL', 'MD', '3XL']"
+                    [disabled]="!tallasDisponibles?.value.includes(talla)"
+                    [ngClass]="{ 'disabled-button': !tallasDisponibles?.value.includes(talla) }">
+              {{ talla }}
+            </button>
+           
+           
+              </div>
+   
+            </div> 
+   
+  

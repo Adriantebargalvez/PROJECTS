@@ -1,0 +1,125 @@
+<!--Adrian Tebar Galvez-->
+<link rel="icon" type="image/x-icon" href="assets/img/Captura-removebg-preview.png">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="inicio.component.css" >
+
+
+<body>
+  <div class="videos">
+    <div class="video-container">
+      <div class="overlay">
+          <div class="text-overlay">
+              <div class="title-overlay">Camiseta Refrescante</div>
+              <div class="description-overlay">Tejido que absorbe la humedad y transpirable que
+                te mantiene con buen aspecto y cool.</div>
+                <button class="button-overlay" routerLink="/camisetas">Camisetas De Hombre</button>
+          </div>
+         
+      </div>
+      <video class="js-video" autoplay="" muted="" loop="" preload="auto" playsinline="" src="https://img.hollisterco.com/is/content/anf/hco-2024-JuneWk4-D-HP-CoolingTee.mp4" aria-describedby="anf-video-description-video-description" type="video/mp4"></video>
+  </div>
+  <div class="video-container">
+      <div class="overlay">
+          <div class="text-overlay">
+              <div class="title-overlay">Vestido de tirantes</div>
+              <div class="description-overlay">Nosotros lo hicimos favorecedor, tú lo convertiste en nuestra superventa.
+                Ponte el nuevo vestido de festival favorito del verano.</div>
+          </div>
+          <button class="button-overlay" routerLink="/vestidos-mujer">Vestidos De Mujer</button>
+      </div>
+      <video class="js-video" autoplay="" muted="" loop="" preload="auto" playsinline="" src="https://img.hollisterco.com/is/content/anf/hco-2024-JuneWk4-D-HP-SlipDress.mp4" aria-describedby="anf-video-description-video-description" type="video/mp4"></video>
+  </div>
+</div>
+
+
+ 
+ <div id="novedades">
+  <div class="titulo"><h1><strong>NOVEDADES</strong></h1></div>
+<div  class="novedades">
+<div class="card" *ngFor="let producto of novedades">
+      <div class="img-box">
+        <img [src]="producto.imagen" class="card-img-top" alt="...">
+      </div>
+    <div class="details">
+      <h3>{{ producto.name }} <br /><span>{{ producto.category }}</span></h3>
+      <p>{{ producto.descripcion }}</p>
+      <h4>Size</h4>
+      <ul class="size">
+        <button *ngFor="let talla of ['36','38', '40', '42', '44']"
+        [disabled]="!producto.tallasDisponiblesZapato.includes(talla)"
+        [ngClass]="{ 'disabled-button': !producto.tallasDisponiblesZapato.includes(talla) }"
+        class="size-button">{{ talla }}</button>
+      </ul>
+      <div class="product-price">
+        <h3 class="money" *ngIf="!producto.oferta">
+          {{ producto.price| currency:'EUR' }}
+          <button  class="añadir" (click)="addToPedido(producto)">COMPRAR YA</button>
+        </h3>
+       
+        <p class="money oferta" *ngIf="producto.oferta">
+          <span class="normal-price">{{ producto.price| currency:'EUR' }}</span>
+          <span class="offer-price">{{ producto.oferta| currency:'EUR' }}</span> 
+          <button  class="añadir" (click)="addToPedido(producto)">COMPRAR YA</button>
+          
+        </p>
+      
+      </div>
+     
+    </div>
+
+     
+</div>
+
+
+</div>
+</div>
+ <div class="titulo titulo-category">
+<h1><strong>Shop by Gategory</strong></h1>
+</div> 
+<div class="category ">
+  <div>
+  <section class="portfolio-experiment">
+    <a class="link-header" >
+      <span class="text2"><strong>Home</strong></span>
+      <span class="line -right"></span>
+      <span class="line -top"></span>
+      <span class="line -left"></span>
+      <span class="line -bottom"></span>
+    </a>
+  </section>
+  </div>
+  <div>
+    <section class="portfolio-experiment " routerLink="/ropahombre" routerLinkActive="active">
+      <a class="link-header"> 
+        <span class="text2"><strong>Ofertas</strong> </span>
+        <span class="line -right"></span>
+        <span class="line -top"></span>
+        <span class="line -left"></span>
+        <span class="line -bottom"></span>
+      </a>
+    </section>
+  </div>
+  <div >
+    <section class="portfolio-experiment " routerLink="/nosotros" routerLinkActive="active">
+      <a class="link-header" >
+        <span class="text2" ><strong>Blog</strong></span>
+        <span class="line -right"></span>
+        <span class="line -top"></span>
+        <span class="line -left"></span>
+        <span class="line -bottom"></span>
+      </a>
+    </section>
+  </div>
+                    
+</div>
+<div class="container">
+  <div class="imgContainer">
+    <div *ngFor="let slide of slides; let i = index" class="slide_div" [id]="'slider_' + (i + 1)">
+      <a [routerLink]="slide.src.includes('hombre') ? '/ropahombre' : '/ropamujer'" routerLinkActive="active">
+        <img [src]="slide.src" alt="" class="img" [id]="'img' + (i + 1)" >
+      </a>
+    </div>
+  </div>
+</div>
+
+</body>

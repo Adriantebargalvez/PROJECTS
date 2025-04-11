@@ -1,0 +1,60 @@
+
+<div class="card">
+<div class="cc">
+  
+    <h2>Bank of Adrian</h2>
+    
+    <span class="provider mastercard">MasterCard</span>
+    <span class="provider amex">American Express</span>
+    <span class="provider visa">Visa</span>
+   
+   
+    <div class="number">
+      <input type="text" maxlength="4" placeholder="5280">
+      <input type="text" maxlength="4">
+      <input type="text" maxlength="4">
+      <input type="text" maxlength="4">
+      <span class="instructions">5280</span>
+    </div>
+  
+   
+    <div class="date">
+      <span class="instructions valid">Valid Thru</span>
+      <input type="text" maxlength="5" placeholder="00/00">
+      
+      <span class="instructions valid">CCV</span>
+      <input type="text" maxlength="3" placeholder="123">  
+    </div>
+    
+    
+      <input class="full-name" type="text" maxlength="" inputmode='numeric' placeholder="Adrian Tebar">
+      <span class="instructions">Name on Card</span>
+    </div>
+    
+    
+    <div class="shine"></div>
+    <div class="shine shine-layer-two"></div>
+  </div>
+ 
+
+  <button  (click)="animarBoton()" class="truck-button">
+    <span class="default">Complete Order</span>
+    <span class="success">
+        Order Placed
+        <svg viewbox="0 0 12 10">
+            <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+        </svg>
+    </span>
+    <div class="truck">
+        <div class="wheel"></div>
+        <div class="back"></div>
+        <div class="front"></div>
+        <div class="box"></div>
+    </div>
+</button>
+
+
+
+
+
+

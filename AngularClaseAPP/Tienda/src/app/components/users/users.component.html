@@ -1,0 +1,24 @@
+<div class="form-box">
+    <div class="button-box">
+        <div id="elegir"></div>
+        <button type="button" class="toggle-btn" (click)="onLoginClick()">Iniciar Sesion</button>
+        <button type="button" class="toggle-btn" (click)="onRegisterClick()">Registrarser</button>
+    </div>
+    <div class="redes"> 
+         <i class="bi bi-instagram"></i> 
+         <i class="bi bi-whatsapp"></i>
+         <i class="bi bi-facebook"></i>
+    </div>
+    <form id="login" class="input-group">
+        <input id="email" name="email" type="text" [(ngModel)]="loginUser.email" pInputText  class="input-field" placeholder="Email" required>
+        <input id="password" name="password" type="password" [(ngModel)]="loginUser.password" pInputText class="input-field" placeholder="Contraseña" required>
+        <button (click)="login(loginUser)"  type="submit" class="submit-btn">Acceder</button>
+    </form>
+    <form  id="register" class="input-group">
+         <input id="email" name="email" type="text" [(ngModel)]="registerUser.email" pInputText  class="input-field" placeholder="Email" required>
+        <input id="password" name="password" type="password" [(ngModel)]="registerUser.password" pInputText class="input-field" placeholder="Contraseña" required>
+        <button label="Register" (click)="register(registerUser)"  type="submit" class="submit-btn">Registrar</button>
+        <div *ngIf="registrationMessage" class="registration-message">{{ registrationMessage }}</div>
+    </form>
+    
+</div>

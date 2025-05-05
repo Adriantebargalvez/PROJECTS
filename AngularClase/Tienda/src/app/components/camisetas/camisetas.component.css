@@ -208,4 +208,37 @@
              .cart-icon i:hover {
                color: green; /* Cambia el color del carrito a verde al pasar el ratón por encima */
              }
-         
+             @media (max-width: 768px) {
+              .filtroNombre {
+                width: 90%;
+                margin: 3em auto 2em auto;
+                text-align: center;
+              }
+            
+              .btn-danger {
+                margin: 1em auto 2em auto;
+                display: block;
+              }
+            
+              .container {
+                margin-left: 0 !important;
+                margin-right: 0 !important;
+                justify-content: center;
+                flex-wrap: wrap;
+              }
+            
+              .product-card {
+                margin: 1em auto;
+                display: block;
+              }
+            
+              .product-tumb {
+                height: 350px; /* opcional para hacer imágenes más grandes en móvil */
+              }
+            
+              .product-tumb img {
+                max-height: 100%;
+                object-fit: cover;
+              }
+            }
+            

@@ -134,3 +134,47 @@ p {
     }
    
     }
+
+    @media (max-width: 768px) {
+      .container {
+        margin-left: 0 !important;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .card-img-top {
+        height: 350px;
+        object-fit: cover;
+      }
+    
+      .col-sm-6.col-md-4.col-lg-3.col-xl-2.mt-3 {
+        margin: auto;
+        width: 90%;
+      }
+    
+      .cora {
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+      }
+    
+      .buy {
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+        margin-top: 40px;
+      }
+    
+      .NoPedido {
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+    
+      .precio {
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+      }
+    }
+    

@@ -501,3 +501,114 @@ body {
 .support a:hover {
     transform: scale(1.1);
 }
+
+
+/*Movil*/
+
+@media (max-width: 767px) {
+  .centered-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 20px;
+    height: auto;
+    padding: 10px;
+  }
+
+  .product-card {
+    flex-direction: column;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+
+  /* Mostrar solo la imagen principal y la trasera */
+  
+  .product-image2 {
+    width: 3em;
+    height: auto;
+    object-fit: cover;
+    display: block;
+  }
+
+  
+
+  .content01 {
+    display: none;
+  }
+  .content02{
+    
+    width: 10px;
+  }
+  .product-details {
+    padding: 10px;
+    width: 100%;
+  }
+
+  .product-actions {
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch;
+  }
+
+  .añadir {
+    width: 100%;
+    margin: 20px auto 0 auto;
+    padding: 1rem;
+    margin-left: 0;
+  }
+
+  .comentarios {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .opinion {
+    width: 100%;
+    height: auto;
+  }
+
+  .comAñadir {
+    margin: 10px 0;
+  }
+
+  .actulizar {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+
+  .comment-section {
+    padding: 15px;
+  }
+
+  .comment-heading {
+    font-size: 22px;
+  }
+
+  .comment-input {
+    padding: 10px;
+  }
+
+  .comment-btn {
+    padding: 12px;
+  }
+
+  .product-title,
+  .product-price,
+  .product-color,
+  .product-size {
+    font-size: 14px;
+  }
+
+  .size-buttons {
+    flex-wrap: wrap;
+  }
+
+  .size-button {
+    font-size: 12px;
+    padding: 4px 8px;
+  }
+}

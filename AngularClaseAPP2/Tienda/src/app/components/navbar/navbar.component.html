@@ -1,0 +1,120 @@
+
+<link rel="icon" type="image/x-icon" href="../../../assets/img/logo.png">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet"  href="navbar.component.css" >
+<!--flex header dentro tres div botones logo i iconos flex y justin-content:space-beetwen al header no margin y no padding-->
+
+
+<header class="header">
+  <div class="bottones">
+<div>
+  <section class="portfolio-experiment" routerLink="/inicio" routerLinkActive="active">
+    <a>
+      <span class="text2"><strong>Home</strong></span>
+      <span class="line -right"></span>
+      <span class="line -top"></span>
+      <span class="line -left"></span>
+      <span class="line -bottom"></span>
+    </a>
+  </section>
+  </div>
+  
+  <div>
+    <section class="portfolio-experiment " routerLink="/ropahombre" routerLinkActive="active">
+      <a> 
+        <span class="text2"><strong>Ofertas</strong> </span>
+        <span class="line -right"></span>
+        <span class="line -top"></span>
+        <span class="line -left"></span>
+        <span class="line -bottom"></span>
+      </a>
+    </section>
+  </div>
+  <div>
+    <section class="portfolio-experiment " (click)="scrollToCategory()">
+      <a >
+        <span class="text2" ><strong>Category</strong></span>
+        <span class="line -right"></span>
+        <span class="line -top"></span>
+        <span class="line -left"></span>
+        <span class="line -bottom"></span>
+      </a>
+    </section>
+
+  </div>
+  <div >
+    <section class="portfolio-experiment " routerLink="/nosotros" routerLinkActive="active">
+      <a>
+        <span class="text2" ><strong>Nosotros</strong></span>
+        <span class="line -right"></span>
+        <span class="line -top"></span>
+        <span class="line -left"></span>
+        <span class="line -bottom"></span>
+      </a>
+    </section>
+  </div>
+  <div>
+    <section class="portfolio-experiment " >
+      <a (click)="scrollToNovedades()">
+        <span class="text2" ><strong>Novedades</strong></span>
+        <span class="line -right"></span>
+        <span class="line -top"></span>
+        <span class="line -left"></span>
+        <span class="line -bottom"></span>
+      </a>
+    </section>
+  </div>
+</div>
+<div class="logo">
+  <img src="../../../assets/img/logo2-removebg-preview.png" class="logo" alt="logo" routerLink="/inicio" routerLinkActive="active">
+</div>
+<div class="drops ">
+ 
+      <a class="nav-link dropdown-toggle text" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Unidades
+      </a>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Action</a></li>
+        <li><a class="dropdown-item" href="#">Another action</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item" href="#">Something else here</a></li>
+      </ul>
+      <a class="nav-link dropdown-toggle text " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        USD
+      </a>
+      <ul class="dropdown-menu " >
+        <li><a class="dropdown-item" href="#">Action</a></li>
+        <li><a class="dropdown-item" href="#">Another action</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item" href="#">Something else here</a></li>
+      </ul>
+      <a class="nav-link dropdown-toggle text " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        EN
+      </a>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Action</a></li>
+        <li><a class="dropdown-item" href="#">Another action</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item" href="#">Something else here</a></li>
+      </ul>
+    
+      
+      <i *ngIf="isAdrianLoggedIn()" routerLink="/create" routerLinkActive="active" class="bi bi-gear "></i>
+     <a (click)="goToUsersOrProfile()" routerLinkActive="active"><i class="bi bi-person "></i></a> 
+    
+      <i  (click)="goToFavorite()" routerLinkActive="active"  class="bi bi-heart "></i>
+      <a (click)="goToPedido()" routerLinkActive="active"  ><i  class="bi bi-cart2 "></i></a>
+
+  
+</div>
+<div *ngIf="AlertPedidos" class="notification">
+  <p><i class="bi bi-exclamation-triangle"></i>    Para acceder a los pedidos necesitas estar registrado  <a (click)="closePedidos()"><i class="bi bi-x"></i></a></p>
+ 
+</div>
+<div *ngIf="AlertFavoritos" class="notification">
+  <p><i class="bi bi-exclamation-triangle"></i>   Para acceder a los favoritos necesitas estar registrado <a (click)="closeFavoritos()"><i class="bi bi-x"></i></a></p>
+  
+</div>
+
+</header>
+

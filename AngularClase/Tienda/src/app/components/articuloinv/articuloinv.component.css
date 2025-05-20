@@ -512,26 +512,31 @@ body {
     align-items: center;
     flex-direction: column;
     margin-top: 20px;
+   
     height: auto;
-    padding: 10px;
+    padding: 20px;
   }
 
   .product-card {
+    display: flex;
     flex-direction: column;
+    align-items: center; /* Asegura que el contenido, incluidas imágenes, esté centrado */
     width: 100%;
     max-width: 100%;
     margin: 0 auto;
     border-radius: 5px;
-    overflow: hidden;
+    overflow: visible; /* Evita que las imágenes se recorten si sobresalen */
+    position: relative;
   }
 
-  /* Mostrar solo la imagen principal y la trasera */
-  
   .product-image2 {
-    width: 3em;
+    width: 6em; /* Aumentado para visibilidad */
     height: auto;
     object-fit: cover;
     display: block;
+    margin: 0 auto; /* Centra horizontalmente la imagen */
+    position: relative;
+    z-index: 1;
   }
 
   

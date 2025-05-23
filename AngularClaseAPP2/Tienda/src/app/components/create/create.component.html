@@ -77,7 +77,7 @@
         <div class="form-floating mb-3">
           <input type="text" class="form-control" formControlName="category" id="category" placeholder="category"  >
           <label for="category">Categoría</label>
-          <div class="form-text">Apuntes: Ropa Hombre, Ropa Mujer y Men's Shoe</div>
+          <div class="form-text">Apuntes: Ropa Hombre, Ropa Mujer, Camiseta Hombre,Vestido Mujer y Men's Shoe</div>
           <div *ngIf="category?.invalid && (category?.touched || category?.dirty)" class="alert alert-danger mt-2">
             <div *ngIf="category?.errors?.['required']"><span class="small">El Categoría es obligatorio</span></div>
             <div *ngIf="category?.errors?.['notsex']"><span class="small">No se puede esa palabra</span></div>

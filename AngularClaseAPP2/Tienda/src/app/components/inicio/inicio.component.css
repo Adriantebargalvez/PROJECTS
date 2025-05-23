@@ -599,7 +599,11 @@
         width: fit-content;
         
       }
-    }
+       .card:hover {
+    width: 700px; /* más holgado para que el “44” no se corte */
+  }
+}
+    
     
     
     /* Desktops y tablets en modo horizontal */

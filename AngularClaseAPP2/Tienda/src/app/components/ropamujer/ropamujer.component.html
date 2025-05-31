@@ -12,7 +12,7 @@
 			<h4><a href="">{{truncateName(articulo.name)}}</a></h4>
 			<p>{{articulo.descripcion}}</p>
 			<div class="product-bottom-details">
-				<div class="product-price"><small>{{ articulo.oferta| currency:'EUR' }}</small>{{ articulo.price| currency:'EUR' }}</div>
+				<div class="product-price"><small>{{ articulo.price| currency:'EUR' }}</small>{{ articulo.oferta| currency:'EUR' }}</div>
         <div class="product-links">
           <a (click)="confirmarFavorito(articulo)" (click)="toggleFavorite(articulo)" [ngClass]="{ 'favorito': articulo.favorite , 'no-favorito': !articulo.favorite }">
             <i class="fa fa-heart"></i>
@@ -31,11 +31,13 @@
 </div>
 	</div>
  
-  <div class="pagination">
-    <button class="pagination-button" (click)="previousPageHombre()" [disabled]="currentPageHombre === 1">Anterior</button>
-    <span>{{ currentPageHombre }} de {{ totalPagesHombre }}</span>
-    <button class="pagination-button" (click)="nextPageHombre()" [disabled]="currentPageHombre === totalPagesHombre">Siguiente</button>
-  </div>
+
+<div class="pagination">
+  <button class="pagination-button" (click)="previousPageMujer()" [disabled]="currentPageMujer === 1">Anterior</button>
+  <span>{{ currentPageMujer }} de {{ totalPagesMujer }}</span>
+  <button class="pagination-button" (click)="nextPageMujer()" [disabled]="currentPageMujer === totalPagesMujer">Siguiente</button>
+</div>
+
 
    
 

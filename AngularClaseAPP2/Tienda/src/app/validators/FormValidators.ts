@@ -9,7 +9,7 @@ export class FormValidators {
     }
   }
   static notsex (control: FormControl):ValidationErrors | null{
-    const forbiddenWord = 'sex';
+    const forbiddenWord = 'tontolaba';
     if ((control.value != null && control.value.toLowerCase().includes(forbiddenWord))) {
       return {notsex: true}
     } else {

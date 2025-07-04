@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="proyecto.MainPage"
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="10" Spacing="15">
+            <HorizontalStackLayout HorizontalOptions="Start">
+                <ImageButton Source="home.png" WidthRequest="30" HeightRequest="30" HorizontalOptions="Start" VerticalOptions="Start" Clicked="homeButton"></ImageButton>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout HorizontalOptions="End" Spacing="20">
+
+                <ImageButton Source="sol.png" 
+                             Clicked="Button_Clicked" 
+                             Pressed="OnButtonPressed" 
+                             Released="OnButtonReleased" 
+                             WidthRequest="30" 
+                             HeightRequest="30" 
+                             HorizontalOptions="Center" 
+                             VerticalOptions="Center" 
+                             BackgroundColor="Transparent"/>
+
+                <ImageButton Source="lunaa.png" 
+                             Clicked="Button_Clicked_1"        
+                             Pressed="OnButtonPressed" 
+                             Released="OnButtonReleased" 
+                             WidthRequest="30" 
+                             HeightRequest="30" 
+                             HorizontalOptions="Center" 
+                             VerticalOptions="Center"
+                             BackgroundColor="Transparent"/>
+
+            </HorizontalStackLayout>
+
+            <Button Text="Añadir Datos"
+                    Clicked="OnAddDataClicked"
+                    BackgroundColor="{DynamicResource ButtonBackgroundColor}"
+                    TextColor="White"
+                    CornerRadius="20"
+                    HeightRequest="50"
+                    HorizontalOptions="Center" 
+                    Padding="20,10"
+                    FontSize="18"
+                    FontAttributes="Bold"
+                    BorderColor="{DynamicResource BorderColor}"
+                    BorderWidth="1"
+                    Margin="10,20"
+                    Pressed="OnButtonPressed" 
+                    Released="OnButtonReleased" />
+
+            <StackLayout x:Name="FormLayout" IsVisible="False" Spacing="15" Padding="10">
+                <Entry x:Name="EmpresaEntry" Placeholder="Empresa" TextColor="{DynamicResource EntryTextColor}" BackgroundColor="{DynamicResource EntryBackgroundColor}" />
+                <Entry x:Name="DireccionEntry" Placeholder="Dirección" TextColor="{DynamicResource EntryTextColor}" BackgroundColor="{DynamicResource EntryBackgroundColor}" />
+                <Entry x:Name="PoblacionEntry" Placeholder="Población" TextColor="{DynamicResource EntryTextColor}" BackgroundColor="{DynamicResource EntryBackgroundColor}" />
+                <Entry x:Name="PersonaContactoEntry" Placeholder="Persona de Contacto" TextColor="{DynamicResource EntryTextColor}" BackgroundColor="{DynamicResource EntryBackgroundColor}" />
+                <Entry x:Name="TelefonoEntry" Placeholder="Teléfono de Contacto" TextColor="{DynamicResource EntryTextColor}" BackgroundColor="{DynamicResource EntryBackgroundColor}" />
+                <Entry x:Name="EmailEntry" Placeholder="Email de Contacto" TextColor="{DynamicResource EntryTextColor}" BackgroundColor="{DynamicResource EntryBackgroundColor}" />
+                <Editor x:Name="ObservacionesEditor" Placeholder="Observaciones" HeightRequest="100" TextColor="{DynamicResource EntryTextColor}" BackgroundColor="{DynamicResource EntryBackgroundColor}" />
+
+                <Grid ColumnDefinitions="*,*">
+                    <Button Text="Guardar" Clicked="OnSaveDataClicked" BackgroundColor="{DynamicResource ButtonBackgroundColor}" TextColor="{DynamicResource ButtonTextColor}" CornerRadius="10" Grid.Column="0" Pressed="OnButtonPressed" Released="OnButtonReleased"/>
+                    <Button Text="Cerrar" Clicked="OnCloseFormClicked" BackgroundColor="#F44336" TextColor="White" CornerRadius="10" Grid.Column="1" Pressed="OnButtonPressed" Released="OnButtonReleased"/>
+                </Grid>
+            </StackLayout>
+
+            <CollectionView x:Name="EmpresasCollection" ItemsSource="{Binding Empresas}">
+                <CollectionView.Header>
+                    <Grid ColumnDefinitions="*,*,*,*,*,*,*,*" RowDefinitions="Auto">
+                        <Frame BorderColor="Black" CornerRadius="0" Padding="2" HasShadow="False" Grid.Column="0">
+                            <Label Text="Nombre" FontAttributes="Bold" TextColor="Black"/>
+                        </Frame>
+                        <Frame BorderColor="Black" CornerRadius="0" Padding="2" HasShadow="False" Grid.Column="1">
+                            <Label Text="Dirección" FontAttributes="Bold" TextColor="Black"/>
+                        </Frame>
+                        <Frame BorderColor="Black" CornerRadius="0" Padding="2" HasShadow="False" Grid.Column="2">
+                            <Label Text="Población" FontAttributes="Bold" TextColor="Black"/>
+                        </Frame>
+                        <Frame BorderColor="Black" CornerRadius="0" Padding="2" HasShadow="False" Grid.Column="3">
+                            <Label Text="Contacto" FontAttributes="Bold" TextColor="Black"/>
+                        </Frame>
+                        <Frame BorderColor="Black" CornerRadius="0" Padding="2" HasShadow="False" Grid.Column="4">
+                            <Label Text="Teléfono" FontAttributes="Bold" TextColor="Black"/>
+                        </Frame>
+                        <Frame BorderColor="Black" CornerRadius="0" Padding="2" HasShadow="False" Grid.Column="5">
+                            <Label Text="Email" FontAttributes="Bold" TextColor="Black"/>
+                        </Frame>
+                        <Frame BorderColor="Black" CornerRadius="0" Padding="2" HasShadow="False" Grid.Column="6">
+                            <Label Text="Observaciones" FontAttributes="Bold" TextColor="Black"/>
+                        </Frame>
+                        <Frame  CornerRadius="0" Padding="2" HasShadow="False" Grid.Column="7">
+                            <Label Text="" FontAttributes="Bold"/>
+                        </Frame>
+                    </Grid>
+                </CollectionView.Header>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid ColumnDefinitions="*,*,*,*,*,*,*,*" RowDefinitions="Auto">
+                            <Frame BorderColor="Black" CornerRadius="0" Padding="2" HasShadow="False" Grid.Column="0">
+                                <Label Text="{Binding Nombre}" TextColor="Black"/>
+                            </Frame>
+                            <Frame BorderColor="Black" CornerRadius="0" Padding="2" HasShadow="False" Grid.Column="1">
+                                <Label Text="{Binding Direccion}" TextColor="Black"/>
+                            </Frame>
+                            <Frame BorderColor="Black" CornerRadius="0" Padding="2" HasShadow="False" Grid.Column="2">
+                                <Label Text="{Binding Poblacion}" TextColor="Black"/>
+                            </Frame>
+                            <Frame BorderColor="Black" CornerRadius="0" Padding="2" HasShadow="False" Grid.Column="3">
+                                <Label Text="{Binding Nombre}" TextColor="Black"/>
+                            </Frame>
+                            <Frame BorderColor="Black" CornerRadius="0" Padding="2" HasShadow="False" Grid.Column="4">
+                                <Label Text="{Binding Telefono}" TextColor="Black"/>
+                            </Frame>
+                            <Frame BorderColor="Black" CornerRadius="0" Padding="2" HasShadow="False" Grid.Column="5">
+                                <Label Text="{Binding Correo}" TextColor="Black"/>
+                            </Frame>
+                            <Frame BorderColor="Black" CornerRadius="0" Padding="2" HasShadow="False" Grid.Column="6">
+                                <Label Text="{Binding Observaciones}" TextColor="Black"/>
+                            </Frame>
+                            <Frame  CornerRadius="0" Padding="2" HasShadow="False" Grid.Column="7">
+                                <HorizontalStackLayout Spacing="10">
+                                    <ImageButton Source="anadir.png" WidthRequest="25" HeightRequest="25"
+                     BackgroundColor="Transparent"/>
+
+                                    <ImageButton Source="editar.png" WidthRequest="25" HeightRequest="25"
+                     BackgroundColor="Transparent" Clicked="OnEditClicked"/>
+
+                                    <ImageButton Source="papelera.png" WidthRequest="25" HeightRequest="25"
+                     BackgroundColor="Transparent" Clicked="OnDeleteClicked"/>
+                                </HorizontalStackLayout>
+                            </Frame>
+
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                
+               
+
+            </CollectionView>
+
+
+            <Button Text="Empresas Contactadas"
+                    BackgroundColor="{DynamicResource ButtonBackgroundColor}"
+                    TextColor="White"
+                    CornerRadius="20"
+                    HeightRequest="40"
+                    HorizontalOptions="Center" 
+                    Padding="20,10"
+                    FontSize="18"
+                    FontAttributes="Bold"
+                    BorderColor="{DynamicResource BorderColor}"
+                    BorderWidth="1"
+                    Margin="10,20"
+                    Pressed="OnButtonPressed" 
+                    Released="OnButtonReleased" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    x:Class="exempleTemes.Resources.Themes.Nature">
+
+    <!-- Colores del tema claro -->
+    <Color x:Key="PageBackgroundColor">White</Color>
+    <Color x:Key="NavigationBarColor">WhiteSmoke</Color>
+    <Color x:Key="PrimaryColor">WhiteSmoke</Color>
+    <Color x:Key="SecondaryColor">Black</Color>
+    <Color x:Key="PrimaryTextColor">#1C1C1C</Color>
+    <Color x:Key="SecondaryTextColor">#333333</Color>
+    <Color x:Key="TertiaryTextColor">Gray</Color>
+    <Color x:Key="ButtonBackgroundColor">#6EB9E2</Color>
+    <Color x:Key="ButtonTextColor">White</Color>
+    <Color x:Key="BorderColor">#f1f1f1</Color>
+
+    <!-- Ajuste del color del fondo y texto de Entry -->
+    <Color x:Key="EntryTextColor">#F1F1F1</Color>
+    <!-- Oscuro para ser legible -->
+    <Color x:Key="EntryBackgroundColor">#1C1C1C</Color>
+    <!-- Fondo blanco -->
+</ResourceDictionary>

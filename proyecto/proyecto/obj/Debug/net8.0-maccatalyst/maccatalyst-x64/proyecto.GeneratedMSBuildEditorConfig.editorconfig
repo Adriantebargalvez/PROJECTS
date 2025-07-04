@@ -1,0 +1,71 @@
+is_global = true
+build_property.EnableAotAnalyzer = 
+build_property.EnableSingleFileAnalyzer = 
+build_property.EnableTrimAnalyzer = false
+build_property.IncludeAllContentForSelfExtract = 
+build_property.TargetFramework = net8.0-maccatalyst
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = false
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = proyecto
+build_property.ProjectDir = C:\Users\Adrian\Desktop\proyecto\proyecto\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+
+[C:/Users/Adrian/Desktop/proyecto/proyecto/App.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = proyecto.App.xaml
+build_metadata.AdditionalFiles.TargetPath = App.xaml
+build_metadata.AdditionalFiles.RelativePath = App.xaml
+
+[C:/Users/Adrian/Desktop/proyecto/proyecto/AppShell.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = proyecto.AppShell.xaml
+build_metadata.AdditionalFiles.TargetPath = AppShell.xaml
+build_metadata.AdditionalFiles.RelativePath = AppShell.xaml
+
+[C:/Users/Adrian/Desktop/proyecto/proyecto/Dark.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = proyecto.Dark.xaml
+build_metadata.AdditionalFiles.TargetPath = Dark.xaml
+build_metadata.AdditionalFiles.RelativePath = Dark.xaml
+
+[C:/Users/Adrian/Desktop/proyecto/proyecto/EmpresasContactadas.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = proyecto.EmpresasContactadas.xaml
+build_metadata.AdditionalFiles.TargetPath = EmpresasContactadas.xaml
+build_metadata.AdditionalFiles.RelativePath = EmpresasContactadas.xaml
+
+[C:/Users/Adrian/Desktop/proyecto/proyecto/inicio.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = proyecto.inicio.xaml
+build_metadata.AdditionalFiles.TargetPath = inicio.xaml
+build_metadata.AdditionalFiles.RelativePath = inicio.xaml
+
+[C:/Users/Adrian/Desktop/proyecto/proyecto/MainPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = proyecto.MainPage.xaml
+build_metadata.AdditionalFiles.TargetPath = MainPage.xaml
+build_metadata.AdditionalFiles.RelativePath = MainPage.xaml
+
+[C:/Users/Adrian/Desktop/proyecto/proyecto/Nature.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = proyecto.Nature.xaml
+build_metadata.AdditionalFiles.TargetPath = Nature.xaml
+build_metadata.AdditionalFiles.RelativePath = Nature.xaml
+
+[C:/Users/Adrian/Desktop/proyecto/proyecto/Resources/Styles/Colors.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = proyecto.Resources.Styles.Colors.xaml
+build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Colors.xaml
+build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Colors.xaml
+
+[C:/Users/Adrian/Desktop/proyecto/proyecto/Resources/Styles/Styles.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = proyecto.Resources.Styles.Styles.xaml
+build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Styles.xaml
+build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Styles.xaml

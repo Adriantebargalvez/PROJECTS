@@ -1,0 +1,183 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Adrian\\Desktop\\proyecto\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{247EB016-C640-420C-ADF7-6197FDE2A82F}|proyecto\\proyecto.csproj|c:\\users\\adrian\\desktop\\proyecto\\proyecto\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{247EB016-C640-420C-ADF7-6197FDE2A82F}|proyecto\\proyecto.csproj|solutionrelative:proyecto\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{247EB016-C640-420C-ADF7-6197FDE2A82F}|proyecto\\proyecto.csproj|c:\\users\\adrian\\desktop\\proyecto\\proyecto\\business\\empresaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{247EB016-C640-420C-ADF7-6197FDE2A82F}|proyecto\\proyecto.csproj|solutionrelative:proyecto\\business\\empresaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{247EB016-C640-420C-ADF7-6197FDE2A82F}|proyecto\\proyecto.csproj|c:\\users\\adrian\\desktop\\proyecto\\proyecto\\services\\databaseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{247EB016-C640-420C-ADF7-6197FDE2A82F}|proyecto\\proyecto.csproj|solutionrelative:proyecto\\services\\databaseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{247EB016-C640-420C-ADF7-6197FDE2A82F}|proyecto\\proyecto.csproj|c:\\users\\adrian\\desktop\\proyecto\\proyecto\\empresascontactadas.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{247EB016-C640-420C-ADF7-6197FDE2A82F}|proyecto\\proyecto.csproj|solutionrelative:proyecto\\empresascontactadas.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{247EB016-C640-420C-ADF7-6197FDE2A82F}|proyecto\\proyecto.csproj|c:\\users\\adrian\\desktop\\proyecto\\proyecto\\mainpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{247EB016-C640-420C-ADF7-6197FDE2A82F}|proyecto\\proyecto.csproj|solutionrelative:proyecto\\mainpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{247EB016-C640-420C-ADF7-6197FDE2A82F}|proyecto\\proyecto.csproj|c:\\users\\adrian\\desktop\\proyecto\\proyecto\\empresascontactadas.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{247EB016-C640-420C-ADF7-6197FDE2A82F}|proyecto\\proyecto.csproj|solutionrelative:proyecto\\empresascontactadas.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{247EB016-C640-420C-ADF7-6197FDE2A82F}|proyecto\\proyecto.csproj|c:\\users\\adrian\\desktop\\proyecto\\proyecto\\models\\empresa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{247EB016-C640-420C-ADF7-6197FDE2A82F}|proyecto\\proyecto.csproj|solutionrelative:proyecto\\models\\empresa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{247EB016-C640-420C-ADF7-6197FDE2A82F}|proyecto\\proyecto.csproj|c:\\users\\adrian\\desktop\\proyecto\\proyecto\\inicio.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{247EB016-C640-420C-ADF7-6197FDE2A82F}|proyecto\\proyecto.csproj|solutionrelative:proyecto\\inicio.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{247EB016-C640-420C-ADF7-6197FDE2A82F}|proyecto\\proyecto.csproj|c:\\users\\adrian\\desktop\\proyecto\\proyecto\\inicio.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{247EB016-C640-420C-ADF7-6197FDE2A82F}|proyecto\\proyecto.csproj|solutionrelative:proyecto\\inicio.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{247EB016-C640-420C-ADF7-6197FDE2A82F}|proyecto\\proyecto.csproj|c:\\users\\adrian\\desktop\\proyecto\\proyecto\\models\\personacontacto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{247EB016-C640-420C-ADF7-6197FDE2A82F}|proyecto\\proyecto.csproj|solutionrelative:proyecto\\models\\personacontacto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "inicio.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Adrian\\Desktop\\proyecto\\proyecto\\inicio.xaml.cs",
+              "RelativeDocumentMoniker": "proyecto\\inicio.xaml.cs",
+              "ToolTip": "C:\\Users\\Adrian\\Desktop\\proyecto\\proyecto\\inicio.xaml.cs",
+              "RelativeToolTip": "proyecto\\inicio.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-01T16:21:19.47Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "inicio.xaml",
+              "DocumentMoniker": "C:\\Users\\Adrian\\Desktop\\proyecto\\proyecto\\inicio.xaml",
+              "RelativeDocumentMoniker": "proyecto\\inicio.xaml",
+              "ToolTip": "C:\\Users\\Adrian\\Desktop\\proyecto\\proyecto\\inicio.xaml",
+              "RelativeToolTip": "proyecto\\inicio.xaml",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAQwDQAAABOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-02-01T15:42:27.12Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Empresa.cs",
+              "DocumentMoniker": "C:\\Users\\Adrian\\Desktop\\proyecto\\proyecto\\Models\\Empresa.cs",
+              "RelativeDocumentMoniker": "proyecto\\Models\\Empresa.cs",
+              "ToolTip": "C:\\Users\\Adrian\\Desktop\\proyecto\\proyecto\\Models\\Empresa.cs",
+              "RelativeToolTip": "proyecto\\Models\\Empresa.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-31T22:07:49.116Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "EmpresaService.cs",
+              "DocumentMoniker": "C:\\Users\\Adrian\\Desktop\\proyecto\\proyecto\\Business\\EmpresaService.cs",
+              "RelativeDocumentMoniker": "proyecto\\Business\\EmpresaService.cs",
+              "ToolTip": "C:\\Users\\Adrian\\Desktop\\proyecto\\proyecto\\Business\\EmpresaService.cs",
+              "RelativeToolTip": "proyecto\\Business\\EmpresaService.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAwwCEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-31T22:07:44.736Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DatabaseService.cs",
+              "DocumentMoniker": "C:\\Users\\Adrian\\Desktop\\proyecto\\proyecto\\Services\\DatabaseService.cs",
+              "RelativeDocumentMoniker": "proyecto\\Services\\DatabaseService.cs",
+              "ToolTip": "C:\\Users\\Adrian\\Desktop\\proyecto\\proyecto\\Services\\DatabaseService.cs",
+              "RelativeToolTip": "proyecto\\Services\\DatabaseService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-31T21:17:14.018Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MainPage.xaml",
+              "DocumentMoniker": "C:\\Users\\Adrian\\Desktop\\proyecto\\proyecto\\MainPage.xaml",
+              "RelativeDocumentMoniker": "proyecto\\MainPage.xaml",
+              "ToolTip": "C:\\Users\\Adrian\\Desktop\\proyecto\\proyecto\\MainPage.xaml",
+              "RelativeToolTip": "proyecto\\MainPage.xaml",
+              "ViewState": "AgIAAFEAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-01-31T21:19:46.357Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "EmpresasContactadas.xaml",
+              "DocumentMoniker": "C:\\Users\\Adrian\\Desktop\\proyecto\\proyecto\\EmpresasContactadas.xaml",
+              "RelativeDocumentMoniker": "proyecto\\EmpresasContactadas.xaml",
+              "ToolTip": "C:\\Users\\Adrian\\Desktop\\proyecto\\proyecto\\EmpresasContactadas.xaml",
+              "RelativeToolTip": "proyecto\\EmpresasContactadas.xaml",
+              "ViewState": "AgIAAAwAAAAAAAAAAIBJwCcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-02-01T16:29:22.338Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "EmpresasContactadas.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Adrian\\Desktop\\proyecto\\proyecto\\EmpresasContactadas.xaml.cs",
+              "RelativeDocumentMoniker": "proyecto\\EmpresasContactadas.xaml.cs",
+              "ToolTip": "C:\\Users\\Adrian\\Desktop\\proyecto\\proyecto\\EmpresasContactadas.xaml.cs",
+              "RelativeToolTip": "proyecto\\EmpresasContactadas.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-01T16:29:44.539Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "MainPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Adrian\\Desktop\\proyecto\\proyecto\\MainPage.xaml.cs",
+              "RelativeDocumentMoniker": "proyecto\\MainPage.xaml.cs",
+              "ToolTip": "C:\\Users\\Adrian\\Desktop\\proyecto\\proyecto\\MainPage.xaml.cs",
+              "RelativeToolTip": "proyecto\\MainPage.xaml.cs",
+              "ViewState": "AgIAAKEAAAAAAAAAAAAcwLUAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-31T21:20:20.099Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "PersonaContacto.cs",
+              "DocumentMoniker": "C:\\Users\\Adrian\\Desktop\\proyecto\\proyecto\\Models\\PersonaContacto.cs",
+              "RelativeDocumentMoniker": "proyecto\\Models\\PersonaContacto.cs",
+              "ToolTip": "C:\\Users\\Adrian\\Desktop\\proyecto\\proyecto\\Models\\PersonaContacto.cs",
+              "RelativeToolTip": "proyecto\\Models\\PersonaContacto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-31T22:26:19.488Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

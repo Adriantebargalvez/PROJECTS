@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="proyecto.inicio"
+             Title="Inicio">
+
+    <!-- Fondo degradado -->
+    <ContentPage.Background>
+        <RadialGradientBrush Center="0.5, 0.5" Radius="1">
+            <GradientStop Color="#0B1223" Offset="0.0" />
+            <GradientStop Color="#00072D" Offset="0.6" />
+            <GradientStop Color="#020617" Offset="1.0" />
+        </RadialGradientBrush>
+    </ContentPage.Background>
+
+    <Grid Padding="20">
+        <!-- Encabezado -->
+        <VerticalStackLayout VerticalOptions="Start" HorizontalOptions="Center" Spacing="5">
+            <Label Text="Listado de empresas"
+                   FontSize="48"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"             
+                   TextColor="White" />
+            <Label Text="IES SERRA PERENXISA"
+                   FontSize="26"
+                   HorizontalOptions="Center"
+                   TextColor="Gray" />
+        </VerticalStackLayout>
+
+        <!-- Botones principales -->
+        <HorizontalStackLayout VerticalOptions="CenterAndExpand" Spacing="20" HorizontalOptions="Center">
+            <!-- Botón 1 -->
+            <Frame WidthRequest="260" HeightRequest="220" BackgroundColor="#D8B4FE" CornerRadius="20" Padding="10" HasShadow="True">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnEmpresasClicked" />
+                </Frame.GestureRecognizers>
+                <VerticalStackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="Center">
+                    <Image Source="empresas.png"
+                           WidthRequest="90"
+                           HeightRequest="110"
+                           HorizontalOptions="Center" />
+                    <Label Text="Empresas"
+                           FontSize="22"
+                           HorizontalOptions="Center"
+                           FontAttributes="Bold"
+                           TextColor="Black" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Botón 2 -->
+            <Frame WidthRequest="260" HeightRequest="220" BackgroundColor="#D8B4FE" CornerRadius="20" Padding="10" HasShadow="True">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnEmpresasContactadasClicked" />
+                </Frame.GestureRecognizers>
+                <VerticalStackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="Center" Spacing="10">
+                    <Image Source="chek.png"
+                           WidthRequest="90"
+                           HeightRequest="100"
+                           HorizontalOptions="Center" />
+                    <Label Text="Empresas Contactadas"
+                           FontSize="20"
+                           HorizontalOptions="Center"
+                           FontAttributes="Bold"
+                           TextColor="Black" />
+                </VerticalStackLayout>
+            </Frame>
+        </HorizontalStackLayout>
+    </Grid>
+</ContentPage>

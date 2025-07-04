@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="proyecto.EmpresasContactadas"
+             Title="Empresas Contactadas">
+
+    <ScrollView>
+        <Grid Padding="0" RowSpacing="0" ColumnSpacing="0">
+            <!-- Definir el número de filas y columnas -->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <!-- Encabezado -->
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+
+            </Grid.ColumnDefinitions>
+
+            <Frame  HasShadow="False" Padding="0" CornerRadius="0" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+                <ImageButton Source="home.png" WidthRequest="30" HeightRequest="30" HorizontalOptions="Start" VerticalOptions="Start" Clicked="homeButton"></ImageButton>
+
+            </Frame>
+
+            <Frame BorderColor="Black" HasShadow="False" Padding="0" CornerRadius="0" Grid.Row="1" Grid.Column="0">
+                <Label Text="Empresa" BackgroundColor="LightGray" TextColor="{DynamicResource PrimaryTextColor}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+            </Frame>
+            <Frame BorderColor="Black" HasShadow="False" Padding="0" CornerRadius="0" Grid.Row="1" Grid.Column="1">
+                <Label Text="Tutor Contacto" BackgroundColor="LightGray" TextColor="{DynamicResource PrimaryTextColor}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+            </Frame>
+            <Frame BorderColor="Black" HasShadow="False" Padding="0" CornerRadius="0" Grid.Row="1" Grid.Column="2">
+                <Label Text="Fecha Contacto" BackgroundColor="LightGray" TextColor="{DynamicResource PrimaryTextColor}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+            </Frame>
+            <Frame BorderColor="Black" HasShadow="False" Padding="0" CornerRadius="0" Grid.Row="1" Grid.Column="3">
+                <Label Text="Alumnos Practicas" BackgroundColor="LightGray" TextColor="{DynamicResource PrimaryTextColor}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+            </Frame>
+            <Frame BorderColor="Black" HasShadow="False" Padding="0" CornerRadius="0" Grid.Row="1" Grid.Column="4">
+                <Label Text="Poblacion" BackgroundColor="LightGray" TextColor="{DynamicResource PrimaryTextColor}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+            </Frame>
+            <Frame BorderColor="Black" HasShadow="False" Padding="0" CornerRadius="0" Grid.Row="1" Grid.Column="5">
+                <Label Text="Observaciones/Estado Contacto" BackgroundColor="LightGray" TextColor="{DynamicResource PrimaryTextColor}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+            </Frame>
+            <Frame BorderColor="Black" HasShadow="False" Padding="0" CornerRadius="0" Grid.Row="2" Grid.Column="0">
+                <Label Text="" BackgroundColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+            </Frame>
+            <Frame BorderColor="Black" HasShadow="False" Padding="0" CornerRadius="0" Grid.Row="2" Grid.Column="1">
+                <Label Text="" BackgroundColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+            </Frame>
+            <Frame BorderColor="Black" HasShadow="False" Padding="0" CornerRadius="0" Grid.Row="2" Grid.Column="2">
+                <Label Text="" BackgroundColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+            </Frame>
+            <Frame BorderColor="Black" HasShadow="False" Padding="0" CornerRadius="0" Grid.Row="2" Grid.Column="3">
+                <Label Text="" BackgroundColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+            </Frame>
+            <Frame BorderColor="Black" HasShadow="False" Padding="0" CornerRadius="0" Grid.Row="2" Grid.Column="4">
+                <Label Text="" BackgroundColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+            </Frame>
+            <Frame BorderColor="Black" HasShadow="False" Padding="0" CornerRadius="0" Grid.Row="2" Grid.Column="5">
+                <Label Text="" BackgroundColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+            </Frame>
+            <Frame HasShadow="False" Padding="0" CornerRadius="0" Grid.Row="2" Grid.Column="6">
+                <ImageButton Source="editar.png" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="30" HeightRequest="30" />
+            </Frame>
+            <Frame HasShadow="False" Padding="0" CornerRadius="0" Grid.Row="2" Grid.Column="7">
+                <ImageButton Source="papelera.png" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="30" HeightRequest="30" />
+            </Frame>
+            <Frame BorderColor="Black" HasShadow="False" Padding="0" CornerRadius="0" Grid.Row="3" Grid.Column="0">
+                <Label Text="" BackgroundColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+            </Frame>
+            <Frame BorderColor="Black" HasShadow="False" Padding="0" CornerRadius="0" Grid.Row="3" Grid.Column="1">
+                <Label Text="" BackgroundColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+            </Frame>
+            <Frame BorderColor="Black" HasShadow="False" Padding="0" CornerRadius="0" Grid.Row="3" Grid.Column="2">
+                <Label Text="" BackgroundColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+            </Frame>
+            <Frame BorderColor="Black" HasShadow="False" Padding="0" CornerRadius="0" Grid.Row="3" Grid.Column="3">
+                <Label Text="" BackgroundColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+            </Frame>
+            <Frame BorderColor="Black" HasShadow="False" Padding="0" CornerRadius="0" Grid.Row="3" Grid.Column="4">
+                <Label Text="" BackgroundColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+            </Frame>
+            <Frame BorderColor="Black" HasShadow="False" Padding="0" CornerRadius="0" Grid.Row="3" Grid.Column="5">
+                <Label Text="" BackgroundColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+            </Frame>
+            <Frame HasShadow="False" Padding="0" CornerRadius="0" Grid.Row="3" Grid.Column="6">
+                <ImageButton Source="editar.png" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="30" HeightRequest="30" />
+            </Frame>
+            <Frame HasShadow="False" Padding="0" CornerRadius="0" Grid.Row="3" Grid.Column="7">
+                <ImageButton Source="papelera.png" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="30" HeightRequest="30" />
+            </Frame>
+            <Frame BorderColor="Black" HasShadow="False" Padding="0" CornerRadius="0" Grid.Row="4" Grid.Column="0">
+                <Label Text="" BackgroundColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+            </Frame>
+            <Frame BorderColor="Black" HasShadow="False" Padding="0" CornerRadius="0" Grid.Row="4" Grid.Column="1">
+                <Label Text="" BackgroundColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+            </Frame>
+            <Frame BorderColor="Black" HasShadow="False" Padding="0" CornerRadius="0" Grid.Row="4" Grid.Column="2">
+                <Label Text="" BackgroundColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+            </Frame>
+            <Frame BorderColor="Black" HasShadow="False" Padding="0" CornerRadius="0" Grid.Row="4" Grid.Column="3">
+                <Label Text="" BackgroundColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+            </Frame>
+            <Frame BorderColor="Black" HasShadow="False" Padding="0" CornerRadius="0" Grid.Row="4" Grid.Column="4">
+                <Label Text="" BackgroundColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+            </Frame>
+            <Frame BorderColor="Black" HasShadow="False" Padding="0" CornerRadius="0" Grid.Row="4" Grid.Column="5">
+                <Label Text="" BackgroundColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+            </Frame>
+            <Frame HasShadow="False" Padding="0" CornerRadius="0" Grid.Row="4" Grid.Column="6">
+                <ImageButton Source="editar.png" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="30" HeightRequest="30" />
+            </Frame>
+            <Frame HasShadow="False" Padding="0" CornerRadius="0" Grid.Row="4" Grid.Column="7">
+                <ImageButton Source="papelera.png" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="30" HeightRequest="30" />
+            </Frame>
+
+            <Frame BorderColor="Black" HasShadow="False" Padding="0" CornerRadius="0" Grid.Row="5" Grid.Column="0">
+                <Label Text="" BackgroundColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+            </Frame>
+            <Frame BorderColor="Black" HasShadow="False" Padding="0" CornerRadius="0" Grid.Row="5" Grid.Column="1">
+                <Label Text="" BackgroundColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+            </Frame>
+            <Frame BorderColor="Black" HasShadow="False" Padding="0" CornerRadius="0" Grid.Row="5" Grid.Column="2">
+                <Label Text="" BackgroundColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+            </Frame>
+            <Frame BorderColor="Black" HasShadow="False" Padding="0" CornerRadius="0" Grid.Row="5" Grid.Column="3">
+                <Label Text="" BackgroundColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+            </Frame>
+            <Frame BorderColor="Black" HasShadow="False" Padding="0" CornerRadius="0" Grid.Row="5" Grid.Column="4">
+                <Label Text="" BackgroundColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+            </Frame>
+            <Frame BorderColor="Black" HasShadow="False" Padding="0" CornerRadius="0" Grid.Row="5" Grid.Column="5">
+                <Label Text="" BackgroundColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+            </Frame>
+            <Frame HasShadow="False" Padding="0" CornerRadius="0" Grid.Row="5" Grid.Column="6">
+                <ImageButton Source="editar.png" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="30" HeightRequest="30" />
+            </Frame>
+            <Frame HasShadow="False" Padding="0" CornerRadius="0" Grid.Row="5" Grid.Column="7">
+                <ImageButton Source="papelera.png" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="30" HeightRequest="30" />
+            </Frame>
+
+            <Frame BorderColor="Black" HasShadow="False" Padding="0" CornerRadius="0" Grid.Row="6" Grid.Column="0">
+                <Label Text="" BackgroundColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+            </Frame>
+            <Frame BorderColor="Black" HasShadow="False" Padding="0" CornerRadius="0" Grid.Row="6" Grid.Column="1">
+                <Label Text="" BackgroundColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+            </Frame>
+            <Frame BorderColor="Black" HasShadow="False" Padding="0" CornerRadius="0" Grid.Row="6" Grid.Column="2">
+                <Label Text="" BackgroundColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+            </Frame>
+            <Frame BorderColor="Black" HasShadow="False" Padding="0" CornerRadius="0" Grid.Row="6" Grid.Column="3">
+                <Label Text="" BackgroundColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+            </Frame>
+            <Frame BorderColor="Black" HasShadow="False" Padding="0" CornerRadius="0" Grid.Row="6" Grid.Column="4">
+                <Label Text="" BackgroundColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+            </Frame>
+            <Frame BorderColor="Black" HasShadow="False" Padding="0" CornerRadius="0" Grid.Row="6" Grid.Column="5">
+                <Label Text="" BackgroundColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+            </Frame>
+            <Frame HasShadow="False" Padding="0" CornerRadius="0" Grid.Row="6" Grid.Column="6">
+                <ImageButton Source="editar.png" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="30" HeightRequest="30" />
+            </Frame>
+            <Frame HasShadow="False" Padding="0" CornerRadius="0" Grid.Row="5" Grid.Column="7">
+                <ImageButton Source="papelera.png" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="30" HeightRequest="30" />
+            </Frame>
+
+            <Grid Grid.Row="11" Grid.ColumnSpan="8" Padding="10">
+                <Button Text="Empresas" HorizontalOptions="Center" VerticalOptions="End" />
+            </Grid>
+        </Grid>
+    </ScrollView>
+</ContentPage>

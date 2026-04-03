@@ -1,0 +1,150 @@
+<main class="portfolio-shell">
+  <section class="hero-section">
+    <div class="hero-copy">
+      <p class="hero-eyebrow">Portfolio profesional</p>
+      <h1>{{ fullName }}</h1>
+      <h2>{{ professionalRole }}</h2>
+      <p class="hero-text">
+        Desarrollo productos digitales robustos, escalables y orientados a
+        resultados, combinando una base técnica sólida con una experiencia de
+        usuario cuidada.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#projects" class="primary-button">Ver proyectos</a>
+        <a href="#contact" class="secondary-button">Contactar</a>
+      </div>
+    </div>
+
+    <aside class="hero-card" aria-label="Resumen profesional">
+      <div class="profile-mark">ATG</div>
+      <p class="hero-card-title">Full Stack Developer</p>
+      <p class="hero-card-text">
+        Especializado en interfaces web modernas, lógica de negocio y entrega
+        de soluciones mantenibles.
+      </p>
+      <div class="hero-stats">
+        <article>
+          <strong>3+</strong>
+          <span>Proyectos base listos para personalizar</span>
+        </article>
+        <article>
+          <strong>100%</strong>
+          <span>Diseño responsive y profesional</span>
+        </article>
+      </div>
+    </aside>
+  </section>
+
+  <section class="projects-section" id="projects">
+    <div class="section-heading">
+      <p class="section-label">Proyectos</p>
+      <h2>Una selección de trabajos para demostrar criterio técnico y visión de producto</h2>
+    </div>
+
+    <div class="projects-grid">
+      @for (project of projects; track project.title) {
+        <a
+          class="project-card"
+          [href]="project.link"
+          target="_blank"
+          rel="noopener noreferrer"
+          [style.--project-accent]="project.accent"
+          [attr.aria-label]="'Abrir proyecto: ' + project.title"
+        >
+          <div class="card-topline">
+            <span class="project-status">{{ project.status }}</span>
+            <span class="project-arrow">↗</span>
+          </div>
+
+          <h3>{{ project.title }}</h3>
+          <p>{{ project.summary }}</p>
+
+          <div class="project-stack">
+            @for (tech of project.stack; track tech) {
+              <span>{{ tech }}</span>
+            }
+          </div>
+        </a>
+      }
+    </div>
+  </section>
+
+  <section class="contact-section" id="contact">
+    <div class="contact-copy">
+      <p class="section-label">Contacto</p>
+      <h2>Si quieres trabajar conmigo, déjame un mensaje</h2>
+      <p>
+        Completa el formulario y elige si prefieres enviarlo por WhatsApp al
+        {{ contactPhoneDisplay }} o por correo a {{ contactEmail }}.
+      </p>
+    </div>
+
+    <form class="contact-form" (ngSubmit)="sendMessage()" #portfolioForm="ngForm">
+      <div class="channel-group" role="radiogroup" aria-label="Canal de contacto">
+        <label class="channel-option">
+          <input
+            type="radio"
+            name="channel"
+            value="whatsapp"
+            [(ngModel)]="contactForm.channel"
+          />
+          <span>WhatsApp</span>
+        </label>
+
+        <label class="channel-option">
+          <input
+            type="radio"
+            name="channel"
+            value="email"
+            [(ngModel)]="contactForm.channel"
+          />
+          <span>Correo</span>
+        </label>
+      </div>
+
+      <label class="form-field">
+        <span>Nombre</span>
+        <input
+          type="text"
+          name="name"
+          [(ngModel)]="contactForm.name"
+          placeholder="Tu nombre"
+          required
+        />
+      </label>
+
+      <label class="form-field">
+        <span>Correo electrónico</span>
+        <input
+          type="email"
+          name="email"
+          [(ngModel)]="contactForm.email"
+          placeholder="tu@email.com"
+          required
+        />
+      </label>
+
+      <label class="form-field">
+        <span>Mensaje</span>
+        <textarea
+          name="message"
+          [(ngModel)]="contactForm.message"
+          rows="6"
+          placeholder="Cuéntame qué necesitas desarrollar..."
+          required
+        ></textarea>
+      </label>
+
+      <button
+        class="submit-button"
+        type="submit"
+        [disabled]="portfolioForm.invalid"
+      >
+        Enviar por {{ contactForm.channel === 'whatsapp' ? 'WhatsApp' : 'correo' }}
+      </button>
+
+      <p class="form-status" aria-live="polite">{{ formStatus }}</p>
+    </form>
+  </section>
+</main>

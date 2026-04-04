@@ -15,5 +15,5 @@ public interface UsuarioService {
     Optional<UsuarioDto> getUsuario(Integer id);
     UsuarioDto updateUsuario(UsuarioDto usuarioDto);
 
-    Page<UsuarioDto> getAll(String filter,Pageable pageable );
+    Page<UsuarioDto> getAll(String filter, String quickSearch, Pageable pageable);
 }

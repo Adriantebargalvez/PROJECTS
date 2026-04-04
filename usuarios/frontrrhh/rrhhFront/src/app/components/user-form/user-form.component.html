@@ -1,52 +1,126 @@
+<section class="app-page form-page">
+  <header class="form-hero app-card">
+    <div>
+      <p class="form-hero__eyebrow">{{ mode === 'NEW' ? 'Nuevo registro' : 'Editar usuario' }}</p>
+      <h1 class="app-section-title">
+        {{ mode === 'NEW' ? 'Crear usuario' : 'Actualizar usuario' }}
+      </h1>
+      <p class="app-section-subtitle">
+        Completa la información profesional del empleado y guarda los cambios.
+      </p>
+    </div>
+  </header>
 
-<form *ngIf="usuario" #userForm="ngForm" name="itemForm" role="form" novalidate autocomplete="off">
-   <div class="form-group">
-    <label for="id">Id</label>
-    <input type="number" [(ngModel)]="usuario.id" name="id" class="form-control" id="price" #price="ngModel" >
-   </div>
+  <form
+    *ngIf="usuario && !isLoading; else loadingState"
+    #userForm="ngForm"
+    class="user-form app-card"
+    name="itemForm"
+    role="form"
+    novalidate
+    autocomplete="off"
+    (ngSubmit)="saveUser()"
+  >
+    <div class="user-form__grid">
+      <div class="user-form__field" *ngIf="mode === 'UPDATE'">
+        <label class="app-label" for="id">Id</label>
+        <input type="number" [(ngModel)]="usuario.id" name="id" class="form-control" id="id" readonly>
+      </div>
 
-   <div class="form-group">
-    <label for="nombre">Nombre</label>
-    <input type="text" [(ngModel)]="usuario.nombre" name="nombre" class="form-control" id="nombre" #price="ngModel" >
-   </div>
+      <div class="user-form__field">
+        <label class="app-label" for="nombre">Nombre</label>
+        <input
+          type="text"
+          [(ngModel)]="usuario.nombre"
+          name="nombre"
+          class="form-control"
+          id="nombre"
+          #nombreModel="ngModel"
+          [class.is-invalid]="nombreModel.invalid && nombreModel.touched"
+          placeholder="Nombre del empleado"
+          required
+          minlength="2"
+        >
+        <p class="field-error" *ngIf="nombreModel.invalid && nombreModel.touched">
+          El nombre debe tener al menos 2 caracteres.
+        </p>
+      </div>
 
-   <div class="form-group">
-    <label for="apellidos">apellidos</label>
-    <input type="text" [(ngModel)]="usuario.apellidos" name="apellidos" class="form-control" id="apellidos" #price="ngModel" >
-   </div>
+      <div class="user-form__field">
+        <label class="app-label" for="apellidos">Apellidos</label>
+        <input
+          type="text"
+          [(ngModel)]="usuario.apellidos"
+          name="apellidos"
+          class="form-control"
+          id="apellidos"
+          #apellidosModel="ngModel"
+          [class.is-invalid]="apellidosModel.invalid && apellidosModel.touched"
+          placeholder="Apellidos del empleado"
+          required
+          minlength="2"
+        >
+        <p class="field-error" *ngIf="apellidosModel.invalid && apellidosModel.touched">
+          Los apellidos deben tener al menos 2 caracteres.
+        </p>
+      </div>
 
-  
-   <div class="form-group">
-    <label for="email">email</label>
-    <input type="text" [(ngModel)]="usuario.email" name="email" class="form-control" id="email" #price="ngModel" >
-   </div>
+      <div class="user-form__field">
+        <label class="app-label" for="email">Email</label>
+        <input
+          type="email"
+          [(ngModel)]="usuario.email"
+          name="email"
+          class="form-control"
+          id="email"
+          #emailModel="ngModel"
+          [class.is-invalid]="emailModel.invalid && emailModel.touched"
+          placeholder="correo@empresa.com"
+          required
+          email
+        >
+        <p class="field-error" *ngIf="emailModel.invalid && emailModel.touched">
+          Introduce un email corporativo válido.
+        </p>
+      </div>
 
-   <div class="form-group">
-    <label for="rol">rol</label>
-    <input type="text" [(ngModel)]="usuario.rol" name="rol" class="form-control" id="rol" #price="ngModel" >
-   </div>
-   <div class="buttonForm">
-    <button (click)="saveUser()" [routerLink]="['/usuario','list']">Guardar</button>
-   </div>
-   
+      <div class="user-form__field">
+        <label class="app-label" for="rol">Rol</label>
+        <select
+          [(ngModel)]="usuario.rol"
+          name="rol"
+          class="form-control"
+          id="rol"
+          #rolModel="ngModel"
+          [class.is-invalid]="rolModel.invalid && rolModel.touched"
+          required
+        >
+          <option value="" disabled>Selecciona un rol</option>
+          <option *ngFor="let role of roleOptions" [value]="role">{{ role }}</option>
+        </select>
+        <p class="field-error" *ngIf="rolModel.invalid && rolModel.touched">
+          Selecciona un rol válido.
+        </p>
+      </div>
+    </div>
+
+    <div class="user-form__actions">
+      <button type="button" class="app-btn app-btn-secondary" [routerLink]="['/usuario', 'list']">
+        <i class="bi bi-arrow-left"></i>
+        Cancelar
+      </button>
+
+      <button type="submit" class="app-btn app-btn-primary" [disabled]="userForm.invalid || isSaving">
+        <i class="bi" [ngClass]="isSaving ? 'bi-hourglass-split' : 'bi-check2-circle'"></i>
+        {{ isSaving ? 'Guardando...' : 'Guardar usuario' }}
+      </button>
+    </div>
   </form>
-  <div class="buttonForm">
-   <button data-bs-toggle="modal" data-bs-target="#askConfiDelite">cancelar</button>
-  </div>
-  <div class="modal fade" id="askConfiDelite" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-   <div class="modal-dialog">
-     <div class="modal-content">
-       <div class="modal-header">
-         <h1 class="modal-title fs-5" id="exampleModalLabel">Confirmacion de borrado</h1>
-         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-       </div>
-       <div class="modal-body">
-         Quieres borrar este usuario se borraran los datos?
-       </div>
-       <div class="modal-footer">
-         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-         <button type="button" class="btn btn-primary" data-bs-dismiss="modal" routerLinkActive="active" [routerLink]="['/usuario','list']" >Accet</button>
-       </div>
-     </div>
-   </div>
- </div>
+
+  <ng-template #loadingState>
+    <article class="form-loading app-card">
+      <div class="form-loading__spinner"></div>
+      <p>Cargando usuario...</p>
+    </article>
+  </ng-template>
+</section>

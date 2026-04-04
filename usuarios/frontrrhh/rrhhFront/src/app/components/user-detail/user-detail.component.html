@@ -1,0 +1,76 @@
+<section class="detail-page app-page">
+  <article class="detail-hero app-card" *ngIf="usuario && !isLoading; else loadingState">
+    <div class="detail-hero__profile">
+      <div class="detail-hero__avatar">{{ getInitials(usuario) }}</div>
+
+      <div>
+        <p class="detail-hero__eyebrow">Ficha de usuario</p>
+        <h1 class="app-section-title">{{ usuario.nombre }} {{ usuario.apellidos }}</h1>
+        <p class="app-section-subtitle">{{ usuario.email }}</p>
+      </div>
+    </div>
+
+    <span class="role-badge" [ngClass]="getRoleClass(usuario.rol)">
+      {{ usuario.rol || 'SIN ROL' }}
+    </span>
+  </article>
+
+  <article class="detail-card app-card" *ngIf="usuario && !isLoading">
+    <section class="detail-grid">
+      <div class="detail-item">
+        <label>ID interno</label>
+        <strong>#{{ usuario.id }}</strong>
+      </div>
+
+      <div class="detail-item">
+        <label>Nombre</label>
+        <strong>{{ usuario.nombre }}</strong>
+      </div>
+
+      <div class="detail-item">
+        <label>Apellidos</label>
+        <strong>{{ usuario.apellidos }}</strong>
+      </div>
+
+      <div class="detail-item">
+        <label>Email corporativo</label>
+        <strong>{{ usuario.email }}</strong>
+      </div>
+
+      <div class="detail-item">
+        <label>Rol asignado</label>
+        <strong>{{ usuario.rol || 'Sin rol' }}</strong>
+      </div>
+
+      <div class="detail-item">
+        <label>Estado</label>
+        <strong>Activo</strong>
+      </div>
+    </section>
+
+    <footer class="detail-actions">
+      <button type="button" class="app-btn app-btn-secondary" [routerLink]="['/usuario', 'list']">
+        <i class="bi bi-arrow-left"></i>
+        Volver al listado
+      </button>
+
+      <button
+        *ngIf="canManageUsers"
+        type="button"
+        class="app-btn app-btn-primary"
+        [routerLink]="['/usuario', usuario.id]"
+      >
+        <i class="bi bi-pencil-square"></i>
+        Editar usuario
+      </button>
+    </footer>
+  </article>
+
+  <ng-template #loadingState>
+    <article class="detail-skeleton app-card">
+      <div class="skeleton skeleton-avatar"></div>
+      <div class="skeleton skeleton-line"></div>
+      <div class="skeleton skeleton-line skeleton-line--short"></div>
+    </article>
+  </ng-template>
+</section>

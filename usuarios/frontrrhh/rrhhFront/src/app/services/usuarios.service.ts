@@ -2,13 +2,22 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Usuario } from '../components/common/usuario';
+
+export interface PaginatedUsuariosResponse {
+  content: Usuario[];
+  first: boolean;
+  last: boolean;
+  totalPages: number;
+  totalElements: number;
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class UsuariosService {
  
  
-  private baseUrl = 'http://localhost:8080/rrhh/usuario'; 
+  private baseUrl = '/rrhh/usuario';
 
   constructor(private http: HttpClient) { }
 
@@ -27,12 +36,29 @@ export class UsuariosService {
   public update(usuario: Usuario): Observable<Usuario> {
     return this.http.patch<Usuario>(`${this.baseUrl}/${usuario.id}`, usuario);
   }
-  getAll(page: number, size: number,sort: string, filters?: string): Observable<Usuario[]> {
-    let urlEndPoint: string = "http://localhost:8080/rrhh/usuario/page?page="+page+"&size="+size + "&sort="+ sort;
-    if (filters){
-      urlEndPoint= urlEndPoint + "&filter=" + filters;
+  getAll(
+    page: number,
+    size: number,
+    sort?: string,
+    filters?: string,
+    quickSearch?: string
+  ): Observable<PaginatedUsuariosResponse> {
+    let params = new HttpParams()
+      .set('page', page)
+      .set('size', size);
+
+    if (sort) {
+      params = params.set('sort', sort);
     }
-    return this.http.get<Usuario[]>(urlEndPoint);
+
+    if (filters){
+      params = params.set('filter', filters);
+    }
+
+    if (quickSearch?.trim()) {
+      params = params.set('quickSearch', quickSearch.trim());
+    }
+
+    return this.http.get<PaginatedUsuariosResponse>(`${this.baseUrl}/page`, { params });
   }
 }
-

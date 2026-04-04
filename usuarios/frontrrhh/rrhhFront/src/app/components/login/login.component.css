@@ -1,0 +1,121 @@
+.login-page {
+  min-height: calc(100vh - 220px);
+  display: grid;
+  place-items: center;
+}
+
+.login-card {
+  width: min(620px, 100%);
+  padding: 40px;
+  animation: fade-up 300ms ease-out;
+}
+
+.login-card__eyebrow {
+  margin: 0 0 10px;
+  color: var(--app-primary);
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.login-form {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.login-form__field {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-form__submit {
+  width: 100%;
+}
+
+.field-error {
+  margin: 8px 0 0;
+  color: var(--app-danger);
+  font-size: 0.84rem;
+  font-weight: 600;
+}
+
+.form-control.is-invalid {
+  border-color: var(--app-danger);
+  box-shadow: 0 0 0 4px rgba(220, 38, 38, 0.12);
+}
+
+.demo-accounts {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid var(--app-border);
+}
+
+.demo-accounts__title {
+  margin: 0 0 14px;
+  color: var(--app-text-muted);
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.demo-accounts__list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.demo-account {
+  border: 1px solid var(--app-border);
+  border-radius: 18px;
+  padding: 16px 14px;
+  background: var(--app-surface-soft);
+  color: var(--app-text);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.demo-account:hover {
+  transform: translateY(-1px);
+  background: rgba(37, 99, 235, 0.08);
+}
+
+.demo-account span {
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.demo-account small {
+  margin-top: 4px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--app-text-muted);
+  letter-spacing: 0.08em;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 640px) {
+  .login-card {
+    padding: 24px;
+  }
+
+  .demo-accounts__list {
+    grid-template-columns: 1fr;
+  }
+}

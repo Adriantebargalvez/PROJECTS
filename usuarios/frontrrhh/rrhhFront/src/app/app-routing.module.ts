@@ -1,11 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { UsuarioListComponent } from './components/usuario-list/usuario-list.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
 import { UserFormComponent } from './components/user-form/user-form.component';
+import { UserDetailComponent } from './components/user-detail/user-detail.component';
+import { LoginComponent } from './components/login/login.component';
+import { AuthGuard } from './guards/auth.guard';
+import { WriteAccessGuard } from './guards/write-access.guard';
 
 const routes: Routes = [
+  {
+    path: 'login',
+    component: LoginComponent,
+    data: { animation: 'LoginPage' }
+  },
   {
     path:'',
     redirectTo:'usuario/list',
@@ -13,29 +20,31 @@ const routes: Routes = [
   },
   {
     path:'usuario/list',
-    component: UsuarioListComponent
+    component: UsuarioListComponent,
+    canActivate: [AuthGuard],
+    data: { animation: 'UsersListPage' }
   },
   {
     path:'usuario/new',
-    component: UserFormComponent
+    component: UserFormComponent,
+    canActivate: [AuthGuard, WriteAccessGuard],
+    data: { animation: 'UserFormPage' }
+  },
+  {
+    path: 'usuario/detail/:userId',
+    component: UserDetailComponent,
+    canActivate: [AuthGuard],
+    data: { animation: 'UserDetailPage' }
   },
   {
     path:'usuario/:userId',
-    component: UserFormComponent
+    component: UserFormComponent,
+    canActivate: [AuthGuard, WriteAccessGuard],
+    data: { animation: 'UserFormPage' }
   },
-
-  {
-    path:'navbar',
-    component: NavbarComponent
-  },
-  {
-    path:'footer',
-    component: FooterComponent
-  },
-
   {
     path:'**',
-    redirectTo:'rrhhFront',
+    redirectTo:'usuario/list',
     pathMatch:'full'
   },
 ];

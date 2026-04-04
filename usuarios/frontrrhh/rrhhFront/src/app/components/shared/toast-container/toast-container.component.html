@@ -1,0 +1,16 @@
+<div class="toast-stack" *ngIf="toasts$ | async as toasts">
+  <article class="app-toast app-toast--{{ toast.type }}" *ngFor="let toast of toasts">
+    <div class="app-toast__icon">
+      <i class="bi" [ngClass]="getIcon(toast.type)"></i>
+    </div>
+
+    <div class="app-toast__content">
+      <h3>{{ toast.title }}</h3>
+      <p>{{ toast.message }}</p>
+    </div>
+
+    <button type="button" class="app-toast__close" (click)="dismiss(toast.id)" aria-label="Cerrar aviso">
+      <i class="bi bi-x-lg"></i>
+    </button>
+  </article>
+</div>

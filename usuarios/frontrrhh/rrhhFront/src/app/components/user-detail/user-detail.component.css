@@ -1,0 +1,175 @@
+.detail-page {
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.detail-hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 34px;
+  animation: fade-up 300ms ease-out;
+}
+
+.detail-hero__profile {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.detail-hero__avatar {
+  width: 76px;
+  height: 76px;
+  border-radius: 26px;
+  display: grid;
+  place-items: center;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--app-primary-dark);
+  background: linear-gradient(135deg, #dbeafe, #e0e7ff);
+}
+
+.detail-hero__eyebrow {
+  margin: 0 0 10px;
+  color: var(--app-primary);
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.detail-card {
+  padding: 32px;
+  animation: fade-up 320ms ease-out;
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.detail-item {
+  padding: 22px;
+  border-radius: 20px;
+  background: var(--app-surface-soft);
+  border: 1px solid var(--app-border);
+}
+
+.detail-item label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--app-text-muted);
+  text-transform: uppercase;
+}
+
+.detail-item strong {
+  color: var(--app-text);
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.detail-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 14px;
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid var(--app-border);
+}
+
+.role-badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 12px 18px;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.role-badge--admin {
+  background: rgba(37, 99, 235, 0.14);
+  color: var(--app-primary-dark);
+}
+
+.role-badge--hr {
+  background: rgba(14, 165, 233, 0.14);
+  color: #0369a1;
+}
+
+.role-badge--reader {
+  background: rgba(100, 116, 139, 0.14);
+  color: var(--app-text-muted);
+}
+
+.detail-skeleton {
+  padding: 32px;
+}
+
+.skeleton {
+  border-radius: 20px;
+  background: linear-gradient(90deg, var(--app-surface-soft), var(--app-border), var(--app-surface-soft));
+  background-size: 200% 100%;
+  animation: shimmer 1.2s infinite linear;
+}
+
+.skeleton-avatar {
+  width: 76px;
+  height: 76px;
+}
+
+.skeleton-line {
+  height: 22px;
+  margin-top: 22px;
+}
+
+.skeleton-line--short {
+  width: 40%;
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 200% 0;
+  }
+
+  to {
+    background-position: -200% 0;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .detail-hero,
+  .detail-card {
+    padding: 24px;
+  }
+
+  .detail-hero {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .detail-actions {
+    flex-direction: column-reverse;
+  }
+}

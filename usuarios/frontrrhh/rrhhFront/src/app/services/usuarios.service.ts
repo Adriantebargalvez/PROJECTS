@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Usuario } from '../components/common/usuario';
+import { environment } from 'src/environments/environment';
 
 export interface PaginatedUsuariosResponse {
   content: Usuario[];
@@ -15,9 +16,7 @@ export interface PaginatedUsuariosResponse {
   providedIn: 'root'
 })
 export class UsuariosService {
- 
- 
-  private baseUrl = '/rrhh/usuario';
+  private baseUrl = environment.apiBaseUrl;
 
   constructor(private http: HttpClient) { }
 

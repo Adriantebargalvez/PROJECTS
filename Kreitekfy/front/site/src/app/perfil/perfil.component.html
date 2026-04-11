@@ -1,9 +1,54 @@
-<p>perfil works!</p>
-<div *ngIf="user">
-    <p>ID de usuario: {{ user.id }}</p>
-    <p>Nombre de usuario: {{ user.username }}</p>
-    <p>Nombre: <input type="text" [(ngModel)]="user.firstName"></p>
-    <p>Apellido: <input type="text" [(ngModel)]="user.lastName"></p>
-    <p>Email: <input type="email" [(ngModel)]="user.email"></p>
-    <button (click)="updateUser()">Guardar cambios</button>
-  </div>
+<div class="page-shell profile-page">
+  <section class="profile-card glass-panel">
+    <div class="profile-card__hero">
+      <div class="profile-card__avatar">
+        <i class="bi bi-person-fill"></i>
+      </div>
+
+      <div>
+        <p class="eyebrow">Perfil</p>
+        <h1>{{ displayName }}</h1>
+        <p class="profile-card__subtitle">
+          Vista de sesión preparada para ampliarse con edición avanzada, preferencias y gestión de cuenta.
+        </p>
+      </div>
+    </div>
+
+    <div class="profile-card__progress">
+      <span>Datos disponibles en sesión</span>
+      <strong>{{ completionPercent }}%</strong>
+    </div>
+
+    <div class="profile-grid">
+      <article class="profile-item">
+        <span>Usuario</span>
+        <strong>{{ user.username || 'Sin definir' }}</strong>
+      </article>
+
+      <article class="profile-item">
+        <span>Nombre</span>
+        <strong>{{ user.firstName || 'Sin definir' }}</strong>
+      </article>
+
+      <article class="profile-item">
+        <span>Apellidos</span>
+        <strong>{{ user.lastName || 'Sin definir' }}</strong>
+      </article>
+
+      <article class="profile-item">
+        <span>Email</span>
+        <strong>{{ user.email || 'Sin definir' }}</strong>
+      </article>
+
+      <article class="profile-item">
+        <span>Rol</span>
+        <strong>{{ user.role || 'USER' }}</strong>
+      </article>
+    </div>
+
+    <div class="profile-card__actions">
+      <a class="primary-link" routerLink="/hello">Volver al catálogo</a>
+      <a class="ghost-link" routerLink="/novedades">Explorar novedades</a>
+    </div>
+  </section>
+</div>

@@ -1,29 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.0/font/bootstrap-icons.css" rel="stylesheet">
+<header class="topbar">
+  <div class="topbar__inner page-shell">
+    <a class="brand" routerLink="/hello" aria-label="Ir a inicio">
+      <span class="brand__mark">
+        <i class="bi bi-vinyl-fill"></i>
+      </span>
+      <span class="brand__copy">
+        <strong>Kreitekfy</strong>
+        <small>Live music experience</small>
+      </span>
+    </a>
 
-    <link rel="stylesheet" href="navbar.component.css"> 
-    <title>Document</title>
-</head>
-<body>
-    <div>
-        <button routerLink="/hello" routerLinkActive="active">HOME</button>
+    <nav class="topbar__nav" aria-label="Navegacion principal">
+      <a routerLink="/hello" routerLinkActive="is-active">Inicio</a>
+      <a routerLink="/novedades" routerLinkActive="is-active">Descubrir</a>
+      <a *ngIf="isLoggedIn" routerLink="/perfil" routerLinkActive="is-active">Perfil</a>
+    </nav>
+
+    <div class="topbar__actions" *ngIf="isLoggedIn; else guestActions">
+      <span class="session-pill">
+        <i class="bi bi-broadcast-pin"></i>
+        En reproduccion
+      </span>
+      <a class="user-chip" routerLink="/perfil">
+        <i class="bi bi-person-circle"></i>
+        <span>{{ fullName || 'Mi cuenta' }}</span>
+      </a>
+      <button class="ghost-button" type="button" (click)="logout()">Salir</button>
     </div>
 
-    <div>
-       <img src="../../assets/img/apps.10546.13571498826857201.6603a5e2-631f-4f29-9b08-f96589723808-removebg-preview.png" alt=""> 
-    </div>
-    <div *ngIf="isLoggedIn; else loginButton">
-        <button routerLink="/perfil" routerLinkActive="active"><span>{{ fullName }}</span></button>
-        <button (click)="logout()">Logout</button>
-    </div>
-    <ng-template #loginButton>
-        <!-- Icono o botón de login -->
-        <button routerLink="/login" routerLinkActive="active" class="icon"><i class="bi bi-person-fill-add"></i></button>
+    <ng-template #guestActions>
+      <div class="topbar__actions">
+        <a class="ghost-link" routerLink="/login">Entrar</a>
+        <a class="primary-link" routerLink="/register">Crear cuenta</a>
+      </div>
     </ng-template>
-    
-</body>
-</html>
+  </div>
+</header>

@@ -8,27 +8,42 @@ import { AuthService } from '../../service/auth.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-  credentials: any = {};
-  errorMessage: string = '';
+  credentials = {
+    username: '',
+    password: ''
+  };
+  errorMessage = '';
+  isSubmitting = false;
 
-  constructor(private authService: AuthService,
-              private router: Router
+  constructor(
+    private authService: AuthService,
+    private router: Router
   ) { }
 
   login(): void {
+    if (!this.credentials.username || !this.credentials.password) {
+      this.errorMessage = 'Introduce tu usuario y contraseña para continuar.';
+      return;
+    }
+
+    this.isSubmitting = true;
     this.authService.login(this.credentials).subscribe({
       next: (response) => {
+        this.isSubmitting = false;
         this.errorMessage = '';
-        this.authService.saveToken(response.token);
-        this.authService.updateUsername(this.credentials.username);
+        this.authService.saveSession(response.token, {
+          username: this.credentials.username
+        });
         this.router.navigate(['/hello']);
       },
       error: (error) => {
+        this.isSubmitting = false;
         console.error('Login failed', error);
-        this.errorMessage = 'Error en la autenticación. Por favor, revisa tus credenciales e intenta de nuevo.';
+        this.errorMessage = 'Error en la autenticación. Revisa tus credenciales e inténtalo de nuevo.';
       }
     });
   }
+
   cancel(): void {
     this.router.navigate(['/hello']);
   }

@@ -1,48 +1,70 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-  <div *ngIf="isAuthenticated()">
-    <h1 class="nove">Novedades</h1>
-    <select [(ngModel)]="selectedEstilo" (change)="filtrarPorEstilo()">
+<section *ngIf="isAuthenticated()" class="discover-panel glass-panel" [class.discover-panel--compact]="compact">
+  <div class="discover-panel__header">
+    <div>
+      <p class="eyebrow">{{ compact ? 'Descubrir' : 'Explora el catalogo' }}</p>
+      <h2>{{ compact ? 'Mixes vivos para seguir reproduciendo' : 'Selecciones destacadas para tus usuarios' }}</h2>
+      <p>
+        Filtra por estilo y manten la experiencia fresca con listas claras de novedades, canciones populares y
+        recomendaciones personalizadas.
+      </p>
+    </div>
+
+    <label class="field discover-panel__filter">
+      <span>Estilo</span>
+      <select [(ngModel)]="selectedEstilo" name="selectedEstilo" (change)="filtrarPorEstilo()">
         <option value="">Todos los estilos</option>
         <option *ngFor="let estilo of estilos" [value]="estilo">{{ estilo }}</option>
-    </select>
-    <div class="container">
-      <div class="item" *ngFor="let cancion of ultimasCanciones">
-        <a [routerLink]="'/cancion/' + cancion.id">
-          <img  [src]="cancion.imagen" alt="{{ cancion.titulo }}">
-          <p>{{ cancion.titulo }}</p>
-        </a>
-      </div>
-    </div>
-    <h2 class="nove">Más Escuchadas</h2>
-    
-    <div class="container">
-      <div class="item" *ngFor="let cancion of masEscuchadas">
-        <a [routerLink]="'/cancion/' + cancion.id">
-          <img  [src]="cancion.imagen" alt="{{ cancion.titulo }}">
-          <p>{{ cancion.titulo }}</p>
-          <p>Reproducciones: {{ cancion.reproducciones }}</p> <!-- Muestra el número de reproducciones -->
-        </a>
-      </div>
-    </div>
-    <h2 class="nove">Para Ti</h2>
-    
-    <div class="container">
-      <div class="item" *ngFor="let cancion of parati">
-        <a [routerLink]="'/cancion/' + cancion.id">
-          <img  [src]="cancion.imagen" alt="{{ cancion.titulo }}">
-          <p>{{ cancion.titulo }}</p>
-          <p>Reproducciones: {{ cancion.reproducciones }}</p>
-          <p>Puntuacion: {{ cancion.puntuacion }}</p> <!-- Muestra el número de reproducciones -->
-        </a>
-      </div>
-    </div>
+      </select>
+    </label>
   </div>
-</body>
-</html>
+
+  <div class="discover-grid">
+    <article class="playlist-card playlist-card--sunset">
+      <header class="playlist-card__header">
+        <span class="playlist-card__tag">Nuevo</span>
+        <h3>Ultimas canciones</h3>
+      </header>
+
+      <a class="playlist-card__item" *ngFor="let cancion of ultimasCanciones; let index = index; trackBy: trackBySongId" [routerLink]="'/cancion/' + cancion.id">
+        <span class="playlist-card__rank">0{{ index + 1 }}</span>
+        <img [src]="cancion.imagen" [alt]="'Portada de ' + cancion.titulo">
+        <div>
+          <strong>{{ cancion.titulo }}</strong>
+          <span>{{ cancion.artista }}</span>
+        </div>
+      </a>
+    </article>
+
+    <article class="playlist-card playlist-card--neon">
+      <header class="playlist-card__header">
+        <span class="playlist-card__tag playlist-card__tag--accent">Top</span>
+        <h3>Mas escuchadas</h3>
+      </header>
+
+      <a class="playlist-card__item" *ngFor="let cancion of masEscuchadas; let index = index; trackBy: trackBySongId" [routerLink]="'/cancion/' + cancion.id">
+        <span class="playlist-card__rank">0{{ index + 1 }}</span>
+        <img [src]="cancion.imagen" [alt]="'Portada de ' + cancion.titulo">
+        <div>
+          <strong>{{ cancion.titulo }}</strong>
+          <span>{{ cancion.reproducciones }} reproducciones</span>
+        </div>
+      </a>
+    </article>
+
+    <article class="playlist-card playlist-card--pulse">
+      <header class="playlist-card__header">
+        <span class="playlist-card__tag playlist-card__tag--soft">Para ti</span>
+        <h3>Seleccion recomendada</h3>
+      </header>
+
+      <a class="playlist-card__item" *ngFor="let cancion of parati; let index = index; trackBy: trackBySongId" [routerLink]="'/cancion/' + cancion.id">
+        <span class="playlist-card__rank">0{{ index + 1 }}</span>
+        <img [src]="cancion.imagen" [alt]="'Portada de ' + cancion.titulo">
+        <div>
+          <strong>{{ cancion.titulo }}</strong>
+          <span>{{ cancion.puntuacion }}/4 valoracion media</span>
+        </div>
+      </a>
+    </article>
+  </div>
+</section>

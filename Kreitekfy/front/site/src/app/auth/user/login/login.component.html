@@ -1,14 +1,52 @@
-<h2>Login</h2>
-<form>
-  <input type="text" [(ngModel)]="credentials.username" name="username" placeholder="Username" required>
-  <input type="password" [(ngModel)]="credentials.password" name="password" placeholder="Password" required>
-  <!-- Mensaje de error -->
-  <div *ngIf="errorMessage" class="alert alert-danger">
-    {{ errorMessage }}
-  </div>
-  <button  (click)="login()">Login</button>
-  <button (click)="cancel()" type="button">Cancelar</button>
-</form>
-<div  class="register-link">
-  <p>¿No tienes una cuenta? <a routerLink="/register">Regístrate</a></p>
+<div class="page-shell auth-page">
+  <section class="auth-layout glass-panel">
+    <div class="auth-layout__aside">
+      <p class="eyebrow">Acceso</p>
+      <h1>Vuelve a tu espacio musical.</h1>
+      <p>
+        Entra para ver tus recomendaciones, gestionar el catálogo y continuar con una experiencia profesional desde
+        cualquier dispositivo.
+      </p>
+
+      <div class="auth-layout__feature">
+        <i class="bi bi-soundwave"></i>
+        <span>Navegación clara, detalle de canciones y catálogo responsive.</span>
+      </div>
+    </div>
+
+    <div class="auth-layout__form">
+      <div class="auth-card__header">
+        <h2>Iniciar sesión</h2>
+        <p>Accede con tu cuenta para recuperar tu sesión.</p>
+      </div>
+
+      <form class="auth-form" (ngSubmit)="login()">
+        <label class="field">
+          <span>Usuario</span>
+          <input type="text" [(ngModel)]="credentials.username" name="username" placeholder="Tu usuario" required>
+        </label>
+
+        <label class="field">
+          <span>Contraseña</span>
+          <input type="password" [(ngModel)]="credentials.password" name="password" placeholder="Tu contraseña" required>
+        </label>
+
+        <div *ngIf="errorMessage" class="form-message form-message--error">
+          {{ errorMessage }}
+        </div>
+
+        <div class="auth-form__actions">
+          <button class="primary-button" type="submit" [disabled]="isSubmitting">
+            {{ isSubmitting ? 'Entrando...' : 'Entrar' }}
+          </button>
+          <button class="ghost-button" type="button" (click)="cancel()">Cancelar</button>
+        </div>
+      </form>
+
+      <p class="auth-card__footer">
+        ¿Todavía no tienes cuenta?
+        <a routerLink="/register">Crea una ahora</a>
+      </p>
+    </div>
+  </section>
 </div>

@@ -16,5 +16,6 @@ import java.util.Optional;
 public interface CancionesRepository extends JpaRepository<Canciones, Long>, JpaSpecificationExecutor<Canciones> {
     Page<Canciones> findByEstilo(String estilo, Pageable pageable);
     List<Canciones> findByPuntuacionGreaterThanAndReproduccionesGreaterThan(int puntuacion, int reproducciones, Pageable pageable);
+    boolean existsByTitulo(String titulo);
 
 }

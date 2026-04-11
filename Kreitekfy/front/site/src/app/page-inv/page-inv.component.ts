@@ -1,9 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CancionService } from '../auth/service/cancion.service';
 import { Cancion } from '../common/cancion';
-import { Puntuacion } from '../common/puntuacion';
- // Importa el servicio CancionService
 
 @Component({
   selector: 'app-page-inv',
@@ -11,11 +9,9 @@ import { Puntuacion } from '../common/puntuacion';
   styleUrls: ['./page-inv.component.css']
 })
 export class PageInvComponent implements OnInit {
-
+  readonly ratingOptions = [1, 2, 3, 4];
   cancion: Cancion | undefined;
-  user: any;
-  puntuacion: Puntuacion | null = null;
- 
+
   constructor(
     private route: ActivatedRoute,
     private cancionService: CancionService
@@ -27,7 +23,6 @@ export class PageInvComponent implements OnInit {
       this.cancionService.getCancionById(Number(id)).subscribe(
         (data: Cancion) => {
           this.cancion = data;
-         
         },
         (error) => {
           console.error('Error al obtener los detalles de la canción:', error);
@@ -35,7 +30,8 @@ export class PageInvComponent implements OnInit {
       );
     }
   }
-  reproducirCancion() {
+
+  reproducirCancion(): void {
     if (this.cancion && this.cancion.id) {
       this.cancionService.reproducirCancion(this.cancion.id).subscribe(
         () => {
@@ -44,12 +40,13 @@ export class PageInvComponent implements OnInit {
           }
         },
         (error) => {
-          console.error("Error al reproducir la canción:", error);
+          console.error('Error al reproducir la canción:', error);
         }
       );
     }
   }
-  valorarCancion(puntuacion: number) {
+
+  valorarCancion(puntuacion: number): void {
     if (this.cancion && this.cancion.id) {
       this.cancionService.valorarCancion(this.cancion.id, puntuacion).subscribe(
         () => {
@@ -58,12 +55,21 @@ export class PageInvComponent implements OnInit {
           }
         },
         (error) => {
-          console.error("Error al valorar la canción:", error);
+          console.error('Error al valorar la canción:', error);
         }
       );
     }
   }
-  
+
+  trackByRating(_: number, rating: number): number {
+    return rating;
+  }
+
+  get popularityPercent(): number {
+    if (!this.cancion) {
+      return 0;
+    }
+
+    return Math.min(100, Math.max(15, Math.round(this.cancion.reproducciones / 30)));
+  }
 }
-
-

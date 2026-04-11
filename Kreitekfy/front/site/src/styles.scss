@@ -1,1 +1,310 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap');
+@import 'bootstrap-icons/font/bootstrap-icons.css';
+
+:root {
+  --bg: #170b31;
+  --bg-secondary: #072448;
+  --surface: rgba(18, 17, 44, 0.82);
+  --surface-soft: rgba(255, 255, 255, 0.08);
+  --border: rgba(255, 255, 255, 0.12);
+  --text: #f7f6ff;
+  --muted: #d0c9f5;
+  --accent: #ff6b2c;
+  --accent-strong: #ffd23f;
+  --accent-secondary: #7b61ff;
+  --accent-tertiary: #00d4ff;
+  --font-base: 'Manrope', sans-serif;
+  --font-display: 'Space Grotesk', sans-serif;
+  --content-width: 1220px;
+  --shadow-lg: 0 28px 65px rgba(7, 4, 28, 0.4);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  color: var(--text);
+  font-family: var(--font-base);
+  background:
+    radial-gradient(circle at top left, rgba(255, 107, 44, 0.42), transparent 28%),
+    radial-gradient(circle at 80% 10%, rgba(255, 0, 128, 0.2), transparent 20%),
+    radial-gradient(circle at 78% 18%, rgba(123, 97, 255, 0.38), transparent 26%),
+    radial-gradient(circle at 50% 100%, rgba(0, 212, 255, 0.26), transparent 30%),
+    linear-gradient(180deg, var(--bg), var(--bg-secondary));
+  background-attachment: fixed;
+}
+
+body::before,
+body::after {
+  content: '';
+  position: fixed;
+  inset: auto;
+  width: 22rem;
+  height: 22rem;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(80px);
+  opacity: 0.2;
+}
+
+body::before {
+  top: -7rem;
+  left: -5rem;
+  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+}
+
+body::after {
+  right: -7rem;
+  bottom: -7rem;
+  background: linear-gradient(135deg, var(--accent-secondary), var(--accent-tertiary));
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.page-shell {
+  width: min(var(--content-width), calc(100% - 2rem));
+  margin: 0 auto;
+}
+
+.glass-panel {
+  border: 1px solid var(--border);
+  border-radius: 1.75rem;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.03)),
+    var(--surface);
+  box-shadow: var(--shadow-lg);
+  backdrop-filter: blur(20px);
+}
+
+.eyebrow {
+  margin: 0 0 0.5rem;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.field {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.field span {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.field input,
+.field select {
+  width: 100%;
+  padding: 0.95rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text);
+  outline: none;
+  transition: border-color 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+}
+
+.field input::placeholder {
+  color: rgba(157, 176, 204, 0.72);
+}
+
+.field input:focus,
+.field select:focus {
+  border-color: rgba(255, 122, 89, 0.55);
+  box-shadow: 0 0 0 4px rgba(255, 122, 89, 0.15);
+  background: rgba(255, 255, 255, 0.11);
+}
+
+.primary-link,
+.primary-button,
+.ghost-link,
+.ghost-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  min-height: 3rem;
+  padding: 0.85rem 1.3rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease, border-color 180ms ease;
+}
+
+.primary-link,
+.primary-button {
+  background: linear-gradient(135deg, var(--accent), var(--accent-strong), #ff4d9d);
+  color: #241530;
+  font-weight: 800;
+  box-shadow: 0 16px 28px rgba(255, 107, 44, 0.3);
+}
+
+.ghost-link,
+.ghost-button {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--border);
+  color: var(--text);
+}
+
+.primary-link:hover,
+.primary-button:hover,
+.ghost-link:hover,
+.ghost-button:hover {
+  transform: translateY(-1px);
+}
+
+.primary-button:disabled,
+.ghost-button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.auth-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  gap: 1.5rem;
+  padding: 1.75rem;
+}
+
+.auth-layout__aside,
+.auth-layout__form {
+  padding: 1.2rem;
+}
+
+.auth-layout__aside {
+  display: grid;
+  align-content: center;
+  gap: 1rem;
+}
+
+.auth-layout__aside h1 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.02;
+}
+
+.auth-layout__aside p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.auth-layout__feature {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--border);
+  border-radius: 1.2rem;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.auth-layout__feature i {
+  color: var(--accent-tertiary);
+  font-size: 1.2rem;
+}
+
+.auth-card__header h2 {
+  margin: 0;
+  font-size: 1.7rem;
+}
+
+.auth-card__header p,
+.auth-card__footer {
+  color: var(--muted);
+}
+
+.auth-form {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.auth-form--double {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.auth-form__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+}
+
+.auth-form__actions--full,
+.form-message--full {
+  grid-column: 1 / -1;
+}
+
+.form-message {
+  padding: 0.85rem 1rem;
+  border-radius: 1rem;
+  border: 1px solid transparent;
+  font-size: 0.95rem;
+}
+
+.form-message--error {
+  border-color: rgba(255, 107, 107, 0.28);
+  background: rgba(255, 107, 107, 0.12);
+  color: #ffd4d4;
+}
+
+.empty-state {
+  display: grid;
+  justify-items: center;
+  gap: 0.75rem;
+  padding: 2rem;
+  text-align: center;
+}
+
+.empty-state i {
+  color: var(--accent-strong);
+  font-size: 2rem;
+}
+
+@media (max-width: 960px) {
+  .auth-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .page-shell {
+    width: min(var(--content-width), calc(100% - 1rem));
+  }
+
+  .auth-layout,
+  .auth-layout__aside,
+  .auth-layout__form {
+    padding: 1rem;
+  }
+
+  .auth-form--double {
+    grid-template-columns: 1fr;
+  }
+}

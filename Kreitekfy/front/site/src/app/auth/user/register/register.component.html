@@ -1,11 +1,67 @@
-<h2>Register</h2>
-<form>
-  <input type="text" [(ngModel)]="user.firstName" name="firstName" placeholder="First Name" >
-  <input type="text" [(ngModel)]="user.lastName" name="lastName" placeholder="Last Name" >
-  <input type="email" [(ngModel)]="user.email" name="email" placeholder="Email" required>
-  <input type="text" [(ngModel)]="user.username" name="username" placeholder="Username" required>
-  <input type="password" [(ngModel)]="user.password" name="password" placeholder="Password" required>
-  <input type="text" [(ngModel)]="user.role" name="role" placeholder="Role (USER, ADMIN)" required>
-  <button (click)="register()">Register</button>
-  <button routerLink="/hello" routerLinkActive="active">Cancelar</button>
-</form>
+<div class="page-shell auth-page">
+  <section class="auth-layout glass-panel">
+    <div class="auth-layout__aside">
+      <p class="eyebrow">Registro</p>
+      <h1>Crea una cuenta lista para una experiencia musical más cuidada.</h1>
+      <p>
+        La estructura queda preparada para crecer con perfiles, recomendaciones, favoritos y futuras ampliaciones del
+        producto.
+      </p>
+
+      <div class="auth-layout__feature">
+        <i class="bi bi-shield-check"></i>
+        <span>Base visual consistente, responsive y preparada para flujos más avanzados.</span>
+      </div>
+    </div>
+
+    <div class="auth-layout__form">
+      <div class="auth-card__header">
+        <h2>Crear cuenta</h2>
+        <p>Introduce tus datos para empezar a usar la plataforma.</p>
+      </div>
+
+      <form class="auth-form auth-form--double" (ngSubmit)="register()">
+        <label class="field">
+          <span>Nombre</span>
+          <input type="text" [(ngModel)]="user.firstName" name="firstName" placeholder="Tu nombre" required>
+        </label>
+
+        <label class="field">
+          <span>Apellidos</span>
+          <input type="text" [(ngModel)]="user.lastName" name="lastName" placeholder="Tus apellidos" required>
+        </label>
+
+        <label class="field">
+          <span>Email</span>
+          <input type="email" [(ngModel)]="user.email" name="email" placeholder="tu@email.com" required>
+        </label>
+
+        <label class="field">
+          <span>Usuario</span>
+          <input type="text" [(ngModel)]="user.username" name="username" placeholder="Nombre de usuario" required>
+        </label>
+
+        <label class="field">
+          <span>Contraseña</span>
+          <input type="password" [(ngModel)]="user.password" name="password" placeholder="Contraseña segura" required>
+        </label>
+
+        <label class="field">
+          <span>Rol</span>
+          <input type="text" [(ngModel)]="user.role" name="role" placeholder="USER" required>
+        </label>
+
+        <div *ngIf="errorMessage" class="form-message form-message--error form-message--full">
+          {{ errorMessage }}
+        </div>
+
+        <div class="auth-form__actions auth-form__actions--full">
+          <button class="primary-button" type="submit" [disabled]="isSubmitting">
+            {{ isSubmitting ? 'Creando cuenta...' : 'Crear cuenta' }}
+          </button>
+          <button class="ghost-button" type="button" (click)="cancel()">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </section>
+</div>

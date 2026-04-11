@@ -1,63 +1,196 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="hello.component.css"> 
-    <title>Document</title>
-    
-</head>
-<body>
-<app-novedades></app-novedades>
-<div *ngIf="isAuthenticated()">
-    <h1>TODAS LAS CANCIONES</h1>
-    <form>
-        <div class="row">
-          <div class="form-group" class="col-12 col-md-6">
-            <label for="nombre" class="filtro-label">Nombre</label>
-            <input type="text" [(ngModel)]="nombreFilter" name="nombre" class="form-control" (input)="searchByFilters()">
-          <label for="estilo" class="filtro-label">Estilo</label>
-          <input type="text" [(ngModel)]="estiloFilter" name="estilo" class="form-control" (input)="searchByFilters()">
-          <label for="album" class="filtro-label">Álbum</label>
-          <input type="text" [(ngModel)]="albumFilter" name="album" class="form-control" (input)="searchByFilters()">
-          <label for="artista" class="filtro-label">Artista</label>
-          <input type="text" [(ngModel)]="artistaFilter" name="artista" class="form-control" (input)="searchByFilters()">
-          </div>
-        
-        </div>
-      </form>
-    <table>
-        <thead>
-            <tr>
-                <th>Portada</th>
-                <th>Título</th>
-                <th>Artista</th>
-                <th>Álbum</th>
-                <th>Estilo</th>
-                <th>Duración</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let cancion of canciones">
-              <td> <a [routerLink]="'/cancion/' + cancion.id">
-                  <img  [src]="cancion.imagen" alt="Portada de la canción">
-                 
-                </a></td>
-                <td>{{ cancion.titulo }}</td>
-                <td>{{ cancion.artista }}</td>
-                <td>{{ cancion.album }}</td>
-                <td>{{ cancion.estilo }}</td>
-                <td>{{ cancion.duracion }}</td>
-            </tr>
-        </tbody>
-    </table>
-    <div class="botoneraPaginacion">
-        <button [disabled]="first" class="btn btn-secondary btnAtras" (click)="previusPage()">Anterior</button>
-      <span>Pagina{{(page+1)}} de {{totalPages}} Elementos {{totalElements}}</span>
-        <button [disabled]="last" class="btn btn-secondary btnSiguiente" (click)="nextPage()">Siguiente</button>
-      </div>
-    </div>
-</body>
-</html>
+<div class="page-shell home-page">
+  <ng-container *ngIf="isAuthenticated(); else guestState">
+    <section class="hero-panel glass-panel">
+      <div class="hero-panel__copy">
+        <p class="eyebrow">Tu centro musical</p>
+        <h1>Un panel musical vibrante, directo y listo para escalar.</h1>
+        <p class="hero-panel__text">
+          {{ message }}
+          Gestiona catalogo, descubre novedades y accede al detalle de cada cancion desde una experiencia mas visual y
+          mas cercana a una app real de streaming.
+        </p>
 
-  
+        <div class="hero-panel__actions">
+          <a class="primary-link" routerLink="/novedades">Explorar novedades</a>
+          <a class="ghost-link" routerLink="/perfil">Ver perfil</a>
+        </div>
+
+        <div class="hero-panel__genres" *ngIf="featuredGenres.length">
+          <span *ngFor="let genre of featuredGenres">{{ genre }}</span>
+        </div>
+      </div>
+
+      <div class="hero-panel__visual" *ngIf="featuredSong as song">
+        <article class="spotlight-card">
+          <div class="spotlight-card__cover">
+            <img [src]="song.imagen" [alt]="'Portada de ' + song.titulo">
+            <span class="spotlight-card__badge">En tendencia</span>
+          </div>
+
+          <div class="spotlight-card__body">
+            <div>
+              <p class="spotlight-card__kicker">{{ song.estilo }}</p>
+              <h2>{{ song.titulo }}</h2>
+              <p>{{ song.artista }} · {{ song.album }}</p>
+            </div>
+
+            <div class="spotlight-card__meta">
+              <span><i class="bi bi-headphones"></i>{{ song.reproducciones }} escuchas</span>
+              <span><i class="bi bi-clock-history"></i>{{ song.duracion }}</span>
+            </div>
+          </div>
+        </article>
+
+        <div class="hero-queue">
+          <article class="hero-queue__item" *ngFor="let cancion of highlightedSongs; let index = index; trackBy: trackBySongId">
+            <span class="hero-queue__index">0{{ index + 1 }}</span>
+            <div>
+              <strong>{{ cancion.titulo }}</strong>
+              <span>{{ cancion.artista }}</span>
+            </div>
+            <small>{{ cancion.duracion }}</small>
+          </article>
+        </div>
+      </div>
+
+      <div class="hero-panel__stats">
+        <article class="stat-card">
+          <span class="stat-card__label">Canciones visibles</span>
+          <strong>{{ totalElements }}</strong>
+          <small>Catalogo disponible con paginacion</small>
+        </article>
+        <article class="stat-card">
+          <span class="stat-card__label">Filtros activos</span>
+          <strong>{{ activeFiltersCount }}</strong>
+          <small>Personaliza por titulo, artista, album o estilo</small>
+        </article>
+        <article class="stat-card">
+          <span class="stat-card__label">Progreso de navegacion</span>
+          <strong>{{ pageProgress }}%</strong>
+          <small>Pagina {{ currentPage }} de {{ totalPages || 1 }}</small>
+        </article>
+      </div>
+    </section>
+
+    <app-novedades [compact]="true"></app-novedades>
+
+    <section class="catalog-panel glass-panel">
+      <div class="catalog-panel__header">
+        <div>
+          <p class="eyebrow">Biblioteca</p>
+          <h2>Encuentra la cancion adecuada en segundos</h2>
+          <p class="catalog-panel__text">Explora un catalogo limpio, visual y preparado para seguir creciendo con nuevos modulos.</p>
+        </div>
+
+        <button *ngIf="activeFiltersCount" class="ghost-button" type="button" (click)="clearFilters()">
+          Limpiar filtros
+        </button>
+      </div>
+
+      <form class="filters-grid">
+        <label class="field">
+          <span>Titulo</span>
+          <input type="text" [(ngModel)]="nombreFilter" name="nombre" placeholder="Buscar por titulo" (input)="searchByFilters()">
+        </label>
+
+        <label class="field">
+          <span>Artista</span>
+          <input type="text" [(ngModel)]="artistaFilter" name="artista" placeholder="Buscar por artista" (input)="searchByFilters()">
+        </label>
+
+        <label class="field">
+          <span>Album</span>
+          <input type="text" [(ngModel)]="albumFilter" name="album" placeholder="Buscar por album" (input)="searchByFilters()">
+        </label>
+
+        <label class="field">
+          <span>Estilo</span>
+          <input type="text" [(ngModel)]="estiloFilter" name="estilo" placeholder="Buscar por estilo" (input)="searchByFilters()">
+        </label>
+      </form>
+
+      <div class="catalog-grid" *ngIf="hasSongs; else emptyState">
+        <article class="track-card" *ngFor="let cancion of canciones; trackBy: trackBySongId">
+          <a class="track-card__cover" [routerLink]="'/cancion/' + cancion.id">
+            <img [src]="cancion.imagen" [alt]="'Portada de ' + cancion.titulo">
+            <span class="track-card__overlay">
+              <i class="bi bi-play-circle-fill"></i>
+              Abrir
+            </span>
+          </a>
+
+          <div class="track-card__body">
+            <div class="track-card__heading">
+              <span class="track-card__genre">{{ cancion.estilo }}</span>
+              <a class="track-card__title" [routerLink]="'/cancion/' + cancion.id">{{ cancion.titulo }}</a>
+              <p class="track-card__artist">{{ cancion.artista }}</p>
+            </div>
+
+            <div class="track-card__meta">
+              <span><i class="bi bi-disc"></i>{{ cancion.album }}</span>
+              <span><i class="bi bi-clock"></i>{{ cancion.duracion }}</span>
+            </div>
+
+            <div class="track-card__footer">
+              <span><i class="bi bi-headphones"></i>{{ cancion.reproducciones }} escuchas</span>
+              <span><i class="bi bi-star-fill"></i>{{ cancion.puntuacion }}/4</span>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <ng-template #emptyState>
+        <div class="empty-state" *ngIf="!isLoading">
+          <i class="bi bi-music-note-beamed"></i>
+          <h3>No hay canciones para estos filtros</h3>
+          <p>Prueba con otra combinacion o limpia la busqueda para volver al catalogo completo.</p>
+        </div>
+      </ng-template>
+
+      <div class="pagination-bar" *ngIf="hasSongs">
+        <button class="ghost-button" type="button" [disabled]="first" (click)="previusPage()">Anterior</button>
+        <div class="pagination-bar__summary">
+          <strong>Pagina {{ currentPage }} de {{ totalPages || 1 }}</strong>
+          <span>{{ totalElements }} canciones disponibles</span>
+        </div>
+        <button class="primary-button" type="button" [disabled]="last" (click)="nextPage()">Siguiente</button>
+      </div>
+    </section>
+  </ng-container>
+
+  <ng-template #guestState>
+    <section class="guest-panel glass-panel">
+      <div class="guest-panel__copy">
+        <p class="eyebrow">Bienvenido a Kreitekfy</p>
+        <h1 class="eyebrow">Descubre, reproduce y organiza musica con una interfaz pensada para clientes reales.</h1>
+        <p>
+          Inicia sesion para acceder a recomendaciones, catalogo paginado, detalle de canciones y una experiencia
+          responsive optimizada para escritorio y movil.
+        </p>
+
+        <div class="guest-panel__actions">
+          <a class="primary-link" routerLink="/login">Entrar</a>
+          <a class="ghost-link" routerLink="/register">Crear cuenta</a>
+        </div>
+      </div>
+
+      <div class="guest-panel__features">
+        <article>
+          <i class="bi bi-stars"></i>
+          <strong>Descubrimiento</strong>
+          <span>Listas de novedades, mas escuchadas y recomendaciones.</span>
+        </article>
+        <article>
+          <i class="bi bi-grid-1x2-fill"></i>
+          <strong>Catalogo claro</strong>
+          <span>Filtros rapidos, navegacion paginada y fichas bien organizadas.</span>
+        </article>
+        <article>
+          <i class="bi bi-phone-fill"></i>
+          <strong>Responsive</strong>
+          <span>Diseño comodo para movil, tablet y escritorio.</span>
+        </article>
+      </div>
+    </section>
+  </ng-template>
+</div>

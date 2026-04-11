@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth/service/auth.service';
+import { User } from '../common/user';
 
 @Component({
   selector: 'app-perfil',
@@ -7,7 +8,7 @@ import { AuthService } from '../auth/service/auth.service';
   styleUrls: ['./perfil.component.css']
 })
 export class PerfilComponent implements OnInit {
-  user: any = {};
+  user: Partial<User> = {};
 
   constructor(private authService: AuthService) { }
 
@@ -21,9 +22,20 @@ export class PerfilComponent implements OnInit {
     });
   }
 
-  updateUser(): void {
-    this.authService.updateUser(this.user).subscribe(() => {
-      alert('Perfil actualizado correctamente');
-    });
+  get displayName(): string {
+    const fullName = `${this.user.firstName ?? ''} ${this.user.lastName ?? ''}`.trim();
+    return fullName || this.user.username || 'Invitado';
+  }
+
+  get completionPercent(): number {
+    const fields = [
+      this.user.username,
+      this.user.firstName,
+      this.user.lastName,
+      this.user.email,
+      this.user.role
+    ].filter(Boolean).length;
+
+    return Math.round((fields / 5) * 100);
   }
 }

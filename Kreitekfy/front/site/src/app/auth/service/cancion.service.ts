@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { EMPTY, Observable, expand, reduce } from 'rxjs';
 import { Cancion } from 'src/app/common/cancion';
 import { PageResponse } from 'src/app/common/page-response';
+import { environment } from 'src/environments/environment';
 import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CancionService {
-  private readonly baseUrl = 'http://localhost:8080/api/canciones';
+  private readonly baseUrl = `${environment.apiUrl}/api/canciones`;
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 

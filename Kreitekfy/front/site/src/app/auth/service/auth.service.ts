@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from 'src/app/common/user';
+import { environment } from 'src/environments/environment';
 import { AuthResponse, GoogleAuthConfigResponse } from './auth.models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private readonly baseUrl = 'http://localhost:8080';
+  private readonly baseUrl = environment.apiUrl;
   private readonly tokenKey = 'auth_token';
   private readonly userStorageKey = 'auth_user';
 

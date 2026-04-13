@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { CancionService } from 'src/app/auth/service/cancion.service';
 import { Cancion } from 'src/app/common/cancion';
 import { PageResponse } from 'src/app/common/page-response';
+import { environment } from 'src/environments/environment';
 import {
   AudioPlayerState,
   AudioService,
@@ -327,7 +328,7 @@ export class HelloComponent implements OnInit, OnDestroy {
   private loadWelcomeMessage(): void {
     const token = this.authService.getToken();
 
-    this.http.get<{ message?: string }>('http://localhost:8080/api/v1/hello', {
+    this.http.get<{ message?: string }>(`${environment.apiUrl}/api/v1/hello`, {
       headers: { Authorization: `Bearer ${token}` }
     }).subscribe({
       next: (response) => {

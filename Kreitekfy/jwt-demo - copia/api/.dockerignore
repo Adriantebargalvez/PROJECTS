@@ -1,0 +1,14 @@
+.git
+.gitignore
+.gradle
+.idea
+build
+out
+bin
+data
+*.iml
+*.ipr
+*.iws
+*.mv.db
+*.trace.db
+HELP.md

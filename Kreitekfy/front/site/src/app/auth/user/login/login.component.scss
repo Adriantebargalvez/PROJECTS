@@ -1,3 +1,32 @@
-.auth-page {
-  margin-top: 1.75rem;
+:host {
+  display: block;
+}
+
+.auth-card {
+  background:
+    linear-gradient(160deg, rgba(16, 11, 31, 0.98), rgba(8, 5, 17, 0.96)),
+    var(--surface-strong);
+}
+
+.social-panel {
+  justify-items: center;
+  text-align: center;
+}
+
+.social-panel__google {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.auth-help {
+  text-align: center;
+}
+
+@media (max-width: 720px) {
+  .auth-card__submit {
+    flex: 0 0 auto;
+    min-height: 3rem;
+    padding: 0.8rem 1.1rem;
+  }
 }

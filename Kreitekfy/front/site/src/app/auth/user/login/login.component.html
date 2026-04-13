@@ -1,52 +1,131 @@
 <div class="page-shell auth-page">
-  <section class="auth-layout glass-panel">
-    <div class="auth-layout__aside">
-      <p class="eyebrow">Acceso</p>
-      <h1>Vuelve a tu espacio musical.</h1>
-      <p>
-        Entra para ver tus recomendaciones, gestionar el catálogo y continuar con una experiencia profesional desde
-        cualquier dispositivo.
-      </p>
+  <section class="auth-layout">
+    <aside class="auth-stage">
+      <div class="auth-stage__copy">
+        <a class="auth-brand" routerLink="/hello" aria-label="Volver a inicio">
+          <span class="auth-brand__mark">
+            <i class="bi bi-vinyl-fill"></i>
+          </span>
+          <span class="auth-brand__copy">
+            <strong>Kreitekfy</strong>
+            <small>Plataforma musical</small>
+          </span>
+        </a>
 
-      <div class="auth-layout__feature">
-        <i class="bi bi-soundwave"></i>
-        <span>Navegación clara, detalle de canciones y catálogo responsive.</span>
+        <p class="eyebrow">Acceso</p>
+        <h2>Accede a tu musica en un entorno estable, claro y profesional.</h2>
+        <p>
+          Gestiona tu biblioteca, tus recomendaciones y tu reproduccion desde una experiencia pensada para ofrecer
+          orden, continuidad y confianza.
+        </p>
       </div>
-    </div>
 
-    <div class="auth-layout__form">
+      <div class="auth-preview">
+        <span class="auth-preview__badge">Acceso protegido</span>
+        <h3>Tu biblioteca siempre disponible.</h3>
+        <p>Retoma la reproduccion, consulta selecciones destacadas y entra con un flujo directo y fiable.</p>
+
+        <div class="auth-preview__playlist">
+          <article>
+            <span class="auth-preview__index">01</span>
+            <div>
+              <strong>Editorial Focus</strong>
+              <span>Seleccion destacada</span>
+            </div>
+            <small>3:12</small>
+          </article>
+          <article>
+            <span class="auth-preview__index">02</span>
+            <div>
+              <strong>Session Archive</strong>
+              <span>Escucha reciente</span>
+            </div>
+            <small>2:54</small>
+          </article>
+        </div>
+      </div>
+
+      <div class="auth-stats">
+        <article class="auth-stat">
+          <strong>Vision clara</strong>
+          <span>Un entorno limpio para consultar tu musica con rapidez.</span>
+        </article>
+        <article class="auth-stat">
+          <strong>Acceso continuo</strong>
+          <span>Tu cuenta y tu reproduccion permanecen siempre a mano.</span>
+        </article>
+        <article class="auth-stat">
+          <strong>Google integrado</strong>
+          <span>Selecciona tu cuenta y entra sin pasos innecesarios.</span>
+        </article>
+      </div>
+    </aside>
+
+    <section class="auth-card glass-panel">
       <div class="auth-card__header">
-        <h2>Iniciar sesión</h2>
-        <p>Accede con tu cuenta para recuperar tu sesión.</p>
+        <a class="auth-brand" routerLink="/hello" aria-label="Volver a inicio">
+          <span class="auth-brand__mark">
+            <i class="bi bi-vinyl-fill"></i>
+          </span>
+          <span class="auth-brand__copy">
+            <strong>Kreitekfy</strong>
+            <small>Plataforma musical</small>
+          </span>
+        </a>
+
+        <p class="eyebrow">Acceso seguro</p>
+        <h1>Accede a tu cuenta</h1>
+        <p>Inicia sesion y continua con tu biblioteca, tus listas y tu reproduccion activa.</p>
       </div>
 
       <form class="auth-form" (ngSubmit)="login()">
         <label class="field">
           <span>Usuario</span>
-          <input type="text" [(ngModel)]="credentials.username" name="username" placeholder="Tu usuario" required>
+          <div class="field__control">
+            <i class="bi bi-person"></i>
+            <input type="text" [(ngModel)]="credentials.username" name="username" placeholder="Nombre de usuario" required>
+          </div>
         </label>
 
         <label class="field">
-          <span>Contraseña</span>
-          <input type="password" [(ngModel)]="credentials.password" name="password" placeholder="Tu contraseña" required>
+          <span>Contrasena</span>
+          <div class="field__control">
+            <i class="bi bi-shield-lock"></i>
+            <input type="password" [(ngModel)]="credentials.password" name="password" placeholder="Introduce tu contrasena" required>
+          </div>
         </label>
 
         <div *ngIf="errorMessage" class="form-message form-message--error">
           {{ errorMessage }}
         </div>
 
-        <div class="auth-form__actions">
-          <button class="primary-button" type="submit" [disabled]="isSubmitting">
-            {{ isSubmitting ? 'Entrando...' : 'Entrar' }}
+        <div class="auth-card__actions">
+          <button class="primary-button auth-card__submit" type="submit" [disabled]="isSubmitting">
+            {{ isSubmitting ? 'Accediendo...' : 'Iniciar sesion' }}
           </button>
-          <button class="ghost-button" type="button" (click)="cancel()">Cancelar</button>
+          <button class="ghost-button" type="button" (click)="cancel()">Volver al inicio</button>
         </div>
       </form>
 
+      <div class="auth-card__divider">
+        <span>o continua con</span>
+      </div>
+
+      <div class="social-panel">
+        <div #googleButtonHost class="social-panel__google" [class.social-panel__google--hidden]="!isGoogleEnabled"></div>
+        <button *ngIf="!isGoogleEnabled" class="social-provider social-provider--disabled" type="button" disabled>
+          <i class="bi bi-google"></i>
+          <span>Google</span>
+        </button>
+        <p class="auth-help" [class.auth-help--busy]="isGoogleSubmitting">
+          {{ googleMessage }}
+        </p>
+      </div>
+
       <p class="auth-card__footer">
-        ¿Todavía no tienes cuenta?
-        <a routerLink="/register">Crea una ahora</a>
+        Aun no tienes cuenta?
+        <a routerLink="/register">Crear cuenta</a>
       </p>
-    </div>
+    </section>
   </section>
 </div>

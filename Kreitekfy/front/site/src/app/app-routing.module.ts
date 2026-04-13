@@ -7,7 +7,6 @@ import { NovedadesComponent } from './novedades/novedades.component';
 import { PageInvComponent } from './page-inv/page-inv.component';
 import { PerfilComponent } from './perfil/perfil.component';
 
-
 const routes: Routes = [
   { path: '', redirectTo: '/hello', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },

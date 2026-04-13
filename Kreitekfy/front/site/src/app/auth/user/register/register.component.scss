@@ -1,3 +1,9 @@
-.auth-page {
-  margin-top: 1.75rem;
+:host {
+  display: block;
+}
+
+.auth-card {
+  background:
+    linear-gradient(160deg, rgba(14, 10, 28, 0.98), rgba(8, 5, 17, 0.96)),
+    var(--surface-strong);
 }

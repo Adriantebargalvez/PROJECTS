@@ -2,18 +2,25 @@
   <ng-container *ngIf="isAuthenticated(); else guestState">
     <section class="hero-panel glass-panel">
       <div class="hero-panel__copy">
-        <p class="eyebrow">Tu centro musical</p>
-        <h1>Un panel musical vibrante, directo y listo para escalar.</h1>
+        <p class="eyebrow">Panel principal</p>
+        <h1>Organiza tu musica, descubre contenido y reproduce sin distracciones.</h1>
         <p class="hero-panel__text">
           {{ message }}
-          Gestiona catalogo, descubre novedades y accede al detalle de cada cancion desde una experiencia mas visual y
-          mas cercana a una app real de streaming.
+          Explora el catalogo, abre cada ficha y mantente dentro de una experiencia pensada para ofrecer claridad y continuidad.
         </p>
 
         <div class="hero-panel__actions">
-          <a class="primary-link" routerLink="/novedades">Explorar novedades</a>
-          <a class="ghost-link" routerLink="/perfil">Ver perfil</a>
+          <button class="primary-button" type="button" (click)="playRelaxingMix()">
+            <i class="bi" [ngClass]="playerActionIcon"></i>
+            {{ playerActionLabel }}
+          </button>
+          <a class="primary-link" routerLink="/novedades">Descubrir selecciones</a>
+          <a class="ghost-link" routerLink="/perfil">Ver cuenta</a>
         </div>
+
+        <p class="hero-panel__text hero-panel__text--subtle">
+          {{ playerActionDescription }}
+        </p>
 
         <div class="hero-panel__genres" *ngIf="featuredGenres.length">
           <span *ngFor="let genre of featuredGenres">{{ genre }}</span>
@@ -24,14 +31,14 @@
         <article class="spotlight-card">
           <div class="spotlight-card__cover">
             <img [src]="song.imagen" [alt]="'Portada de ' + song.titulo">
-            <span class="spotlight-card__badge">En tendencia</span>
+            <span class="spotlight-card__badge">Destacado</span>
           </div>
 
           <div class="spotlight-card__body">
             <div>
               <p class="spotlight-card__kicker">{{ song.estilo }}</p>
               <h2>{{ song.titulo }}</h2>
-              <p>{{ song.artista }} · {{ song.album }}</p>
+              <p>{{ song.artista }} - {{ song.album }}</p>
             </div>
 
             <div class="spotlight-card__meta">
@@ -55,17 +62,17 @@
 
       <div class="hero-panel__stats">
         <article class="stat-card">
-          <span class="stat-card__label">Canciones visibles</span>
+          <span class="stat-card__label">Catalogo</span>
           <strong>{{ totalElements }}</strong>
-          <small>Catalogo disponible con paginacion</small>
+          <small>Canciones disponibles en la biblioteca</small>
         </article>
         <article class="stat-card">
-          <span class="stat-card__label">Filtros activos</span>
+          <span class="stat-card__label">Filtros</span>
           <strong>{{ activeFiltersCount }}</strong>
-          <small>Personaliza por titulo, artista, album o estilo</small>
+          <small>Busqueda por titulo, artista, album o genero</small>
         </article>
         <article class="stat-card">
-          <span class="stat-card__label">Progreso de navegacion</span>
+          <span class="stat-card__label">Navegacion</span>
           <strong>{{ pageProgress }}%</strong>
           <small>Pagina {{ currentPage }} de {{ totalPages || 1 }}</small>
         </article>
@@ -74,12 +81,239 @@
 
     <app-novedades [compact]="true"></app-novedades>
 
+    <section class="curation-panel glass-panel">
+      <div class="curation-panel__header">
+        <div>
+          <p class="eyebrow">Reproduccion y listas</p>
+          <h2>Administra tu catalogo y organiza sesiones desde un unico panel</h2>
+          <p class="catalog-panel__text">
+            Reproduce una pista concreta, activa una sesion aleatoria o crea listas con cualquier cancion disponible en la aplicacion.
+          </p>
+        </div>
+
+        <form class="playlist-form" (ngSubmit)="createPlaylist()">
+          <label class="field field--stack">
+            <span>Nueva playlist</span>
+            <div class="field__control">
+              <i class="bi bi-music-note-list"></i>
+              <input
+                type="text"
+                [(ngModel)]="newPlaylistName"
+                name="newPlaylistName"
+                placeholder="Ej. Sesion nocturna">
+            </div>
+          </label>
+          <button class="primary-button" type="submit">Crear playlist</button>
+        </form>
+      </div>
+
+      <div class="curation-panel__layout">
+        <div class="instrumental-panel">
+          <div class="instrumental-panel__toolbar">
+            <div>
+              <p class="eyebrow">Catalogo de reproduccion</p>
+              <h3>{{ trackLibrary.length }} pistas listas para reproducir</h3>
+              <p class="catalog-panel__text">
+                Este bloque utiliza tu biblioteca de audio y te permite ampliar el catalogo sin salir de la portada.
+              </p>
+            </div>
+
+            <label class="field field--compact">
+              <span>Playlist de destino</span>
+              <div class="field__control field__control--select">
+                <i class="bi bi-list-ul"></i>
+                <select [(ngModel)]="selectedPlaylistId" name="selectedPlaylistId">
+                  <option [ngValue]="null">Selecciona una playlist</option>
+                  <option *ngFor="let playlist of playlists; trackBy: trackByPlaylistId" [ngValue]="playlist.id">
+                    {{ playlist.nombre }}
+                  </option>
+                </select>
+              </div>
+            </label>
+          </div>
+
+          <div class="instrumental-panel__search">
+            <label class="field">
+              <span>Buscar por titulo</span>
+              <div class="field__control">
+                <i class="bi bi-search"></i>
+                <input
+                  type="text"
+                  [(ngModel)]="catalogTitleFilter"
+                  name="catalogTitleFilter"
+                  placeholder="Buscar una pista"
+                  (ngModelChange)="onCatalogSearchChange()">
+              </div>
+            </label>
+
+            <label class="field">
+              <span>Buscar por artista</span>
+              <div class="field__control">
+                <i class="bi bi-person"></i>
+                <input
+                  type="text"
+                  [(ngModel)]="catalogArtistFilter"
+                  name="catalogArtistFilter"
+                  placeholder="Buscar un artista"
+                  (ngModelChange)="onCatalogSearchChange()">
+              </div>
+            </label>
+          </div>
+
+          <div class="instrumental-panel__summary">
+            <span class="playlist-panel__badge">{{ filteredTrackCount }} resultados</span>
+            <button *ngIf="hasCatalogFilters" class="ghost-button" type="button" (click)="clearCatalogFilters()">
+              Limpiar filtros
+            </button>
+          </div>
+
+          <div class="instrumental-grid" *ngIf="filteredTrackLibrary.length; else emptyCatalogTracks">
+            <article
+              class="instrumental-card"
+              *ngFor="let track of visibleTrackLibrary; trackBy: trackByLibraryTrackId"
+              [class.is-active]="isInstrumentalActive(track.id)">
+              <div class="instrumental-card__header">
+                <span class="instrumental-card__tag">Catalogo</span>
+                <span class="instrumental-card__status" *ngIf="isInstrumentalActive(track.id)">
+                  {{ playerState.isPlaying ? 'En reproduccion' : 'En pausa' }}
+                </span>
+              </div>
+
+              <div class="instrumental-card__body">
+                <h3>{{ track.titulo }}</h3>
+                <p>{{ track.artista }}</p>
+              </div>
+
+              <div class="instrumental-card__meta">
+                <span><i class="bi bi-clock-history"></i>{{ track.duracion }}</span>
+                <span><i class="bi bi-vinyl-fill"></i>{{ isInstrumentalActive(track.id) ? 'Seleccion activa' : 'Disponible' }}</span>
+              </div>
+
+              <div class="instrumental-card__actions">
+                <button class="primary-button" type="button" (click)="toggleInstrumentalTrack(track)">
+                  <i class="bi" [ngClass]="isInstrumentalActive(track.id) && playerState.isPlaying ? 'bi-pause-fill' : 'bi-play-fill'"></i>
+                  {{ isInstrumentalActive(track.id) && playerState.isPlaying ? 'Pausar' : 'Reproducir' }}
+                </button>
+
+                <button
+                  class="ghost-button"
+                  type="button"
+                  [disabled]="selectedPlaylistId === null"
+                  (click)="addTrackToSelectedPlaylist(track.id)">
+                  Anadir a playlist
+                </button>
+              </div>
+            </article>
+          </div>
+
+          <div class="instrumental-panel__more" *ngIf="canShowMoreTracks || canShowLessTracks">
+            <div class="instrumental-panel__more-actions">
+              <button *ngIf="canShowMoreTracks" class="ghost-button" type="button" (click)="showMoreCatalogTracks()">
+                Ver mas
+              </button>
+              <button *ngIf="canShowLessTracks" class="ghost-button" type="button" (click)="showLessCatalogTracks()">
+                Ver menos
+              </button>
+            </div>
+            <small *ngIf="canShowMoreTracks">Quedan {{ remainingTrackCount }} pistas por mostrar</small>
+          </div>
+
+          <ng-template #emptyCatalogTracks>
+            <div class="empty-inline">
+              No hay resultados para los filtros actuales en el catalogo.
+            </div>
+          </ng-template>
+        </div>
+
+        <div class="playlist-panel">
+          <div class="playlist-panel__header">
+            <div>
+              <p class="eyebrow">Playlists</p>
+              <h3>Controla el orden de escucha</h3>
+              <p class="catalog-panel__text">
+                Cada playlist conserva su secuencia y evita repetir la misma cancion seguida en modo aleatorio.
+              </p>
+            </div>
+            <span class="playlist-panel__badge">{{ playlists.length }} playlists</span>
+          </div>
+
+          <div class="playlist-grid" *ngIf="playlists.length; else emptyPlaylists">
+            <article
+              class="playlist-card"
+              *ngFor="let playlist of playlists; trackBy: trackByPlaylistId"
+              [class.is-active]="playerState.playlistId === playlist.id">
+              <div class="playlist-card__header">
+                <div>
+                  <h3>{{ playlist.nombre }}</h3>
+                  <p>{{ getPlaylistStatusText(playlist) }}</p>
+                </div>
+
+                <button class="ghost-button ghost-button--danger" type="button" (click)="removePlaylist(playlist.id)">
+                  Eliminar
+                </button>
+              </div>
+
+              <div class="playlist-card__actions">
+                <button
+                  class="ghost-button"
+                  type="button"
+                  [disabled]="!playlist.canciones.length"
+                  (click)="togglePlaylistPlayback(playlist.id, 'ordered')">
+                  <i class="bi" [ngClass]="isPlaylistActive(playlist.id, 'ordered') && playerState.isPlaying ? 'bi-pause-fill' : 'bi-play-fill'"></i>
+                  Ordenado
+                </button>
+                <button
+                  class="primary-button"
+                  type="button"
+                  [disabled]="!playlist.canciones.length"
+                  (click)="togglePlaylistPlayback(playlist.id, 'random')">
+                  <i class="bi" [ngClass]="isPlaylistActive(playlist.id, 'random') && playerState.isPlaying ? 'bi-pause-fill' : 'bi-shuffle'"></i>
+                  Aleatorio
+                </button>
+              </div>
+
+              <ul class="playlist-card__tracks" *ngIf="playlist.canciones.length; else emptyPlaylistTracks">
+                <li *ngFor="let track of playlist.canciones; trackBy: trackByLibraryTrackId">
+                  <div>
+                    <strong>{{ track.titulo }}</strong>
+                    <small>{{ track.artista }} / {{ track.duracion }}</small>
+                  </div>
+
+                  <button
+                    class="icon-button"
+                    type="button"
+                    [attr.aria-label]="'Quitar ' + track.titulo + ' de ' + playlist.nombre"
+                    (click)="removeTrackFromPlaylist(playlist.id, track.id)">
+                    <i class="bi bi-x-lg"></i>
+                  </button>
+                </li>
+              </ul>
+
+              <ng-template #emptyPlaylistTracks>
+                <div class="empty-inline">
+                  Anade pistas desde el catalogo para activar esta playlist.
+                </div>
+              </ng-template>
+            </article>
+          </div>
+
+          <ng-template #emptyPlaylists>
+            <div class="empty-state empty-state--compact">
+              <i class="bi bi-music-note-list"></i>
+              <h3>Todavia no has creado playlists</h3>
+              <p>Crea una playlist y usa el selector de destino para anadir cualquier cancion del catalogo.</p>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </section>
+
     <section class="catalog-panel glass-panel">
       <div class="catalog-panel__header">
         <div>
-          <p class="eyebrow">Biblioteca</p>
-          <h2>Encuentra la cancion adecuada en segundos</h2>
-          <p class="catalog-panel__text">Explora un catalogo limpio, visual y preparado para seguir creciendo con nuevos modulos.</p>
+          <p class="eyebrow">Biblioteca musical</p>
+          <h2>Encuentra el contenido adecuado en segundos</h2>
+          <p class="catalog-panel__text">Filtra por titulo, artista, album o genero sin salir del panel principal.</p>
         </div>
 
         <button *ngIf="activeFiltersCount" class="ghost-button" type="button" (click)="clearFilters()">
@@ -90,22 +324,34 @@
       <form class="filters-grid">
         <label class="field">
           <span>Titulo</span>
-          <input type="text" [(ngModel)]="nombreFilter" name="nombre" placeholder="Buscar por titulo" (input)="searchByFilters()">
+          <div class="field__control">
+            <i class="bi bi-search"></i>
+            <input type="text" [(ngModel)]="nombreFilter" name="nombre" placeholder="Buscar por titulo" (input)="searchByFilters()">
+          </div>
         </label>
 
         <label class="field">
           <span>Artista</span>
-          <input type="text" [(ngModel)]="artistaFilter" name="artista" placeholder="Buscar por artista" (input)="searchByFilters()">
+          <div class="field__control">
+            <i class="bi bi-mic"></i>
+            <input type="text" [(ngModel)]="artistaFilter" name="artista" placeholder="Buscar por artista" (input)="searchByFilters()">
+          </div>
         </label>
 
         <label class="field">
           <span>Album</span>
-          <input type="text" [(ngModel)]="albumFilter" name="album" placeholder="Buscar por album" (input)="searchByFilters()">
+          <div class="field__control">
+            <i class="bi bi-disc"></i>
+            <input type="text" [(ngModel)]="albumFilter" name="album" placeholder="Buscar por album" (input)="searchByFilters()">
+          </div>
         </label>
 
         <label class="field">
-          <span>Estilo</span>
-          <input type="text" [(ngModel)]="estiloFilter" name="estilo" placeholder="Buscar por estilo" (input)="searchByFilters()">
+          <span>Genero</span>
+          <div class="field__control">
+            <i class="bi bi-soundwave"></i>
+            <input type="text" [(ngModel)]="estiloFilter" name="estilo" placeholder="Buscar por genero" (input)="searchByFilters()">
+          </div>
         </label>
       </form>
 
@@ -115,7 +361,7 @@
             <img [src]="cancion.imagen" [alt]="'Portada de ' + cancion.titulo">
             <span class="track-card__overlay">
               <i class="bi bi-play-circle-fill"></i>
-              Abrir
+              Ver detalle
             </span>
           </a>
 
@@ -142,8 +388,8 @@
       <ng-template #emptyState>
         <div class="empty-state" *ngIf="!isLoading">
           <i class="bi bi-music-note-beamed"></i>
-          <h3>No hay canciones para estos filtros</h3>
-          <p>Prueba con otra combinacion o limpia la busqueda para volver al catalogo completo.</p>
+          <h3>No hay resultados para los filtros actuales</h3>
+          <p>Prueba otra combinacion o limpia la busqueda para volver al catalogo completo.</p>
         </div>
       </ng-template>
 
@@ -151,7 +397,7 @@
         <button class="ghost-button" type="button" [disabled]="first" (click)="previusPage()">Anterior</button>
         <div class="pagination-bar__summary">
           <strong>Pagina {{ currentPage }} de {{ totalPages || 1 }}</strong>
-          <span>{{ totalElements }} canciones disponibles</span>
+          <span>{{ totalElements }} canciones en biblioteca</span>
         </div>
         <button class="primary-button" type="button" [disabled]="last" (click)="nextPage()">Siguiente</button>
       </div>
@@ -162,14 +408,14 @@
     <section class="guest-panel glass-panel">
       <div class="guest-panel__copy">
         <p class="eyebrow">Bienvenido a Kreitekfy</p>
-        <h1 class="eyebrow">Descubre, reproduce y organiza musica con una interfaz pensada para clientes reales.</h1>
+        <h1>Kreitekfy organiza tu catalogo en una experiencia musical clara, seria y profesional.</h1>
         <p>
-          Inicia sesion para acceder a recomendaciones, catalogo paginado, detalle de canciones y una experiencia
-          responsive optimizada para escritorio y movil.
+          Inicia sesion para acceder a recomendaciones, biblioteca filtrable, detalle de canciones y reproduccion continua
+          en una interfaz cuidada para escritorio, tablet y movil.
         </p>
 
         <div class="guest-panel__actions">
-          <a class="primary-link" routerLink="/login">Entrar</a>
+          <a class="primary-link" routerLink="/login">Iniciar sesion</a>
           <a class="ghost-link" routerLink="/register">Crear cuenta</a>
         </div>
       </div>
@@ -177,18 +423,18 @@
       <div class="guest-panel__features">
         <article>
           <i class="bi bi-stars"></i>
-          <strong>Descubrimiento</strong>
-          <span>Listas de novedades, mas escuchadas y recomendaciones.</span>
+          <strong>Curacion musical</strong>
+          <span>Selecciones destacadas para descubrir contenido con contexto.</span>
         </article>
         <article>
           <i class="bi bi-grid-1x2-fill"></i>
-          <strong>Catalogo claro</strong>
-          <span>Filtros rapidos, navegacion paginada y fichas bien organizadas.</span>
+          <strong>Biblioteca ordenada</strong>
+          <span>Filtros agiles, tarjetas claras y navegacion paginada.</span>
         </article>
         <article>
           <i class="bi bi-phone-fill"></i>
-          <strong>Responsive</strong>
-          <span>Diseño comodo para movil, tablet y escritorio.</span>
+          <strong>Experiencia adaptable</strong>
+          <span>Una interfaz solida en escritorio, tablet y movil.</span>
         </article>
       </div>
     </section>

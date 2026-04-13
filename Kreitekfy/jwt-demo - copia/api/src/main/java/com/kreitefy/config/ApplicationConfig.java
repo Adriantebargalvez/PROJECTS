@@ -45,17 +45,4 @@ public class ApplicationConfig {
             .map(AuthUserDetails::new)
             .orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
-
-//    @Bean
-//    public UserDetailsService userDetailsService() {
-//        return new UserDetailsService() {
-//            @Override
-//            public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-//                return authService.getUser(username)
-//                    .map(user -> new AuthUserDetails(user))
-//                    .orElseThrow(() -> new UsernameNotFoundException("User not found"));
-//            }
-//        };
-//    }
-
 }

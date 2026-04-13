@@ -1,36 +1,48 @@
-<header class="topbar">
-  <div class="topbar__inner page-shell">
+<header class="topbar" [class.topbar--hidden]="isHiddenByScroll">
+  <div class="topbar__inner page-shell glass-panel" [class.topbar__inner--compact]="isCompact">
     <a class="brand" routerLink="/hello" aria-label="Ir a inicio">
       <span class="brand__mark">
         <i class="bi bi-vinyl-fill"></i>
       </span>
       <span class="brand__copy">
         <strong>Kreitekfy</strong>
-        <small>Live music experience</small>
+        <small>Plataforma musical</small>
       </span>
     </a>
 
     <nav class="topbar__nav" aria-label="Navegacion principal">
-      <a routerLink="/hello" routerLinkActive="is-active">Inicio</a>
-      <a routerLink="/novedades" routerLinkActive="is-active">Descubrir</a>
-      <a *ngIf="isLoggedIn" routerLink="/perfil" routerLinkActive="is-active">Perfil</a>
+      <a routerLink="/hello" routerLinkActive="is-active">
+        <i class="bi bi-house-door-fill"></i>
+        <span>Biblioteca</span>
+      </a>
+      <a routerLink="/novedades" routerLinkActive="is-active">
+        <i class="bi bi-compass-fill"></i>
+        <span>Descubrir</span>
+      </a>
+      <a *ngIf="isLoggedIn" routerLink="/perfil" routerLinkActive="is-active">
+        <i class="bi bi-person-fill"></i>
+        <span>Cuenta</span>
+      </a>
     </nav>
 
     <div class="topbar__actions" *ngIf="isLoggedIn; else guestActions">
-      <span class="session-pill">
-        <i class="bi bi-broadcast-pin"></i>
-        En reproduccion
+      <span class="topbar__presence">
+        <i class="bi bi-broadcast"></i>
+        Activo
       </span>
       <a class="user-chip" routerLink="/perfil">
-        <i class="bi bi-person-circle"></i>
-        <span>{{ fullName || 'Mi cuenta' }}</span>
+        <span class="user-chip__avatar">{{ userInitial }}</span>
+        <span class="user-chip__copy">
+          <strong>{{ userLabel }}</strong>
+          <small>Cuenta</small>
+        </span>
       </a>
-      <button class="ghost-button" type="button" (click)="logout()">Salir</button>
+      <button class="ghost-button" type="button" (click)="logout()">Cerrar sesion</button>
     </div>
 
     <ng-template #guestActions>
       <div class="topbar__actions">
-        <a class="ghost-link" routerLink="/login">Entrar</a>
+        <a class="ghost-link" routerLink="/login">Iniciar sesion</a>
         <a class="primary-link" routerLink="/register">Crear cuenta</a>
       </div>
     </ng-template>

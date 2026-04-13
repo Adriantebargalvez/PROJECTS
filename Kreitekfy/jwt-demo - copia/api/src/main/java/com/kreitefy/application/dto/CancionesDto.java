@@ -1,8 +1,5 @@
 package com.kreitefy.application.dto;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class CancionesDto {
     private Long id;
     private String imagen;

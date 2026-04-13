@@ -6,38 +6,43 @@
       </div>
 
       <div>
-        <p class="eyebrow">Perfil</p>
+        <p class="eyebrow">Cuenta</p>
         <h1>{{ displayName }}</h1>
         <p class="profile-card__subtitle">
-          Vista de sesión preparada para ampliarse con edición avanzada, preferencias y gestión de cuenta.
+          Consulta los datos principales de tu cuenta en una vista clara, ordenada y preparada para seguir creciendo.
         </p>
       </div>
     </div>
 
     <div class="profile-card__progress">
-      <span>Datos disponibles en sesión</span>
-      <strong>{{ completionPercent }}%</strong>
+      <div>
+        <span>Perfil completado</span>
+        <strong>{{ completionPercent }}%</strong>
+      </div>
+      <div class="profile-card__progress-bar" aria-hidden="true">
+        <span [style.width.%]="completionPercent"></span>
+      </div>
     </div>
 
     <div class="profile-grid">
       <article class="profile-item">
         <span>Usuario</span>
-        <strong>{{ user.username || 'Sin definir' }}</strong>
+        <strong>{{ user.username || 'No disponible' }}</strong>
       </article>
 
       <article class="profile-item">
         <span>Nombre</span>
-        <strong>{{ user.firstName || 'Sin definir' }}</strong>
+        <strong>{{ user.firstName || 'No disponible' }}</strong>
       </article>
 
       <article class="profile-item">
         <span>Apellidos</span>
-        <strong>{{ user.lastName || 'Sin definir' }}</strong>
+        <strong>{{ user.lastName || 'No disponible' }}</strong>
       </article>
 
       <article class="profile-item">
         <span>Email</span>
-        <strong>{{ user.email || 'Sin definir' }}</strong>
+        <strong>{{ user.email || 'No disponible' }}</strong>
       </article>
 
       <article class="profile-item">
@@ -47,8 +52,8 @@
     </div>
 
     <div class="profile-card__actions">
-      <a class="primary-link" routerLink="/hello">Volver al catálogo</a>
-      <a class="ghost-link" routerLink="/novedades">Explorar novedades</a>
+      <a class="primary-link" routerLink="/hello">Volver a la biblioteca</a>
+      <a class="ghost-link" routerLink="/novedades">Ver selecciones</a>
     </div>
   </section>
 </div>

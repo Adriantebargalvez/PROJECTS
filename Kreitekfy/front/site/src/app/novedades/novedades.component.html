@@ -1,28 +1,30 @@
 <section *ngIf="isAuthenticated()" class="discover-panel glass-panel" [class.discover-panel--compact]="compact">
   <div class="discover-panel__header">
     <div>
-      <p class="eyebrow">{{ compact ? 'Descubrir' : 'Explora el catalogo' }}</p>
-      <h2>{{ compact ? 'Mixes vivos para seguir reproduciendo' : 'Selecciones destacadas para tus usuarios' }}</h2>
+      <p class="eyebrow">{{ compact ? 'Descubrir' : 'Selecciones editoriales' }}</p>
+      <h2>{{ compact ? 'Selecciones activas para seguir escuchando' : 'Contenido destacado para explorar el catalogo' }}</h2>
       <p>
-        Filtra por estilo y manten la experiencia fresca con listas claras de novedades, canciones populares y
-        recomendaciones personalizadas.
+        Cambia de genero, descubre nuevas pistas y mantente dentro de una navegacion clara y coherente.
       </p>
     </div>
 
     <label class="field discover-panel__filter">
-      <span>Estilo</span>
-      <select [(ngModel)]="selectedEstilo" name="selectedEstilo" (change)="filtrarPorEstilo()">
-        <option value="">Todos los estilos</option>
-        <option *ngFor="let estilo of estilos" [value]="estilo">{{ estilo }}</option>
-      </select>
+      <span>Genero</span>
+      <div class="field__control">
+        <i class="bi bi-sliders"></i>
+        <select [(ngModel)]="selectedEstilo" name="selectedEstilo" (change)="filtrarPorEstilo()">
+          <option value="">Todos los generos</option>
+          <option *ngFor="let estilo of estilos" [value]="estilo">{{ estilo }}</option>
+        </select>
+      </div>
     </label>
   </div>
 
   <div class="discover-grid">
-    <article class="playlist-card playlist-card--sunset">
+    <article class="playlist-card playlist-card--recent">
       <header class="playlist-card__header">
-        <span class="playlist-card__tag">Nuevo</span>
-        <h3>Ultimas canciones</h3>
+        <span class="playlist-card__tag">Novedad</span>
+        <h3>Ultimos lanzamientos</h3>
       </header>
 
       <a class="playlist-card__item" *ngFor="let cancion of ultimasCanciones; let index = index; trackBy: trackBySongId" [routerLink]="'/cancion/' + cancion.id">
@@ -35,10 +37,10 @@
       </a>
     </article>
 
-    <article class="playlist-card playlist-card--neon">
+    <article class="playlist-card playlist-card--top">
       <header class="playlist-card__header">
         <span class="playlist-card__tag playlist-card__tag--accent">Top</span>
-        <h3>Mas escuchadas</h3>
+        <h3>Mas reproducidas</h3>
       </header>
 
       <a class="playlist-card__item" *ngFor="let cancion of masEscuchadas; let index = index; trackBy: trackBySongId" [routerLink]="'/cancion/' + cancion.id">
@@ -51,10 +53,10 @@
       </a>
     </article>
 
-    <article class="playlist-card playlist-card--pulse">
+    <article class="playlist-card playlist-card--personal">
       <header class="playlist-card__header">
         <span class="playlist-card__tag playlist-card__tag--soft">Para ti</span>
-        <h3>Seleccion recomendada</h3>
+        <h3>Recomendadas para ti</h3>
       </header>
 
       <a class="playlist-card__item" *ngFor="let cancion of parati; let index = index; trackBy: trackBySongId" [routerLink]="'/cancion/' + cancion.id">

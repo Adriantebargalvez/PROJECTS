@@ -1,0 +1,42 @@
+<ng-container *ngIf="playerState$ | async as state">
+  <aside class="mini-player" *ngIf="state.track as track">
+    <div class="mini-player__inner page-shell glass-panel">
+      <div class="mini-player__track">
+        <img class="mini-player__cover" [src]="track.imagen" [alt]="'Portada de ' + track.titulo">
+        <div class="mini-player__copy">
+          <strong>{{ track.titulo }}</strong>
+          <small>{{ track.artista }}</small>
+          <span class="mini-player__context">{{ getPlaybackContext(state) }}</span>
+        </div>
+      </div>
+
+      <div class="mini-player__controls">
+        <button type="button" class="ghost-button" aria-label="Retroceder 10 segundos" (click)="skipBackward()">
+          <i class="bi bi-skip-backward-fill"></i>
+        </button>
+        <button type="button" class="primary-button mini-player__play" (click)="togglePlayback()">
+          <i class="bi" [ngClass]="state.isPlaying ? 'bi-pause-fill' : 'bi-play-fill'"></i>
+          {{ state.isPlaying ? 'Pausar' : 'Reproducir' }}
+        </button>
+        <button type="button" class="ghost-button" aria-label="Adelantar 10 segundos" (click)="skipForward()">
+          <i class="bi bi-skip-forward-fill"></i>
+        </button>
+      </div>
+
+      <div class="mini-player__progress">
+        <input
+          class="mini-player__slider"
+          type="range"
+          min="0"
+          [max]="state.duration || 0"
+          [value]="state.currentTime"
+          [disabled]="!state.duration"
+          (input)="seekPlayback($event)">
+        <div class="mini-player__times">
+          <small>{{ formatTime(state.currentTime) }}</small>
+          <small>{{ formatTime(state.duration) }}</small>
+        </div>
+      </div>
+    </div>
+  </aside>
+</ng-container>

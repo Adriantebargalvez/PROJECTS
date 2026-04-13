@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthResponse } from '../../service/auth.models';
 import { AuthService } from '../../service/auth.service';
 
 @Component({
@@ -26,28 +27,22 @@ export class RegisterComponent {
 
   register(): void {
     if (!this.user.firstName || !this.user.lastName || !this.user.email || !this.user.role || !this.user.password || !this.user.username) {
-      this.errorMessage = 'Completa todos los campos para crear la cuenta.';
+      this.errorMessage = 'Completa todos los datos para crear tu cuenta.';
       return;
     }
 
+    this.errorMessage = '';
     this.isSubmitting = true;
     this.authService.register(this.user).subscribe({
-      next: (response) => {
+      next: (response: AuthResponse) => {
         this.isSubmitting = false;
-        this.errorMessage = '';
-        this.authService.saveSession(response.token, {
-          username: this.user.username,
-          firstName: this.user.firstName,
-          lastName: this.user.lastName,
-          email: this.user.email,
-          role: this.user.role
-        });
+        this.authService.saveSession(response.token, response.user ?? { ...this.user });
         this.router.navigate(['/hello']);
       },
       error: (error) => {
         this.isSubmitting = false;
-        console.error('There was an error!', error);
-        this.errorMessage = 'No se pudo completar el registro. Revisa los datos e inténtalo de nuevo.';
+        console.error('Register failed', error);
+        this.errorMessage = 'No hemos podido crear la cuenta. Revisa la informacion e intentalo de nuevo.';
       }
     });
   }

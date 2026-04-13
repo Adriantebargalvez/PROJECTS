@@ -7,4 +7,5 @@ import java.util.Optional;
 public interface UserPersistence {
     User save(User user);
     Optional<User> find(String username);
+    Optional<User> findByEmail(String email);
 }

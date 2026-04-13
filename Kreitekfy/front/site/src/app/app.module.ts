@@ -12,7 +12,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { NovedadesComponent } from './novedades/novedades.component';
 import { PageInvComponent } from './page-inv/page-inv.component';
 import { PerfilComponent } from './perfil/perfil.component';
-
+import { MiniPlayerComponent } from './audio/mini-player/mini-player.component';
 
 @NgModule({
   declarations: [
@@ -24,8 +24,7 @@ import { PerfilComponent } from './perfil/perfil.component';
     NovedadesComponent,
     PageInvComponent,
     PerfilComponent,
-    
-    
+    MiniPlayerComponent
   ],
   imports: [
     BrowserModule,

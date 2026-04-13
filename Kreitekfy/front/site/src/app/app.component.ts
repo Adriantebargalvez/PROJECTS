@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { AudioPlayerState, AudioService } from './audio/audio.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +9,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'demo-angular';
+  readonly playerState$: Observable<AudioPlayerState>;
+
+  constructor(
+    public router: Router,
+    private audioService: AudioService
+  ) {
+    this.playerState$ = this.audioService.playerState$;
+  }
+
+  get isAuthRoute(): boolean {
+    return this.router.url.startsWith('/login') || this.router.url.startsWith('/register');
+  }
 }

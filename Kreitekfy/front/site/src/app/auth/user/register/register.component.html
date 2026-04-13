@@ -1,67 +1,133 @@
 <div class="page-shell auth-page">
-  <section class="auth-layout glass-panel">
-    <div class="auth-layout__aside">
-      <p class="eyebrow">Registro</p>
-      <h1>Crea una cuenta lista para una experiencia musical más cuidada.</h1>
-      <p>
-        La estructura queda preparada para crecer con perfiles, recomendaciones, favoritos y futuras ampliaciones del
-        producto.
-      </p>
+  <section class="auth-layout">
+    <aside class="auth-stage">
+      <div class="auth-stage__copy">
+        <a class="auth-brand" routerLink="/hello" aria-label="Volver a inicio">
+          <span class="auth-brand__mark">
+            <i class="bi bi-vinyl-fill"></i>
+          </span>
+          <span class="auth-brand__copy">
+            <strong>Kreitekfy</strong>
+            <small>Plataforma musical</small>
+          </span>
+        </a>
 
-      <div class="auth-layout__feature">
-        <i class="bi bi-shield-check"></i>
-        <span>Base visual consistente, responsive y preparada para flujos más avanzados.</span>
+        <p class="eyebrow">Registro</p>
+        <h2>Crea tu acceso en una plataforma musical pensada para durar.</h2>
+        <p>
+          Configura tu perfil y entra en una experiencia centrada en la escucha, la organizacion y el control del
+          catalogo.
+        </p>
       </div>
-    </div>
 
-    <div class="auth-layout__form">
+      <div class="auth-preview">
+        <span class="auth-preview__badge">Alta segura</span>
+        <h3>Tu perfil queda listo para empezar.</h3>
+        <p>Un proceso directo para crear cuenta, mantener el control del acceso y entrar sin fricciones.</p>
+
+        <div class="auth-notes">
+          <article class="auth-note">
+            <strong>Registro claro</strong>
+            <span>Solo se solicitan los datos necesarios para activar tu acceso.</span>
+          </article>
+          <article class="auth-note">
+            <strong>Experiencia consistente</strong>
+            <span>La interfaz mantiene el mismo tono profesional en toda la aplicacion.</span>
+          </article>
+          <article class="auth-note">
+            <strong>Acceso con Google</strong>
+            <span>Tambien disponible desde la pantalla de inicio de sesion.</span>
+          </article>
+        </div>
+      </div>
+    </aside>
+
+    <section class="auth-card glass-panel">
       <div class="auth-card__header">
-        <h2>Crear cuenta</h2>
-        <p>Introduce tus datos para empezar a usar la plataforma.</p>
+        <a class="auth-brand" routerLink="/hello" aria-label="Volver a inicio">
+          <span class="auth-brand__mark">
+            <i class="bi bi-vinyl-fill"></i>
+          </span>
+          <span class="auth-brand__copy">
+            <strong>Kreitekfy</strong>
+            <small>Plataforma musical</small>
+          </span>
+        </a>
+
+        <p class="eyebrow">Nuevo acceso</p>
+        <h1>Crea tu cuenta</h1>
+        <p>Completa la informacion esencial para acceder a tu biblioteca y tus listas.</p>
       </div>
 
-      <form class="auth-form auth-form--double" (ngSubmit)="register()">
+      <form class="auth-form auth-form--grid" (ngSubmit)="register()">
         <label class="field">
           <span>Nombre</span>
-          <input type="text" [(ngModel)]="user.firstName" name="firstName" placeholder="Tu nombre" required>
+          <div class="field__control">
+            <i class="bi bi-person-badge"></i>
+            <input type="text" [(ngModel)]="user.firstName" name="firstName" placeholder="Nombre" required>
+          </div>
         </label>
 
         <label class="field">
           <span>Apellidos</span>
-          <input type="text" [(ngModel)]="user.lastName" name="lastName" placeholder="Tus apellidos" required>
+          <div class="field__control">
+            <i class="bi bi-person-vcard"></i>
+            <input type="text" [(ngModel)]="user.lastName" name="lastName" placeholder="Apellidos" required>
+          </div>
         </label>
 
         <label class="field">
           <span>Email</span>
-          <input type="email" [(ngModel)]="user.email" name="email" placeholder="tu@email.com" required>
+          <div class="field__control">
+            <i class="bi bi-envelope"></i>
+            <input type="email" [(ngModel)]="user.email" name="email" placeholder="tu@email.com" required>
+          </div>
         </label>
 
         <label class="field">
           <span>Usuario</span>
-          <input type="text" [(ngModel)]="user.username" name="username" placeholder="Nombre de usuario" required>
+          <div class="field__control">
+            <i class="bi bi-at"></i>
+            <input type="text" [(ngModel)]="user.username" name="username" placeholder="Crea tu nombre de usuario" required>
+          </div>
         </label>
 
         <label class="field">
-          <span>Contraseña</span>
-          <input type="password" [(ngModel)]="user.password" name="password" placeholder="Contraseña segura" required>
+          <span>Contrasena</span>
+          <div class="field__control">
+            <i class="bi bi-shield-lock"></i>
+            <input type="password" [(ngModel)]="user.password" name="password" placeholder="Crea una contrasena segura" required>
+          </div>
         </label>
 
         <label class="field">
           <span>Rol</span>
-          <input type="text" [(ngModel)]="user.role" name="role" placeholder="USER" required>
+          <div class="field__control">
+            <i class="bi bi-person-gear"></i>
+            <select [(ngModel)]="user.role" name="role" required>
+              <option value="USER">Usuario</option>
+              <option value="ADMIN">Administrador</option>
+            </select>
+          </div>
         </label>
 
-        <div *ngIf="errorMessage" class="form-message form-message--error form-message--full">
+        <div *ngIf="errorMessage" class="form-message form-message--error auth-card__actions--full">
           {{ errorMessage }}
         </div>
 
-        <div class="auth-form__actions auth-form__actions--full">
-          <button class="primary-button" type="submit" [disabled]="isSubmitting">
-            {{ isSubmitting ? 'Creando cuenta...' : 'Crear cuenta' }}
+        <div class="auth-card__actions auth-card__actions--full">
+          <button class="primary-button auth-card__submit" type="submit" [disabled]="isSubmitting">
+            {{ isSubmitting ? 'Creando acceso...' : 'Crear cuenta' }}
           </button>
-          <button class="ghost-button" type="button" (click)="cancel()">Cancelar</button>
+          <button class="ghost-button" type="button" (click)="cancel()">Volver al inicio</button>
         </div>
       </form>
-    </div>
+
+      <p class="auth-card__footer">
+        Ya tienes una cuenta?
+        <a routerLink="/login">Iniciar sesion</a>
+      </p>
+      <p class="auth-help">Tambien podras acceder con Google desde la pantalla de acceso.</p>
+    </section>
   </section>
 </div>

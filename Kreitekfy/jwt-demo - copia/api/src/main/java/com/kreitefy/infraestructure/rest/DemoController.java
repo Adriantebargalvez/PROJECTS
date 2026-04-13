@@ -14,7 +14,7 @@ public class DemoController {
     @GetMapping(value = "/hello")
     public Map<String, String> hello() {
         Map<String, String> response = new HashMap<>();
-        response.put("message", "Hello from secure endpoint");
+        response.put("message", "Tu espacio de escucha esta listo para continuar.");
         return response;
     }
 

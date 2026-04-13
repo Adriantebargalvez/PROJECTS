@@ -4,8 +4,35 @@
 
 .music-app-shell {
   min-height: 100vh;
+  padding: 1rem clamp(0.75rem, 2vw, 1.5rem) 3rem;
+}
+
+.music-app-shell--with-player {
+  padding-bottom: 9.5rem;
+}
+
+.music-app-shell--auth {
+  display: grid;
+  padding-block: 0;
 }
 
 .music-app-shell__content {
-  padding: 0 0 4rem;
+  padding: 1.5rem 0 0;
+}
+
+.music-app-shell__content--auth {
+  display: grid;
+  align-items: center;
+  min-height: 100vh;
+  padding-top: 0;
+}
+
+@media (max-width: 720px) {
+  .music-app-shell {
+    padding: 0.75rem 0.75rem 2.5rem;
+  }
+
+  .music-app-shell--with-player {
+    padding-bottom: 11.25rem;
+  }
 }

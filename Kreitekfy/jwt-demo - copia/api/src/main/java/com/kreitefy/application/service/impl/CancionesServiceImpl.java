@@ -1,11 +1,7 @@
 package com.kreitefy.application.service.impl;
 
-
-
 import com.kreitefy.application.dto.CancionesDto;
 import com.kreitefy.application.service.CancionesService;
-import com.kreitefy.domain.entity.Canciones;
-import com.kreitefy.domain.entity.User;
 import com.kreitefy.infraestructure.mappers.UsuarioMapper;
 import com.kreitefy.infraestructure.repository.CancionesRepository;
 import com.kreitefy.specs.ItemSpecification;
@@ -18,31 +14,16 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
-
 public class CancionesServiceImpl implements CancionesService {
-    private CancionesRepository cancionesRepository;
+    private final CancionesRepository cancionesRepository;
     private final UsuarioMapper mapper;
-
-
 
     public CancionesServiceImpl(CancionesRepository cancionesRepository, UsuarioMapper mapper) {
         this.cancionesRepository = cancionesRepository;
         this.mapper = mapper;
-
-
     }
-
-
-     /* @Override
-    public List<CancionesDto> getAllUsuarios() {
-        List<CancionesDto> usuarios = new ArrayList<>();
-        cancionesRepository.findAll().forEach(persona -> usuarios.add(this.mapper.personaToPersonaDto(persona)));
-        return usuarios;
-    }*/
 
     @Override
     public List<CancionesDto> getUltimasCancionesPorEstilo(String estilo) {
@@ -64,18 +45,7 @@ public class CancionesServiceImpl implements CancionesService {
         Page<CancionesDto> usuarios = cancionesRepository.findAll(specification, pageable).map(mapper::personaToPersonaDto);
         return usuarios;
     }
-
-
-
 }
-
-
-
-
-
-
-
-
 
 
 

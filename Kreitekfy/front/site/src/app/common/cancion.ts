@@ -8,4 +8,5 @@ export interface Cancion {
   duracion: string;
   reproducciones: number;
   puntuacion: number;
-  }
+  previewUrl?: string;
+}

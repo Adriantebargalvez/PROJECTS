@@ -1,6 +1,6 @@
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, throwError } from 'rxjs';
+import { EMPTY, Observable, expand, reduce } from 'rxjs';
 import { Cancion } from 'src/app/common/cancion';
 import { PageResponse } from 'src/app/common/page-response';
 import { AuthService } from './auth.service';
@@ -12,10 +12,6 @@ export class CancionService {
   private readonly baseUrl = 'http://localhost:8080/api/canciones';
 
   constructor(private http: HttpClient, private authService: AuthService) { }
-
-  getAllCanciones(): Observable<Cancion[]> {
-    return this.http.get<Cancion[]>(this.baseUrl, { headers: this.getAuthHeaders() });
-  }
 
   getUltimasCanciones(): Observable<Cancion[]> {
     return this.http.get<Cancion[]>(`${this.baseUrl}/ultimas-canciones`, { headers: this.getAuthHeaders() });
@@ -40,10 +36,17 @@ export class CancionService {
     return this.http.get<PageResponse<Cancion>>(url, { headers: this.getAuthHeaders() });
   }
 
-  reproducirCancion(id: number): Observable<any> {
-    return this.http.post(`${this.baseUrl}/${id}/reproducir`, {}, { headers: this.getAuthHeaders() }).pipe(
-      catchError((error: HttpErrorResponse) => throwError(() => error))
+  getCatalogoCompleto(sort = 'titulo,asc', pageSize = 200): Observable<Cancion[]> {
+    const fetchPage = (page: number) => this.getAll(page, pageSize, sort);
+
+    return fetchPage(0).pipe(
+      expand(response => response.last ? EMPTY : fetchPage(response.number + 1)),
+      reduce((allSongs, response) => [...allSongs, ...response.content], [] as Cancion[])
     );
+  }
+
+  reproducirCancion(id: number): Observable<void> {
+    return this.http.post<void>(`${this.baseUrl}/${id}/reproducir`, {}, { headers: this.getAuthHeaders() });
   }
 
   getMasEscuchadas(): Observable<Cancion[]> {
@@ -60,8 +63,8 @@ export class CancionService {
     return this.http.get<Cancion[]>(`${this.baseUrl}/para-ti`, { headers: this.getAuthHeaders() });
   }
 
-  valorarCancion(id: number, puntuacion: number): Observable<any> {
-    return this.http.post(`${this.baseUrl}/${id}/puntuar?puntuacion=${puntuacion}`, {}, {
+  valorarCancion(id: number, puntuacion: number): Observable<void> {
+    return this.http.post<void>(`${this.baseUrl}/${id}/puntuar?puntuacion=${puntuacion}`, {}, {
       headers: this.getAuthHeaders()
     });
   }

@@ -5,7 +5,6 @@ import com.kreitefy.application.service.CancionesService;
 import com.kreitefy.domain.entity.Canciones;
 import com.kreitefy.infraestructure.mappers.UsuarioMapper;
 import com.kreitefy.infraestructure.repository.CancionesRepository;
-import com.kreitefy.infraestructure.rest.auth.AuthController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -28,13 +27,10 @@ public class UsuarioController {
     @Autowired
     private CancionesService cancionesService;
     private final UsuarioMapper mapper;
-    private final AuthController authController;
 
-    public UsuarioController(CancionesService cancionesService, AuthController authController,UsuarioMapper mapper) {
+    public UsuarioController(CancionesService cancionesService, UsuarioMapper mapper) {
         this.cancionesService = cancionesService;
-        this.authController = authController;
         this.mapper = mapper;
-
     }
 
     @GetMapping

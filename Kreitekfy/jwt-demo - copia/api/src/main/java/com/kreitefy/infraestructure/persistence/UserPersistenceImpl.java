@@ -23,4 +23,8 @@ public class UserPersistenceImpl implements UserPersistence {
         return userJpaRepository.findById(username);
     }
 
+    @Override
+    public Optional<User> findByEmail(String email) {
+        return userJpaRepository.findByEmail(email);
+    }
 }

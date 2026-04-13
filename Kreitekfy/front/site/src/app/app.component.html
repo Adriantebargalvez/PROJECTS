@@ -1,6 +1,13 @@
-<div class="music-app-shell">
-  <app-navbar></app-navbar>
-  <main class="music-app-shell__content">
-    <router-outlet></router-outlet>
-  </main>
-</div>
+<ng-container *ngIf="playerState$ | async as playerState">
+  <div
+    class="music-app-shell"
+    [class.music-app-shell--auth]="isAuthRoute"
+    [class.music-app-shell--with-player]="!isAuthRoute && !!playerState.track">
+    <app-navbar *ngIf="!isAuthRoute"></app-navbar>
+    <main class="music-app-shell__content" [class.music-app-shell__content--auth]="isAuthRoute">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+
+  <app-mini-player *ngIf="!isAuthRoute"></app-mini-player>
+</ng-container>

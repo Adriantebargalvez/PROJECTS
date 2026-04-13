@@ -24,7 +24,7 @@ export class PerfilComponent implements OnInit {
 
   get displayName(): string {
     const fullName = `${this.user.firstName ?? ''} ${this.user.lastName ?? ''}`.trim();
-    return fullName || this.user.username || 'Invitado';
+    return fullName || this.user.username || 'Cuenta';
   }
 
   get completionPercent(): number {

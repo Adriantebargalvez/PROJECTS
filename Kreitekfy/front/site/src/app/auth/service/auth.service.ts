@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from 'src/app/common/user';
+import { AuthResponse, GoogleAuthConfigResponse } from './auth.models';
 
 @Injectable({
   providedIn: 'root'
@@ -12,28 +13,35 @@ export class AuthService {
   private readonly userStorageKey = 'auth_user';
 
   private readonly userSubject = new BehaviorSubject<Partial<User>>(this.restoreUser());
-  private readonly usernameSubject = new BehaviorSubject<string>(this.restoreUsername());
   private readonly isLoggedInSubject = new BehaviorSubject<boolean>(this.isLoggedIn());
 
   constructor(private http: HttpClient) { }
 
-  register(user: Partial<User> & { password?: string }): Observable<any> {
-    return this.http.post(`${this.baseUrl}/auth/register`, user);
+  register(user: Partial<User> & { password?: string }): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(`${this.baseUrl}/auth/register`, user);
   }
 
-  login(credentials: { username: string; password: string }): Observable<any> {
-    return this.http.post(`${this.baseUrl}/auth/login`, credentials);
+  login(credentials: { username: string; password: string }): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(`${this.baseUrl}/auth/login`, credentials);
   }
 
-  saveToken(token: string): void {
-    localStorage.setItem(this.tokenKey, token);
-    this.isLoggedInSubject.next(true);
+  loginWithGoogle(credential: string): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(`${this.baseUrl}/auth/google`, { credential });
+  }
+
+  getGoogleAuthConfig(): Observable<GoogleAuthConfigResponse> {
+    return this.http.get<GoogleAuthConfigResponse>(`${this.baseUrl}/auth/google/config`);
   }
 
   saveSession(token: string, user?: Partial<User>): void {
-    this.saveToken(token);
+    localStorage.setItem(this.tokenKey, token);
+    this.isLoggedInSubject.next(true);
+
     if (user) {
-      this.setUser(user);
+      const mergedUser = { ...this.userSubject.value, ...user };
+
+      this.userSubject.next(mergedUser);
+      localStorage.setItem(this.userStorageKey, JSON.stringify(mergedUser));
     }
   }
 
@@ -41,14 +49,13 @@ export class AuthService {
     return localStorage.getItem(this.tokenKey);
   }
 
-  logout(): Observable<any> {
+  logout(): Observable<void> {
     localStorage.removeItem(this.tokenKey);
     localStorage.removeItem(this.userStorageKey);
     this.userSubject.next({});
-    this.usernameSubject.next('');
     this.isLoggedInSubject.next(false);
 
-    return this.http.post(`${this.baseUrl}/auth/logout`, {});
+    return this.http.post<void>(`${this.baseUrl}/auth/logout`, {});
   }
 
   isLoggedIn(): boolean {
@@ -59,24 +66,8 @@ export class AuthService {
     return this.isLoggedInSubject.asObservable();
   }
 
-  setUser(user: Partial<User>): void {
-    const mergedUser = { ...this.userSubject.value, ...user };
-
-    this.userSubject.next(mergedUser);
-    this.usernameSubject.next(mergedUser.username ?? '');
-    localStorage.setItem(this.userStorageKey, JSON.stringify(mergedUser));
-  }
-
   getUser(): Observable<Partial<User>> {
     return this.userSubject.asObservable();
-  }
-
-  getUsername(): Observable<string> {
-    return this.usernameSubject.asObservable();
-  }
-
-  updateUsername(username: string): void {
-    this.setUser({ username });
   }
 
   private restoreUser(): Partial<User> {
@@ -91,9 +82,5 @@ export class AuthService {
       localStorage.removeItem(this.userStorageKey);
       return {};
     }
-  }
-
-  private restoreUsername(): string {
-    return this.restoreUser().username ?? '';
   }
 }

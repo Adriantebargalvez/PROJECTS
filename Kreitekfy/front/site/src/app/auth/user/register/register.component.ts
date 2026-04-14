@@ -9,6 +9,8 @@ import { AuthService } from '../../service/auth.service';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent {
+  private readonly emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
   user = {
     username: '',
     password: '',
@@ -26,8 +28,18 @@ export class RegisterComponent {
   ) { }
 
   register(): void {
+    this.user.firstName = this.user.firstName.trim();
+    this.user.lastName = this.user.lastName.trim();
+    this.user.username = this.user.username.trim();
+    this.user.email = this.user.email.trim().toLowerCase();
+
     if (!this.user.firstName || !this.user.lastName || !this.user.email || !this.user.role || !this.user.password || !this.user.username) {
       this.errorMessage = 'Completa todos los datos para crear tu cuenta.';
+      return;
+    }
+
+    if (!this.emailPattern.test(this.user.email)) {
+      this.errorMessage = 'Escribe un correo valido antes de continuar.';
       return;
     }
 

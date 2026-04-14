@@ -35,6 +35,7 @@ export interface AudioPlayerState {
   mode: PlaybackMode;
   playlistId: number | null;
   playlistName: string | null;
+  errorMessage: string | null;
 }
 
 @Injectable({
@@ -43,7 +44,7 @@ export interface AudioPlayerState {
 export class AudioService implements OnDestroy {
   private readonly audio = new Audio();
   private readonly artworkUrl = 'assets/img/apps.10546.13571498826857201.6603a5e2-631f-4f29-9b08-f96589723808-removebg-preview.png';
-  private readonly defaultVolume = 0.24;
+  private readonly defaultVolume = 0.72;
   private baseTrackLibrary: InstrumentalTrack[] = [];
   private readonly trackLibrarySubject = new BehaviorSubject<InstrumentalTrack[]>([]);
   private readonly playlistsSubject = new BehaviorSubject<Playlist[]>([]);
@@ -56,7 +57,8 @@ export class AudioService implements OnDestroy {
     isReady: false,
     mode: 'random',
     playlistId: null,
-    playlistName: null
+    playlistName: null,
+    errorMessage: null
   };
   private readonly playerStateSubject = new BehaviorSubject<AudioPlayerState>(this.initialState);
 
@@ -72,17 +74,22 @@ export class AudioService implements OnDestroy {
   private readonly endHandler = () => {
     void this.handleTrackEnded();
   };
+  private readonly errorHandler = () => this.handleNativeAudioError();
 
   constructor() {
     this.baseTrackLibrary = this.buildBaseTrackLibrary();
     this.trackLibrarySubject.next([...this.baseTrackLibrary]);
     this.audio.preload = 'auto';
     this.audio.volume = this.defaultVolume;
+    this.audio.muted = false;
+    this.audio.setAttribute('playsinline', 'true');
+    this.audio.setAttribute('webkit-playsinline', 'true');
 
     ['loadedmetadata', 'durationchange', 'timeupdate', 'play', 'pause', 'seeking', 'seeked'].forEach(eventName => {
       this.audio.addEventListener(eventName, this.syncStateHandler);
     });
     this.audio.addEventListener('ended', this.endHandler);
+    this.audio.addEventListener('error', this.errorHandler);
 
     this.loadTrackDurations(this.baseTrackLibrary);
   }
@@ -92,6 +99,7 @@ export class AudioService implements OnDestroy {
       this.audio.removeEventListener(eventName, this.syncStateHandler);
     });
     this.audio.removeEventListener('ended', this.endHandler);
+    this.audio.removeEventListener('error', this.errorHandler);
   }
 
   getSnapshot(): AudioPlayerState {
@@ -283,17 +291,21 @@ export class AudioService implements OnDestroy {
 
     if (!this.audio.src) {
       this.audio.src = currentTrack.previewUrl ?? '';
+      this.audio.load();
     }
 
     if (this.hasReachedTrackEnd()) {
       this.audio.currentTime = 0;
     }
 
+    this.pushState({ errorMessage: null });
+
     try {
       await this.audio.play();
       this.syncState();
     } catch (error) {
       console.error('Audio resume failed', error);
+      this.setPlaybackError(error);
       this.syncState();
     }
   }
@@ -304,6 +316,10 @@ export class AudioService implements OnDestroy {
     this.audio.removeAttribute('src');
     this.audio.load();
     this.playerStateSubject.next(this.initialState);
+  }
+
+  closePlayer(): void {
+    this.stop();
   }
 
   skipBy(seconds: number): void {
@@ -339,9 +355,20 @@ export class AudioService implements OnDestroy {
   private async startPlayback(track: Cancion, mode: PlaybackMode, playlist?: Playlist): Promise<boolean> {
     const isSameTrack = this.isCurrentTrack(track);
 
+    if (!track.previewUrl) {
+      this.pushState({
+        track,
+        isPlaying: false,
+        isReady: false,
+        errorMessage: 'Esta pista no tiene un archivo de audio disponible.'
+      });
+      return false;
+    }
+
     if (!isSameTrack) {
       this.audio.pause();
-      this.audio.src = track.previewUrl ?? '';
+      this.audio.src = track.previewUrl;
+      this.audio.load();
       this.audio.currentTime = 0;
       this.pushState({
         track,
@@ -352,13 +379,15 @@ export class AudioService implements OnDestroy {
         isReady: false,
         mode,
         playlistId: playlist?.id ?? null,
-        playlistName: playlist?.nombre ?? null
+        playlistName: playlist?.nombre ?? null,
+        errorMessage: null
       });
     } else {
       this.pushState({
         mode,
         playlistId: playlist?.id ?? null,
-        playlistName: playlist?.nombre ?? null
+        playlistName: playlist?.nombre ?? null,
+        errorMessage: null
       });
     }
 
@@ -372,6 +401,7 @@ export class AudioService implements OnDestroy {
       return !isSameTrack;
     } catch (error) {
       console.error('Audio playback failed', error);
+      this.setPlaybackError(error, track);
       this.syncState(undefined, mode, playlist);
       return false;
     }
@@ -440,6 +470,34 @@ export class AudioService implements OnDestroy {
       mode,
       playlistId: playlist?.id ?? null,
       playlistName: playlist?.nombre ?? null
+    });
+  }
+
+  private handleNativeAudioError(): void {
+    const mediaError = this.audio.error;
+    let message = 'No se ha podido cargar el audio de esta pista.';
+
+    switch (mediaError?.code) {
+      case MediaError.MEDIA_ERR_ABORTED:
+        message = 'La reproduccion se ha cancelado antes de completarse.';
+        break;
+      case MediaError.MEDIA_ERR_NETWORK:
+        message = 'Ha fallado la carga del audio. Revisa tu conexion e intentalo de nuevo.';
+        break;
+      case MediaError.MEDIA_ERR_DECODE:
+        message = 'El archivo de audio no se ha podido reproducir en este dispositivo.';
+        break;
+      case MediaError.MEDIA_ERR_SRC_NOT_SUPPORTED:
+        message = 'Este navegador no puede reproducir el formato de audio de esta pista.';
+        break;
+      default:
+        break;
+    }
+
+    this.pushState({
+      isPlaying: false,
+      isReady: false,
+      errorMessage: message
     });
   }
 
@@ -701,6 +759,25 @@ export class AudioService implements OnDestroy {
   private hasReachedTrackEnd(): boolean {
     const duration = this.getResolvedDuration();
     return duration > 0 && this.audio.currentTime >= duration - 0.25;
+  }
+
+  private setPlaybackError(error: unknown, track = this.playerStateSubject.value.track): void {
+    let message = 'No se ha podido iniciar el audio en este dispositivo.';
+
+    if (error instanceof DOMException) {
+      if (error.name === 'NotAllowedError') {
+        message = 'El navegador del movil ha bloqueado el audio. Pulsa Reproducir otra vez y comprueba que el movil no este en silencio.';
+      } else if (error.name === 'AbortError') {
+        message = 'La reproduccion se ha interrumpido antes de empezar. Intentalo de nuevo.';
+      }
+    }
+
+    this.pushState({
+      track,
+      isPlaying: false,
+      isReady: false,
+      errorMessage: message
+    });
   }
 
   private normalizeSearchTerm(value: string): string {

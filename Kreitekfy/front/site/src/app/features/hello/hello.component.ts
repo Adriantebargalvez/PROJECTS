@@ -91,9 +91,7 @@ export class HelloComponent implements OnInit, OnDestroy {
       return;
     }
 
-    this.loadWelcomeMessage();
-    this.syncAudioCatalog();
-    this.getLista();
+    this.initializeAuthenticatedView();
   }
 
   ngOnDestroy(): void {
@@ -262,6 +260,11 @@ export class HelloComponent implements OnInit, OnDestroy {
     void this.audioService.toggleRandomPlayback();
   }
 
+  accessDemo(): void {
+    this.authService.loginAsDemo();
+    this.initializeAuthenticatedView();
+  }
+
   async toggleInstrumentalTrack(track: InstrumentalTrack): Promise<void> {
     if (this.isInstrumentalActive(track.id)) {
       await this.audioService.togglePlayback();
@@ -338,6 +341,17 @@ export class HelloComponent implements OnInit, OnDestroy {
         console.error('Error fetching hello message', error);
       }
     });
+  }
+
+  private initializeAuthenticatedView(): void {
+    if (this.authService.isDemoSession()) {
+      this.message = 'Estas viendo el modo demo con una cuenta de invitado y catalogo local.';
+    } else {
+      this.loadWelcomeMessage();
+    }
+
+    this.syncAudioCatalog();
+    this.getLista();
   }
 
   private syncAudioCatalog(): void {

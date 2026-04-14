@@ -73,6 +73,14 @@
   gap: 0.75rem;
 }
 
+.mini-player__close {
+  min-width: 0;
+  min-height: 2.6rem;
+  margin-left: auto;
+  padding: 0.55rem 0.8rem;
+  flex-shrink: 0;
+}
+
 .mini-player__play {
   min-width: 10rem;
 }
@@ -131,6 +139,10 @@
   gap: 0.75rem;
 }
 
+.mini-player__error {
+  color: #ffd5de;
+}
+
 @media (max-width: 920px) {
   .mini-player {
     padding-inline: 0.75rem;
@@ -170,5 +182,13 @@
 
   .mini-player__controls {
     gap: 0.55rem;
+  }
+
+  .mini-player__track {
+    align-items: flex-start;
+  }
+
+  .mini-player__close {
+    padding-inline: 0.72rem;
   }
 }

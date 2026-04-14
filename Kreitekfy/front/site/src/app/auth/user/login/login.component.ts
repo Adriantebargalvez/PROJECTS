@@ -106,6 +106,12 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     this.router.navigate(['/hello']);
   }
 
+  loginAsDemo(): void {
+    this.errorMessage = '';
+    this.authService.loginAsDemo();
+    this.router.navigate(['/hello']);
+  }
+
   private loadGoogleConfiguration(): void {
     this.authService.getGoogleAuthConfig().subscribe({
       next: (config) => {

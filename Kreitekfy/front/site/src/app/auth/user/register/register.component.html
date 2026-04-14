@@ -59,7 +59,7 @@
         <p>Completa la informacion esencial para acceder a tu biblioteca y tus listas.</p>
       </div>
 
-      <form class="auth-form auth-form--grid" (ngSubmit)="register()">
+      <form class="auth-form auth-form--grid" (ngSubmit)="register()" novalidate>
         <label class="field">
           <span>Nombre</span>
           <div class="field__control">
@@ -80,7 +80,7 @@
           <span>Email</span>
           <div class="field__control">
             <i class="bi bi-envelope"></i>
-            <input type="email" [(ngModel)]="user.email" name="email" placeholder="tu@email.com" required>
+            <input type="email" [(ngModel)]="user.email" name="email" placeholder="tu@email.com" inputmode="email" autocomplete="email" required>
           </div>
         </label>
 

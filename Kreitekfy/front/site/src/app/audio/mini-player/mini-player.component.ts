@@ -32,6 +32,10 @@ export class MiniPlayerComponent {
     void this.audioService.togglePlayback();
   }
 
+  closePlayer(): void {
+    this.audioService.closePlayer();
+  }
+
   skipForward(): void {
     this.audioService.skipBy(10);
   }

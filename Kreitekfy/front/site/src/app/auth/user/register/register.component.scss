@@ -7,3 +7,15 @@
     linear-gradient(160deg, rgba(14, 10, 28, 0.98), rgba(8, 5, 17, 0.96)),
     var(--surface-strong);
 }
+
+@media (max-width: 720px) {
+  .auth-card__submit {
+    width: auto;
+    max-width: 100%;
+    min-width: 11.5rem;
+    min-height: 2.95rem;
+    padding: 0.78rem 1.15rem;
+    align-self: center;
+    font-size: 0.95rem;
+  }
+}

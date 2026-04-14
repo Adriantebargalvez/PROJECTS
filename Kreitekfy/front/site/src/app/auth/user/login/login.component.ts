@@ -108,8 +108,19 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
 
   loginAsDemo(): void {
     this.errorMessage = '';
-    this.authService.loginAsDemo();
-    this.router.navigate(['/hello']);
+    this.isSubmitting = true;
+    this.authService.loginAsDemo().subscribe({
+      next: (response) => {
+        this.isSubmitting = false;
+        this.completeAuthentication(response, response.user);
+      },
+      error: (error) => {
+        this.isSubmitting = false;
+        console.error('Demo login failed', error);
+        this.authService.startLocalDemoSession();
+        this.router.navigate(['/hello']);
+      }
+    });
   }
 
   private loadGoogleConfiguration(): void {

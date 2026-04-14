@@ -24,6 +24,10 @@ import static org.springframework.http.HttpStatus.UNAUTHORIZED;
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
+    private static final String DEMO_USERNAME = "invitado-demo";
+    private static final String DEMO_EMAIL = "demo@kreitekfy.local";
+    private static final String DEMO_PASSWORD = "demo-access-only";
+
 
     private final AuthService authService;
     private final JwtService jwtService;
@@ -63,6 +67,16 @@ public class AuthController {
         UserDto userDtoRegistered = authService.register(userDto);
         String token = jwtService.generateToken(userDtoRegistered);
         return ResponseEntity.ok(new AuthResponse(token, userDtoRegistered));
+    }
+
+    @PostMapping("/demo")
+    public ResponseEntity<AuthResponse> loginAsDemo() {
+        UserDto user = authService.getUser(DEMO_USERNAME)
+            .or(() -> authService.getUserByEmail(DEMO_EMAIL))
+            .orElseGet(this::createDemoUser);
+
+        String token = jwtService.generateToken(user);
+        return ResponseEntity.ok(new AuthResponse(token, user));
     }
 
     @GetMapping("/google/config")
@@ -116,5 +130,16 @@ public class AuthController {
         }
 
         return "google_" + profile.getSubject();
+    }
+
+    private UserDto createDemoUser() {
+        UserDto userDto = new UserDto();
+        userDto.setUsername(DEMO_USERNAME);
+        userDto.setPassword(passwordEncoder.encode(DEMO_PASSWORD));
+        userDto.setFirstName("Invitado");
+        userDto.setLastName("Demo");
+        userDto.setEmail(DEMO_EMAIL);
+        userDto.setRole(Role.USER);
+        return authService.register(userDto);
     }
 }

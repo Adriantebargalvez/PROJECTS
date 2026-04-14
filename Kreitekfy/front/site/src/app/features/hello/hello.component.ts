@@ -261,8 +261,17 @@ export class HelloComponent implements OnInit, OnDestroy {
   }
 
   accessDemo(): void {
-    this.authService.loginAsDemo();
-    this.initializeAuthenticatedView();
+    this.authService.loginAsDemo().subscribe({
+      next: (response) => {
+        this.authService.saveSession(response.token, response.user);
+        this.initializeAuthenticatedView();
+      },
+      error: (error) => {
+        console.error('Demo login failed', error);
+        this.authService.startLocalDemoSession();
+        this.initializeAuthenticatedView();
+      }
+    });
   }
 
   async toggleInstrumentalTrack(track: InstrumentalTrack): Promise<void> {

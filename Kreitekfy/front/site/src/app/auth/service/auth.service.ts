@@ -42,7 +42,11 @@ export class AuthService {
     return this.http.get<GoogleAuthConfigResponse>(`${this.baseUrl}/auth/google/config`);
   }
 
-  loginAsDemo(): void {
+  loginAsDemo(): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(`${this.baseUrl}/auth/demo`, {});
+  }
+
+  startLocalDemoSession(): void {
     this.saveSession(this.demoToken, this.demoUser);
   }
 

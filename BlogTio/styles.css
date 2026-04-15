@@ -116,6 +116,7 @@ main,
 }
 
 .header-inner {
+    position: relative;
     display: grid;
     grid-template-columns: auto 1fr auto;
     align-items: center;
@@ -596,7 +597,7 @@ body.nav-open .nav-toggle span:last-child {
 .brand-grid {
     display: grid;
     grid-template-columns: repeat(12, minmax(0, 1fr));
-    gap: 1.35rem;
+    gap: 2rem;
 }
 
 .piece {
@@ -640,6 +641,14 @@ body.nav-open .nav-toggle span:last-child {
     grid-template-rows: minmax(15rem, 1fr) auto;
 }
 
+.piece-compact-left {
+    grid-column: 2 / span 4;
+}
+
+.piece-compact-right {
+    grid-column: 8 / span 4;
+}
+
 .piece-dark {
     background: linear-gradient(135deg, #1d1814, #3a2b20);
 }
@@ -655,6 +664,10 @@ body.nav-open .nav-toggle span:last-child {
 .piece-dark .piece-meta strong,
 .piece-dark .piece-body h3 {
     color: #fff;
+}
+
+.piece-dark .piece-meta strong {
+    color: var(--text);
 }
 
 .piece-media {
@@ -1246,9 +1259,25 @@ body.nav-open .nav-toggle span:last-child {
     transform: translateY(0);
 }
 
-@media (max-width: 1080px) {
+@media (max-width: 1240px) {
     .header-inner {
-        grid-template-columns: auto auto 1fr;
+        grid-template-columns: minmax(0, 1fr) auto auto;
+        gap: 0.8rem;
+        padding: 0.8rem 0.95rem;
+        border-radius: 1.7rem;
+    }
+
+    .brand-copy {
+        gap: 0.08rem;
+    }
+
+    .brand-copy strong {
+        font-size: 0.82rem;
+        letter-spacing: 0.08em;
+    }
+
+    .brand-copy small {
+        display: none;
     }
 
     .site-nav {
@@ -1285,6 +1314,23 @@ body.nav-open .nav-toggle span:last-child {
 
     .header-actions {
         justify-self: end;
+        gap: 0.5rem;
+    }
+
+    .language-switcher {
+        gap: 0.2rem;
+        padding: 0.22rem;
+    }
+
+    .lang-button {
+        min-height: 2.15rem;
+        padding: 0.45rem 0.6rem;
+        gap: 0.32rem;
+    }
+
+    .flag-icon {
+        width: 1rem;
+        height: 0.78rem;
     }
 }
 
@@ -1469,6 +1515,42 @@ body.nav-open .nav-toggle span:last-child {
     .footer-inner {
         flex-direction: column;
         align-items: flex-start;
+    }
+}
+
+@media (max-width: 560px) {
+    .header-inner {
+        grid-template-columns: auto auto auto;
+        gap: 0.55rem;
+        padding: 0.72rem 0.78rem;
+    }
+
+    .brand-copy {
+        display: none;
+    }
+
+    .brand-logo-shell {
+        width: 3rem;
+        height: 3rem;
+        border-radius: 1rem;
+    }
+
+    .language-switcher {
+        gap: 0.12rem;
+        padding: 0.16rem;
+    }
+
+    .lang-button {
+        min-height: 2rem;
+        padding: 0.45rem;
+    }
+
+    .lang-button span:last-child {
+        display: none;
+    }
+
+    .site-nav {
+        width: min(calc(100vw - 1.5rem), 24rem);
     }
 }
 

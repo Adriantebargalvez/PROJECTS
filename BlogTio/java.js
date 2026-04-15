@@ -14,7 +14,7 @@ const whatsappLinks = {
     contact: document.querySelector('[data-whatsapp="contact"]')
 };
 
-const emailAddress = "info@adriancontact.com";
+const emailAddress = "adriantebar19@gmail.com";
 const translations = { es: {}, en: {}, pt: {} };
 
 Object.assign(translations.es, {
@@ -117,8 +117,8 @@ Object.assign(translations.es, {
     formTitle: "Cuentanos tu proyecto y abrimos conversacion por email.",
     formLabels: ["Nombre", "Empresa o estudio", "Correo", "Volumen estimado", "Necesidad"],
     formPlaceholders: ["Tu nombre", "Nombre de empresa", "tu@empresa.com", "Ej. 80 sillas y 20 mesas", "Describe el tipo de espacio, estilo, plazos o piezas que necesitas."],
-    formButton: "Redactar email comercial",
-    formDisclaimer: "Al enviar, abriremos tu gestor de correo con el mensaje preparado para un primer contacto.",
+    formButton: "Abrir Gmail comercial",
+    formDisclaimer: "Al enviar, abriremos Gmail con el mensaje preparado para un primer contacto.",
     footerText: "Mobiliario, silleria y decoracion premium al por mayor para proyectos profesionales.",
     mailSubjectPrefix: "Solicitud comercial",
     mailIntro: "Me gustaria solicitar informacion comercial sobre mobiliario al por mayor.",
@@ -204,8 +204,8 @@ Object.assign(translations.en, {
     formTitle: "Tell us about your project and we will open the conversation by email.",
     formLabels: ["Name", "Company or studio", "Email", "Estimated volume", "Need"],
     formPlaceholders: ["Your name", "Company name", "you@company.com", "Example: 80 chairs and 20 tables", "Describe the type of space, style, lead times, or pieces you need."],
-    formButton: "Draft business email",
-    formDisclaimer: "On submit, we will open your email client with the message prepared for a first contact.",
+    formButton: "Open business email in Gmail",
+    formDisclaimer: "On submit, we will open Gmail with the message prepared for a first contact.",
     footerText: "Premium wholesale furniture, seating, and decoration for professional projects.",
     mailSubjectPrefix: "Commercial request",
     mailIntro: "I would like to request commercial information about wholesale furniture.",
@@ -291,8 +291,8 @@ Object.assign(translations.pt, {
     formTitle: "Conte-nos o seu projeto e abrimos a conversa por email.",
     formLabels: ["Nome", "Empresa ou estudio", "Email", "Volume estimado", "Necessidade"],
     formPlaceholders: ["O seu nome", "Nome da empresa", "voce@empresa.com", "Ex. 80 cadeiras e 20 mesas", "Descreva o tipo de espaco, estilo, prazos ou pecas que necessita."],
-    formButton: "Redigir email comercial",
-    formDisclaimer: "Ao enviar, abriremos o seu gestor de email com a mensagem preparada para um primeiro contacto.",
+    formButton: "Abrir email comercial no Gmail",
+    formDisclaimer: "Ao enviar, abriremos o Gmail com a mensagem preparada para um primeiro contacto.",
     footerText: "Mobilario, cadeiras e decoracao premium por grosso para projetos profissionais.",
     mailSubjectPrefix: "Pedido comercial",
     mailIntro: "Gostaria de solicitar informacao comercial sobre mobilario por grosso.",
@@ -563,7 +563,8 @@ if (contactForm) {
         const subject = encodeURIComponent(`${t.mailSubjectPrefix} | ${subjectBase}`);
         const bodyText = encodeURIComponent(lines.join("\n"));
 
-        window.location.href = `mailto:${emailAddress}?subject=${subject}&body=${bodyText}`;
+        const gmailComposeUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(emailAddress)}&su=${subject}&body=${bodyText}`;
+        window.location.href = gmailComposeUrl;
     });
 }
 

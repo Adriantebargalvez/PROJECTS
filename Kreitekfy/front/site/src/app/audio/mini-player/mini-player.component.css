@@ -192,3 +192,25 @@
     padding-inline: 0.72rem;
   }
 }
+
+@media (max-width: 480px) {
+  .mini-player__close {
+    width: auto;
+    min-width: 2.2rem;
+    min-height: 2.2rem;
+    flex: 0 0 auto;
+    padding: 0.12rem 0.18rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .mini-player__close {
+    width: auto;
+    min-width: 2.2rem;
+    min-height: 2.2rem;
+    flex: 0 0 auto;
+    padding: 0.12rem 0.18rem;
+    font-size: 0.9rem;
+  }
+}

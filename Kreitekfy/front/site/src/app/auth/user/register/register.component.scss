@@ -19,3 +19,17 @@
     font-size: 0.95rem;
   }
 }
+
+@media (max-width: 480px) {
+  .auth-card__submit {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: 100%;
+    min-width: 11.5rem;
+    min-height: 2.95rem;
+    padding: 0.78rem 1.15rem;
+    align-self: center;
+    font-size: 0.95rem;
+  }
+}
+

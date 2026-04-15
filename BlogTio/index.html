@@ -1,89 +1,680 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
- 
-   <link rel="stylesheet" href="styles.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta
+        name="description"
+        content="Adrian Contact presenta mobiliario premium al por mayor para hoteles, restauracion, oficinas, interioristas y distribuidores."
+    >
+    <title>Adrian Contact | Mobiliario premium al por mayor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+    <link rel="stylesheet" href="styles.css">
+    <script src="java.js" defer></script>
 </head>
 <body>
-<!--HEADER-->
-  <div class="header">
-  
-        <img class="logo" src="img/logo.jpg" alt="">
-    <div class="inicio">
-      <section class="portfolio-experiment">
-        <a class="link" href="file:///C:/Users/Adrian/OneDrive/Documentos/GitHub/DAW/BlogTio/index.html">
-          <span class="text"><strong>INICIO</strong></span>
-          <span class="line -right"></span>
-          <span class="line -top"></span>
-          <span class="line -left"></span>
-          <span class="line -bottom"></span>
-        </a>
-      </section>
-      </div>
-      <div class="sobre-mi ">
-        <section class="portfolio-experiment ">
-          <a > 
-            <span class="text"><strong>SOBRE MI</strong> </span>
-            <span class="line -right"></span>
-            <span class="line -top"></span>
-            <span class="line -left"></span>
-            <span class="line -bottom"></span>
-          </a>
+    <div class="page-glow page-glow-one" aria-hidden="true"></div>
+    <div class="page-glow page-glow-two" aria-hidden="true"></div>
+
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="#inicio" aria-label="Ir al inicio">
+                <span class="brand-logo-shell">
+                    <img class="brand-logo" src="Marcas/img/logo2.jpg" alt="Logo Hola">
+                </span>
+                <span class="brand-copy">
+                    <strong>Adrian Contact</strong>
+                    <small>Mobiliario premium para proyectos y distribucion</small>
+                </span>
+            </a>
+
+            <button
+                class="nav-toggle"
+                type="button"
+                aria-expanded="false"
+                aria-controls="site-nav"
+                aria-label="Abrir menu"
+            >
+                <span></span>
+                <span></span>
+            </button>
+
+            <nav class="site-nav" id="site-nav" aria-label="Navegacion principal">
+                <a href="#inicio">Inicio</a>
+                <a href="#colecciones">Colecciones</a>
+                <a href="#sobre-nosotros">Sobre nosotros</a>
+                <a href="#marcas">Marcas</a>
+                <a href="#contacto">Contacto</a>
+            </nav>
+
+            <div class="header-actions">
+                <div class="language-switcher" aria-label="Selector de idioma">
+                    <button class="lang-button is-active" type="button" data-lang="es" aria-pressed="true">
+                        <span class="flag-icon flag-es" aria-hidden="true"></span>
+                        <span>ES</span>
+                    </button>
+                    <button class="lang-button" type="button" data-lang="en" aria-pressed="false">
+                        <span class="flag-icon flag-uk" aria-hidden="true"></span>
+                        <span>EN</span>
+                    </button>
+                    <button class="lang-button" type="button" data-lang="pt" aria-pressed="false">
+                        <span class="flag-icon flag-pt" aria-hidden="true"></span>
+                        <span>PT</span>
+                    </button>
+                </div>
+
+                <a
+                    class="button button-secondary header-cta"
+                    data-whatsapp="header"
+                    href="https://wa.me/34640298957?text=Hola%20Adrian%20Contact%2C%20quiero%20informacion%20sobre%20mobiliario%20al%20por%20mayor."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    WhatsApp comercial
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero section" id="inicio">
+            <div class="container hero-grid">
+                <div class="hero-copy" data-reveal>
+                    <p class="eyebrow">Ventas al por mayor para hoteles, restaurantes, oficinas e interioristas</p>
+                    <h1>Mobiliario exclusivo para espacios que buscan diferenciarse.</h1>
+                    <p class="hero-text">
+                        Seleccionamos sillas, mesas, piezas auxiliares y colecciones decorativas con una mirada
+                        editorial. La web funciona como catalogo visual: los precios son orientativos y cada pedido
+                        se estudia de forma personalizada según cantidad, acabados, plazos y destino.
+                    </p>
+
+                    <div class="hero-actions">
+                        <a class="button button-primary" href="#contacto">Solicitar propuesta comercial</a>
+                        <a class="button button-tertiary" href="#colecciones">Ver colecciones destacadas</a>
+                    </div>
+
+                    <dl class="hero-metrics">
+                        <div>
+                            <dt>+320</dt>
+                            <dd>Referencias orientadas a contract y distribución</dd>
+                        </div>
+                        <div>
+                            <dt>48/72 h</dt>
+                            <dd>Respuesta comercial para proyectos y pedidos grandes</dd>
+                        </div>
+                        <div>
+                            <dt>Europa</dt>
+                            <dd>Red logistica para hosteleria, oficinas y retail</dd>
+                        </div>
+                    </dl>
+                </div>
+
+                <div class="hero-visual" data-reveal>
+                    <figure class="hero-shot hero-shot-primary">
+                        <img
+                            src="https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1200&q=80"
+                            alt="Salon premium con mobiliario contemporaneo"
+                        >
+                        <figcaption>Selecciones pensadas para proyectos con identidad propia.</figcaption>
+                    </figure>
+
+                    <div class="hero-note hero-note-top">
+                        <span>Línea editorial</span>
+                        <strong>Curaduría premium de sillas, mesas y piezas auxiliares</strong>
+                    </div>
+
+                    <figure class="hero-shot hero-shot-secondary">
+                        <img
+                            src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=900&q=80"
+                            alt="Comedor elegante con sillas de madera y mesa de diseno"
+                            loading="lazy"
+                        >
+                    </figure>
+
+                    <div class="hero-note hero-note-bottom">
+                        <span>Pedido bajo consulta</span>
+                        <strong>Sin carrito ni checkout: gestión comercial directa</strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container clientele-strip" data-reveal>
+                <span>Hoteles boutique</span>
+                <span>Restauración premium</span>
+                <span>Oficinas ejecutivas</span>
+                <span>Retail de diseño</span>
+                <span>Interiorismo y arquitectura</span>
+            </div>
         </section>
-      </div>
-      <div class="marcas">
-        <section class="portfolio-experiment ">
-          <a class="link" href="file:///C:/Users/Adrian/OneDrive/Documentos/GitHub/DAW/BlogTio/Marcas/marcas.html">
-            <span class="text" ><strong>MARCAS</strong></span>
-            <span class="line -right"></span>
-            <span class="line -top"></span>
-            <span class="line -left"></span>
-            <span class="line -bottom"></span>
-          </a>
+
+        <section class="section section-intro">
+            <div class="container commercial-ribbon" data-reveal>
+                <p>
+                    Los importes mostrados son orientativos y sirven como referencia visual de colección.
+                    La tarifa final depende del volumen, los acabados, el transporte y las condiciones
+                    comerciales de cada proyecto.
+                </p>
+                <a href="#contacto">Solicitar tarifa y disponibilidad</a>
+            </div>
         </section>
 
-      </div>
-      <div class="contacto">
-        <section class="portfolio-experiment ">
-          <a>
-            <span class="text" ><strong>CONTACTO</strong></span>
-            <span class="line -right"></span>
-            <span class="line -top"></span>
-            <span class="line -left"></span>
-            <span class="line -bottom"></span>
-          </a>
+        <section class="section catalogue" id="colecciones">
+            <div class="container section-head" data-reveal>
+                <p class="eyebrow">Catálogo editorial</p>
+                <h2>Colecciones pensadas para compras en volumen y espacios con presencia.</h2>
+                <p>
+                    No presentamos una tienda online tradicional. Mostramos una selección comercial de piezas
+                    con vocación arquitectónica, listas para restauración, hospitality, oficinas y proyectos
+                    de interiorismo que necesitan consistencia visual y capacidad de suministro.
+                </p>
+            </div>
+
+            <div class="container catalogue-layout">
+                <article class="piece piece-large" data-reveal>
+                    <div class="piece-media">
+                        <img
+                            src="https://unsplash.com/photos/1qvUsVrKrMI/download?force=true&w=1400"
+                            alt="Coleccion lounge con sofa, butacas y mesa baja en un ambiente elegante"
+                            loading="lazy"
+                        >
+                    </div>
+                    <div class="piece-body">
+                        <span class="piece-kicker">Seleccion destacada</span>
+                        <h3>Coleccion Aurelia Lounge</h3>
+                        <p>
+                            Butacas envolventes, sofas modulares y mesas bajas con acabados en nogal tostado,
+                            bouclé arena y metal satinado. Una línea pensada para recepciones, lounges y zonas
+                            comunes donde la primera impresión importa.
+                        </p>
+                        <div class="piece-meta">
+                            <strong>Desde 1.490 EUR / conjunto base</strong>
+                            <span>Precio orientativo. Pedido profesional bajo consulta.</span>
+                        </div>
+                        <a class="piece-link" href="#contacto">Solicitar acabados y tarifa de proyecto</a>
+                    </div>
+                </article>
+
+                <article class="piece piece-portrait" data-reveal>
+                    <div class="piece-media">
+                        <img
+                            src="https://unsplash.com/photos/ufbmD2GD_Ss/download?force=true&w=1000"
+                            alt="Sillas tapizadas de diseno en un comedor de restauracion premium"
+                            loading="lazy"
+                        >
+                    </div>
+                    <div class="piece-body">
+                        <span class="piece-kicker">Sillas de autor</span>
+                        <h3>Silla Vetta</h3>
+                        <p>Asiento tapizado, estructura en madera ahumada y silueta ligera para restauracion premium y comedores de hotel.</p>
+                        <div class="piece-meta">
+                            <strong>Desde 168 EUR / unidad</strong>
+                            <span>Pedido mínimo orientado a volumen y canal profesional.</span>
+                        </div>
+                        <a class="piece-link" href="#contacto">Consultar cantidades y plazos</a>
+                    </div>
+                </article>
+
+                <article class="piece piece-note" data-reveal>
+                    <div class="piece-body">
+                        <span class="piece-kicker">Enfoque comercial</span>
+                        <h3>Mostramos producto, contexto y rango económico. El cierre se hace contigo.</h3>
+                        <p>
+                            Trabajamos con hoteleros, grupos de restauración, oficinas, distribuidores e
+                            interioristas que necesitan una relación directa, muestras, acabados y condiciones
+                            adaptadas a cada operación.
+                        </p>
+                        <ul class="piece-list">
+                            <li>Sin fichas individuales ni compra online.</li>
+                            <li>Tarifa final según volumen, tapicería y logística.</li>
+                            <li>Atención comercial para pedidos grandes y recurrentes.</li>
+                        </ul>
+                    </div>
+                </article>
+
+                <article class="piece piece-wide" data-reveal>
+                    <div class="piece-media">
+                        <img
+                            src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1200&q=80"
+                            alt="Mesa y sillas en un espacio de restauracion elegante"
+                            loading="lazy"
+                        >
+                    </div>
+                    <div class="piece-body">
+                        <span class="piece-kicker">Mesas de presencia escultórica</span>
+                        <h3>Mesa Volta Executive</h3>
+                        <p>
+                            Sobre cerámico o madera natural, bases centrales de metal mate y formatos adaptados
+                            a salas privadas, restaurantes, reuniones ejecutivas y espacios de recepción.
+                        </p>
+                        <div class="piece-meta">
+                            <strong>Desde 890 EUR / unidad</strong>
+                            <span>Incluye variantes de medidas y acabados según proyecto.</span>
+                        </div>
+                        <a class="piece-link" href="#contacto">Pedir medidas y tarifa mayorista</a>
+                    </div>
+                </article>
+
+                <article class="piece piece-compact" data-reveal>
+                    <div class="piece-media">
+                        <img
+                            src="https://unsplash.com/photos/ewtK8c6pNRA/download?force=true&w=900"
+                            alt="Consola decorativa de estilo refinado en un interior elegante"
+                            loading="lazy"
+                        >
+                    </div>
+                    <div class="piece-body">
+                        <span class="piece-kicker">Piezas auxiliares</span>
+                        <h3>Consola Nacre</h3>
+                        <p>Volumen limpio, superficies minerales y detalle metálico discreto para lobby, retail selecto y zonas de paso.</p>
+                        <div class="piece-meta">
+                            <strong>Desde 620 EUR / unidad</strong>
+                            <span>Ideal para combinar con pedidos de ambientacion completos.</span>
+                        </div>
+                        <a class="piece-link" href="#contacto">Solicitar propuesta integral</a>
+                    </div>
+                </article>
+
+                <article class="piece piece-compact piece-dark" data-reveal>
+                    <div class="piece-media">
+                        <img
+                            src="https://unsplash.com/photos/IN_YVhv-Le8/download?force=true&w=900"
+                            alt="Oficina contemporanea con mesas y sillas de perfil ejecutivo"
+                            loading="lazy"
+                        >
+                    </div>
+                    <div class="piece-body">
+                        <span class="piece-kicker">Office y contract</span>
+                        <h3>Linea Axis Work</h3>
+                        <p>Mesas colaborativas, silleria ejecutiva y almacenamiento modular para oficinas con imagen sobria y materialidad noble.</p>
+                        <div class="piece-meta">
+                            <strong>Desde 245 EUR / puesto</strong>
+                            <span>Condiciones especiales para implantaciones en serie.</span>
+                        </div>
+                        <a class="piece-link" href="#contacto">Hablar de implantacion</a>
+                    </div>
+                </article>
+            </div>
+
+            <div class="container assortment-grid">
+                <article class="assortment-panel" data-reveal>
+                    <div class="assortment-head">
+                        <p class="eyebrow">Programa de silleria</p>
+                        <h3>Catalogo curado de sillas para restauracion, hotel y oficina.</h3>
+                        <p>Una seleccion mas amplia para que la web se sienta como un catalogo comercial real y no como una muestra corta.</p>
+                    </div>
+
+                    <div class="assortment-list">
+                        <article class="assortment-item">
+                            <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=500&q=80" alt="Silla Vetta" loading="lazy">
+                            <div class="assortment-copy">
+                                <span>Silla tapizada</span>
+                                <h4>Vetta</h4>
+                                <p>Perfil ligero, respaldo curvo y tapizado neutro para comedores elegantes.</p>
+                            </div>
+                            <strong>168 EUR</strong>
+                        </article>
+
+                        <article class="assortment-item">
+                            <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=500&q=80" alt="Silla Elara" loading="lazy">
+                            <div class="assortment-copy">
+                                <span>Dining premium</span>
+                                <h4>Elara</h4>
+                                <p>Madera natural, respaldo amplio y lectura serena para proyectos hoteleros.</p>
+                            </div>
+                            <strong>184 EUR</strong>
+                        </article>
+
+                        <article class="assortment-item">
+                            <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=500&q=80" alt="Silla Marlo" loading="lazy">
+                            <div class="assortment-copy">
+                                <span>Comedor contract</span>
+                                <h4>Marlo</h4>
+                                <p>Estructura robusta, asiento comodo y acabados para uso intensivo.</p>
+                            </div>
+                            <strong>142 EUR</strong>
+                        </article>
+
+                        <article class="assortment-item">
+                            <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=500&q=80" alt="Butaca Lyra" loading="lazy">
+                            <div class="assortment-copy">
+                                <span>Lounge seat</span>
+                                <h4>Lyra</h4>
+                                <p>Butaca baja para lobby y salas de espera con aire premium.</p>
+                            </div>
+                            <strong>410 EUR</strong>
+                        </article>
+
+                        <article class="assortment-item">
+                            <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=500&q=80" alt="Silla Axis Executive" loading="lazy">
+                            <div class="assortment-copy">
+                                <span>Office executive</span>
+                                <h4>Axis Executive</h4>
+                                <p>Silleria de oficina con presencia sobria para implantaciones completas.</p>
+                            </div>
+                            <strong>245 EUR</strong>
+                        </article>
+                    </div>
+                </article>
+
+                <article class="assortment-panel assortment-panel-dark" data-reveal>
+                    <div class="assortment-head">
+                        <p class="eyebrow">Decoracion y auxiliares</p>
+                        <h3>Piezas de apoyo para completar ambientes y proyectos integrales.</h3>
+                        <p>Complementos con la misma lectura premium para recepciones, suites, retail selecto y zonas comunes.</p>
+                    </div>
+
+                    <div class="assortment-list">
+                        <article class="assortment-item assortment-item-dark">
+                            <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=500&q=80" alt="Consola Nacre" loading="lazy">
+                            <div class="assortment-copy">
+                                <span>Consola</span>
+                                <h4>Nacre</h4>
+                                <p>Superficies minerales y volumen limpio para lobbies y pasillos nobles.</p>
+                            </div>
+                            <strong>620 EUR</strong>
+                        </article>
+
+                        <article class="assortment-item assortment-item-dark">
+                            <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=500&q=80" alt="Mesa auxiliar Tivoli" loading="lazy">
+                            <div class="assortment-copy">
+                                <span>Mesa auxiliar</span>
+                                <h4>Tivoli</h4>
+                                <p>Mesa redonda de apoyo para habitaciones premium y recepciones.</p>
+                            </div>
+                            <strong>290 EUR</strong>
+                        </article>
+
+                        <article class="assortment-item assortment-item-dark">
+                            <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=500&q=80" alt="Lampara Sora" loading="lazy">
+                            <div class="assortment-copy">
+                                <span>Iluminacion</span>
+                                <h4>Sora</h4>
+                                <p>Lampara escultorica para atmosferas calidas en hospitality de nivel.</p>
+                            </div>
+                            <strong>340 EUR</strong>
+                        </article>
+
+                        <article class="assortment-item assortment-item-dark">
+                            <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=500&q=80" alt="Espejo Cael" loading="lazy">
+                            <div class="assortment-copy">
+                                <span>Espejo</span>
+                                <h4>Cael</h4>
+                                <p>Marco fino metalico y lectura elegante para zonas de transito y suites.</p>
+                            </div>
+                            <strong>395 EUR</strong>
+                        </article>
+
+                        <article class="assortment-item assortment-item-dark">
+                            <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=500&q=80" alt="Aparador Neri" loading="lazy">
+                            <div class="assortment-copy">
+                                <span>Aparador</span>
+                                <h4>Neri</h4>
+                                <p>Pieza de apoyo con almacenamiento oculto para proyectos residenciales piloto y hotel.</p>
+                            </div>
+                            <strong>980 EUR</strong>
+                        </article>
+                    </div>
+                </article>
+            </div>
         </section>
-      </div>
-      
-      <!--SEARCH-->
-      <div class="search">
-        <form>
-          <label for="search">Search</label>
-          <input id="search" type="search" pattern=".*\S.*" required>
-          <span class="caret"></span>
-        </form>
-          </div>
-       <!--SEARCH-->
-       <button class="boton-redondo idioma">
-        <img src="img/chapa-bandera-britanica (1).jpg" alt="Bandera del Reino Unido">
-      </button>
-    </div>
-  </div>
-  <!--HEADER-->
 
+        <section class="section about" id="sobre-nosotros">
+            <div class="container about-grid">
+                <div class="about-copy" data-reveal>
+                    <p class="eyebrow">Sobre la marca</p>
+                    <h2>Una firma creada para dar forma a proyectos con ambición estética y escala comercial.</h2>
+                    <p>
+                        Adrian Contact nace como una casa de seleccion y suministro de mobiliario para
+                        negocios que quieren elevar su presencia. Reunimos fabricantes, acabados y colecciones
+                        con una única idea: ofrecer piezas que transmitan nivel, funcionen bien en uso intensivo
+                        y mantengan coherencia en pedidos grandes.
+                    </p>
+                    <p>
+                        Nuestro trabajo se mueve entre el interiorismo y la operación comercial. Acompañamos a
+                        grupos hoteleros, restaurantes, oficinas, concept stores y distribuidores que necesitan
+                        criterio visual, agilidad de respuesta y una interlocucion clara durante todo el proceso.
+                    </p>
 
-  
+                    <div class="about-signature">
+                        <span>Filosofia</span>
+                        <strong>Diseño sereno, materiales honestos y servicio comercial con mirada de marca.</strong>
+                    </div>
+                </div>
 
-       
-      
-    
-     
-   
+                <div class="about-visual" data-reveal>
+                    <figure class="about-visual-main">
+                        <img
+                            src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1100&q=80"
+                            alt="Interior elegante con silla y mesa de diseno"
+                            loading="lazy"
+                        >
+                    </figure>
+                    <div class="about-stats">
+                        <div>
+                        <strong>14 años</strong>
+                        <span>curando colecciones contract</span>
+                        </div>
+                        <div>
+                            <strong>240+</strong>
+                            <span>proyectos atendidos</span>
+                        </div>
+                        <div>
+                            <strong>8 marcas</strong>
+                            <span>alineadas con nuestra estetica</span>
+                        </div>
+                        <div>
+                            <strong>1 equipo</strong>
+                            <span>comercial y creativo a medida</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
+            <div class="container expertise-grid">
+                <article class="expertise-panel expertise-panel-quote" data-reveal>
+                    <span class="expertise-index">01</span>
+                    <h3>Seleccion cuidada</h3>
+                    <p>
+                            Trabajamos pocas líneas, bien escogidas. Cada pieza debe responder a una narrativa
+                        visual de alto nivel y a un uso profesional real.
+                    </p>
+                </article>
+
+                <article class="expertise-panel expertise-panel-list" data-reveal>
+                    <span class="expertise-index">02</span>
+                    <h3>Lo que nos diferencia</h3>
+                    <ul>
+                        <li>Capacidad para pedidos en volumen y reposiciones.</li>
+                        <li>Asesoramiento en composición, materiales y combinaciones.</li>
+                        <li>Tarifas comerciales adaptadas a canal profesional.</li>
+                        <li>Respuesta rápida para presupuestos y muestras.</li>
+                    </ul>
+                </article>
+
+                <article class="expertise-panel expertise-panel-clients" data-reveal>
+                    <span class="expertise-index">03</span>
+                    <h3>Clientes habituales</h3>
+                    <p>Hoteles boutique, restauración premium, oficinas corporativas, distribuidores, retail selecto e interioristas.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="section brands" id="marcas">
+            <div class="container section-head" data-reveal>
+                <p class="eyebrow">Firmas asociadas</p>
+                <h2>Marcas con lenguaje propio dentro de una misma sensibilidad premium.</h2>
+                <p>
+                    La selección combina colecciones mediterráneas, líneas contemporáneas, soluciones para
+                    hospitality, oficina elegante y piezas con una lectura artesanal refinada.
+                </p>
+            </div>
+
+            <div class="container brand-grid">
+                <article class="brand-tile brand-tile-light brand-span-small" data-reveal>
+                    <span class="brand-monogram">OV</span>
+                    <div>
+                        <h3>Orvee Studio</h3>
+                        <p>Sillería de autor para restaurantes, clubs privados y recepciones con aire cosmopolita.</p>
+                    </div>
+                </article>
+
+                <article class="brand-tile brand-tile-dark brand-span-large" data-reveal>
+                    <span class="brand-monogram">LN</span>
+                    <div>
+                        <h3>Lignum Noire</h3>
+                        <p>Maderas oscuras, estructuras sobrias y mesas de presencia escultórica para hospitality y despachos ejecutivos.</p>
+                    </div>
+                </article>
+
+                <article class="brand-tile brand-tile-olive brand-span-large" data-reveal>
+                    <span class="brand-monogram">SM</span>
+                    <div>
+                        <h3>Solenne Mare</h3>
+                        <p>Inspiración mediterránea serena, fibras técnicas y tapicerías suaves para terrazas sofisticadas y hoteles costeros.</p>
+                    </div>
+                </article>
+
+                <article class="brand-tile brand-tile-light brand-span-small" data-reveal>
+                    <span class="brand-monogram">FQ</span>
+                    <div>
+                        <h3>Forma Quindici</h3>
+                        <p>Líneas minimalistas y proporciones precisas para oficinas premium y proyectos de arquitectura interior.</p>
+                    </div>
+                </article>
+
+                <article class="brand-tile brand-tile-dark brand-span-small" data-reveal>
+                    <span class="brand-monogram">TM</span>
+                    <div>
+                        <h3>Tavolo Mare</h3>
+                        <p>Mesas, taburetes y piezas auxiliares con carácter mediterráneo y acabados duraderos para restauración.</p>
+                    </div>
+                </article>
+
+                <article class="brand-tile brand-tile-light brand-span-small" data-reveal>
+                    <span class="brand-monogram">VC</span>
+                    <div>
+                        <h3>Vestige Contract</h3>
+                        <p>Soluciones modulares para implantaciones en serie, zonas comunes y proyectos corporativos de gran escala.</p>
+                    </div>
+                </article>
+
+                <article class="brand-tile brand-tile-sand brand-span-small" data-reveal>
+                    <span class="brand-monogram">AN</span>
+                    <div>
+                        <h3>Atelier Nacre</h3>
+                        <p>Piezas cálidas y táctiles para suites, recepciones y espacios donde el detalle material es protagonista.</p>
+                    </div>
+                </article>
+
+                <article class="brand-tile brand-tile-dark brand-span-small" data-reveal>
+                    <span class="brand-monogram">CL</span>
+                    <div>
+                        <h3>Casa Loria</h3>
+                        <p>Decoracion, consolas y complementos de linea tranquila para dar continuidad visual a proyectos completos.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="section contact" id="contacto">
+            <div class="container contact-shell">
+                <div class="contact-copy" data-reveal>
+                    <p class="eyebrow">Contacto comercial</p>
+                    <h2>Solicita información, disponibilidad o presupuesto para pedidos grandes.</h2>
+                    <p>
+                        Trabajamos exclusivamente con un enfoque comercial y mayorista. Si estas equipando un
+                        hotel, restaurante, oficina, vivienda piloto, retail o canal distribución, escríbenos.
+                        Te enviaremos referencias, acabados, plazos y tarifa orientada a tu volumen.
+                    </p>
+
+                    <div class="contact-actions">
+                        <a
+                            class="button button-primary"
+                            data-whatsapp="contact"
+                            href="https://wa.me/34640298957?text=Hola%20Adrian%20Contact%2C%20quiero%20solicitar%20informacion%20sobre%20un%20pedido%20grande."
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            WhatsApp directo
+                        </a>
+                        <a class="button button-secondary" href="mailto:info@adriancontact.com">
+                            info@adriancontact.com
+                        </a>
+                    </div>
+
+                    <ul class="contact-points">
+                        <li>Precios publicados como referencia, no como compra online inmediata.</li>
+                        <li>Condiciones comerciales definidas según cantidad, acabados, destino y plazos.</li>
+                        <li>Atención orientada a profesionales, proyectos y distribuidores.</li>
+                    </ul>
+                </div>
+
+                <div class="contact-card" data-reveal>
+                    <p class="contact-card-label">Consulta rápida</p>
+                    <h3>Cuéntanos tu proyecto y abrimos conversación por email.</h3>
+
+                    <form class="contact-form" data-contact-form>
+                        <label>
+                            Nombre
+                            <input type="text" name="name" placeholder="Tu nombre" required>
+                        </label>
+
+                        <label>
+                            Empresa o estudio
+                            <input type="text" name="company" placeholder="Nombre de empresa">
+                        </label>
+
+                        <label>
+                            Correo
+                            <input type="email" name="email" placeholder="tu@empresa.com" required>
+                        </label>
+
+                        <label>
+                            Volumen estimado
+                            <input type="text" name="volume" placeholder="Ej. 80 sillas y 20 mesas">
+                        </label>
+
+                        <label>
+                            Necesidad
+                            <textarea
+                                name="message"
+                                rows="5"
+                                placeholder="Describe el tipo de espacio, estilo, plazos o piezas que necesitas."
+                                required
+                            ></textarea>
+                        </label>
+
+                        <button class="button button-primary button-full" type="submit">
+                            Redactar email comercial
+                        </button>
+                    </form>
+
+                    <p class="contact-disclaimer">
+                        Al enviar, abriremos tu gestor de correo con el mensaje preparado para un primer contacto.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <div>
+                <strong>Adrian Contact</strong>
+                <p>Mobiliario, sillería y decoración premium al por mayor para proyectos profesionales.</p>
+            </div>
+            <div class="footer-links">
+                <a href="#inicio">Inicio</a>
+                <a href="#sobre-nosotros">Sobre nosotros</a>
+                <a href="#marcas">Marcas</a>
+                <a href="#contacto">Contacto</a>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>

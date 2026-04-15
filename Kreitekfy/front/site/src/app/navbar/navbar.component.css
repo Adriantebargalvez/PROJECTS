@@ -197,6 +197,10 @@
     gap: 0.5rem;
   }
 
+  .topbar__actions--guest {
+    gap: 0.35rem;
+  }
+
   .topbar__nav {
     grid-column: 1 / -1;
     width: 100%;
@@ -229,6 +233,15 @@
     min-width: auto;
   }
 
+  .topbar__actions--guest .ghost-link,
+  .topbar__actions--guest .primary-link {
+    min-height: 2.45rem;
+    padding: 0.58rem 0.72rem;
+    font-size: 0.8rem;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
   .user-chip {
     padding: 0.3rem;
     border-radius: 999px;
@@ -245,11 +258,50 @@
 }
 
 @media (max-width: 480px) {
-  .topbar__actions .ghost-link,
-  .topbar__actions .primary-link,
+  .topbar__actions--guest .ghost-link,
+  .topbar__actions--guest .primary-link {
+    min-height: 2.2rem;
+    padding: 0.5rem 0.62rem;
+    font-size: 0.74rem;
+  }
+
   .topbar__actions .ghost-button {
     padding-inline: 0.78rem;
     font-size: 0.92rem;
   }
 }
 
+@media (max-width: 360px) {
+  .topbar__inner {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.65rem;
+  }
+
+  .brand {
+    width: 100%;
+  }
+
+  .brand__copy strong {
+    font-size: 0.9rem;
+  }
+
+  .topbar__actions--guest {
+    grid-column: 1 / -1;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.4rem;
+  }
+
+  .topbar__actions--guest .ghost-link,
+  .topbar__actions--guest .primary-link {
+    width: 100%;
+    min-height: 2.15rem;
+    padding: 0.48rem 0.7rem;
+    font-size: 0.76rem;
+  }
+
+  .topbar__nav {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, map } from 'rxjs';
 import { User } from 'src/app/common/user';
 import { environment } from 'src/environments/environment';
 import { AuthResponse, GoogleAuthConfigResponse } from './auth.models';
@@ -12,13 +12,12 @@ export class AuthService {
   private readonly baseUrl = environment.apiUrl;
   private readonly tokenKey = 'auth_token';
   private readonly userStorageKey = 'auth_user';
-  private readonly demoToken = 'demo-session-token';
-  private readonly demoUser: Partial<User> = {
-    username: 'invitado-demo',
+  private readonly guestProfile: Partial<User> = {
+    username: 'invitado',
     firstName: 'Invitado',
-    lastName: 'Demo',
-    email: 'demo@kreitekfy.local',
-    role: 'DEMO'
+    lastName: '',
+    email: 'invitado@kreitekfy.local',
+    role: 'INVITADO'
   };
 
   private readonly userSubject = new BehaviorSubject<Partial<User>>(this.restoreUser());
@@ -42,24 +41,22 @@ export class AuthService {
     return this.http.get<GoogleAuthConfigResponse>(`${this.baseUrl}/auth/google/config`);
   }
 
-  loginAsDemo(): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(`${this.baseUrl}/auth/demo`, {});
-  }
-
-  startLocalDemoSession(): void {
-    this.saveSession(this.demoToken, this.demoUser);
+  loginAsGuest(): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(`${this.baseUrl}/auth/demo`, {}).pipe(
+      map(response => ({
+        ...response,
+        user: this.normalizeGuestUser(response.user)
+      }))
+    );
   }
 
   saveSession(token: string, user?: Partial<User>): void {
     localStorage.setItem(this.tokenKey, token);
     this.isLoggedInSubject.next(true);
 
-    const sessionUser = user ?? (token === this.demoToken ? this.demoUser : undefined);
+    const sessionUser = this.normalizeGuestUser(user);
     if (sessionUser) {
-      const mergedUser = token === this.demoToken
-        ? { ...this.demoUser, ...sessionUser }
-        : { ...this.userSubject.value, ...sessionUser };
-
+      const mergedUser = { ...this.userSubject.value, ...sessionUser };
       this.userSubject.next(mergedUser);
       localStorage.setItem(this.userStorageKey, JSON.stringify(mergedUser));
     }
@@ -70,25 +67,16 @@ export class AuthService {
   }
 
   logout(): Observable<void> {
-    const activeToken = this.getToken();
     localStorage.removeItem(this.tokenKey);
     localStorage.removeItem(this.userStorageKey);
     this.userSubject.next({});
     this.isLoggedInSubject.next(false);
-
-    if (activeToken === this.demoToken) {
-      return of(void 0);
-    }
 
     return this.http.post<void>(`${this.baseUrl}/auth/logout`, {});
   }
 
   isLoggedIn(): boolean {
     return !!this.getToken();
-  }
-
-  isDemoSession(): boolean {
-    return this.getToken() === this.demoToken;
   }
 
   isLoggedIn$(): Observable<boolean> {
@@ -100,20 +88,32 @@ export class AuthService {
   }
 
   private restoreUser(): Partial<User> {
-    const activeToken = this.getToken();
     const persistedUser = localStorage.getItem(this.userStorageKey);
     if (!persistedUser) {
-      return activeToken === this.demoToken ? { ...this.demoUser } : {};
+      return {};
     }
 
     try {
-      const parsedUser = JSON.parse(persistedUser) as Partial<User>;
-      return activeToken === this.demoToken
-        ? { ...this.demoUser, ...parsedUser }
-        : parsedUser;
+      return this.normalizeGuestUser(JSON.parse(persistedUser) as Partial<User>) ?? {};
     } catch {
       localStorage.removeItem(this.userStorageKey);
-      return activeToken === this.demoToken ? { ...this.demoUser } : {};
+      return {};
     }
+  }
+
+  private normalizeGuestUser(user?: Partial<User>): Partial<User> | undefined {
+    if (!user) {
+      return undefined;
+    }
+
+    const isGuestUser = user.username === 'invitado-demo' || user.email === 'demo@kreitekfy.local';
+    if (!isGuestUser) {
+      return user;
+    }
+
+    return {
+      ...user,
+      ...this.guestProfile
+    };
   }
 }

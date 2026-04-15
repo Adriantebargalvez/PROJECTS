@@ -12,7 +12,7 @@ describe('LoginComponent', () => {
   let authServiceSpy: jasmine.SpyObj<AuthService>;
 
   beforeEach(() => {
-    authServiceSpy = jasmine.createSpyObj<AuthService>('AuthService', ['getGoogleAuthConfig', 'login', 'loginWithGoogle', 'saveSession']);
+    authServiceSpy = jasmine.createSpyObj<AuthService>('AuthService', ['getGoogleAuthConfig', 'login', 'loginAsGuest', 'loginWithGoogle', 'saveSession']);
     authServiceSpy.getGoogleAuthConfig.and.returnValue(of({ enabled: false, clientId: '' }));
 
     TestBed.configureTestingModule({

@@ -52,7 +52,8 @@ describe('HelloComponent', () => {
         isReady: false,
         mode: 'random',
         playlistId: null,
-        playlistName: null
+        playlistName: null,
+        errorMessage: null
       })
     });
     audioServiceSpy.searchTracks.and.returnValue([]);
@@ -65,7 +66,8 @@ describe('HelloComponent', () => {
       isReady: false,
       mode: 'random',
       playlistId: null,
-      playlistName: null
+      playlistName: null,
+      errorMessage: null
     });
 
     TestBed.configureTestingModule({

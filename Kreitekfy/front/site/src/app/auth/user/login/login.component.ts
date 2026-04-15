@@ -106,19 +106,18 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     this.router.navigate(['/hello']);
   }
 
-  loginAsDemo(): void {
+  loginAsGuest(): void {
     this.errorMessage = '';
     this.isSubmitting = true;
-    this.authService.loginAsDemo().subscribe({
+    this.authService.loginAsGuest().subscribe({
       next: (response) => {
         this.isSubmitting = false;
         this.completeAuthentication(response, response.user);
       },
       error: (error) => {
         this.isSubmitting = false;
-        console.error('Demo login failed', error);
-        this.authService.startLocalDemoSession();
-        this.router.navigate(['/hello']);
+        console.error('Guest login failed', error);
+        this.errorMessage = 'No hemos podido abrir el acceso de invitado. Intentalo de nuevo.';
       }
     });
   }

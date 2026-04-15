@@ -410,15 +410,17 @@
         <p class="eyebrow">Bienvenido a Kreitekfy</p>
         <h1>Kreitekfy organiza tu catalogo en una experiencia musical clara, seria y profesional.</h1>
         <p>
-          Inicia sesion para acceder a recomendaciones, biblioteca filtrable, detalle de canciones y reproduccion continua
-          en una interfaz cuidada para escritorio, tablet y movil.
+          Inicia sesion, crea una cuenta o entra como invitado para acceder a recomendaciones, biblioteca filtrable,
+          detalle de canciones y reproduccion continua en una interfaz cuidada para escritorio, tablet y movil.
         </p>
 
         <div class="guest-panel__actions">
           <a class="primary-link" routerLink="/login">Iniciar sesion</a>
           <a class="ghost-link" routerLink="/register">Crear cuenta</a>
-          <button class="ghost-button" type="button" (click)="accessDemo()">Ver demo</button>
+          <button class="ghost-button" type="button" (click)="accessGuest()">Entrar como invitado</button>
         </div>
+
+        <p class="guest-panel__support" *ngIf="guestAccessError">{{ guestAccessError }}</p>
       </div>
 
       <div class="guest-panel__features">

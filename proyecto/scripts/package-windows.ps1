@@ -1,7 +1,8 @@
 param(
     [string]$Configuration = "Release",
     [string]$Framework = "net8.0-windows10.0.19041.0",
-    [string]$RuntimeIdentifierOverride = "win10-x64"
+    [string]$RuntimeIdentifierOverride = "win10-x64",
+    [string]$ApiUrl = "https://fct-manager-api.onrender.com/"
 )
 
 $ErrorActionPreference = "Stop"
@@ -41,9 +42,8 @@ if ($LASTEXITCODE -ne 0) {
     throw "dotnet publish fallo con codigo $LASTEXITCODE"
 }
 
-@"
-https://fct-manager-api.onrender.com/
-"@.Trim() | Set-Content -LiteralPath $apiUrlFile -Encoding UTF8
+$normalizedApiUrl = if ($ApiUrl.EndsWith("/")) { $ApiUrl } else { "$ApiUrl/" }
+$normalizedApiUrl | Set-Content -LiteralPath $apiUrlFile -Encoding UTF8
 
 Compress-Archive -Path (Join-Path $publishDir "*") -DestinationPath $zipPath -Force
 Copy-Item -LiteralPath $zipPath -Destination $downloadZipPath -Force

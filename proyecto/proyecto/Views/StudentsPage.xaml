@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="proyecto.Views.StudentsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:components="clr-namespace:proyecto.Components"
+    Title="Alumnos">
+
+    <RefreshView Command="{Binding LoadCommand}" IsRefreshing="{Binding IsBusy}">
+        <ScrollView>
+            <VerticalStackLayout Padding="18" Spacing="18" MaximumWidthRequest="1180" HorizontalOptions="Center">
+                <FlexLayout Wrap="Wrap" Direction="Row" AlignItems="Start">
+                    <Button
+                        Text="← Atrás"
+                        Command="{Binding BackCommand}"
+                        Style="{StaticResource SecondaryButton}"
+                        Margin="0,0,12,12" />
+                    <components:PageHeader
+                        TitleText="Alumnos"
+                        SubtitleText="Listado de alumnos, especialidad, estado y empresa asignada."
+                        FlexLayout.Basis="520"
+                        FlexLayout.Grow="1"
+                        Margin="0,0,0,12" />
+                </FlexLayout>
+
+                <Grid
+                    IsVisible="{Binding ErrorMessage, Converter={StaticResource StringNotEmptyConverter}}"
+                    BackgroundColor="#FFE4E0"
+                    Padding="12">
+                    <Label Text="{Binding ErrorMessage}" TextColor="{StaticResource DangerColor}" />
+                </Grid>
+
+                <FlexLayout Wrap="Wrap" Direction="Row" AlignItems="Stretch">
+                    <components:StatCard
+                        Margin="0,0,12,12"
+                        WidthRequest="250"
+                        TitleText="Total alumnos"
+                        ValueText="{Binding TotalAlumnos}"
+                        DetailText="En la base de datos"
+                        Icon="TOT"
+                        AccentColor="{StaticResource InfoColor}" />
+                    <components:StatCard
+                        Margin="0,0,12,12"
+                        WidthRequest="250"
+                        TitleText="Sin asignar"
+                        ValueText="{Binding TotalSinAsignar}"
+                        DetailText="Pendientes de empresa"
+                        Icon="PEN"
+                        AccentColor="{StaticResource WarningColor}" />
+                    <components:StatCard
+                        Margin="0,0,12,12"
+                        WidthRequest="250"
+                        TitleText="Asignados"
+                        ValueText="{Binding TotalAsignados}"
+                        DetailText="Con empresa asignada"
+                        Icon="ASI"
+                        AccentColor="{StaticResource SuccessColor}" />
+                    <components:StatCard
+                        Margin="0,0,12,12"
+                        WidthRequest="250"
+                        TitleText="En practicas"
+                        ValueText="{Binding TotalEnPracticas}"
+                        DetailText="Practicas activas"
+                        Icon="FCT"
+                        AccentColor="{StaticResource Secondary}" />
+                </FlexLayout>
+
+                <FlexLayout Wrap="Wrap" Direction="Row" AlignItems="End">
+                    <SearchBar
+                        WidthRequest="360"
+                        Placeholder="Buscar por alumno, curso, especialidad o empresa"
+                        Text="{Binding SearchText}" />
+                    <Picker
+                        Margin="12,0,0,0"
+                        WidthRequest="220"
+                        Title="Estado"
+                        ItemsSource="{Binding EstadoFiltros}"
+                        SelectedItem="{Binding EstadoFiltro}" />
+                    <Picker
+                        Margin="12,0,0,0"
+                        WidthRequest="180"
+                        Title="Curso"
+                        ItemsSource="{Binding CursoFiltros}"
+                        SelectedItem="{Binding CursoFiltro}" />
+                    <Picker
+                        Margin="12,0,0,0"
+                        WidthRequest="240"
+                        Title="Especialidad"
+                        ItemsSource="{Binding EspecialidadFiltros}"
+                        SelectedItem="{Binding EspecialidadFiltro}" />
+                    <Button
+                        Margin="12,0,0,0"
+                        Text="Limpiar filtros"
+                        Command="{Binding ResetFiltersCommand}"
+                        Style="{StaticResource SecondaryButton}" />
+                </FlexLayout>
+
+                <Label Text="{Binding ResultadosResumen}" Style="{StaticResource MutedLabel}" />
+
+                <CollectionView ItemsSource="{Binding AlumnosFiltrados}" SelectionMode="None">
+                    <CollectionView.EmptyView>
+                        <VerticalStackLayout Padding="24" Spacing="8">
+                            <Label Text="No hay alumnos para los filtros actuales." Style="{StaticResource SectionTitleLabel}" />
+                            <Label Text="Cuando el backend tenga alumnos aparecerán aquí." Style="{StaticResource MutedLabel}" />
+                        </VerticalStackLayout>
+                    </CollectionView.EmptyView>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Border
+                                Margin="0,0,0,12"
+                                Padding="16"
+                                BackgroundColor="{StaticResource SurfaceColor}"
+                                Stroke="{StaticResource BorderSoftColor}">
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="8" />
+                                </Border.StrokeShape>
+                                <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto,Auto" ColumnSpacing="16" RowSpacing="10">
+                                    <VerticalStackLayout Spacing="3">
+                                        <Label Text="{Binding Nombre}" FontAttributes="Bold" FontSize="18" />
+                                        <Label Text="{Binding Especialidad}" Style="{StaticResource MutedLabel}" />
+                                    </VerticalStackLayout>
+                                    <Border
+                                        Grid.Column="1"
+                                        Padding="9,4"
+                                        BackgroundColor="{Binding Estado, Converter={StaticResource StatusToBackgroundConverter}}"
+                                        StrokeThickness="0"
+                                        VerticalOptions="Start">
+                                        <Border.StrokeShape>
+                                            <RoundRectangle CornerRadius="8" />
+                                        </Border.StrokeShape>
+                                        <Label
+                                            Text="{Binding Estado}"
+                                            TextColor="{Binding Estado, Converter={StaticResource StatusToColorConverter}}"
+                                            Style="{StaticResource StatusLabel}" />
+                                    </Border>
+                                    <FlexLayout Grid.Row="1" Grid.ColumnSpan="2" Wrap="Wrap" Direction="Row">
+                                        <VerticalStackLayout Spacing="2" Margin="0,0,14,8" FlexLayout.Basis="160" FlexLayout.Grow="1">
+                                            <Label Text="Curso" Style="{StaticResource CaptionLabel}" />
+                                            <Label Text="{Binding Curso}" Style="{StaticResource MutedLabel}" />
+                                        </VerticalStackLayout>
+                                        <VerticalStackLayout Spacing="2" Margin="0,0,14,8" FlexLayout.Basis="240" FlexLayout.Grow="1">
+                                            <Label Text="Empresa asignada" Style="{StaticResource CaptionLabel}" />
+                                            <Label Text="{Binding EmpresaAsignada}" Style="{StaticResource MutedLabel}" />
+                                        </VerticalStackLayout>
+                                        <VerticalStackLayout Spacing="2" Margin="0,0,14,8" FlexLayout.Basis="200" FlexLayout.Grow="1">
+                                            <Label Text="Periodo" Style="{StaticResource CaptionLabel}" />
+                                            <Label Text="{Binding PeriodoPracticas}" Style="{StaticResource MutedLabel}" />
+                                        </VerticalStackLayout>
+                                    </FlexLayout>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+        </ScrollView>
+    </RefreshView>
+</ContentPage>

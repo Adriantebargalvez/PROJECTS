@@ -6,12 +6,24 @@
 
     <!-- Note: For Android please see also Platforms\Android\Resources\values\colors.xml -->
 
-    <Color x:Key="Primary">#512BD4</Color>
-    <Color x:Key="PrimaryDark">#ac99ea</Color>
-    <Color x:Key="PrimaryDarkText">#242424</Color>
-    <Color x:Key="Secondary">#DFD8F7</Color>
-    <Color x:Key="SecondaryDarkText">#9880e5</Color>
-    <Color x:Key="Tertiary">#2B0B98</Color>
+    <Color x:Key="Primary">#1D4ED8</Color>
+    <Color x:Key="PrimaryDark">#93C5FD</Color>
+    <Color x:Key="PrimaryDarkText">#111827</Color>
+    <Color x:Key="Secondary">#0F766E</Color>
+    <Color x:Key="SecondaryDarkText">#BFDBFE</Color>
+    <Color x:Key="Tertiary">#B45309</Color>
+
+    <Color x:Key="AppBackgroundColor">#F5F7FA</Color>
+    <Color x:Key="SurfaceColor">#FFFFFF</Color>
+    <Color x:Key="SurfaceAltColor">#EEF2F7</Color>
+    <Color x:Key="BorderSoftColor">#D9E2EC</Color>
+    <Color x:Key="TextPrimaryColor">#111827</Color>
+    <Color x:Key="TextSecondaryColor">#475569</Color>
+    <Color x:Key="TextMutedColor">#64748B</Color>
+    <Color x:Key="SuccessColor">#0F766E</Color>
+    <Color x:Key="WarningColor">#B45309</Color>
+    <Color x:Key="DangerColor">#B42318</Color>
+    <Color x:Key="InfoColor">#2563EB</Color>
 
     <Color x:Key="Marron">#F5EFED</Color>
     <Color x:Key="White">White</Color>

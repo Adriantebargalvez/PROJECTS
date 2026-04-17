@@ -5,6 +5,8 @@ VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "proyecto", "proyecto\proyecto.csproj", "{247EB016-C640-420C-ADF7-6197FDE2A82F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FctApi", "FctApi\FctApi.csproj", "{067D9E4D-ED64-4FE9-8A6F-E4C68EC1C6F3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,6 +19,10 @@ Global
 		{247EB016-C640-420C-ADF7-6197FDE2A82F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{247EB016-C640-420C-ADF7-6197FDE2A82F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{247EB016-C640-420C-ADF7-6197FDE2A82F}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{067D9E4D-ED64-4FE9-8A6F-E4C68EC1C6F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{067D9E4D-ED64-4FE9-8A6F-E4C68EC1C6F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{067D9E4D-ED64-4FE9-8A6F-E4C68EC1C6F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{067D9E4D-ED64-4FE9-8A6F-E4C68EC1C6F3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

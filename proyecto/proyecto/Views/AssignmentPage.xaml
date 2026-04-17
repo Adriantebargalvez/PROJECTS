@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="proyecto.Views.AssignmentPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:components="clr-namespace:proyecto.Components"
+    Title="Asignación">
+
+    <RefreshView Command="{Binding LoadCommand}" IsRefreshing="{Binding IsBusy}">
+        <ScrollView>
+            <VerticalStackLayout Padding="18" Spacing="18" MaximumWidthRequest="980" HorizontalOptions="Center">
+                <FlexLayout Wrap="Wrap" Direction="Row" AlignItems="Start">
+                    <Button
+                        Text="← Atrás"
+                        Command="{Binding BackCommand}"
+                        Style="{StaticResource SecondaryButton}"
+                        Margin="0,0,12,12" />
+                    <components:PageHeader
+                        TitleText="Asignación de prácticas"
+                        SubtitleText="Selecciona empresa, alumnos y periodo. La capacidad se valida antes de guardar."
+                        FlexLayout.Basis="520"
+                        FlexLayout.Grow="1"
+                        Margin="0,0,0,12" />
+                </FlexLayout>
+
+                <Grid
+                    IsVisible="{Binding ErrorMessage, Converter={StaticResource StringNotEmptyConverter}}"
+                    BackgroundColor="#FFE4E0"
+                    Padding="12">
+                    <Label Text="{Binding ErrorMessage}" TextColor="{StaticResource DangerColor}" />
+                </Grid>
+                <Grid
+                    IsVisible="{Binding SuccessMessage, Converter={StaticResource StringNotEmptyConverter}}"
+                    BackgroundColor="#D9F4EF"
+                    Padding="12">
+                    <Label Text="{Binding SuccessMessage}" TextColor="{StaticResource SuccessColor}" />
+                </Grid>
+
+                <Border Padding="16" BackgroundColor="{StaticResource SurfaceColor}" Stroke="{StaticResource BorderSoftColor}">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="8" />
+                    </Border.StrokeShape>
+                    <VerticalStackLayout Spacing="14">
+                        <FlexLayout Wrap="Wrap" Direction="Row">
+                            <VerticalStackLayout Spacing="6" Margin="0,0,12,12" FlexLayout.Basis="360" FlexLayout.Grow="1">
+                                <Label Text="Empresa" Style="{StaticResource CaptionLabel}" />
+                                <Picker
+                                    Title="Selecciona empresa confirmada"
+                                    ItemsSource="{Binding Empresas}"
+                                    ItemDisplayBinding="{Binding Nombre}"
+                                    SelectedItem="{Binding SelectedEmpresa}" />
+                            </VerticalStackLayout>
+                            <VerticalStackLayout Spacing="6" Margin="0,0,12,12" FlexLayout.Basis="220" FlexLayout.Grow="1">
+                                <Label Text="Capacidad" Style="{StaticResource CaptionLabel}" />
+                                <Border Padding="10,8" BackgroundColor="#D9F4EF" StrokeThickness="0">
+                                    <Border.StrokeShape>
+                                        <RoundRectangle CornerRadius="8" />
+                                    </Border.StrokeShape>
+                                    <Label Text="{Binding CapacidadText}" TextColor="{StaticResource SuccessColor}" FontAttributes="Bold" />
+                                </Border>
+                            </VerticalStackLayout>
+                        </FlexLayout>
+
+                        <FlexLayout Wrap="Wrap" Direction="Row">
+                            <VerticalStackLayout Spacing="6" Margin="0,0,12,0" FlexLayout.Basis="240" FlexLayout.Grow="1">
+                                <Label Text="Fecha de inicio" Style="{StaticResource CaptionLabel}" />
+                                <DatePicker Date="{Binding FechaInicio}" />
+                            </VerticalStackLayout>
+                            <VerticalStackLayout Spacing="6" Margin="0,0,12,0" FlexLayout.Basis="240" FlexLayout.Grow="1">
+                                <Label Text="Fecha de fin" Style="{StaticResource CaptionLabel}" />
+                                <DatePicker Date="{Binding FechaFin}" MinimumDate="{Binding FechaFinMinima}" />
+                            </VerticalStackLayout>
+                        </FlexLayout>
+                    </VerticalStackLayout>
+                </Border>
+
+                <Grid ColumnDefinitions="*,Auto" ColumnSpacing="12">
+                    <Label Text="Alumnos sin asignar" Style="{StaticResource SectionTitleLabel}" />
+                    <Label Grid.Column="1" Text="{Binding SelectedCountText}" Style="{StaticResource MutedLabel}" VerticalOptions="Center" />
+                </Grid>
+
+                <CollectionView ItemsSource="{Binding Alumnos}" SelectionMode="None">
+                    <CollectionView.EmptyView>
+                        <VerticalStackLayout Padding="24" Spacing="8">
+                            <Label Text="No hay alumnos sin asignar." Style="{StaticResource SectionTitleLabel}" />
+                            <Label Text="Cuando existan alumnos pendientes se podrán seleccionar desde esta pantalla." Style="{StaticResource MutedLabel}" />
+                        </VerticalStackLayout>
+                    </CollectionView.EmptyView>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Border
+                                Margin="0,0,0,10"
+                                Padding="14"
+                                BackgroundColor="{StaticResource SurfaceColor}"
+                                Stroke="{StaticResource BorderSoftColor}">
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="8" />
+                                </Border.StrokeShape>
+                                <Grid ColumnDefinitions="Auto,*" ColumnSpacing="12">
+                                    <CheckBox IsChecked="{Binding IsSelected}" VerticalOptions="Center" />
+                                    <VerticalStackLayout Grid.Column="1" Spacing="3">
+                                        <Label Text="{Binding Nombre}" FontAttributes="Bold" />
+                                        <Label Text="{Binding Curso}" Style="{StaticResource MutedLabel}" />
+                                        <Label Text="{Binding Especialidad}" Style="{StaticResource CaptionLabel}" />
+                                    </VerticalStackLayout>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <Button
+                    Text="Guardar asignación"
+                    Command="{Binding SaveAssignmentCommand}"
+                    HorizontalOptions="Start" />
+            </VerticalStackLayout>
+        </ScrollView>
+    </RefreshView>
+</ContentPage>

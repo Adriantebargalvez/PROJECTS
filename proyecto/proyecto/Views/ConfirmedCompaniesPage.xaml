@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="proyecto.Views.ConfirmedCompaniesPage"
+    x:Name="PageRoot"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:components="clr-namespace:proyecto.Components"
+    Title="Confirmadas">
+
+    <RefreshView Command="{Binding LoadCommand}" IsRefreshing="{Binding IsBusy}">
+        <ScrollView>
+            <VerticalStackLayout Padding="18" Spacing="18" MaximumWidthRequest="1180" HorizontalOptions="Center">
+                <FlexLayout Wrap="Wrap" Direction="Row" AlignItems="Start">
+                    <Button
+                        Text="Atras"
+                        Command="{Binding BackCommand}"
+                        Style="{StaticResource SecondaryButton}"
+                        Margin="0,0,12,12" />
+                    <components:PageHeader
+                        TitleText="Empresas confirmadas"
+                        SubtitleText="Empresas disponibles para asignar alumnos sin superar la capacidad real."
+                        FlexLayout.Basis="520"
+                        FlexLayout.Grow="1"
+                        Margin="0,0,0,12" />
+                </FlexLayout>
+
+                <Grid
+                    IsVisible="{Binding ErrorMessage, Converter={StaticResource StringNotEmptyConverter}}"
+                    BackgroundColor="#FFE4E0"
+                    Padding="12">
+                    <Label Text="{Binding ErrorMessage}" TextColor="{StaticResource DangerColor}" />
+                </Grid>
+                <Grid
+                    IsVisible="{Binding SuccessMessage, Converter={StaticResource StringNotEmptyConverter}}"
+                    BackgroundColor="#D9F4EF"
+                    Padding="12">
+                    <Label Text="{Binding SuccessMessage}" TextColor="{StaticResource SuccessColor}" />
+                </Grid>
+
+                <CollectionView ItemsSource="{Binding Empresas}" SelectionMode="None">
+                    <CollectionView.EmptyView>
+                        <VerticalStackLayout Padding="24" Spacing="8">
+                            <Label Text="No hay empresas confirmadas con plazas disponibles." Style="{StaticResource SectionTitleLabel}" />
+                            <Label Text="Marca empresas como confirmadas y define sus plazas desde la seccion Empresas." Style="{StaticResource MutedLabel}" />
+                        </VerticalStackLayout>
+                    </CollectionView.EmptyView>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Border
+                                Margin="0,0,0,12"
+                                Padding="16"
+                                BackgroundColor="{StaticResource SurfaceColor}"
+                                Stroke="{StaticResource BorderSoftColor}">
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="8" />
+                                </Border.StrokeShape>
+                                <VerticalStackLayout Spacing="12">
+                                    <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto" ColumnSpacing="12">
+                                        <Label Text="{Binding Nombre}" FontAttributes="Bold" FontSize="20" />
+                                        <Border Grid.Column="1" Padding="10,5" BackgroundColor="#D9F4EF" StrokeThickness="0">
+                                            <Border.StrokeShape>
+                                                <RoundRectangle CornerRadius="8" />
+                                            </Border.StrokeShape>
+                                            <Label Text="{Binding EstadoOperativo}" TextColor="{StaticResource SuccessColor}" FontAttributes="Bold" />
+                                        </Border>
+                                        <Label
+                                            Grid.Row="1"
+                                            Grid.ColumnSpan="2"
+                                            Text="{Binding Ubicacion}"
+                                            Style="{StaticResource MutedLabel}"
+                                            MaxLines="1"
+                                            LineBreakMode="TailTruncation" />
+                                    </Grid>
+
+                                    <FlexLayout Wrap="Wrap" Direction="Row">
+                                        <Border Padding="12" Margin="0,0,10,10" BackgroundColor="#D9F4EF" StrokeThickness="0" FlexLayout.Basis="170" FlexLayout.Grow="1">
+                                            <Border.StrokeShape>
+                                                <RoundRectangle CornerRadius="8" />
+                                            </Border.StrokeShape>
+                                            <VerticalStackLayout Spacing="2">
+                                                <Label Text="Plazas libres" Style="{StaticResource CaptionLabel}" />
+                                                <Label Text="{Binding PlazasKpi}" FontAttributes="Bold" FontSize="18" TextColor="{StaticResource SuccessColor}" />
+                                            </VerticalStackLayout>
+                                        </Border>
+                                        <Border Padding="12" Margin="0,0,10,10" BackgroundColor="#E0ECFF" StrokeThickness="0" FlexLayout.Basis="170" FlexLayout.Grow="1">
+                                            <Border.StrokeShape>
+                                                <RoundRectangle CornerRadius="8" />
+                                            </Border.StrokeShape>
+                                            <VerticalStackLayout Spacing="2">
+                                                <Label Text="Alumnos" Style="{StaticResource CaptionLabel}" />
+                                                <Label Text="{Binding AlumnosKpi}" FontAttributes="Bold" FontSize="18" TextColor="{StaticResource InfoColor}" />
+                                            </VerticalStackLayout>
+                                        </Border>
+                                        <Border Padding="12" Margin="0,0,0,10" BackgroundColor="{StaticResource SurfaceAltColor}" StrokeThickness="0" FlexLayout.Basis="230" FlexLayout.Grow="2">
+                                            <Border.StrokeShape>
+                                                <RoundRectangle CornerRadius="8" />
+                                            </Border.StrokeShape>
+                                            <VerticalStackLayout Spacing="6">
+                                                <Grid ColumnDefinitions="*,Auto">
+                                                    <Label Text="Ocupacion" FontAttributes="Bold" />
+                                                    <Label Grid.Column="1" Text="{Binding OcupacionResumen}" Style="{StaticResource CaptionLabel}" />
+                                                </Grid>
+                                                <ProgressBar Progress="{Binding OcupacionRatio}" ProgressColor="{StaticResource SuccessColor}" />
+                                            </VerticalStackLayout>
+                                        </Border>
+                                    </FlexLayout>
+
+                                    <FlexLayout Wrap="Wrap" Direction="Row">
+                                        <VerticalStackLayout Spacing="2" Margin="0,0,18,8" FlexLayout.Basis="220" FlexLayout.Grow="1">
+                                            <Label Text="Contacto" Style="{StaticResource CaptionLabel}" />
+                                            <Label Text="{Binding ContactoResumen}" FontAttributes="Bold" MaxLines="1" LineBreakMode="TailTruncation" />
+                                        </VerticalStackLayout>
+                                        <VerticalStackLayout Spacing="2" Margin="0,0,18,8" FlexLayout.Basis="240" FlexLayout.Grow="1">
+                                            <Label Text="Email" Style="{StaticResource CaptionLabel}" />
+                                            <Label Text="{Binding EmailResumen}" Style="{StaticResource MutedLabel}" MaxLines="1" LineBreakMode="TailTruncation" />
+                                        </VerticalStackLayout>
+                                        <VerticalStackLayout Spacing="2" Margin="0,0,0,8" FlexLayout.Basis="160" FlexLayout.Grow="1">
+                                            <Label Text="Telefono" Style="{StaticResource CaptionLabel}" />
+                                            <Label Text="{Binding TelefonoResumen}" Style="{StaticResource MutedLabel}" MaxLines="1" LineBreakMode="TailTruncation" />
+                                        </VerticalStackLayout>
+                                    </FlexLayout>
+
+                                    <Border Padding="12" BackgroundColor="{StaticResource SurfaceAltColor}" StrokeThickness="0">
+                                        <Border.StrokeShape>
+                                            <RoundRectangle CornerRadius="8" />
+                                        </Border.StrokeShape>
+                                        <VerticalStackLayout Spacing="8">
+                                            <Grid ColumnDefinitions="*,Auto">
+                                                <Label Text="Alumnos asignados" FontAttributes="Bold" />
+                                                <Label Grid.Column="1" Text="{Binding AlumnosAsignadosResumen}" Style="{StaticResource CaptionLabel}" />
+                                            </Grid>
+                                            <Label
+                                                Text="Sin alumnos asignados"
+                                                Style="{StaticResource MutedLabel}"
+                                                IsVisible="{Binding TieneAlumnosAsignados, Converter={StaticResource InverseBoolConverter}}" />
+                                            <FlexLayout
+                                                Wrap="Wrap"
+                                                Direction="Row"
+                                                IsVisible="{Binding TieneAlumnosAsignados}"
+                                                BindableLayout.ItemsSource="{Binding AlumnosAsignados}">
+                                                <BindableLayout.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Border
+                                                            Margin="0,0,8,8"
+                                                            Padding="9,7"
+                                                            BackgroundColor="#FFFFFF"
+                                                            Stroke="{StaticResource BorderSoftColor}"
+                                                            FlexLayout.Basis="230">
+                                                            <Border.StrokeShape>
+                                                                <RoundRectangle CornerRadius="8" />
+                                                            </Border.StrokeShape>
+                                                            <Grid ColumnDefinitions="*,36" RowDefinitions="Auto,Auto" ColumnSpacing="8">
+                                                                <Label Text="{Binding Nombre}" FontAttributes="Bold" MaxLines="1" LineBreakMode="TailTruncation" />
+                                                                <Border
+                                                                    Grid.Column="1"
+                                                                    Grid.RowSpan="2"
+                                                                    WidthRequest="32"
+                                                                    HeightRequest="32"
+                                                                    BackgroundColor="#FFF1F0"
+                                                                    Stroke="#FDA29B"
+                                                                    StrokeThickness="1"
+                                                                    SemanticProperties.Description="Quitar alumno"
+                                                                    HorizontalOptions="End"
+                                                                    VerticalOptions="Center">
+                                                                    <Border.StrokeShape>
+                                                                        <RoundRectangle CornerRadius="16" />
+                                                                    </Border.StrokeShape>
+                                                                    <Border.GestureRecognizers>
+                                                                        <TapGestureRecognizer
+                                                                            Command="{Binding BindingContext.UnassignStudentCommand, Source={x:Reference PageRoot}}"
+                                                                            CommandParameter="{Binding .}" />
+                                                                    </Border.GestureRecognizers>
+                                                                    <Label
+                                                                        Text="×"
+                                                                        TextColor="{StaticResource DangerColor}"
+                                                                        FontSize="20"
+                                                                        FontAttributes="Bold"
+                                                                        HorizontalTextAlignment="Center"
+                                                                        VerticalTextAlignment="Center" />
+                                                                </Border>
+                                                                <Label Grid.Row="1" Text="{Binding PeriodoPracticas}" Style="{StaticResource CaptionLabel}" />
+                                                            </Grid>
+                                                        </Border>
+                                                    </DataTemplate>
+                                                </BindableLayout.ItemTemplate>
+                                            </FlexLayout>
+                                        </VerticalStackLayout>
+                                    </Border>
+
+                                    <Button
+                                        Text="Asignar alumnos"
+                                        Command="{Binding BindingContext.AssignCommand, Source={x:Reference PageRoot}}"
+                                        CommandParameter="{Binding .}"
+                                        HorizontalOptions="Start" />
+                                </VerticalStackLayout>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+        </ScrollView>
+    </RefreshView>
+</ContentPage>

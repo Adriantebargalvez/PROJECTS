@@ -3,23 +3,27 @@
     x:Class="proyecto.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:proyecto"
-    Shell.FlyoutBehavior="Disabled"
-    Title="proyecto">
-    <!-- Página de inicio de sesión, que será la primera página que se carga -->
-    <ShellContent
-Title="Inicio de Sesión"
-ContentTemplate="{DataTemplate local:inicio}"
-Route="Inicio" />
-    <ShellContent
-Title="Inicio de Sesión"
-ContentTemplate="{DataTemplate local:EmpresasContactadas}"
-Route="EmpresasContactadas" />
+    xmlns:views="clr-namespace:proyecto.Views"
+    FlyoutBehavior="Flyout"
+    Title="FCT Manager">
 
+    <FlyoutItem Title="Dashboard" Route="dashboard">
+        <ShellContent ContentTemplate="{DataTemplate views:DashboardPage}" />
+    </FlyoutItem>
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <FlyoutItem Title="Empresas" Route="empresas">
+        <ShellContent ContentTemplate="{DataTemplate views:CompaniesPage}" />
+    </FlyoutItem>
 
+    <FlyoutItem Title="Confirmadas" Route="confirmadas">
+        <ShellContent ContentTemplate="{DataTemplate views:ConfirmedCompaniesPage}" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Alumnos" Route="alumnos">
+        <ShellContent ContentTemplate="{DataTemplate views:StudentsPage}" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Asignación" Route="asignacion">
+        <ShellContent ContentTemplate="{DataTemplate views:AssignmentPage}" />
+    </FlyoutItem>
 </Shell>

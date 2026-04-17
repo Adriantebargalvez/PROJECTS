@@ -1,12 +1,17 @@
-﻿namespace proyecto
+using Microsoft.Extensions.DependencyInjection;
+
+namespace proyecto
 {
     public partial class App : Application
     {
-        public App()
+        public static IServiceProvider Services { get; private set; } = default!;
+
+        public App(IServiceProvider services)
         {
+            Services = services;
             InitializeComponent();
 
-            MainPage = new AppShell();
+            MainPage = Services.GetRequiredService<AppShell>();
         }
     }
 }

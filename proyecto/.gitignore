@@ -2,3 +2,8 @@
 proyecto/bin/
 proyecto/obj/
 proyecto/*.user
+FctApi/bin/
+FctApi/obj/
+artifacts/
+dist/
+downloads/*.zip

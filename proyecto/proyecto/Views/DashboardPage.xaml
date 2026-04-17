@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="proyecto.Views.DashboardPage"
+    x:Name="PageRoot"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:components="clr-namespace:proyecto.Components"
+    Title="Dashboard">
+
+    <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsBusy}">
+        <ScrollView>
+            <VerticalStackLayout Padding="18" Spacing="22" MaximumWidthRequest="1180" HorizontalOptions="Center">
+                <components:PageHeader
+                    TitleText="Gestión FCT"
+                    SubtitleText="Resumen operativo de empresas, alumnos y plazas disponibles." />
+
+                <Grid
+                    IsVisible="{Binding ErrorMessage, Converter={StaticResource StringNotEmptyConverter}}"
+                    BackgroundColor="#FFE4E0"
+                    Padding="12">
+                    <Label Text="{Binding ErrorMessage}" TextColor="{StaticResource DangerColor}" />
+                </Grid>
+
+                <FlexLayout Wrap="Wrap" Direction="Row" AlignItems="Stretch">
+                    <components:StatCard
+                        Margin="0,0,12,12"
+                        WidthRequest="260"
+                        TitleText="Empresas contactadas"
+                        ValueText="{Binding EmpresasContactadas}"
+                        DetailText="Seguimiento iniciado"
+                        Icon="CON"
+                        AccentColor="{StaticResource WarningColor}" />
+                    <components:StatCard
+                        Margin="0,0,12,12"
+                        WidthRequest="260"
+                        TitleText="Empresas confirmadas"
+                        ValueText="{Binding EmpresasConfirmadas}"
+                        DetailText="Disponibles para FCT"
+                        Icon="OK"
+                        AccentColor="{StaticResource SuccessColor}" />
+                    <components:StatCard
+                        Margin="0,0,12,12"
+                        WidthRequest="260"
+                        TitleText="Alumnos sin asignar"
+                        ValueText="{Binding AlumnosSinAsignar}"
+                        DetailText="Toca para ver la lista"
+                        Icon="ALU"
+                        AccentColor="{StaticResource Tertiary}">
+                        <components:StatCard.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding GoToAlumnosSinAsignarCommand}" />
+                        </components:StatCard.GestureRecognizers>
+                    </components:StatCard>
+                    <components:StatCard
+                        Margin="0,0,12,12"
+                        WidthRequest="260"
+                        TitleText="Plazas disponibles"
+                        ValueText="{Binding PlazasDisponibles}"
+                        DetailText="Capacidad libre confirmada"
+                        Icon="PLC"
+                        AccentColor="{StaticResource InfoColor}" />
+                </FlexLayout>
+
+                <FlexLayout Wrap="Wrap" Direction="Row" AlignItems="Stretch">
+                    <Border
+                        Margin="0,0,18,18"
+                        Padding="16"
+                        FlexLayout.Basis="520"
+                        FlexLayout.Grow="1"
+                        BackgroundColor="{StaticResource SurfaceColor}"
+                        Stroke="{StaticResource BorderSoftColor}">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="8" />
+                        </Border.StrokeShape>
+                        <VerticalStackLayout Spacing="14">
+                            <Grid ColumnDefinitions="*,Auto">
+                                <Label Text="Empresas con plazas" Style="{StaticResource SectionTitleLabel}" />
+                                <Button
+                                    Grid.Column="1"
+                                    Text="Asignar"
+                                    Command="{Binding GoToAsignacionCommand}"
+                                    Style="{StaticResource SecondaryButton}" />
+                            </Grid>
+                            <CollectionView ItemsSource="{Binding EmpresasConfirmadasDisponibles}" SelectionMode="None">
+                                <CollectionView.EmptyView>
+                                    <Label Text="Todavía no hay empresas confirmadas con plazas libres." Style="{StaticResource MutedLabel}" />
+                                </CollectionView.EmptyView>
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid Padding="0,10" ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto">
+                                            <Label Text="{Binding Nombre}" FontAttributes="Bold" />
+                                            <Label
+                                                Grid.Column="1"
+                                                Text="{Binding PlazasResumen}"
+                                                TextColor="{StaticResource SuccessColor}" />
+                                            <Label
+                                                Grid.Row="1"
+                                                Grid.ColumnSpan="2"
+                                                Text="{Binding Ubicacion}"
+                                                Style="{StaticResource MutedLabel}" />
+                                        </Grid>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <Border
+                        Margin="0,0,0,18"
+                        Padding="16"
+                        FlexLayout.Basis="520"
+                        FlexLayout.Grow="1"
+                        BackgroundColor="{StaticResource SurfaceColor}"
+                        Stroke="{StaticResource BorderSoftColor}">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="8" />
+                        </Border.StrokeShape>
+                        <VerticalStackLayout Spacing="14">
+                            <Grid ColumnDefinitions="*,Auto">
+                                <Label Text="Alumnos pendientes" Style="{StaticResource SectionTitleLabel}" />
+                                <Button
+                                    Grid.Column="1"
+                                    Text="Ver alumnos"
+                                    Command="{Binding GoToAlumnosCommand}"
+                                    Style="{StaticResource SecondaryButton}" />
+                            </Grid>
+                            <CollectionView ItemsSource="{Binding AlumnosPendientes}" SelectionMode="None">
+                                <CollectionView.EmptyView>
+                                    <Label Text="No hay alumnos pendientes de asignación." Style="{StaticResource MutedLabel}" />
+                                </CollectionView.EmptyView>
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid Padding="0,10" ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto">
+                                            <Label Text="{Binding Nombre}" FontAttributes="Bold" />
+                                            <Label Grid.Column="1" Text="{Binding Curso}" Style="{StaticResource MutedLabel}" />
+                                            <Label
+                                                Grid.Row="1"
+                                                Grid.ColumnSpan="2"
+                                                Text="{Binding Especialidad}"
+                                                Style="{StaticResource MutedLabel}" />
+                                        </Grid>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </VerticalStackLayout>
+                    </Border>
+                </FlexLayout>
+
+                <Button
+                    Text="Gestionar empresas"
+                    Command="{Binding GoToEmpresasCommand}"
+                    HorizontalOptions="Start" />
+            </VerticalStackLayout>
+        </ScrollView>
+    </RefreshView>
+</ContentPage>

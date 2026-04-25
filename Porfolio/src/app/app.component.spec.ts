@@ -18,7 +18,7 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
     expect(app.fullName).toEqual('Adrián Tebar Gálvez');
-    expect(app.professionalRole).toContain('Full Stack');
+    expect(app.role).toContain('Angular');
   });
 
   it('should render the portfolio heading', () => {
@@ -28,5 +28,11 @@ describe('AppComponent', () => {
     expect(compiled.querySelector('h1')?.textContent).toContain(
       'Adrián Tebar Gálvez',
     );
+  });
+
+  it('should include five featured projects', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    expect(app.projects.length).toBe(5);
   });
 });

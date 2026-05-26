@@ -1,0 +1,20 @@
+services:
+  backend:
+    build:
+      context: ./backend
+    environment:
+      FFMPEG_PATH: ffmpeg
+      FFPROBE_PATH: ffprobe
+      VIDEO_ALLOWED_ROOTS: /data
+    volumes:
+      - ./data:/data
+    ports:
+      - "8080:8080"
+
+  frontend:
+    build:
+      context: ./frontend
+    depends_on:
+      - backend
+    ports:
+      - "4200:80"

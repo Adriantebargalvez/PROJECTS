@@ -1,0 +1,24 @@
+<div class="row">
+  <div class="col-4 mt-4" *ngFor="let monster of monsters">
+    <div class="card">
+      <div class="card-header">
+        <h2>{{monster.name}}</h2>
+
+       
+        <p><strong>Description:</strong><i>{{monster.description}}</i> </p>
+        <p><strong>Lugar:</strong>
+        <ul>
+          <li *ngFor="let localidad of monster.common_locations ">
+            {{localidad}}</li>
+        </ul>
+        <p><strong>Materiales:</strong>
+        <ul>
+          <li *ngFor="let materiales of monster.drops ">
+            {{materiales}}</li>
+        </ul>
+      </div>
+    </div>
+
+    <img [src]="monster.image" class="card-img-top">
+  </div>
+</div>

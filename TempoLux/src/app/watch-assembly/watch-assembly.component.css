@@ -1,0 +1,271 @@
+.assembly-story {
+  min-height: 380vh;
+}
+
+.assembly-story > div {
+  min-height: inherit;
+}
+
+.assembly-copy {
+  position: relative;
+  z-index: 2;
+}
+
+.assembly-stage {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  align-self: start;
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+  padding-block: 5rem;
+}
+
+.assembly-stage::before {
+  position: absolute;
+  inset: 9%;
+  content: '';
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 50% 45%, rgb(216 183 111 / 30%), transparent 55%),
+    radial-gradient(circle at 44% 55%, rgb(255 255 255 / 11%), transparent 48%);
+  filter: blur(22px);
+  animation: stage-breathe 4s ease-in-out infinite;
+}
+
+@keyframes stage-breathe {
+  0%, 100% { opacity: 0.7; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.03); }
+}
+
+.assembly-photo-shell {
+  position: relative;
+  width: min(38rem, 100%);
+}
+
+.assembly-photo {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border: 1px solid rgb(255 255 255 / 14%);
+  border-radius: 10px;
+  background: #050505;
+  box-shadow:
+    0 40px 120px rgb(0 0 0 / 70%),
+    0 0 0 1px rgb(216 183 111 / 8%),
+    inset 0 1px 0 rgb(255 255 255 / 6%);
+}
+
+.assembly-real {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform-origin: center;
+}
+
+.base {
+  filter: grayscale(1) blur(3px) brightness(0.2);
+  opacity: 0.82;
+  transform: scale(1.03);
+}
+
+.piece {
+  /* filter is now set via [style.filter] binding in the template */
+  transition:
+    opacity 200ms ease,
+    transform 200ms ease,
+    filter 200ms ease;
+  transform-origin: center;
+}
+
+.complete {
+  filter: contrast(1.07) saturate(0.97);
+  transition: opacity 220ms ease;
+}
+
+/* Clip paths for each piece */
+.piece-strap {
+  clip-path: polygon(34% 0, 66% 0, 62% 25%, 38% 25%, 38% 75%, 62% 75%, 66% 100%, 34% 100%);
+}
+
+.piece-case {
+  clip-path: circle(46% at 50% 50%);
+}
+
+.piece-dial {
+  clip-path: circle(31% at 50% 50%);
+}
+
+.piece-markers {
+  clip-path: circle(24% at 50% 50%);
+}
+
+.piece-hands {
+  clip-path: polygon(44% 18%, 56% 18%, 56% 52%, 84% 56%, 84% 66%, 50% 59%, 16% 66%, 16% 56%, 44% 52%);
+}
+
+.piece-crown {
+  clip-path: polygon(72% 38%, 100% 38%, 100% 62%, 72% 62%);
+}
+
+/* Animated shimmer */
+.assembly-shine {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 0 30%, rgb(255 255 255 / 22%) 44%, transparent 58% 100%);
+  mix-blend-mode: screen;
+  opacity: 0;
+  pointer-events: none;
+  animation: shine-sweep 5s ease-in-out infinite;
+}
+
+@keyframes shine-sweep {
+  0%   { opacity: 0; transform: translateX(-100%); }
+  12%  { opacity: 0.42; }
+  25%  { opacity: 0; transform: translateX(100%); }
+  100% { opacity: 0; transform: translateX(100%); }
+}
+
+/* Golden glow ring on assembly complete */
+.assembly-glow-ring {
+  position: absolute;
+  inset: 15%;
+  border-radius: 50%;
+  border: 1.5px solid rgba(216, 183, 111, 0.55);
+  pointer-events: none;
+  animation: glow-pulse 2.4s ease-in-out infinite;
+  transition: opacity 300ms ease;
+}
+
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(216, 183, 111, 0.15), inset 0 0 20px rgba(216, 183, 111, 0.06); transform: scale(1); }
+  50%       { box-shadow: 0 0 45px rgba(216, 183, 111, 0.35), inset 0 0 35px rgba(216, 183, 111, 0.12); transform: scale(1.015); }
+}
+
+/* Particles */
+.assembly-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  display: grid;
+  place-items: center;
+}
+
+.particle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #d8b76f;
+  animation: particle-fly 1.6s ease-out var(--delay, 0s) infinite;
+  transform-origin: center;
+}
+
+.particle:nth-child(odd) {
+  background: #fff5dc;
+  width: 3px;
+  height: 3px;
+}
+
+.particle:nth-child(3n) {
+  background: rgba(216, 183, 111, 0.5);
+  width: 7px;
+  height: 7px;
+}
+
+@keyframes particle-fly {
+  0%   { transform: translate(-50%, -50%) scale(1); opacity: 0.9; }
+  70%  { opacity: 0.6; }
+  100% { transform: translate(calc(-50% + var(--dx, 50px)), calc(-50% + var(--dy, -50px))) scale(0); opacity: 0; }
+}
+
+/* Progress */
+.assembly-progress {
+  position: relative;
+  z-index: 3;
+  height: 0.34rem;
+  margin-top: 0.85rem;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgb(255 255 255 / 10%);
+}
+
+.assembly-progress span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #d8b76f, #fff5dc);
+  box-shadow: 0 0 10px rgba(216, 183, 111, 0.5);
+  transition: width 60ms linear;
+}
+
+.assembly-progress-label {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.assembly-progress-label span {
+  color: #d8b76f;
+}
+
+/* Steps */
+.assembly-step {
+  max-width: 22rem;
+  border-left: 1px solid rgba(216, 183, 111, 0.3);
+  padding-left: 1rem;
+  transition: border-color 400ms ease;
+}
+
+.assembly-step--active {
+  border-color: rgba(216, 183, 111, 0.7);
+}
+
+.assembly-step--active p {
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.assembly-step span {
+  display: block;
+  color: #d8b76f;
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0.22em;
+  transition: opacity 400ms ease;
+}
+
+.assembly-step p {
+  margin-top: 0.48rem;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 1.28rem;
+  font-weight: 800;
+  transition: color 400ms ease;
+}
+
+@media (max-width: 767px) {
+  .assembly-story {
+    min-height: 300vh;
+  }
+
+  .assembly-stage {
+    min-height: 76vh;
+    padding-block: 3rem;
+  }
+
+  .assembly-photo-shell {
+    width: min(19.5rem, 100%);
+  }
+
+  .assembly-copy {
+    text-shadow: 0 2px 20px rgb(0 0 0 / 82%);
+  }
+}

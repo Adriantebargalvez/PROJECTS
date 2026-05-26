@@ -1,0 +1,124 @@
+:host {
+  display: block;
+}
+
+.brand-lockup {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  color: #f7f0e6;
+  text-decoration: none;
+}
+
+.brand-mark {
+  display: grid;
+  width: 2.65rem;
+  height: 2.65rem;
+  place-items: center;
+  border: 1px solid rgb(216 183 111 / 72%);
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 35% 22%, rgb(255 255 255 / 32%), transparent 35%),
+    linear-gradient(145deg, #d8b76f, #6f5520);
+  color: #090807;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 0.94rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  box-shadow: 0 0 38px rgb(216 183 111 / 18%);
+}
+
+.brand-word {
+  font-size: 0.92rem;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.nav-active {
+  color: #d8b76f !important;
+}
+
+.nav-customize {
+  border: 1px solid rgba(216, 183, 111, 0.3);
+  border-radius: 999px;
+  padding: 0.4rem 0.85rem;
+  color: #d8b76f !important;
+  transition: background 180ms ease, border-color 180ms ease;
+}
+
+.nav-customize:hover {
+  background: rgba(216, 183, 111, 0.08);
+  border-color: rgba(216, 183, 111, 0.6);
+}
+
+/* Cart button */
+.nav-cart-btn {
+  position: relative;
+  display: grid;
+  width: 2.3rem;
+  height: 2.3rem;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.75);
+  cursor: pointer;
+  transition: border-color 160ms ease, color 160ms ease, background 160ms ease;
+}
+
+.nav-cart-btn:hover {
+  border-color: rgba(216, 183, 111, 0.6);
+  color: #d8b76f;
+  background: rgba(216, 183, 111, 0.08);
+}
+
+.nav-cart-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  min-width: 1.1rem;
+  height: 1.1rem;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #d8b76f, #a88030);
+  color: #090807;
+  font-size: 0.62rem;
+  font-weight: 900;
+  padding: 0 0.22rem;
+  animation: badge-pop 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes badge-pop {
+  from { transform: scale(0); }
+  to   { transform: scale(1); }
+}
+
+.footer-link {
+  border: 1px solid rgb(255 255 255 / 14%);
+  border-radius: 6px;
+  padding: 0.8rem 1rem;
+  color: #f7f0e6;
+  font-size: 0.86rem;
+  font-weight: 800;
+  text-decoration: none;
+  transition:
+    border-color 180ms ease,
+    color 180ms ease;
+}
+
+.footer-link:hover {
+  border-color: rgb(216 183 111 / 70%);
+  color: #d8b76f;
+}
+
+.footer-link--gold {
+  border-color: rgba(216, 183, 111, 0.35);
+  color: #d8b76f;
+}
+
+.footer-link--gold:hover {
+  background: rgba(216, 183, 111, 0.08);
+  border-color: #d8b76f;
+}

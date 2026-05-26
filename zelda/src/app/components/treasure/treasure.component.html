@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-4 mt-4" *ngFor="let treasure of treasure">
+    <div class="card">
+      <div class="card-header">
+        <p><strong>Lugar:</strong>
+        <ul>
+          <li *ngFor="let localidad of treasure.common_locations ">
+            {{localidad}}</li>
+        </ul>
+        <p><strong>Materiales:</strong>
+        <ul>
+          <li *ngFor="let materiales of treasure.drops ">
+            {{materiales}}</li>
+        </ul>
+        <p><strong>Description:</strong><i>{{treasure.description}}</i> </p>
+        <h2>{{treasure.name}}</h2>
+      </div>
+    </div>
+    <img [src]="treasure.image" class="card-img-top">
+
+  </div>
+</div>
+

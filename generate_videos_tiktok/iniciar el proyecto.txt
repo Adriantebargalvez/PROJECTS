@@ -1,0 +1,55 @@
+﻿INICIAR EL PROYECTO generate_videos_tiktok
+
+IMPORTANTE:
+- Usa CMD, no PowerShell.
+- Abre 2 ventanas de CMD.
+- No cierres las ventanas mientras uses la aplicacion.
+
+============================================================
+VENTANA 1 - BACKEND SPRING BOOT
+============================================================
+Copia y pega esto en una ventana de CMD:
+
+cd /d C:\Users\Adrian\Documents\GitHub\PROJECTS\generate_videos_tiktok\backend
+
+set "FFMPEG_PATH=C:\Users\Adrian\Desktop\BIBOBOT KIDS\ffmpeg-8.0.1-essentials_build\ffmpeg-8.0.1-essentials_build\bin\ffmpeg.exe"
+set "FFPROBE_PATH=C:\Users\Adrian\Desktop\BIBOBOT KIDS\ffmpeg-8.0.1-essentials_build\ffmpeg-8.0.1-essentials_build\bin\ffprobe.exe"
+
+"%FFMPEG_PATH%" -version
+"%FFPROBE_PATH%" -version
+
+mvn spring-boot:run
+
+Cuando veas algo como esto, el backend esta bien arrancado:
+Tomcat started on port 8080
+
+============================================================
+VENTANA 2 - FRONTEND ANGULAR
+============================================================
+Copia y pega esto en otra ventana de CMD:
+
+cd /d C:\Users\Adrian\Documents\GitHub\PROJECTS\generate_videos_tiktok\frontend
+
+npm.cmd start
+
+Si Angular pregunta:
+Would you like to use a different port?
+
+Pon:
+Yes
+
+Luego abre en Chrome la URL que te diga Angular, normalmente:
+http://localhost:4200
+
+Si usa otro puerto, por ejemplo 4201, abre:
+http://localhost:4201
+
+============================================================
+RUTA DE SALIDA EN LA WEB
+============================================================
+En el campo Ruta de salida de la web NO pongas la carpeta bin de FFmpeg.
+Pon una carpeta de trabajo, por ejemplo:
+
+C:\Users\Adrian\Desktop\BIBOBOT KIDS\salida_app
+
+La app creara dentro las carpetas necesarias y al terminar dejara solo final/random.

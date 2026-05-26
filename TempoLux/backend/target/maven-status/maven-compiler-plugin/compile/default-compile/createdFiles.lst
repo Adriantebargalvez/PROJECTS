@@ -1,0 +1,6 @@
+com\tempolux\catalog\LocalizedMaterials.class
+com\tempolux\catalog\WatchCatalogService.class
+com\tempolux\catalog\WatchController.class
+com\tempolux\catalog\LocalizedText.class
+com\tempolux\TempoLuxApiApplication.class
+com\tempolux\catalog\Watch.class

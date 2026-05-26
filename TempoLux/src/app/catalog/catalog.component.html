@@ -1,0 +1,82 @@
+<main class="bg-[#f3eadc] pt-20 text-neutral-950">
+  <section class="catalog-hero relative isolate overflow-hidden bg-neutral-950 text-white">
+    <img class="absolute inset-0 h-full w-full object-cover opacity-45" src="/assets/watches/solstice-chrono.webp" alt="Reloj de lujo sobre fondo oscuro" />
+    <div class="absolute inset-0 bg-gradient-to-r from-black via-black/72 to-black/18" aria-hidden="true"></div>
+    <div class="relative z-10 mx-auto max-w-7xl px-5 py-20 md:px-8 md:py-28">
+      <p class="text-sm font-bold uppercase tracking-[0.24em] text-[#d8b76f]">{{ language.copy().catalog.eyebrow }}</p>
+      <h1 class="mt-4 max-w-4xl text-5xl font-semibold leading-tight md:text-7xl">{{ language.copy().catalog.title }}</h1>
+      <p class="mt-6 max-w-2xl text-lg leading-8 text-white/70">{{ language.copy().catalog.lead }}</p>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-5 py-16 md:px-8 md:py-24">
+    @if (isLoading()) {
+      <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        @for (item of [1, 2, 3, 4, 5, 6]; track item) {
+          <div class="h-[30rem] animate-pulse rounded-lg bg-white/70"></div>
+        }
+      </div>
+    } @else if (hasError()) {
+      <div class="rounded-lg border border-red-200 bg-red-50 p-6 text-red-900">
+        {{ language.copy().catalog.error }}
+      </div>
+    } @else {
+      <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        @for (watch of watches(); track watch.slug) {
+          <article class="watch-card group flex min-h-[34rem] flex-col overflow-hidden rounded-xl border border-black/8 bg-[#fffaf0] shadow-md transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl">
+            <div class="relative aspect-square overflow-hidden bg-neutral-950">
+              <img
+                class="h-full w-full object-cover transition duration-700 group-hover:scale-108"
+                [src]="watch.imageUrl"
+                [alt]="language.localize(watch.name)"
+              />
+              <div class="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/85 to-transparent p-4">
+                <p class="text-sm font-bold text-[#f4d98b]">{{ language.formatPrice(watch) }}</p>
+              </div>
+              <!-- Hover overlay -->
+              <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 transition duration-400 group-hover:opacity-100"></div>
+            </div>
+            <div class="flex flex-1 flex-col p-5">
+              <h2 class="text-xl font-semibold leading-6">{{ language.localize(watch.name) }}</h2>
+              <p class="mt-3 line-clamp-3 text-sm leading-6 text-neutral-600">{{ language.localize(watch.description) }}</p>
+              <p class="mt-5 text-xs font-bold uppercase tracking-[0.2em] text-[#8a6a2f]">{{ language.copy().catalog.materials }}</p>
+              <div class="mt-3 flex flex-wrap gap-2">
+                @for (material of watchMaterials(watch).slice(0, 3); track material) {
+                  <span class="rounded-full border border-neutral-300 bg-white/70 px-3 py-1 text-xs font-semibold text-neutral-700">{{ material }}</span>
+                }
+              </div>
+              <div class="mt-auto flex flex-col gap-2 pt-5">
+                <!-- Add to cart (primary) -->
+                <button
+                  type="button"
+                  class="add-to-cart-btn"
+                  [class.add-to-cart-btn--added]="justAdded() === watch.id"
+                  (click)="addToCart(watch)"
+                >
+                  @if (justAdded() === watch.id) {
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                      <path d="M3 8L6.5 11.5L13 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    ✓
+                  } @else {
+                    {{ language.copy().catalog.addToCart }}
+                  }
+                </button>
+                <!-- Comprar: añade al carrito y navega al checkout directamente -->
+                <button
+                  type="button"
+                  class="consult-btn"
+                  (click)="buyNow(watch)"
+                >
+                  {{ language.copy().catalog.buy }}
+                </button>
+              </div>
+            </div>
+          </article>
+        }
+      </div>
+    }
+  </section>
+
+  <app-contact-panel [selectedWatch]="selectedWatch()" />
+</main>

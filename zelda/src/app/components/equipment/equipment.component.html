@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-4 mt-4" *ngFor="let equipament of equipaments">
+    <div class="card">
+
+    </div>
+    <img [src]="equipament.image" class="card-img-top">
+    <div class="card-header">
+
+    </div>
+    <div class="card body">
+      <h2>{{equipament.name}}</h2>
+      <p><strong>Description:</strong><i>{{equipament.description}}</i> </p>
+      <p><strong>Defensa:</strong><i>{{equipament.properties.defense}}</i> </p>
+      <p><strong>Ataque:</strong><i>{{equipament.properties.attack}}</i> </p>
+      <p><strong>Lugar:</strong>
+      <ul>
+        <li *ngFor="let localidad of equipament.common_locations ">
+          {{localidad}}</li>
+      </ul>
+    </div>
+  </div>
+</div>

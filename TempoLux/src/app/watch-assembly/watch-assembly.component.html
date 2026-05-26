@@ -1,0 +1,71 @@
+<section data-assembly-section class="assembly-story bg-[#070706] text-white">
+  <div class="mx-auto grid max-w-7xl gap-8 px-5 md:grid-cols-[0.82fr_1fr] md:px-8">
+    <div class="assembly-copy py-20 md:py-32">
+      <p class="text-sm font-bold uppercase tracking-[0.24em] text-[#d8b76f]">
+        {{ language.copy().home.assemblyEyebrow }}
+      </p>
+      <h2 class="mt-3 max-w-xl text-4xl font-semibold leading-tight md:text-6xl">
+        {{ language.copy().home.assemblyTitle }}
+      </h2>
+      <p class="mt-5 max-w-xl text-lg leading-8 text-white/68">
+        {{ language.copy().home.assemblyLead }}
+      </p>
+
+      <div class="mt-16 space-y-28 md:space-y-36">
+        @for (step of language.copy().assemblySteps; track step; let i = $index) {
+          <div class="assembly-step" [class.assembly-step--active]="progress() > i * 0.13 + 0.06">
+            <span>{{ (i + 1).toString().padStart(2, '0') }}</span>
+            <p>{{ step }}</p>
+          </div>
+        }
+      </div>
+    </div>
+
+    <div class="assembly-stage">
+      <div class="assembly-photo-shell">
+        <div class="assembly-photo">
+          <img class="assembly-real base" src="/assets/assembly-watch.webp" alt="" />
+          @for (piece of pieces; track piece.key; let i = $index) {
+            <img
+              class="assembly-real piece"
+              [ngClass]="piece.className"
+              src="/assets/assembly-watch.webp"
+              alt=""
+              [style.opacity]="pieceOpacity(i)"
+              [style.transform]="pieceTransform(i, piece.offset, piece.rotation)"
+              [style.filter]="pieceFilter(i)"
+            />
+          }
+          <img
+            class="assembly-real complete"
+            src="/assets/assembly-watch.webp"
+            alt="Reloj completamente ensamblado"
+            [style.opacity]="completeOpacity()"
+          />
+          <!-- Golden particles on assembly complete -->
+          @if (showParticles()) {
+            <div class="assembly-particles" aria-hidden="true">
+              @for (angle of particleAngles; track angle; let i = $index) {
+                <span
+                  class="particle"
+                  [ngStyle]="particleStyle(i)"
+                ></span>
+              }
+            </div>
+          }
+          <!-- Shimmer sweep -->
+          <div class="assembly-shine" aria-hidden="true"></div>
+          <!-- Assembled glow ring -->
+          <div class="assembly-glow-ring" [style.opacity]="completeOpacity()" aria-hidden="true"></div>
+        </div>
+        <div class="assembly-progress" aria-hidden="true">
+          <span [style.width.%]="progress() * 100"></span>
+        </div>
+        <p class="assembly-progress-label" aria-live="polite">
+          {{ language.copy().home.assemblyProgress }}
+          <span>{{ (progress() * 100).toFixed(0) }}%</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

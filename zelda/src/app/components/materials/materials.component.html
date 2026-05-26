@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col-4 mt-4" *ngFor="let material of materials">
+    <div class="card">
+
+
+    <div class="card body">
+      <h2>{{material.name}}</h2>
+      <p><strong>Habilidad:</strong><i>{{material.cooking_effect}}</i> </p>
+      <p><strong>Lugar:</strong>
+      <ul>
+        <li *ngFor="let localidad of material.common_locations ">
+          {{localidad}}</li>
+      </ul>
+    </div>
+    <img [src]="material.image" class="card-img-top">
+    <p><strong>Description:</strong><i>{{material.description}}</i> </p>
+  </div>
+</div>
+</div>

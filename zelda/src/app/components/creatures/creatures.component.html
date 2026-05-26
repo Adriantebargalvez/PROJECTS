@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col-4 mt-4" *ngFor="let creature of creatures">
+    <div class="card">
+      <div class="card-header">
+        <h2>{{creature.name}}</h2>
+        <p><strong>Habilidad:</strong><i>{{creature.cooking_effect}}</i> </p>
+      </div>
+    </div>
+    <img [src]="creature.image" class="card-img-top">
+    <div class="card body">
+
+      <p><strong>Corazones:</strong><i>{{creature.hearts_recovered}}</i> </p>
+      <p><strong>Descripcion:</strong><i>{{creature.description}}</i> </p>
+      <p><strong>Lugar:</strong>
+      <ul>
+        <li *ngFor="let localidad of creature.common_locations ">
+        {{localidad}}</li>
+      </ul>
+    </div>
+  </div>
+</div>

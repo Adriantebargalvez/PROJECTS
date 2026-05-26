@@ -1,0 +1,87 @@
+<main class="app-shell">
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">FFmpeg workflow</p>
+      <h1>generate_videos_tiktok</h1>
+    </div>
+    <div class="status-pill" [class.running]="status.running" [class.error]="status.state === 'ERROR'">
+      {{ status.operation }} · {{ status.state }}
+    </div>
+  </header>
+
+  <section class="workspace">
+    <form class="panel upload-panel" (submit)="$event.preventDefault()">
+      <div class="panel-heading">
+        <h2>Videos</h2>
+        <span>{{ selectedFiles.length }} seleccionados</span>
+      </div>
+
+      <label class="field">
+        <span>Archivos MP4</span>
+        <input type="file" accept="video/mp4,.mp4" multiple (change)="onFilesSelected($event)" [disabled]="isBusy()" />
+      </label>
+
+      <p class="file-list" *ngIf="selectedFiles.length > 0">{{ fileNames() }}</p>
+      <p class="message error" *ngIf="validationError">{{ validationError }}</p>
+
+      <label class="field">
+        <span>Ruta de salida</span>
+        <input type="text" name="outputPath" [(ngModel)]="outputPath" [disabled]="isBusy()" />
+      </label>
+
+      <label class="field compact">
+        <span>Videos random</span>
+        <input type="number" name="randomCount" min="1" step="1" [(ngModel)]="randomCount" [disabled]="isBusy()" />
+      </label>
+
+      <button type="button" class="primary" (click)="upload()" [disabled]="!canUpload()">Subir videos</button>
+    </form>
+
+    <section class="panel actions-panel">
+      <div class="panel-heading">
+        <h2>Procesos</h2>
+        <span>{{ status.progress }}%</span>
+      </div>
+
+      <div class="button-grid">
+        <button type="button" (click)="convert()" [disabled]="isBusy()">Convertir videos</button>
+        <button type="button" (click)="cut()" [disabled]="isBusy()">Cortar videos</button>
+        <button type="button" class="accent" (click)="mix()" [disabled]="isBusy()">Mezclar videos</button>
+        <button type="button" class="accent" (click)="generateRandom()" [disabled]="isBusy()">Generar random</button>
+        <button type="button" class="primary wide" (click)="runAll()" [disabled]="isBusy()">Ejecutar todo</button>
+        <button type="button" class="danger wide" (click)="clean()" [disabled]="isBusy()">Limpiar temporales</button>
+      </div>
+
+      <div class="progress-track" aria-label="Progreso">
+        <div class="progress-bar" [style.width.%]="status.progress"></div>
+      </div>
+
+      <p class="message" [class.success]="feedbackType === 'success'" [class.error]="feedbackType === 'error'">
+        {{ feedbackMessage || status.message }}
+      </p>
+    </section>
+
+    <section class="panel log-panel">
+      <div class="panel-heading">
+        <h2>Estado</h2>
+        <button type="button" class="ghost" (click)="refreshStatus()" [disabled]="isBusy()">Actualizar</button>
+      </div>
+
+      <div class="status-line">
+        <span>Operacion</span>
+        <strong>{{ status.operation }}</strong>
+      </div>
+      <div class="status-line">
+        <span>Mensaje</span>
+        <strong>{{ status.message }}</strong>
+      </div>
+
+      <ol class="logs" *ngIf="status.logs.length > 0; else emptyLogs">
+        <li *ngFor="let line of status.logs">{{ line }}</li>
+      </ol>
+      <ng-template #emptyLogs>
+        <p class="empty">Sin registros todavia.</p>
+      </ng-template>
+    </section>
+  </section>
+</main>

@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col-4 mt-4" *ngFor="let zelda of zelda">
+    <div class="card">
+      <div class="card-header">
+        <h2>{{zelda.name}}</h2>
+      </div>
+    </div>
+    <img [src]="zelda.image" class="card-img-top">
+    <div class="card body">
+      <p><strong>Lugar:</strong>
+      <ul>
+        <li *ngFor="let localidad of zelda.common_locations ">
+          {{localidad}}</li>
+      </ul>
+      <p><strong>Habilidad:</strong><i>{{zelda.cooking_effect}}</i> </p>
+      <p><strong>Materiales:</strong>
+      <ul>
+        <li *ngFor="let materiales of zelda.drops ">
+          {{materiales}}</li>
+      </ul>
+      <p><strong>Corazones:</strong><i>{{zelda.hearts_recovered}}</i> </p>
+      <p><strong>Propiedades:</strong><i>{{zelda.properties}}</i> </p>
+      <p><strong>Description:</strong><i>{{zelda.description}}</i> </p>
+    </div>
+  </div>
+</div>

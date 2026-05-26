@@ -1,0 +1,450 @@
+<main class="acc-page">
+
+  <!-- Hero -->
+  <div class="acc-hero">
+    <div class="acc-hero-inner">
+      <a routerLink="/catalogo" class="acc-back">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M11 3L6 8L11 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        {{ language.language() === 'es' ? 'Catálogo' : 'Catalogue' }}
+      </a>
+      <div class="acc-hero-text">
+        <p class="acc-eyebrow">{{ language.language() === 'es' ? 'Accesorios Oficiales' : 'Official Accessories' }}</p>
+        <h1 class="acc-title">{{ language.language() === 'es' ? 'Personaliza tu reloj' : 'Personalise your watch' }}</h1>
+        <p class="acc-lead">
+          {{ language.language() === 'es'
+            ? 'Correas, agujas y baterías seleccionadas a mano para cada modelo TempoLux.'
+            : 'Straps, hands and batteries hand-picked for every TempoLux model.' }}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Category filter -->
+  <div class="acc-filter-bar">
+    <div class="acc-filter-inner">
+      <button
+        type="button"
+        class="acc-filter-btn"
+        [class.acc-filter-btn--active]="activeCategory() === 'all'"
+        (click)="activeCategory.set('all')"
+      >
+        {{ language.language() === 'es' ? 'Todo' : 'All' }}
+      </button>
+      <button
+        type="button"
+        class="acc-filter-btn"
+        [class.acc-filter-btn--active]="activeCategory() === 'strap'"
+        (click)="activeCategory.set('strap')"
+      >
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <rect x="7" y="2" width="10" height="6" rx="2" fill="currentColor" opacity="0.25"/>
+          <rect x="7" y="16" width="10" height="6" rx="2" fill="currentColor" opacity="0.25"/>
+          <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="1.6"/>
+        </svg>
+        {{ language.language() === 'es' ? 'Correas' : 'Straps' }}
+      </button>
+      <button
+        type="button"
+        class="acc-filter-btn"
+        [class.acc-filter-btn--active]="activeCategory() === 'hands'"
+        (click)="activeCategory.set('hands')"
+      >
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.6"/>
+          <line x1="12" y1="12" x2="12" y2="6"  stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          <line x1="12" y1="12" x2="16" y2="12" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+        </svg>
+        {{ language.language() === 'es' ? 'Agujas' : 'Hands' }}
+      </button>
+      <button
+        type="button"
+        class="acc-filter-btn"
+        [class.acc-filter-btn--active]="activeCategory() === 'battery'"
+        (click)="activeCategory.set('battery')"
+      >
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <rect x="3" y="7" width="15" height="10" rx="2" stroke="currentColor" stroke-width="1.6"/>
+          <line x1="21" y1="10" x2="21" y2="14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <rect x="6" y="10" width="4" height="4" rx="0.8" fill="currentColor" opacity="0.6"/>
+        </svg>
+        {{ language.language() === 'es' ? 'Baterías' : 'Batteries' }}
+      </button>
+    </div>
+  </div>
+
+  <div class="acc-content">
+
+    <!-- ── CORREAS ───────────────────────────────────── -->
+    @if (activeCategory() === 'all' || activeCategory() === 'strap') {
+      <section class="acc-section">
+        <div class="acc-section-header">
+          <span class="acc-section-num">01</span>
+          <div>
+            <h2 class="acc-section-title">{{ language.language() === 'es' ? 'Correas' : 'Straps' }}</h2>
+            <p class="acc-section-sub">{{ language.language() === 'es' ? 'Cuero · Metal · Nylon' : 'Leather · Metal · Nylon' }}</p>
+          </div>
+        </div>
+
+        <div class="acc-grid">
+          @for (item of straps; track item.id) {
+            <article class="acc-card" [class.acc-card--leather]="item.material === 'leather'" [class.acc-card--metal]="item.material === 'metal'" [class.acc-card--nylon]="item.material === 'nylon'">
+              <!-- Visual: strap SVG illustration -->
+              <div class="acc-visual">
+                @if (item.material === 'metal') {
+                  <!-- Oyster 3-link bracelet — polished center + brushed sides -->
+                  <svg viewBox="0 0 90 56" class="acc-visual-svg" aria-hidden="true">
+                    <rect x="0" y="0" width="90" height="56" fill="rgba(0,0,0,0.80)"/>
+                    @for (row of [0,1,2]; track row) {
+                      <!-- Left brushed link -->
+                      <rect x="4"    [attr.y]="4 + row * 16" width="14" height="14" rx="1"   [attr.fill]="getActiveVariant(item).color" fill-opacity="0.72"/>
+                      <rect x="4"    [attr.y]="4 + row * 16" width="14" height="4"  rx="0.5" fill="rgba(255,255,255,0.2)"/>
+                      <rect x="4"    [attr.y]="4 + row * 16 + 11" width="14" height="3"      fill="rgba(0,0,0,0.28)"/>
+                      <!-- Seam -->
+                      <rect x="18"   [attr.y]="4 + row * 16" width="1.5" height="14"         fill="rgba(0,0,0,0.78)"/>
+                      <!-- Center polished link -->
+                      <rect x="19.5" [attr.y]="4 + row * 16" width="51" height="14" rx="1"   [attr.fill]="getActiveVariant(item).color"/>
+                      <rect x="19.5" [attr.y]="4 + row * 16" width="51" height="4.5" rx="0.5" fill="rgba(255,255,255,0.36)"/>
+                      <rect x="19.5" [attr.y]="4 + row * 16 + 11" width="51" height="3"      fill="rgba(0,0,0,0.2)"/>
+                      <!-- Seam -->
+                      <rect x="70.5" [attr.y]="4 + row * 16" width="1.5" height="14"         fill="rgba(0,0,0,0.78)"/>
+                      <!-- Right brushed link -->
+                      <rect x="72"   [attr.y]="4 + row * 16" width="14" height="14" rx="1"   [attr.fill]="getActiveVariant(item).color" fill-opacity="0.72"/>
+                      <rect x="72"   [attr.y]="4 + row * 16" width="14" height="4"  rx="0.5" fill="rgba(255,255,255,0.2)"/>
+                      <rect x="72"   [attr.y]="4 + row * 16 + 11" width="14" height="3"      fill="rgba(0,0,0,0.28)"/>
+                    }
+                    <!-- Left / right side edge shadows -->
+                    <rect x="0" y="0" width="4"  height="56" fill="rgba(0,0,0,0.48)"/>
+                    <rect x="86" y="0" width="4" height="56" fill="rgba(0,0,0,0.38)"/>
+                  </svg>
+                } @else if (item.material === 'nylon') {
+                  <!-- NATO nylon — woven fabric with bar keepers -->
+                  <svg viewBox="0 0 90 56" class="acc-visual-svg" aria-hidden="true">
+                    <!-- Base fabric -->
+                    <rect x="4" y="4" width="82" height="48" rx="3" [attr.fill]="getActiveVariant(item).color"/>
+                    <!-- Horizontal weave grain lines -->
+                    @for (wl of [0,1,2,3,4,5,6,7,8]; track wl) {
+                      <line [attr.x1]="4" [attr.y1]="4 + wl * 5.5 + 3" [attr.x2]="86" [attr.y2]="4 + wl * 5.5 + 3"
+                            stroke="rgba(0,0,0,0.14)" stroke-width="0.9"/>
+                    }
+                    <!-- Bar keeper 1 -->
+                    <rect x="4" y="17" width="82" height="8" fill="rgba(0,0,0,0.3)"/>
+                    <rect x="4" y="18" width="82" height="3" fill="rgba(255,255,255,0.16)"/>
+                    <!-- Bar keeper 2 -->
+                    <rect x="4" y="33" width="82" height="8" fill="rgba(0,0,0,0.3)"/>
+                    <rect x="4" y="34" width="82" height="3" fill="rgba(255,255,255,0.16)"/>
+                    <!-- Top gloss edge -->
+                    <rect x="4" y="4" width="82" height="4" rx="2" fill="rgba(255,255,255,0.15)"/>
+                    <!-- Side edge shadows -->
+                    <rect x="4"  y="4" width="5"  height="48" rx="1" fill="rgba(0,0,0,0.2)"/>
+                    <rect x="81" y="4" width="5"  height="48" rx="1" fill="rgba(0,0,0,0.15)"/>
+                  </svg>
+                } @else {
+                  <!-- Leather strap — fractal grain + 3-D cylinder shading + stitching -->
+                  <svg viewBox="0 0 90 56" class="acc-visual-svg" aria-hidden="true">
+                    <defs>
+                      <filter id="lth-grain-acc" x="0%" y="0%" width="100%" height="100%" color-interpolation-filters="sRGB">
+                        <feTurbulence type="fractalNoise" baseFrequency="0.65 0.30" numOctaves="4" seed="7" result="noise"/>
+                        <feColorMatrix type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.25 0" in="noise" result="alpha"/>
+                        <feBlend in="SourceGraphic" in2="alpha" mode="multiply" result="grainy"/>
+                        <feComposite in="grainy" in2="SourceGraphic" operator="in"/>
+                      </filter>
+                      <!-- Dark edges, bright highlight off-centre — gives rounded/cylindrical look -->
+                      <linearGradient id="lth-3d-acc" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%"   stop-color="#000" stop-opacity="0.55"/>
+                        <stop offset="20%"  stop-color="#000" stop-opacity="0.08"/>
+                        <stop offset="52%"  stop-color="#fff" stop-opacity="0.18"/>
+                        <stop offset="80%"  stop-color="#000" stop-opacity="0.06"/>
+                        <stop offset="100%" stop-color="#000" stop-opacity="0.50"/>
+                      </linearGradient>
+                    </defs>
+                    <!-- Grain base -->
+                    <rect x="4" y="4" width="82" height="48" rx="5" [attr.fill]="getActiveVariant(item).color" filter="url(#lth-grain-acc)"/>
+                    <!-- 3-D cylinder shading -->
+                    <rect x="4" y="4" width="82" height="48" rx="5" fill="url(#lth-3d-acc)"/>
+                    <!-- Left stitching -->
+                    <line x1="14" y1="8" x2="14" y2="48" stroke="rgba(255,255,255,0.32)" stroke-width="0.9"
+                          stroke-dasharray="4 3.5" stroke-linecap="round"/>
+                    <!-- Right stitching (offset so dashes alternate) -->
+                    <line x1="76" y1="8" x2="76" y2="48" stroke="rgba(255,255,255,0.32)" stroke-width="0.9"
+                          stroke-dasharray="4 3.5" stroke-linecap="round" stroke-dashoffset="3.5"/>
+                    <!-- Top edge gloss -->
+                    <rect x="4" y="4"  width="82" height="3" rx="2" fill="rgba(255,255,255,0.15)"/>
+                    <!-- Bottom edge shadow -->
+                    <rect x="4" y="49" width="82" height="3" rx="2" fill="rgba(0,0,0,0.22)"/>
+                  </svg>
+                }
+                <!-- Material badge -->
+                <span class="acc-material-badge">
+                  {{ language.language() === 'es'
+                    ? (item.material === 'leather' ? 'Cuero' : item.material === 'metal' ? 'Metal' : 'Nylon')
+                    : (item.material === 'leather' ? 'Leather' : item.material === 'metal' ? 'Metal' : 'Nylon') }}
+                </span>
+              </div>
+
+              <div class="acc-info">
+                <h3 class="acc-name">{{ language.language() === 'es' ? item.name.es : item.name.en }}</h3>
+                <p class="acc-desc">{{ language.language() === 'es' ? item.description.es : item.description.en }}</p>
+                <p class="acc-compat">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                    <circle cx="6" cy="6" r="5" stroke="#d8b76f" stroke-width="1.2"/>
+                    <path d="M4 6l1.5 1.5L8 4" stroke="#d8b76f" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  {{ language.language() === 'es' ? item.compatible.es : item.compatible.en }}
+                </p>
+
+                <!-- Color variants -->
+                @if (item.variants.length > 1) {
+                  <div class="acc-variants">
+                    <span class="acc-variants-label">
+                      {{ language.language() === 'es' ? 'Color:' : 'Colour:' }}
+                      <strong>{{ language.language() === 'es' ? getActiveVariant(item).label.es : getActiveVariant(item).label.en }}</strong>
+                    </span>
+                    <div class="acc-variant-swatches">
+                      @for (v of item.variants; track v.color; let vi = $index) {
+                        <button
+                          type="button"
+                          class="acc-swatch"
+                          [class.acc-swatch--active]="getSelectedVariant(item) === vi"
+                          [style.background]="v.color"
+                          [title]="language.language() === 'es' ? v.label.es : v.label.en"
+                          (click)="setVariant(item, vi)"
+                        ></button>
+                      }
+                    </div>
+                  </div>
+                }
+
+                <div class="acc-footer">
+                  <span class="acc-price">{{ formatPrice(item.price) }}</span>
+                  <button
+                    type="button"
+                    class="acc-add-btn"
+                    [class.acc-add-btn--added]="isJustAdded(item)"
+                    (click)="addToCart(item)"
+                  >
+                    @if (isJustAdded(item)) {
+                      <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true">
+                        <path d="M2.5 7.5L6 11L12.5 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                      {{ language.language() === 'es' ? 'Añadido' : 'Added' }}
+                    } @else {
+                      {{ language.language() === 'es' ? 'Añadir al carrito' : 'Add to cart' }}
+                    }
+                  </button>
+                </div>
+              </div>
+            </article>
+          }
+        </div>
+      </section>
+    }
+
+    <!-- ── AGUJAS ─────────────────────────────────── -->
+    @if (activeCategory() === 'all' || activeCategory() === 'hands') {
+      <section class="acc-section">
+        <div class="acc-section-header">
+          <span class="acc-section-num">02</span>
+          <div>
+            <h2 class="acc-section-title">{{ language.language() === 'es' ? 'Agujas' : 'Hands' }}</h2>
+            <p class="acc-section-sub">{{ language.language() === 'es' ? 'Rodio · Oro · Negro PVD · Esqueleto' : 'Rhodium · Gold · Black PVD · Skeleton' }}</p>
+          </div>
+        </div>
+
+        <div class="acc-grid">
+          @for (item of hands; track item.id) {
+            <article class="acc-card">
+              <div class="acc-visual acc-visual--hands">
+                <!-- Hands SVG illustration -->
+                <svg viewBox="0 0 90 90" class="acc-visual-svg acc-visual-svg--round" aria-hidden="true">
+                  <circle cx="45" cy="45" r="38" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+                  <!-- Hour hand -->
+                  <polygon points="45,24 47.5,44 45,50 42.5,44" [attr.fill]="getActiveVariant(item).color" opacity="0.92"/>
+                  <!-- Minute hand -->
+                  <polygon points="45,14 46.5,43 45,50 43.5,43" [attr.fill]="getActiveVariant(item).color"/>
+                  <!-- Second hand -->
+                  <line x1="45" y1="16" x2="45" y2="55" stroke="#d8b76f" stroke-width="0.8" stroke-linecap="round"/>
+                  <!-- Center cap -->
+                  <circle cx="45" cy="45" r="3" [attr.fill]="getActiveVariant(item).color"/>
+                  <!-- Hour markers -->
+                  @for (i of [0,1,2,3,4,5,6,7,8,9,10,11]; track i) {
+                    <rect
+                      [attr.x]="45 + 30 * 0.985 * (0 - 0.5 * 0)"
+                      [attr.y]="45 - 32"
+                      width="2.5" height="5" rx="0.5"
+                      [attr.fill]="getActiveVariant(item).color"
+                      fill-opacity="0.55"
+                      [attr.transform]="'rotate(' + (i*30) + ',45,45)'"
+                    />
+                  }
+                </svg>
+                <span class="acc-material-badge acc-material-badge--gold">
+                  {{ language.language() === 'es' ? 'Metal' : 'Metal' }}
+                </span>
+              </div>
+
+              <div class="acc-info">
+                <h3 class="acc-name">{{ language.language() === 'es' ? item.name.es : item.name.en }}</h3>
+                <p class="acc-desc">{{ language.language() === 'es' ? item.description.es : item.description.en }}</p>
+                <p class="acc-compat">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                    <circle cx="6" cy="6" r="5" stroke="#d8b76f" stroke-width="1.2"/>
+                    <path d="M4 6l1.5 1.5L8 4" stroke="#d8b76f" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  {{ language.language() === 'es' ? item.compatible.es : item.compatible.en }}
+                </p>
+
+                @if (item.variants.length > 1) {
+                  <div class="acc-variants">
+                    <span class="acc-variants-label">
+                      {{ language.language() === 'es' ? 'Acabado:' : 'Finish:' }}
+                      <strong>{{ language.language() === 'es' ? getActiveVariant(item).label.es : getActiveVariant(item).label.en }}</strong>
+                    </span>
+                    <div class="acc-variant-swatches">
+                      @for (v of item.variants; track v.color; let vi = $index) {
+                        <button
+                          type="button"
+                          class="acc-swatch"
+                          [class.acc-swatch--active]="getSelectedVariant(item) === vi"
+                          [style.background]="v.color"
+                          [title]="language.language() === 'es' ? v.label.es : v.label.en"
+                          (click)="setVariant(item, vi)"
+                        ></button>
+                      }
+                    </div>
+                  </div>
+                }
+
+                <div class="acc-footer">
+                  <span class="acc-price">{{ formatPrice(item.price) }}</span>
+                  <button
+                    type="button"
+                    class="acc-add-btn"
+                    [class.acc-add-btn--added]="isJustAdded(item)"
+                    (click)="addToCart(item)"
+                  >
+                    @if (isJustAdded(item)) {
+                      <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true">
+                        <path d="M2.5 7.5L6 11L12.5 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                      {{ language.language() === 'es' ? 'Añadido' : 'Added' }}
+                    } @else {
+                      {{ language.language() === 'es' ? 'Añadir al carrito' : 'Add to cart' }}
+                    }
+                  </button>
+                </div>
+              </div>
+            </article>
+          }
+        </div>
+      </section>
+    }
+
+    <!-- ── BATERÍAS ───────────────────────────────── -->
+    @if (activeCategory() === 'all' || activeCategory() === 'battery') {
+      <section class="acc-section">
+        <div class="acc-section-header">
+          <span class="acc-section-num">03</span>
+          <div>
+            <h2 class="acc-section-title">{{ language.language() === 'es' ? 'Baterías' : 'Batteries' }}</h2>
+            <p class="acc-section-sub">{{ language.language() === 'es' ? 'Óxido de plata · Litio · Capacitor · Titanio' : 'Silver oxide · Lithium · Capacitor · Titanium' }}</p>
+          </div>
+        </div>
+
+        <div class="acc-grid acc-grid--batteries">
+          @for (item of batteries; track item.id) {
+            <article class="acc-card acc-card--battery">
+              <div class="acc-visual acc-visual--battery">
+                <!-- Battery SVG illustration -->
+                <!-- Coin cell (petaca) — 3/4 elevated view -->
+                <svg viewBox="0 0 90 56" class="acc-visual-svg" aria-hidden="true">
+                  <defs>
+                    <!-- Radial off-centre shine on top face -->
+                    <radialGradient id="coin-face-acc" cx="34%" cy="28%" r="68%">
+                      <stop offset="0%"   stop-color="rgba(255,255,255,0.78)"/>
+                      <stop offset="42%"  stop-color="rgba(255,255,255,0.06)"/>
+                      <stop offset="100%" stop-color="rgba(0,0,0,0.44)"/>
+                    </radialGradient>
+                    <!-- Left-right shading on the rim -->
+                    <linearGradient id="coin-rim-acc" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%"   stop-color="rgba(0,0,0,0.58)"/>
+                      <stop offset="14%"  stop-color="rgba(255,255,255,0.20)"/>
+                      <stop offset="50%"  stop-color="rgba(255,255,255,0.05)"/>
+                      <stop offset="86%"  stop-color="rgba(255,255,255,0.20)"/>
+                      <stop offset="100%" stop-color="rgba(0,0,0,0.52)"/>
+                    </linearGradient>
+                  </defs>
+
+                  <!-- Visible cylinder side (front half of rim) -->
+                  <path d="M 11,19 L 11,36 A 34,10 0 0,0 79,36 L 79,19"
+                        [attr.fill]="getActiveVariant(item).color"/>
+                  <path d="M 11,19 L 11,36 A 34,10 0 0,0 79,36 L 79,19"
+                        fill="url(#coin-rim-acc)"/>
+
+                  <!-- Crimp / seal ring (equator seam) -->
+                  <line x1="11" y1="28" x2="79" y2="28" stroke="rgba(0,0,0,0.28)" stroke-width="1.4"/>
+                  <line x1="11" y1="29.4" x2="79" y2="29.4" stroke="rgba(255,255,255,0.09)" stroke-width="0.7"/>
+
+                  <!-- Bottom edge ring (negative plate) -->
+                  <ellipse cx="45" cy="36" rx="34" ry="10"
+                           fill="none" [attr.stroke]="getActiveVariant(item).color"
+                           stroke-width="1" opacity="0.55"/>
+
+                  <!-- Top face disc (positive cap) -->
+                  <ellipse cx="45" cy="19" rx="34" ry="10" [attr.fill]="getActiveVariant(item).color"/>
+                  <ellipse cx="45" cy="19" rx="34" ry="10" fill="url(#coin-face-acc)"/>
+
+                  <!-- Engraved label ring (like SR920SW stamp) -->
+                  <ellipse cx="45" cy="19" rx="27" ry="7.5"
+                           fill="none" stroke="rgba(0,0,0,0.20)" stroke-width="0.9"/>
+
+                  <!-- Positive terminal centre nub -->
+                  <ellipse cx="45" cy="19" rx="7" ry="2"
+                           fill="rgba(255,255,255,0.22)"/>
+                  <ellipse cx="45" cy="19" rx="7" ry="2"
+                           fill="none" stroke="rgba(0,0,0,0.24)" stroke-width="0.7"/>
+                </svg>
+                <span class="acc-material-badge acc-material-badge--tech">
+                  {{ language.language() === 'es' ? 'Electrónica' : 'Electronics' }}
+                </span>
+              </div>
+
+              <div class="acc-info">
+                <h3 class="acc-name">{{ language.language() === 'es' ? item.name.es : item.name.en }}</h3>
+                <p class="acc-desc">{{ language.language() === 'es' ? item.description.es : item.description.en }}</p>
+                <p class="acc-compat">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                    <circle cx="6" cy="6" r="5" stroke="#d8b76f" stroke-width="1.2"/>
+                    <path d="M4 6l1.5 1.5L8 4" stroke="#d8b76f" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  {{ language.language() === 'es' ? item.compatible.es : item.compatible.en }}
+                </p>
+
+                <div class="acc-footer">
+                  <span class="acc-price">{{ formatPrice(item.price) }}</span>
+                  <button
+                    type="button"
+                    class="acc-add-btn"
+                    [class.acc-add-btn--added]="isJustAdded(item)"
+                    (click)="addToCart(item)"
+                  >
+                    @if (isJustAdded(item)) {
+                      <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true">
+                        <path d="M2.5 7.5L6 11L12.5 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                      {{ language.language() === 'es' ? 'Añadido' : 'Added' }}
+                    } @else {
+                      {{ language.language() === 'es' ? 'Añadir al carrito' : 'Add to cart' }}
+                    }
+                  </button>
+                </div>
+              </div>
+            </article>
+          }
+        </div>
+      </section>
+    }
+
+  </div>
+</main>

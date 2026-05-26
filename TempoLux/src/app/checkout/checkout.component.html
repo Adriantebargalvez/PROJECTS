@@ -1,0 +1,223 @@
+<main class="checkout-page">
+
+  <!-- Success screen -->
+  @if (isSuccess()) {
+    <div class="checkout-success">
+      <div class="success-inner">
+        <div class="success-ring">
+          <svg width="64" height="64" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+            <circle cx="32" cy="32" r="30" stroke="#d8b76f" stroke-width="1.5" class="success-circle"/>
+            <path d="M18 32L27 41L46 22" stroke="#d8b76f" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="success-check"/>
+          </svg>
+        </div>
+        <p class="success-eyebrow">{{ language.copy().checkout.successEyebrow }}</p>
+        <h1 class="success-title">{{ language.copy().checkout.successTitle }}</h1>
+        <p class="success-lead">{{ language.copy().checkout.successLead }}</p>
+        <div class="success-order">
+          <span class="success-order-label">{{ language.copy().checkout.orderRef }}</span>
+          <span class="success-order-number">{{ orderNumber() }}</span>
+        </div>
+        <a routerLink="/catalogo" class="success-cta">{{ language.copy().checkout.successCta }}</a>
+      </div>
+    </div>
+  } @else {
+
+    <div class="checkout-header">
+      <div class="checkout-header-inner">
+        <a routerLink="/catalogo" class="checkout-back">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M11 3L6 8L11 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          {{ language.copy().checkout.back }}
+        </a>
+        <div class="checkout-brand">
+          <span class="checkout-brand-mark">TL</span>
+          <span class="checkout-brand-word">TempoLux</span>
+        </div>
+        <div class="checkout-secure-badge">
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
+            <path d="M6.5 1.5L2 3.5V7c0 2.5 2 4.5 4.5 5C11 11.5 11 9 11 7V3.5L6.5 1.5Z" stroke="#d8b76f" stroke-width="0.9"/>
+            <path d="M4.5 6.5L6 8L8.5 5" stroke="#d8b76f" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          {{ language.copy().checkout.secure }}
+        </div>
+      </div>
+    </div>
+
+    <div class="checkout-layout">
+
+      <!-- Order summary -->
+      <aside class="checkout-summary">
+        <h2 class="checkout-section-title">{{ language.copy().checkout.orderSummary }}</h2>
+
+        @if (cart.count() === 0) {
+          <div class="checkout-empty">
+            <p>{{ language.copy().checkout.emptyCart }}</p>
+            <a routerLink="/catalogo" class="checkout-empty-link">{{ language.copy().checkout.goToCatalog }}</a>
+          </div>
+        } @else {
+          <div class="checkout-items">
+            @for (item of cart.items(); track item.watch.id) {
+              <div class="checkout-item">
+                <div class="checkout-item-img-wrap">
+                  <img [src]="item.watch.imageUrl" [alt]="language.localize(item.watch.name)" class="checkout-item-img"/>
+                  @if (item.quantity > 1) {
+                    <span class="checkout-item-qty-badge">{{ item.quantity }}</span>
+                  }
+                </div>
+                <div class="checkout-item-details">
+                  <p class="checkout-item-name">{{ language.localize(item.watch.name) }}</p>
+                  <p class="checkout-item-desc">{{ language.localize(item.watch.description) }}</p>
+                </div>
+                <p class="checkout-item-price">{{ formatPrice(item.watch.price * item.quantity) }}</p>
+              </div>
+            }
+          </div>
+
+          <div class="checkout-totals">
+            <div class="checkout-total-row">
+              <span>{{ language.copy().checkout.subtotal }}</span>
+              <span>{{ formatPrice(subtotal) }}</span>
+            </div>
+            <div class="checkout-total-row">
+              <span>{{ language.copy().checkout.shipping }}</span>
+              <span class="checkout-free">{{ language.copy().checkout.freeShipping }}</span>
+            </div>
+            <div class="checkout-total-row">
+              <span>{{ language.copy().checkout.tax }}</span>
+              <span>{{ formatPrice(tax) }}</span>
+            </div>
+            <div class="checkout-total-row checkout-total-row--final">
+              <span>{{ language.copy().checkout.total }}</span>
+              <span>{{ formatPrice(orderTotal) }}</span>
+            </div>
+          </div>
+        }
+      </aside>
+
+      <!-- Payment form -->
+      <section class="checkout-form-col">
+        <h2 class="checkout-section-title">{{ language.copy().checkout.paymentDetails }}</h2>
+
+        <form class="checkout-form" (submit)="$event.preventDefault(); placeOrder()">
+
+          <fieldset class="checkout-fieldset">
+            <legend class="checkout-legend">{{ language.copy().checkout.cardholderInfo }}</legend>
+            <label class="checkout-label">
+              <span>{{ language.copy().checkout.cardName }}</span>
+              <input type="text" name="cardholder" autocomplete="cc-name" class="checkout-input" placeholder="Jean-Paul Dupont" required/>
+            </label>
+            <label class="checkout-label">
+              <span>{{ language.copy().checkout.emailLabel }}</span>
+              <input type="email" name="email" autocomplete="email" class="checkout-input" placeholder="contacto@ejemplo.com" required/>
+            </label>
+          </fieldset>
+
+          <fieldset class="checkout-fieldset">
+            <legend class="checkout-legend">{{ language.copy().checkout.cardDetails }}</legend>
+
+            <label class="checkout-label">
+              <span>{{ language.copy().checkout.cardNumber }}</span>
+              <div class="checkout-input-icon-wrap">
+                <input
+                  type="text"
+                  name="cardnumber"
+                  autocomplete="cc-number"
+                  class="checkout-input checkout-input--card"
+                  placeholder="1234  5678  9012  3456"
+                  maxlength="19"
+                  inputmode="numeric"
+                  (input)="formatCardNumber($event)"
+                  required
+                />
+                <div class="checkout-card-icons" aria-hidden="true">
+                  <svg width="28" height="18" viewBox="0 0 28 18" fill="none">
+                    <rect width="28" height="18" rx="3" fill="#1a1a2e"/>
+                    <circle cx="10" cy="9" r="6" fill="#eb001b" fill-opacity="0.85"/>
+                    <circle cx="18" cy="9" r="6" fill="#f79e1b" fill-opacity="0.85"/>
+                    <path d="M14 13.24A5.98 5.98 0 0 1 11.76 9 5.98 5.98 0 0 1 14 4.76 5.98 5.98 0 0 1 16.24 9 5.98 5.98 0 0 1 14 13.24Z" fill="#ff5f00"/>
+                  </svg>
+                </div>
+              </div>
+            </label>
+
+            <div class="checkout-row-2">
+              <label class="checkout-label">
+                <span>{{ language.copy().checkout.expiry }}</span>
+                <input
+                  type="text"
+                  name="expiry"
+                  autocomplete="cc-exp"
+                  class="checkout-input"
+                  placeholder="MM/AA"
+                  maxlength="5"
+                  inputmode="numeric"
+                  (input)="formatExpiry($event)"
+                  required
+                />
+              </label>
+              <label class="checkout-label">
+                <span>{{ language.copy().checkout.cvv }}</span>
+                <input type="password" name="cvv" autocomplete="cc-csc" class="checkout-input" placeholder="•••" maxlength="4" inputmode="numeric" required/>
+              </label>
+            </div>
+          </fieldset>
+
+          <fieldset class="checkout-fieldset">
+            <legend class="checkout-legend">{{ language.copy().checkout.billingAddress }}</legend>
+            <label class="checkout-label">
+              <span>{{ language.copy().checkout.country }}</span>
+              <select class="checkout-input checkout-select" name="country">
+                <option value="ES">España</option>
+                <option value="FR">France</option>
+                <option value="DE">Deutschland</option>
+                <option value="IT">Italia</option>
+                <option value="GB">United Kingdom</option>
+                <option value="CH">Switzerland</option>
+                <option value="US">United States</option>
+              </select>
+            </label>
+            <div class="checkout-row-2">
+              <label class="checkout-label">
+                <span>{{ language.copy().checkout.city }}</span>
+                <input type="text" name="city" autocomplete="address-level2" class="checkout-input" required/>
+              </label>
+              <label class="checkout-label">
+                <span>{{ language.copy().checkout.zip }}</span>
+                <input type="text" name="zip" autocomplete="postal-code" class="checkout-input" maxlength="10" required/>
+              </label>
+            </div>
+          </fieldset>
+
+          <div class="checkout-trust">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M7 1.5L2.5 3.5V7.5c0 2.5 2 4 4.5 5 2.5-1 4.5-2.5 4.5-5V3.5L7 1.5Z" stroke="#d8b76f" stroke-width="0.9"/>
+              <path d="M5 7L6.5 8.5L9.5 5" stroke="#d8b76f" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            {{ language.copy().checkout.trustBadge }}
+          </div>
+
+          <button
+            type="submit"
+            class="checkout-submit"
+            [class.checkout-submit--processing]="isProcessing()"
+            [disabled]="isProcessing() || cart.count() === 0"
+          >
+            @if (isProcessing()) {
+              <span class="checkout-spinner"></span>
+              {{ language.copy().checkout.processing }}
+            } @else {
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                <path d="M9 1.5L2.5 5V10.5C2.5 14 5.5 16.5 9 17.5 12.5 16.5 15.5 14 15.5 10.5V5L9 1.5Z" fill="rgba(0,0,0,0.1)" stroke="rgba(0,0,0,0.2)" stroke-width="0.8"/>
+                <path d="M6 9L8 11L12 7" stroke="rgba(0,0,0,0.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              {{ language.copy().checkout.placeOrder }}
+            }
+          </button>
+
+        </form>
+      </section>
+
+    </div>
+  }
+</main>

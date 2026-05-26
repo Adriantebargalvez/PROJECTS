@@ -1,0 +1,389 @@
+.acc-page {
+  min-height: 100vh;
+  background: #070706;
+  color: #f7f0e6;
+  padding-top: 5rem;
+}
+
+/* ── Hero ────────────────────────────────────────── */
+.acc-hero {
+  border-bottom: 1px solid rgba(216, 183, 111, 0.12);
+  background: linear-gradient(180deg, rgba(216, 183, 111, 0.04) 0%, transparent 100%);
+  padding: 2.5rem 0 2rem;
+}
+
+.acc-hero-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.acc-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+  text-decoration: none;
+  transition: color 160ms;
+}
+.acc-back:hover { color: #d8b76f; }
+
+.acc-eyebrow {
+  margin: 0;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #d8b76f;
+}
+
+.acc-title {
+  margin: 0.25rem 0 0;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1.08;
+  background: linear-gradient(135deg, #f7f0e6 30%, #d8b76f 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.acc-lead {
+  margin: 0.5rem 0 0;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.5);
+  max-width: 580px;
+  line-height: 1.6;
+}
+
+/* ── Category filter bar ─────────────────────────── */
+.acc-filter-bar {
+  position: sticky;
+  top: 4.5rem;
+  z-index: 30;
+  background: rgba(7, 7, 6, 0.88);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 0.875rem 0;
+}
+
+.acc-filter-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.acc-filter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.5rem 1.1rem;
+  border-radius: 100px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: transparent;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 180ms ease;
+}
+.acc-filter-btn:hover {
+  border-color: rgba(216, 183, 111, 0.4);
+  color: #d8b76f;
+}
+.acc-filter-btn--active {
+  border-color: #d8b76f;
+  background: rgba(216, 183, 111, 0.1);
+  color: #d8b76f;
+}
+
+/* ── Content wrapper ─────────────────────────────── */
+.acc-content {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 3rem 2rem 5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+/* ── Section ─────────────────────────────────────── */
+.acc-section {}
+
+.acc-section-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.acc-section-num {
+  font-size: 0.7rem;
+  font-weight: 900;
+  letter-spacing: 0.15em;
+  color: #d8b76f;
+  padding-top: 0.3rem;
+}
+
+.acc-section-title {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #f7f0e6;
+}
+
+.acc-section-sub {
+  margin: 0.2rem 0 0;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+/* ── Cards grid ─────────────────────────────────── */
+.acc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.acc-grid--batteries {
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+}
+
+/* ── Card ──────────────────────────────────────── */
+.acc-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 14px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.02);
+  transition: border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease;
+}
+.acc-card:hover {
+  border-color: rgba(216, 183, 111, 0.22);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.45);
+  transform: translateY(-3px);
+}
+
+/* ── Card visual ───────────────────────────────── */
+.acc-visual {
+  position: relative;
+  background: linear-gradient(145deg, rgba(255,255,255,0.04) 0%, rgba(0,0,0,0.3) 100%);
+  padding: 1.75rem 1.5rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 110px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.acc-visual--hands {
+  min-height: 130px;
+}
+
+.acc-visual--battery {
+  min-height: 100px;
+}
+
+.acc-visual-svg {
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+}
+
+.acc-visual-svg--round {
+  max-width: 120px;
+}
+
+.acc-material-badge {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.75rem;
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  padding: 0.18rem 0.45rem;
+}
+
+.acc-material-badge--gold {
+  color: rgba(216, 183, 111, 0.8);
+  border-color: rgba(216, 183, 111, 0.25);
+  background: rgba(216, 183, 111, 0.06);
+}
+
+.acc-material-badge--tech {
+  color: rgba(100, 180, 255, 0.8);
+  border-color: rgba(100, 180, 255, 0.2);
+  background: rgba(100, 180, 255, 0.06);
+}
+
+/* ── Card info ────────────────────────────────── */
+.acc-info {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  flex: 1;
+}
+
+.acc-name {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #f7f0e6;
+  letter-spacing: -0.01em;
+}
+
+.acc-desc {
+  margin: 0;
+  font-size: 0.8rem;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.acc-compat {
+  margin: 0;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: rgba(216, 183, 111, 0.7);
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  letter-spacing: 0.03em;
+}
+
+/* ── Variants ─────────────────────────────────── */
+.acc-variants {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.acc-variants-label {
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.45);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.acc-variants-label strong {
+  color: #f7f0e6;
+}
+
+.acc-variant-swatches {
+  display: flex;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+}
+
+.acc-swatch {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform 160ms ease, border-color 160ms ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+.acc-swatch:hover {
+  transform: scale(1.12);
+}
+.acc-swatch--active {
+  border-color: #d8b76f;
+  box-shadow: 0 0 0 3px rgba(216, 183, 111, 0.25), 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+/* ── Footer (price + CTA) ─────────────────────── */
+.acc-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: auto;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.acc-price {
+  font-size: 1.35rem;
+  font-weight: 900;
+  color: #d8b76f;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.acc-add-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.55rem 1rem;
+  border: none;
+  border-radius: 7px;
+  background: linear-gradient(135deg, #d8b76f 0%, #a88030 100%);
+  color: #090807;
+  font-size: 0.75rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 200ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  white-space: nowrap;
+}
+.acc-add-btn:hover {
+  background: linear-gradient(135deg, #e8c87a 0%, #c09040 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(216, 183, 111, 0.4);
+}
+.acc-add-btn:active {
+  transform: translateY(0);
+}
+.acc-add-btn--added {
+  background: linear-gradient(135deg, #3d8b50 0%, #2a6035 100%) !important;
+  box-shadow: 0 6px 20px rgba(61, 139, 80, 0.35) !important;
+}
+.acc-add-btn--added:hover {
+  transform: none !important;
+}
+
+/* ── Responsive ───────────────────────────────── */
+@media (max-width: 768px) {
+  .acc-content {
+    padding: 2rem 1.25rem 4rem;
+    gap: 3rem;
+  }
+  .acc-hero-inner {
+    padding: 0 1.25rem;
+  }
+  .acc-filter-inner {
+    padding: 0 1.25rem;
+  }
+  .acc-grid {
+    grid-template-columns: 1fr;
+  }
+  .acc-grid--batteries {
+    grid-template-columns: 1fr;
+  }
+}

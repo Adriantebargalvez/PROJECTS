@@ -471,6 +471,48 @@
     #07140f;
 }
 
+.project-preview.tempolux {
+  background:
+    radial-gradient(circle at 30% 20%, rgba(250, 204, 21, 0.22), transparent 10rem),
+    linear-gradient(135deg, rgba(251, 146, 60, 0.3), rgba(220, 38, 38, 0.15)),
+    #160a00;
+}
+
+.project-preview.curriculum {
+  background:
+    radial-gradient(circle at 60% 15%, rgba(99, 102, 241, 0.22), transparent 10rem),
+    linear-gradient(135deg, rgba(79, 70, 229, 0.3), rgba(167, 139, 250, 0.15)),
+    #0a0814;
+}
+
+.project-preview.zelda {
+  background:
+    radial-gradient(circle at 25% 25%, rgba(234, 179, 8, 0.25), transparent 10rem),
+    linear-gradient(135deg, rgba(22, 163, 74, 0.3), rgba(234, 179, 8, 0.2)),
+    #060f07;
+}
+
+.project-preview.videogen {
+  background:
+    radial-gradient(circle at 70% 20%, rgba(239, 68, 68, 0.25), transparent 10rem),
+    linear-gradient(135deg, rgba(168, 85, 247, 0.3), rgba(239, 68, 68, 0.2)),
+    #0e0514;
+}
+
+.project-preview.clothing {
+  background:
+    radial-gradient(circle at 40% 15%, rgba(244, 114, 182, 0.25), transparent 10rem),
+    linear-gradient(135deg, rgba(236, 72, 153, 0.28), rgba(251, 207, 232, 0.1)),
+    #140810;
+}
+
+.project-preview.clothingapp {
+  background:
+    radial-gradient(circle at 65% 20%, rgba(251, 207, 232, 0.2), transparent 10rem),
+    linear-gradient(135deg, rgba(190, 24, 93, 0.28), rgba(99, 102, 241, 0.15)),
+    #10060e;
+}
+
 .preview-bar {
   display: flex;
   gap: 7px;

@@ -297,13 +297,14 @@ export class WatchCustomizerComponent implements OnInit, OnDestroy {
   }
 
   addToCart(): void {
+    const slug = this.customWatchSlug();
     const watch: Watch = {
-      id: Date.now(),
-      slug: `custom-${Date.now()}`,
-      imageUrl: this.previewPhoto().imageUrl,
+      id: this.stableNumericId(slug),
+      slug,
+      imageUrl: this.customWatchImageUrl(),
       price: this.price(),
       currency: 'EUR',
-      name: this.previewPhoto().name,
+      name: { es: 'Reloj personalizado', en: 'Custom watch' },
       description: {
         es: `Correa ${this.activeStrap().label.es} · Caja ${this.activeCase().label.es} · Esfera ${this.activeDial().label.es} · Agujas ${this.activeHands().label.es}${this.activeGemstone().id !== 'none' ? ' · ' + this.activeGemstone().label.es : ''}`,
         en: `${this.activeStrap().label.en} Strap · ${this.activeCase().label.en} Case · ${this.activeDial().label.en} Dial · ${this.activeHands().label.en} Hands${this.activeGemstone().id !== 'none' ? ' · ' + this.activeGemstone().label.en : ''}`,
@@ -316,6 +317,105 @@ export class WatchCustomizerComponent implements OnInit, OnDestroy {
     this.cart.add(watch);
     this.addedToCart.set(true);
     setTimeout(() => this.addedToCart.set(false), 2400);
+  }
+
+  private customWatchImageUrl(): string {
+    const strap = this.activeStrap();
+    const watchCase = this.activeCase();
+    const dial = this.activeDial();
+    const hands = this.activeHands();
+    const gemstone = this.activeGemstone();
+    const isMetalStrap = strap.id === 'steel-oyster' || strap.id === 'navy' || strap.id === 'rose-metal';
+    const hourMarkers = Array.from({ length: 12 }, (_, i) => {
+      const angle = i * 30;
+      const rad = angle * Math.PI / 180;
+      const x = 60 + 31 * Math.sin(rad);
+      const y = 82 - 31 * Math.cos(rad);
+
+      if (gemstone.id !== 'none') {
+        return `<circle cx="${x}" cy="${y}" r="3.2" fill="${gemstone.color}"/><circle cx="${x - 0.8}" cy="${y - 0.8}" r="1" fill="rgba(255,255,255,0.7)"/>`;
+      }
+
+      return `<rect x="${x - 1.2}" y="${y - 4}" width="2.4" height="8" rx="0.8" fill="${hands.color}" transform="rotate(${angle} ${x} ${y})"/>`;
+    }).join('');
+
+    const strapSvg = isMetalStrap
+      ? `<rect x="43" y="6" width="34" height="62" rx="5" fill="rgba(0,0,0,0.72)"/>${this.thumbnailBraceletRows(10, strap.color)}<rect x="43" y="104" width="34" height="62" rx="5" fill="rgba(0,0,0,0.72)"/>${this.thumbnailBraceletRows(132, strap.color)}`
+      : `<rect x="43" y="6" width="34" height="62" rx="6" fill="${strap.color}"/><rect x="43" y="6" width="34" height="62" rx="6" fill="url(#strapCurve)"/><line x1="49" y1="12" x2="49" y2="62" stroke="rgba(255,255,255,0.24)" stroke-width="0.8" stroke-dasharray="3 3"/><line x1="71" y1="12" x2="71" y2="62" stroke="rgba(255,255,255,0.24)" stroke-width="0.8" stroke-dasharray="3 3"/><rect x="43" y="104" width="34" height="62" rx="6" fill="${strap.color}"/><rect x="43" y="104" width="34" height="62" rx="6" fill="url(#strapCurve)"/><line x1="49" y1="110" x2="49" y2="160" stroke="rgba(255,255,255,0.24)" stroke-width="0.8" stroke-dasharray="3 3"/><line x1="71" y1="110" x2="71" y2="160" stroke="rgba(255,255,255,0.24)" stroke-width="0.8" stroke-dasharray="3 3"/>`;
+
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 176">
+      <defs>
+        <radialGradient id="caseGrad" cx="35%" cy="25%" r="72%">
+          <stop offset="0%" stop-color="${watchCase.highlight}"/>
+          <stop offset="56%" stop-color="${watchCase.base}"/>
+          <stop offset="100%" stop-color="${watchCase.shadow}"/>
+        </radialGradient>
+        <radialGradient id="dialGrad" cx="38%" cy="28%" r="70%">
+          <stop offset="0%" stop-color="${this.lightenColor(dial.color, 28)}"/>
+          <stop offset="100%" stop-color="${dial.color}"/>
+        </radialGradient>
+        <linearGradient id="strapCurve" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#000" stop-opacity="0.55"/>
+          <stop offset="50%" stop-color="#fff" stop-opacity="0.13"/>
+          <stop offset="100%" stop-color="#000" stop-opacity="0.48"/>
+        </linearGradient>
+        <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+          <feDropShadow dx="1" dy="5" stdDeviation="5" flood-color="#000" flood-opacity="0.65"/>
+        </filter>
+      </defs>
+      <rect width="120" height="176" fill="#090706"/>
+      <ellipse cx="60" cy="88" rx="48" ry="76" fill="rgba(216,183,111,0.08)"/>
+      ${strapSvg}
+      <rect x="41" y="58" width="38" height="16" rx="4" fill="url(#caseGrad)"/>
+      <rect x="41" y="102" width="38" height="16" rx="4" fill="url(#caseGrad)"/>
+      <circle cx="60" cy="88" r="45" fill="url(#caseGrad)" filter="url(#shadow)"/>
+      <circle cx="60" cy="88" r="40" fill="${dial.color}"/>
+      <circle cx="60" cy="88" r="36" fill="url(#caseGrad)"/>
+      <circle cx="60" cy="88" r="33" fill="url(#dialGrad)"/>
+      ${hourMarkers}
+      <text x="60" y="79" text-anchor="middle" fill="${dial.textColor}" fill-opacity="0.9" font-size="5.5" font-family="Georgia, serif" font-weight="700" letter-spacing="1.8">TEMPOLUX</text>
+      <rect x="72" y="84" width="10" height="7" rx="1.2" fill="rgba(255,255,255,0.9)" stroke="${watchCase.shadow}" stroke-width="0.4"/>
+      <text x="77" y="89.3" text-anchor="middle" font-size="4.2" fill="#15110c" font-family="monospace" font-weight="700">${this.currentDay}</text>
+      <polygon points="60,61 62.2,88 60,94 57.8,88" fill="${hands.color}"/>
+      <polygon points="60,52 61.4,88 60,96 58.6,88" fill="${hands.color}"/>
+      <line x1="60" y1="57" x2="60" y2="101" stroke="#d8b76f" stroke-width="0.9" stroke-linecap="round"/>
+      <circle cx="60" cy="88" r="3.3" fill="${watchCase.base}"/>
+      <circle cx="60" cy="88" r="1.8" fill="${watchCase.highlight}"/>
+      <rect x="103" y="80" width="8" height="16" rx="3" fill="url(#caseGrad)"/>
+      <ellipse cx="46" cy="66" rx="6" ry="12" fill="rgba(255,255,255,0.09)" transform="rotate(-20 46 66)"/>
+    </svg>`;
+
+    return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
+  }
+
+  private thumbnailBraceletRows(startY: number, color: string): string {
+    const highlight = this.lightenColor(color, 55);
+    const shadow = this.lightenColor(color, -55);
+
+    return Array.from({ length: 4 }, (_, i) => {
+      const y = startY + i * 13;
+      return `<rect x="44" y="${y}" width="8" height="11" rx="0.8" fill="${shadow}"/><rect x="52" y="${y}" width="16" height="11" rx="0.8" fill="${highlight}"/><rect x="68" y="${y}" width="8" height="11" rx="0.8" fill="${shadow}"/><rect x="52" y="${y}" width="16" height="3" fill="rgba(255,255,255,0.28)"/>`;
+    }).join('');
+  }
+
+  private customWatchSlug(): string {
+    return [
+      'custom',
+      this.activeStrap().id,
+      this.activeCase().id,
+      this.activeDial().id,
+      this.activeHands().id,
+      this.activeGemstone().id,
+    ].join('-');
+  }
+
+  private stableNumericId(value: string): number {
+    let hash = 0;
+    for (let i = 0; i < value.length; i++) {
+      hash = Math.imul(31, hash) + value.charCodeAt(i) | 0;
+    }
+
+    return 1_000_000_000 + Math.abs(hash);
   }
 
   private resolvePreviewPhoto(): PreviewPhoto {
@@ -344,9 +444,9 @@ export class WatchCustomizerComponent implements OnInit, OnDestroy {
 
   private lightenColor(hex: string, amount: number): string {
     const num = parseInt(hex.replace('#', ''), 16);
-    const r = Math.min(255, (num >> 16) + amount);
-    const g = Math.min(255, ((num >> 8) & 0xff) + amount);
-    const b = Math.min(255, (num & 0xff) + amount);
+    const r = Math.max(0, Math.min(255, (num >> 16) + amount));
+    const g = Math.max(0, Math.min(255, ((num >> 8) & 0xff) + amount));
+    const b = Math.max(0, Math.min(255, (num & 0xff) + amount));
     return `#${((r << 16) | (g << 8) | b).toString(16).padStart(6, '0')}`;
   }
 }

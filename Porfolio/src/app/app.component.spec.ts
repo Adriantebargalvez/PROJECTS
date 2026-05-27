@@ -30,9 +30,9 @@ describe('AppComponent', () => {
     );
   });
 
-  it('should include five featured projects', () => {
+  it('should include six featured projects', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.projects.length).toBe(5);
+    expect(app.projects.length).toBe(6);
   });
 });

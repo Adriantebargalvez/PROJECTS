@@ -5,6 +5,7 @@
 <div
   class="cart-drawer"
   [class.cart-drawer--open]="cart.isOpen()"
+  [style.left]="cart.isOpen() ? 'calc(100vw - 420px)' : '100vw'"
   role="dialog"
   aria-modal="true"
   aria-label="Cesta de compra"

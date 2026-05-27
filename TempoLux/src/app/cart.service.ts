@@ -30,11 +30,11 @@ export class CartService {
 
   add(watch: Watch): void {
     const current = this.items();
-    const idx = current.findIndex(i => i.watch.id === watch.id);
+    const idx = current.findIndex(i => i.watch.slug === watch.slug || i.watch.id === watch.id);
     if (idx >= 0) {
-      // Ya está en el carrito: incrementamos cantidad en vez de duplicar
+      // Ya está en el carrito: actualizamos sus datos visuales e incrementamos cantidad.
       const updated = [...current];
-      updated[idx] = { ...updated[idx], quantity: updated[idx].quantity + 1 };
+      updated[idx] = { watch, quantity: updated[idx].quantity + 1 };
       this.items.set(updated);
     } else {
       this.items.set([...current, { watch, quantity: 1 }]);

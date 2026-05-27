@@ -194,14 +194,110 @@
   margin: 0 auto;
   padding: 3rem 2rem 5rem;
   gap: 3.5rem;
-  grid-template-columns: 1fr 1.3fr;
+  grid-template-columns: minmax(320px, 420px) minmax(0, 1fr);
   align-items: start;
 }
 
-@media (max-width: 860px) {
+@media (max-width: 600px) {
+  .checkout-header-inner {
+    padding: 0 1rem;
+    gap: 0.5rem;
+    align-items: flex-start;
+  }
+
+  .checkout-brand-word {
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+  }
+
+  .checkout-secure-badge {
+    font-size: 0.65rem;
+  }
+
   .checkout-layout {
+    padding: 1.5rem 1rem 3rem;
+    gap: 2rem;
+  }
+
+  .checkout-summary {
+    padding: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .checkout-header-inner {
+    padding: 0 0.875rem;
+    display: grid;
     grid-template-columns: 1fr;
-    padding: 2rem 1.25rem 4rem;
+    justify-items: start;
+  }
+
+  .checkout-back span,
+  .checkout-back {
+    font-size: 0.72rem;
+  }
+
+  .checkout-secure-badge {
+    display: none;
+  }
+
+  .checkout-layout {
+    padding: 1.25rem 0.875rem 2.5rem;
+    gap: 1.5rem;
+  }
+
+  .checkout-summary {
+    padding: 1rem;
+    border-radius: 8px;
+  }
+
+  .checkout-section-title {
+    margin-bottom: 1rem;
+  }
+
+  .checkout-item-img-wrap {
+    width: 48px;
+    height: 48px;
+  }
+
+  .checkout-item-name {
+    font-size: 0.82rem;
+    line-height: 1.35;
+  }
+
+  .checkout-item-price {
+    font-size: 0.82rem;
+  }
+
+  .checkout-row-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .checkout-submit {
+    padding: 1rem 1.5rem;
+    font-size: 0.88rem;
+  }
+
+  .checkout-form {
+    gap: 1.25rem;
+  }
+
+  .checkout-input {
+    font-size: 16px; /* prevents iOS auto-zoom */
+    padding: 0.75rem 0.875rem;
+  }
+
+  .success-title {
+    font-size: 1.75rem;
+  }
+
+  .success-order {
+    padding: 0.875rem 1.25rem;
+  }
+
+  .success-cta {
+    padding: 0.875rem 1.75rem;
+    font-size: 0.8rem;
   }
 }
 
@@ -303,9 +399,9 @@
   font-size: 0.72rem;
   color: rgba(255, 255, 255, 0.38);
   margin: 0.2rem 0 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  white-space: normal;
+  word-break: break-word;
+  line-height: 1.45;
 }
 
 .checkout-item-price {
@@ -541,4 +637,49 @@
 
 @keyframes spin {
   to { transform: rotate(360deg); }
+}
+
+/* Final responsive overrides: keep these after the base rules so desktop styles cannot win later. */
+@media (max-width: 1040px) {
+  .checkout-layout {
+    grid-template-columns: 1fr;
+    padding: 2rem 1.25rem 4rem;
+    gap: 2rem;
+  }
+
+  .checkout-summary {
+    position: static;
+    top: auto;
+    z-index: auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .checkout-item {
+    display: grid;
+    grid-template-columns: 48px minmax(0, 1fr);
+    align-items: start;
+    gap: 0.75rem;
+  }
+
+  .checkout-item-price {
+    grid-column: 2;
+    justify-self: start;
+    margin-top: 0.25rem;
+  }
+
+  .checkout-item-name,
+  .checkout-item-desc {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+    word-break: break-word;
+  }
+}
+
+@media (max-width: 480px) {
+  .checkout-item {
+    grid-template-columns: 44px minmax(0, 1fr);
+    gap: 0.7rem;
+  }
 }

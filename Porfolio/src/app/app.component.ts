@@ -155,7 +155,7 @@ export class AppComponent implements AfterViewInit {
     },
     {
       title: 'TempoLux',
-      link: '#hero',
+      link: 'https://tempolux-61eaa.web.app/',
       description:
         'Tienda online de relojes de lujo con catalogo, accesorios y un configurador para disenar tu propio reloj.',
       technologies: [

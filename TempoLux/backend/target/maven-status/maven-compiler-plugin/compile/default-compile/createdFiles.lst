@@ -1,3 +1,4 @@
+com\tempolux\ApiStatusController.class
 com\tempolux\catalog\LocalizedMaterials.class
 com\tempolux\catalog\LocalizedText.class
 com\tempolux\TempoLuxApiApplication.class

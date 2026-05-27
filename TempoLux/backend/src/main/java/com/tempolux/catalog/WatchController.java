@@ -11,7 +11,12 @@ import org.springframework.web.bind.annotation.RestController;
 // CORS limitado a localhost — en producción reemplazar por la URL real del dominio
 @RestController
 @RequestMapping("/api/watches")
-@CrossOrigin(origins = {"http://localhost:4200", "http://127.0.0.1:4200"})
+@CrossOrigin(originPatterns = {
+    "http://localhost:4200",
+    "http://127.0.0.1:4200",
+    "https://*.web.app",
+    "https://*.firebaseapp.com"
+})
 public class WatchController {
 
   private final WatchCatalogService catalogService;

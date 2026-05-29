@@ -45,28 +45,67 @@ export class AppComponent implements AfterViewInit {
 
   readonly projects: Project[] = [
     {
-      title: 'Plataforma de Gestión de Usuarios',
-      link: 'https://gestiondeusuarios-ad01a.web.app',
+      title: 'CurriculumCode',
+      link: 'https://curriculumcode-292cb.web.app',
       description:
-        'Plataforma moderna para gestionar usuarios, roles y permisos con frontend Angular y backend Java.',
+        'Currículum web profesional con CV, carta de presentación, enlaces de contacto, descarga de PDF y bloque visual de tecnologías utilizadas.',
       technologies: [
-        'Angular 16',
-        'Bootstrap 5',
-        'Spring Boot 3',
-        'Java 17',
-        'REST API',
-        'JPA / Hibernate',
-        'Maven',
-        'Docker',
+        'React 19',
+        'Vite',
+        'JavaScript',
+        'HTML5',
+        'CSS3',
         'Firebase Hosting',
-        'Render',
+        'Responsive Design',
       ],
       rationale:
-        'Se han usado tecnologias para separar la interfaz del backend, gestionar usuarios y permisos con una API organizada, persistir datos y desplegar frontend y servidor en entornos independientes.',
+        'Se ha usado React con Vite para crear una presentación profesional rápida, modular y fácil de mantener, con CSS personalizado para reproducir el formato de currículum y Firebase Hosting para publicarlo de forma sencilla.',
       cta: 'Ver proyecto',
-      visual: 'users',
+      visual: 'curriculum',
+      image: 'assets/projects/curriculumcode.png',
+    },
+    {
+      title: 'TempoLux',
+      link: 'https://tempolux-61eaa.web.app/',
+      description:
+        'Tienda online de relojes de lujo con catalogo, accesorios y un configurador para disenar tu propio reloj.',
+      technologies: [
+        'Angular 21',
+        'TypeScript',
+        'Tailwind CSS',
+        'Spring Boot 3',
+        'Java 17+',
+        'REST API',
+        'Maven',
+      ],
+      rationale:
+        'Se han usado tecnologias orientadas a separar bien el frontend del backend, mantener el proyecto ordenado y ofrecer una experiencia visual cuidada con datos servidos desde una API.',
+      cta: 'Ver Proyecto',
+      visual: 'tempolux',
       backendBuild: 'Spring Boot + Maven',
-      image: 'assets/projects/gestion-usuarios.svg',
+      image: 'assets/projects/tempolux.png',
+    },
+    {
+      title: 'Hyrule Cards',
+      link: 'https://zelda-a38d1.web.app',
+      description:
+        'Aplicación web temática de Zelda que muestra criaturas, equipo, materiales, monstruos y tesoros en formato de cartas coleccionables.',
+      technologies: [
+        'Angular 16',
+        'TypeScript',
+        'Angular Router',
+        'Bootstrap 5',
+        'API REST externa',
+        'HttpClient',
+        'RxJS',
+        'Firebase Hosting',
+        'Responsive Design',
+      ],
+      rationale:
+        'Se ha usado Angular para organizar la aplicación por componentes y rutas, una API REST externa para obtener los datos del universo Zelda, HttpClient y RxJS para gestionar las peticiones, Bootstrap y CSS responsive para adaptar la interfaz, y Firebase Hosting para publicar la web.',
+      cta: 'Ver proyecto',
+      visual: 'zelda',
+      image: 'assets/projects/zelda.png',
     },
     {
       title: 'Blog de Muebles y Decoración',
@@ -117,6 +156,30 @@ export class AppComponent implements AfterViewInit {
       image: 'assets/projects/kreitekfy.png',
     },
     {
+      title: 'Plataforma de Gestión de Usuarios',
+      link: 'https://gestiondeusuarios-ad01a.web.app',
+      description:
+        'Plataforma moderna para gestionar usuarios, roles y permisos con frontend Angular y backend Java.',
+      technologies: [
+        'Angular 16',
+        'Bootstrap 5',
+        'Spring Boot 3',
+        'Java 17',
+        'REST API',
+        'JPA / Hibernate',
+        'Maven',
+        'Docker',
+        'Firebase Hosting',
+        'Render',
+      ],
+      rationale:
+        'Se han usado tecnologias para separar la interfaz del backend, gestionar usuarios y permisos con una API organizada, persistir datos y desplegar frontend y servidor en entornos independientes.',
+      cta: 'Ver proyecto',
+      visual: 'users',
+      backendBuild: 'Spring Boot + Maven',
+      image: 'assets/projects/gestion-usuarios.svg',
+    },
+    {
       title: 'FCT Manager Aplicación de Escritorio',
       image:'assets/projects/GestionFCT.png',
       link: 'assets/FCT-Manager-Windows.zip',
@@ -157,63 +220,6 @@ export class AppComponent implements AfterViewInit {
         'Se han usado tecnologias para organizar el portfolio como una aplicacion mantenible, cuidar la presentacion visual, mejorar la base SEO y comprobar que el componente principal funciona correctamente.',
       cta: 'Ver portfolio',
       visual: 'portfolio',
-    },
-    {
-      title: 'TempoLux',
-      link: 'https://tempolux-61eaa.web.app/',
-      description:
-        'Tienda online de relojes de lujo con catalogo, accesorios y un configurador para disenar tu propio reloj.',
-      technologies: [
-        'Angular 21',
-        'TypeScript',
-        'Tailwind CSS',
-        'Spring Boot 3',
-        'Java 17+',
-        'REST API',
-        'Maven',
-      ],
-      rationale:
-        'Se han usado tecnologias orientadas a separar bien el frontend del backend, mantener el proyecto ordenado y ofrecer una experiencia visual cuidada con datos servidos desde una API.',
-      cta: 'Ver Proyecto',
-      visual: 'tempolux',
-      backendBuild: 'Spring Boot + Maven',
-      image: 'assets/projects/tempolux.png',
-    },
-    {
-      title: 'Currículum',
-      link: '#hero',
-      description:
-        'Currículum vitae interactivo desarrollado como aplicación web, con secciones de experiencia, formación, habilidades y contacto.',
-      technologies: [
-        'Angular',
-        'TypeScript',
-        'HTML',
-        'CSS3',
-        'Responsive Design',
-      ],
-      rationale:
-        'Presentación profesional en formato web para destacar la experiencia y habilidades de forma visual e interactiva.',
-      cta: 'Próximamente',
-      visual: 'curriculum',
-    },
-    {
-      title: 'API Zelda con Interfaz',
-      link: '#hero',
-      description:
-        'Aplicación web que consume la API pública de Zelda para mostrar personajes, juegos, objetos y más, con una interfaz visual temática.',
-      technologies: [
-        'Angular',
-        'TypeScript',
-        'HTML',
-        'CSS3',
-        'REST API',
-        'RxJS',
-        'Responsive Design',
-      ],
-      rationale:
-        'Consumo de API externa con Angular y RxJS para construir una interfaz temática que muestra el universo de The Legend of Zelda de forma visual e interactiva.',
-      cta: 'Próximamente',
-      visual: 'zelda',
     },
     {
       title: 'Generador de Vídeos',
@@ -278,6 +284,7 @@ export class AppComponent implements AfterViewInit {
       cta: 'Próximamente',
       visual: 'clothingapp',
     },
+
   ];
 
   contactForm = {

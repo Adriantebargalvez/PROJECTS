@@ -510,23 +510,6 @@ a:hover {
   font-weight: 800;
 }
 
-.tool-sublist {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 5px;
-}
-
-.tool-sublist span {
-  padding: 3px 7px;
-  color: #323b4c;
-  background: #ececec;
-  border: 1px solid rgba(50, 59, 76, 0.14);
-  border-radius: 999px;
-  font-size: 0.72rem;
-  font-weight: 800;
-  line-height: 1.2;
-}
-
 .links-panel {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));

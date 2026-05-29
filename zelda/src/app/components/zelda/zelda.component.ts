@@ -1,25 +1,25 @@
-import {Component, OnInit} from '@angular/core';
-import {ZeldaService} from "../../services/zelda.service";
-import {zelda} from "../components/zelda";
+import { Component, OnInit } from '@angular/core';
+import { ZeldaService } from '../../services/zelda.service';
+import { zelda } from '../components/zelda';
 
 @Component({
   selector: 'app-zelda',
-  templateUrl: './zelda.component.html',
-  styleUrls: ['./zelda.component.css']
+  templateUrl: './zelda.component.html'
 })
-export class ZeldaComponent implements OnInit{
-  zelda: zelda[]=[];
-  constructor(private  ZeldaService : ZeldaService) {
+export class ZeldaComponent implements OnInit {
+  zelda: zelda[] = [];
 
-  }
+  constructor(private zeldaService: ZeldaService) {}
+
   ngOnInit(): void {
     this.cargarZelda();
   }
-  private  cargarZelda() {
-    this.ZeldaService.getzelda().subscribe(
+
+  private cargarZelda() {
+    this.zeldaService.getZelda().subscribe(
       {
         next: value => {
-          this.zelda= value.data
+          this.zelda = value.data
         },
         error: err => {
           console.log(err);
@@ -29,8 +29,5 @@ export class ZeldaComponent implements OnInit{
         }
       }
     )
-
-
   }
-
 }

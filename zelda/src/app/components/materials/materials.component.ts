@@ -1,26 +1,23 @@
-import {Component, OnInit} from '@angular/core';
-import {materials} from "../components/materials";
-import {MaterialsService} from "../../services/materials.service";
+import { Component, OnInit } from '@angular/core';
+import { materials } from '../components/materials';
+import { MaterialsService } from '../../services/materials.service';
 
 
 @Component({
   selector: 'app-materials',
-  templateUrl: './materials.component.html',
-  styleUrls: ['./materials.component.css']
+  templateUrl: './materials.component.html'
 })
 export class MaterialsComponent implements OnInit {
   materials: materials[] = [];
 
-  constructor(private MaterialsService: MaterialsService) {
-
-  }
+  constructor(private materialsService: MaterialsService) {}
 
   ngOnInit(): void {
     this.cargarMaterials();
   }
 
   private cargarMaterials() {
-    this.MaterialsService.gematerials().subscribe(
+    this.materialsService.getMaterials().subscribe(
       {
         next: value => {
           this.materials = value.data
@@ -33,6 +30,5 @@ export class MaterialsComponent implements OnInit {
         }
       }
     )
-
   }
 }

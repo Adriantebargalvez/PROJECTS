@@ -88,9 +88,9 @@ function ContactIcon({ label }) {
 function App() {
   return (
     <>
-      <button className="print-button" type="button" onClick={() => window.print()}>
+      <a className="print-button" href="/documents/Adrian_Tebar_Galvez_CV.pdf" download>
         Descargar PDF
-      </button>
+      </a>
 
       <main className="cv-page">
         <header className="cv-header">
@@ -213,13 +213,6 @@ function App() {
                         </span>
                         <span className="tool-content">
                           <span className="tool-name">{item.name}</span>
-                          {item.children && (
-                            <span className="tool-sublist">
-                              {item.children.map((child) => (
-                                <span key={child}>{child}</span>
-                              ))}
-                            </span>
-                          )}
                         </span>
                       </li>
                     ))}

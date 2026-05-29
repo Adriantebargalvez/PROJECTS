@@ -1,23 +1,21 @@
-import {Component, OnInit} from '@angular/core';
-import {creatures} from "../components/creatures";
-import {CreaturesService} from "../../services/creatures.service";
+import { Component, OnInit } from '@angular/core';
+import { creatures } from '../components/creatures';
+import { CreaturesService } from '../../services/creatures.service';
 
 @Component({
   selector: 'app-creatures',
-  templateUrl: './creatures.component.html',
-  styleUrls: ['./creatures.component.css']
+  templateUrl: './creatures.component.html'
 })
-export class CreaturesComponent implements OnInit{
-creatures: creatures[]=[];
-  constructor(private  CreaturesService : CreaturesService) {
-
-  }
+export class CreaturesComponent implements OnInit {
+  creatures: creatures[] = [];
+  constructor(private creaturesService: CreaturesService) {}
 
   ngOnInit(): void {
     this.cargarCreatures();
   }
-private  cargarCreatures(){
-    this.CreaturesService.getcreatures().subscribe(
+
+  private cargarCreatures() {
+    this.creaturesService.getCreatures().subscribe(
       {
         next: value => {
           this.creatures = value.data
@@ -30,5 +28,5 @@ private  cargarCreatures(){
         }
       }
     )
-}
+  }
 }

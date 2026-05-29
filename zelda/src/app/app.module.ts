@@ -11,7 +11,7 @@ import { MaterialsComponent } from './components/materials/materials.component';
 import { MonstersComponent } from './components/monsters/monsters.component';
 import { TreasureComponent } from './components/treasure/treasure.component';
 import { InicioComponent } from './components/inicio/inicio.component';
-import {HttpClient, HttpClientModule} from "@angular/common/http";
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({

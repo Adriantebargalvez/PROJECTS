@@ -2,12 +2,15 @@ import React from 'react';
 import profilePhoto from './assets/adrian-profile.jpg';
 import {
   contact,
+  coverLetter,
   education,
   experience,
   extra,
   languages,
   profile,
+  professionalLinks,
   skills,
+  toolkit,
 } from './cvData.js';
 
 function SidebarSection({ title, children }) {
@@ -35,6 +38,15 @@ function MainSection({ title, children }) {
       <h2>{title}</h2>
       {children}
     </section>
+  );
+}
+
+function ExternalArrow() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M7 17 17 7" />
+      <path d="M8 7h9v9" />
+    </svg>
   );
 }
 
@@ -75,96 +87,160 @@ function ContactIcon({ label }) {
 
 function App() {
   return (
-    <main className="cv-page">
-      <header className="cv-header">
-        <div className="photo-frame">
-          <img className="profile-photo" src={profilePhoto} alt="Adrián Tebar Gálvez" />
+    <>
+      <button className="print-button" type="button" onClick={() => window.print()}>
+        Descargar PDF
+      </button>
+
+      <main className="cv-page">
+        <header className="cv-header">
+          <div className="photo-frame">
+            <img className="profile-photo" src={profilePhoto} alt="Adrián Tebar Gálvez" />
+          </div>
+
+          <div className="header-copy">
+            <h1>Adrián Tebar Gálvez</h1>
+            <p>Desarrollador de Software | Full Stack</p>
+          </div>
+        </header>
+
+        <aside className="cv-sidebar">
+          <SidebarSection title="Contacto">
+            <ul className="contact-list">
+              {contact.map(({ label, value, href }) => {
+                const isExternal = href?.startsWith('http');
+
+                return (
+                  <li key={label}>
+                    <ContactIcon label={label} />
+                    <span className="sr-only">{label}</span>
+                    {href ? (
+                      <a
+                        href={href}
+                        target={isExternal ? '_blank' : undefined}
+                        rel={isExternal ? 'noreferrer' : undefined}
+                      >
+                        {value}
+                      </a>
+                    ) : (
+                      <strong>{value}</strong>
+                    )}
+                  </li>
+                );
+              })}
+            </ul>
+          </SidebarSection>
+
+          <SidebarSection title="Habilidades">
+            <TextList items={skills} />
+          </SidebarSection>
+
+          <SidebarSection title="Idiomas">
+            <TextList items={languages} />
+          </SidebarSection>
+
+          <SidebarSection title="Otros datos">
+            <TextList items={extra} />
+          </SidebarSection>
+        </aside>
+
+        <section className="cv-content">
+          <MainSection title="Perfil profesional">
+            {profile.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+          </MainSection>
+
+          <MainSection title="Experiencia profesional">
+            <div className="timeline">
+              {experience.map(({ period, role, company, details }) => (
+                <article className="timeline-item" key={`${period}-${role}`}>
+                  <div className="timeline-date">{period}</div>
+                  <div className="timeline-body">
+                    {company && <p className="company">{company}</p>}
+                    <h3>{role}</h3>
+                    <ul>
+                      {details.map((detail) => (
+                        <li key={detail}>{detail}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </MainSection>
+
+          <MainSection title="Formación">
+            <div className="education-list">
+              {education.map(({ year, title }) => (
+                <article className="education-item" key={`${year}-${title}`}>
+                  <span>{year}</span>
+                  <p>{title}</p>
+                </article>
+              ))}
+            </div>
+          </MainSection>
+        </section>
+      </main>
+
+      <section className="letter-page">
+        <div className="letter-header">
+          <p>Carta de presentación</p>
+          <h2>Adrián Tebar Gálvez</h2>
+          <span>Desarrollador de Software | Full Stack</span>
         </div>
 
-        <div className="header-copy">
-          <h1>Adrián Tebar Gálvez</h1>
-          <p>Desarrollador de Software | Full Stack</p>
-        </div>
-      </header>
+        <div className="letter-grid">
+          <article className="letter-card letter-card-main">
+            <h3>Carta de presentación</h3>
+            {coverLetter.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+          </article>
 
-      <aside className="cv-sidebar">
-        <SidebarSection title="Contacto">
-          <ul className="contact-list">
-            {contact.map(({ label, value, href }) => {
-              const isExternal = href?.startsWith('http');
-
-              return (
-                <li key={label}>
-                  <ContactIcon label={label} />
-                  <span className="sr-only">{label}</span>
-                  {href ? (
-                    <a
-                      href={href}
-                      target={isExternal ? '_blank' : undefined}
-                      rel={isExternal ? 'noreferrer' : undefined}
-                    >
-                      {value}
-                    </a>
-                  ) : (
-                    <strong>{value}</strong>
-                  )}
-                </li>
-              );
-            })}
-          </ul>
-        </SidebarSection>
-
-        <SidebarSection title="Habilidades">
-          <TextList items={skills} />
-        </SidebarSection>
-
-        <SidebarSection title="Idiomas">
-          <TextList items={languages} />
-        </SidebarSection>
-
-        <SidebarSection title="Otros datos">
-          <TextList items={extra} />
-        </SidebarSection>
-      </aside>
-
-      <section className="cv-content">
-        <MainSection title="Perfil profesional">
-          {profile.map((paragraph) => (
-            <p key={paragraph}>{paragraph}</p>
-          ))}
-        </MainSection>
-
-        <MainSection title="Experiencia profesional">
-          <div className="timeline">
-            {experience.map(({ period, role, company, details }) => (
-              <article className="timeline-item" key={`${period}-${role}`}>
-                <div className="timeline-date">{period}</div>
-                <div className="timeline-body">
-                  {company && <p className="company">{company}</p>}
-                  <h3>{role}</h3>
+          <aside className="letter-card">
+            <h3>Lo que utilizo</h3>
+            <div className="toolkit-grid">
+              {toolkit.map(({ title, items }) => (
+                <section className="toolkit-group" key={title}>
+                  <h4>{title}</h4>
                   <ul>
-                    {details.map((detail) => (
-                      <li key={detail}>{detail}</li>
+                    {items.map((item) => (
+                      <li key={item.name}>
+                        <span className="tool-icon" style={{ '--tool-color': item.color }}>
+                          {item.image && <img src={item.image} alt="" loading="lazy" />}
+                          <span>{item.icon}</span>
+                        </span>
+                        <span className="tool-content">
+                          <span className="tool-name">{item.name}</span>
+                          {item.children && (
+                            <span className="tool-sublist">
+                              {item.children.map((child) => (
+                                <span key={child}>{child}</span>
+                              ))}
+                            </span>
+                          )}
+                        </span>
+                      </li>
                     ))}
                   </ul>
-                </div>
-              </article>
-            ))}
-          </div>
-        </MainSection>
+                </section>
+              ))}
+            </div>
+          </aside>
+        </div>
 
-        <MainSection title="Formación">
-          <div className="education-list">
-            {education.map(({ year, title }) => (
-              <article className="education-item" key={`${year}-${title}`}>
-                <span>{year}</span>
-                <p>{title}</p>
-              </article>
-            ))}
-          </div>
-        </MainSection>
+        <div className="links-panel">
+          {professionalLinks.map(({ label, value, href }) => (
+            <a href={href} target="_blank" rel="noreferrer" key={label}>
+              <span>{label}</span>
+              <strong>{value}</strong>
+              <ExternalArrow />
+            </a>
+          ))}
+        </div>
       </section>
-    </main>
+    </>
   );
 }
 

@@ -1,24 +1,39 @@
-<div class="row">
-  <div class="col-4 mt-4" *ngFor="let monster of monsters">
-    <div class="card">
-      <div class="card-header">
-        <h2>{{monster.name}}</h2>
+<section class="collection-page monsters-page">
+  <header class="collection-header">
+    <p class="eyebrow">Bestiario oscuro</p>
+    <h1>Monstruos</h1>
+    <p>Enemigos y jefes presentados como cartas de alto impacto visual.</p>
+  </header>
 
-       
-        <p><strong>Description:</strong><i>{{monster.description}}</i> </p>
-        <p><strong>Lugar:</strong>
-        <ul>
-          <li *ngFor="let localidad of monster.common_locations ">
-            {{localidad}}</li>
-        </ul>
-        <p><strong>Materiales:</strong>
-        <ul>
-          <li *ngFor="let materiales of monster.drops ">
-            {{materiales}}</li>
-        </ul>
+  <div class="luxury-grid">
+    <article class="luxury-card violet-card" *ngFor="let monster of monsters">
+      <div class="card-topline">
+        <span>{{ monster.category }}</span>
+        <span>#{{ monster.id }}</span>
       </div>
-    </div>
 
-    <img [src]="monster.image" class="card-img-top">
+      <div class="image-frame">
+        <img [src]="monster.image" [alt]="monster.name">
+      </div>
+
+      <div class="card-content">
+        <h2>{{ monster.name }}</h2>
+        <p class="description">{{ monster.description }}</p>
+
+        <div class="detail-block" *ngIf="monster.common_locations as locations">
+          <h3>Lugares</h3>
+          <ul>
+            <li *ngFor="let localidad of locations">{{ localidad }}</li>
+          </ul>
+        </div>
+
+        <div class="detail-block" *ngIf="monster.drops as drops">
+          <h3>Materiales</h3>
+          <ul>
+            <li *ngFor="let material of drops">{{ material }}</li>
+          </ul>
+        </div>
+      </div>
+    </article>
   </div>
-</div>
+</section>

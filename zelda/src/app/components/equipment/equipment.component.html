@@ -1,22 +1,37 @@
-<div class="row">
-  <div class="col-4 mt-4" *ngFor="let equipament of equipaments">
-    <div class="card">
+<section class="collection-page equipment-page">
+  <header class="collection-header">
+    <p class="eyebrow">Arsenal legendario</p>
+    <h1>Equipo</h1>
+    <p>Armas, escudos y armaduras con acabado de carta metalizada.</p>
+  </header>
 
-    </div>
-    <img [src]="equipament.image" class="card-img-top">
-    <div class="card-header">
+  <div class="luxury-grid">
+    <article class="luxury-card ruby-card" *ngFor="let equipament of equipaments">
+      <div class="card-topline">
+        <span>{{ equipament.category }}</span>
+        <span>#{{ equipament.id }}</span>
+      </div>
 
-    </div>
-    <div class="card body">
-      <h2>{{equipament.name}}</h2>
-      <p><strong>Description:</strong><i>{{equipament.description}}</i> </p>
-      <p><strong>Defensa:</strong><i>{{equipament.properties.defense}}</i> </p>
-      <p><strong>Ataque:</strong><i>{{equipament.properties.attack}}</i> </p>
-      <p><strong>Lugar:</strong>
-      <ul>
-        <li *ngFor="let localidad of equipament.common_locations ">
-          {{localidad}}</li>
-      </ul>
-    </div>
+      <div class="image-frame">
+        <img [src]="equipament.image" [alt]="equipament.name">
+      </div>
+
+      <div class="card-content">
+        <h2>{{ equipament.name }}</h2>
+        <p class="description">{{ equipament.description }}</p>
+
+        <div class="stat-row">
+          <span *ngIf="equipament.properties.attack !== undefined">Ataque: {{ equipament.properties.attack }}</span>
+          <span *ngIf="equipament.properties.defense !== undefined">Defensa: {{ equipament.properties.defense }}</span>
+        </div>
+
+        <div class="detail-block" *ngIf="equipament.common_locations as locations">
+          <h3>Lugares</h3>
+          <ul>
+            <li *ngFor="let localidad of locations">{{ localidad }}</li>
+          </ul>
+        </div>
+      </div>
+    </article>
   </div>
-</div>
+</section>

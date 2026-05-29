@@ -1,19 +1,37 @@
-<div class="row">
-  <div class="col-4 mt-4" *ngFor="let material of materials">
-    <div class="card">
+<section class="collection-page materials-page">
+  <header class="collection-header">
+    <p class="eyebrow">Ingredientes raros</p>
+    <h1>Materiales</h1>
+    <p>Recursos y piezas con textura de coleccion, ideales para recetas y mejoras.</p>
+  </header>
 
+  <div class="luxury-grid">
+    <article class="luxury-card amber-card" *ngFor="let material of materials">
+      <div class="card-topline">
+        <span>{{ material.category }}</span>
+        <span>#{{ material.id }}</span>
+      </div>
 
-    <div class="card body">
-      <h2>{{material.name}}</h2>
-      <p><strong>Habilidad:</strong><i>{{material.cooking_effect}}</i> </p>
-      <p><strong>Lugar:</strong>
-      <ul>
-        <li *ngFor="let localidad of material.common_locations ">
-          {{localidad}}</li>
-      </ul>
-    </div>
-    <img [src]="material.image" class="card-img-top">
-    <p><strong>Description:</strong><i>{{material.description}}</i> </p>
+      <div class="image-frame">
+        <img [src]="material.image" [alt]="material.name">
+      </div>
+
+      <div class="card-content">
+        <h2>{{ material.name }}</h2>
+        <p class="description">{{ material.description }}</p>
+
+        <div class="stat-row">
+          <span *ngIf="material.cooking_effect">Habilidad: {{ material.cooking_effect }}</span>
+          <span *ngIf="material.hearts_recovered">Corazones: {{ material.hearts_recovered }}</span>
+        </div>
+
+        <div class="detail-block" *ngIf="material.common_locations as locations">
+          <h3>Lugares</h3>
+          <ul>
+            <li *ngFor="let localidad of locations">{{ localidad }}</li>
+          </ul>
+        </div>
+      </div>
+    </article>
   </div>
-</div>
-</div>
+</section>

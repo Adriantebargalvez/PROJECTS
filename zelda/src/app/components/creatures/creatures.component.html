@@ -1,21 +1,37 @@
-<div class="row">
-  <div class="col-4 mt-4" *ngFor="let creature of creatures">
-    <div class="card">
-      <div class="card-header">
-        <h2>{{creature.name}}</h2>
-        <p><strong>Habilidad:</strong><i>{{creature.cooking_effect}}</i> </p>
-      </div>
-    </div>
-    <img [src]="creature.image" class="card-img-top">
-    <div class="card body">
+<section class="collection-page creatures-page">
+  <header class="collection-header">
+    <p class="eyebrow">Fauna de Hyrule</p>
+    <h1>Criaturas</h1>
+    <p>Cartas brillantes para animales, insectos y criaturas con efectos de cocina.</p>
+  </header>
 
-      <p><strong>Corazones:</strong><i>{{creature.hearts_recovered}}</i> </p>
-      <p><strong>Descripcion:</strong><i>{{creature.description}}</i> </p>
-      <p><strong>Lugar:</strong>
-      <ul>
-        <li *ngFor="let localidad of creature.common_locations ">
-        {{localidad}}</li>
-      </ul>
-    </div>
+  <div class="luxury-grid">
+    <article class="luxury-card emerald-card" *ngFor="let creature of creatures">
+      <div class="card-topline">
+        <span>{{ creature.category }}</span>
+        <span>#{{ creature.id }}</span>
+      </div>
+
+      <div class="image-frame">
+        <img [src]="creature.image" [alt]="creature.name">
+      </div>
+
+      <div class="card-content">
+        <h2>{{ creature.name }}</h2>
+        <p class="description">{{ creature.description }}</p>
+
+        <div class="stat-row">
+          <span *ngIf="creature.cooking_effect">Habilidad: {{ creature.cooking_effect }}</span>
+          <span *ngIf="creature.hearts_recovered">Corazones: {{ creature.hearts_recovered }}</span>
+        </div>
+
+        <div class="detail-block" *ngIf="creature.common_locations as locations">
+          <h3>Lugares</h3>
+          <ul>
+            <li *ngFor="let localidad of locations">{{ localidad }}</li>
+          </ul>
+        </div>
+      </div>
+    </article>
   </div>
-</div>
+</section>

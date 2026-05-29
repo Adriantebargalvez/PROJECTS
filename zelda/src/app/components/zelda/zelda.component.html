@@ -1,26 +1,46 @@
-<div class="row">
-  <div class="col-4 mt-4" *ngFor="let zelda of zelda">
-    <div class="card">
-      <div class="card-header">
-        <h2>{{zelda.name}}</h2>
+<section class="collection-page">
+  <header class="collection-header">
+    <p class="eyebrow">Archivo completo</p>
+    <h1>Coleccion maestra</h1>
+    <p>Todos los registros del compendio transformados en cartas premium para coleccionar.</p>
+  </header>
+
+  <div class="luxury-grid">
+    <article class="luxury-card" *ngFor="let zelda of zelda">
+      <div class="card-topline">
+        <span>{{ zelda.category }}</span>
+        <span>#{{ zelda.id }}</span>
       </div>
-    </div>
-    <img [src]="zelda.image" class="card-img-top">
-    <div class="card body">
-      <p><strong>Lugar:</strong>
-      <ul>
-        <li *ngFor="let localidad of zelda.common_locations ">
-          {{localidad}}</li>
-      </ul>
-      <p><strong>Habilidad:</strong><i>{{zelda.cooking_effect}}</i> </p>
-      <p><strong>Materiales:</strong>
-      <ul>
-        <li *ngFor="let materiales of zelda.drops ">
-          {{materiales}}</li>
-      </ul>
-      <p><strong>Corazones:</strong><i>{{zelda.hearts_recovered}}</i> </p>
-      <p><strong>Propiedades:</strong><i>{{zelda.properties}}</i> </p>
-      <p><strong>Description:</strong><i>{{zelda.description}}</i> </p>
-    </div>
+
+      <div class="image-frame">
+        <img [src]="zelda.image" [alt]="zelda.name">
+      </div>
+
+      <div class="card-content">
+        <h2>{{ zelda.name }}</h2>
+        <p class="description">{{ zelda.description }}</p>
+
+        <div class="stat-row">
+          <span *ngIf="zelda.cooking_effect">Habilidad: {{ zelda.cooking_effect }}</span>
+          <span *ngIf="zelda.hearts_recovered">Corazones: {{ zelda.hearts_recovered }}</span>
+          <span *ngIf="zelda.properties?.attack">Ataque: {{ zelda.properties?.attack }}</span>
+          <span *ngIf="zelda.properties?.defense">Defensa: {{ zelda.properties?.defense }}</span>
+        </div>
+
+        <div class="detail-block" *ngIf="zelda.common_locations as locations">
+          <h3>Lugares</h3>
+          <ul>
+            <li *ngFor="let localidad of locations">{{ localidad }}</li>
+          </ul>
+        </div>
+
+        <div class="detail-block" *ngIf="zelda.drops as drops">
+          <h3>Materiales</h3>
+          <ul>
+            <li *ngFor="let material of drops">{{ material }}</li>
+          </ul>
+        </div>
+      </div>
+    </article>
   </div>
-</div>
+</section>

@@ -1,23 +1,39 @@
-<div class="row">
-  <div class="col-4 mt-4" *ngFor="let treasure of treasure">
-    <div class="card">
-      <div class="card-header">
-        <p><strong>Lugar:</strong>
-        <ul>
-          <li *ngFor="let localidad of treasure.common_locations ">
-            {{localidad}}</li>
-        </ul>
-        <p><strong>Materiales:</strong>
-        <ul>
-          <li *ngFor="let materiales of treasure.drops ">
-            {{materiales}}</li>
-        </ul>
-        <p><strong>Description:</strong><i>{{treasure.description}}</i> </p>
-        <h2>{{treasure.name}}</h2>
+<section class="collection-page treasure-page">
+  <header class="collection-header">
+    <p class="eyebrow">Reliquias ocultas</p>
+    <h1>Tesoros</h1>
+    <p>Cofres, gemas y botines con tratamiento visual de carta exclusiva.</p>
+  </header>
+
+  <div class="luxury-grid">
+    <article class="luxury-card sapphire-card" *ngFor="let treasure of treasure">
+      <div class="card-topline">
+        <span>{{ treasure.category }}</span>
+        <span>#{{ treasure.id }}</span>
       </div>
-    </div>
-    <img [src]="treasure.image" class="card-img-top">
 
+      <div class="image-frame">
+        <img [src]="treasure.image" [alt]="treasure.name">
+      </div>
+
+      <div class="card-content">
+        <h2>{{ treasure.name }}</h2>
+        <p class="description">{{ treasure.description }}</p>
+
+        <div class="detail-block" *ngIf="treasure.common_locations as locations">
+          <h3>Lugares</h3>
+          <ul>
+            <li *ngFor="let localidad of locations">{{ localidad }}</li>
+          </ul>
+        </div>
+
+        <div class="detail-block" *ngIf="treasure.drops as drops">
+          <h3>Materiales</h3>
+          <ul>
+            <li *ngFor="let material of drops">{{ material }}</li>
+          </ul>
+        </div>
+      </div>
+    </article>
   </div>
-</div>
-
+</section>

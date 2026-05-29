@@ -129,6 +129,12 @@
               <strong>Por qué estas tecnologías</strong>
               <p>{{ project.rationale }}</p>
             </div>
+
+            @if (project.backendBuild) {
+              <div class="backend-build">
+                <span>{{ project.backendBuild }}</span>
+              </div>
+            }
           </div>
         </a>
       }

@@ -11,6 +11,7 @@ interface Project {
   rationale: string;
   cta: string;
   visual: string;
+  backendBuild?: string;
   image?: string;
   download?: string;
 }
@@ -55,6 +56,7 @@ export class AppComponent implements AfterViewInit {
         'Java 17',
         'REST API',
         'JPA / Hibernate',
+        'Maven',
         'Docker',
         'Firebase Hosting',
         'Render',
@@ -63,6 +65,7 @@ export class AppComponent implements AfterViewInit {
         'Se han usado tecnologias para separar la interfaz del backend, gestionar usuarios y permisos con una API organizada, persistir datos y desplegar frontend y servidor en entornos independientes.',
       cta: 'Ver proyecto',
       visual: 'users',
+      backendBuild: 'Spring Boot + Maven',
       image: 'assets/projects/gestion-usuarios.svg',
     },
     {
@@ -100,6 +103,7 @@ export class AppComponent implements AfterViewInit {
         'Spring Security',
         'JWT',
         'JPA / Hibernate',
+        'Gradle',
         'Docker',
         'Firebase Hosting',
         'Inicio de sesión con Google',
@@ -109,6 +113,7 @@ export class AppComponent implements AfterViewInit {
         'Se han usado tecnologias para construir una plataforma musical con frontend SPA, reproduccion de audio, autenticacion segura, gestion de datos y despliegue separado entre frontend y API.',
       cta: 'Ver proyecto',
       visual: 'music',
+      backendBuild: 'Spring Boot + Gradle',
       image: 'assets/projects/kreitekfy.png',
     },
     {
@@ -165,11 +170,13 @@ export class AppComponent implements AfterViewInit {
         'Spring Boot 3',
         'Java 17+',
         'REST API',
+        'Maven',
       ],
       rationale:
         'Se han usado tecnologias orientadas a separar bien el frontend del backend, mantener el proyecto ordenado y ofrecer una experiencia visual cuidada con datos servidos desde una API.',
       cta: 'Ver Proyecto',
       visual: 'tempolux',
+      backendBuild: 'Spring Boot + Maven',
       image: 'assets/projects/tempolux.png',
     },
     {
@@ -186,7 +193,7 @@ export class AppComponent implements AfterViewInit {
       ],
       rationale:
         'Presentación profesional en formato web para destacar la experiencia y habilidades de forma visual e interactiva.',
-      cta: 'Ver Proyecto',
+      cta: 'Próximamente',
       visual: 'curriculum',
     },
     {
@@ -205,7 +212,7 @@ export class AppComponent implements AfterViewInit {
       ],
       rationale:
         'Consumo de API externa con Angular y RxJS para construir una interfaz temática que muestra el universo de The Legend of Zelda de forma visual e interactiva.',
-      cta: 'Ver Proyecto',
+      cta: 'Próximamente',
       visual: 'zelda',
     },
     {
@@ -219,6 +226,9 @@ export class AppComponent implements AfterViewInit {
         'HTML',
         'CSS3',
         'REST API',
+        'Spring Boot 3',
+        'Java 17',
+        'Maven',
         'IA / Generative AI',
         'Responsive Design',
       ],
@@ -226,6 +236,7 @@ export class AppComponent implements AfterViewInit {
         'Combina una interfaz Angular moderna con APIs de generación de contenido para ofrecer una experiencia fluida en la creación automatizada de vídeos.',
       cta: 'Próximamente',
       visual: 'videogen',
+      backendBuild: 'Spring Boot + Maven',
     },
     {
       title: 'Tienda de Ropa',

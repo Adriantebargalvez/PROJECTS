@@ -114,3 +114,151 @@ export const education = [
     title: 'Título de Monitor de tiempo libre',
   },
 ];
+
+export const coverLetter = [
+  'Soy desarrollador de Software Full Stack, con formación en Desarrollo de Aplicaciones Web (DAW) y Desarrollo de Aplicaciones Multiplataforma (DAM).',
+  'Actualmente cuento con experiencia en el desarrollo de aplicaciones, participando tanto en frontend como en backend y colaborando en la construcción de soluciones orientadas a negocio.',
+  'A lo largo de mi trayectoria, he trabajado en el desarrollo y mejora de aplicaciones, lo que me ha permitido adquirir una base sólida en programación, así como una visión global del ciclo de desarrollo de software. Me motiva especialmente la resolución de problemas y la creación de soluciones eficientes, bien estructuradas y orientadas a aportar valor.',
+  'Además, mantengo un interés activo en el ámbito de la inteligencia artificial y en cómo puede integrarse en el desarrollo de software para mejorar procesos, optimizar soluciones y generar nuevas oportunidades tecnológicas.',
+  'Me considero una persona proactiva, con capacidad analítica y orientada a la mejora continua, con facilidad para adaptarme a nuevos entornos y aportar valor dentro de un equipo de trabajo.',
+  'Me gustaría aportar mis conocimientos y seguir creciendo profesionalmente dentro de su equipo, contribuyendo activamente al desarrollo de sus proyectos.',
+];
+
+const devicon = (path) => `https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${path}`;
+const simpleIcon = (name, color) => `https://cdn.simpleicons.org/${name}/${color}`;
+
+export const toolkit = [
+  {
+    title: 'Frontend',
+    items: [
+      { name: 'HTML5', icon: 'H5', color: '#e34f26', image: devicon('html5/html5-original.svg') },
+      { name: 'CSS3', icon: 'C3', color: '#1572b6', image: devicon('css3/css3-original.svg') },
+      {
+        name: 'JavaScript',
+        icon: 'JS',
+        color: '#f7df1e',
+        image: devicon('javascript/javascript-original.svg'),
+      },
+      {
+        name: 'TypeScript',
+        icon: 'TS',
+        color: '#3178c6',
+        image: devicon('typescript/typescript-original.svg'),
+      },
+      { name: 'React', icon: 'R', color: '#61dafb', image: devicon('react/react-original.svg') },
+      { name: 'Angular', icon: 'A', color: '#dd0031', image: devicon('angular/angular-original.svg') },
+      { name: 'C#', icon: 'C#', color: '#68217a', image: devicon('csharp/csharp-original.svg') },
+      { name: 'Python', icon: 'PY', color: '#3776ab', image: devicon('python/python-original.svg') },
+    ],
+  },
+  {
+    title: 'Backend',
+    items: [
+      { name: 'Node.js', icon: 'N', color: '#339933', image: devicon('nodejs/nodejs-original.svg') },
+      { name: 'Express.js', icon: 'EX', color: '#222222', image: devicon('express/express-original.svg') },
+      { name: 'Spring Boot', icon: 'SB', color: '#6db33f', image: devicon('spring/spring-original.svg') },
+      { name: 'REST API', icon: 'API', color: '#323b4c' },
+    ],
+  },
+  {
+    title: 'Bases de datos',
+    items: [
+      { name: 'Firebase', icon: 'F', color: '#ffca28', image: devicon('firebase/firebase-original.svg') },
+      { name: 'Firestore', icon: 'FS', color: '#ff8f00', image: devicon('firebase/firebase-original.svg') },
+      { name: 'MongoDB', icon: 'M', color: '#47a248', image: devicon('mongodb/mongodb-original.svg') },
+      {
+        name: 'SQL Server',
+        icon: 'SQL',
+        color: '#cc2927',
+        image: devicon('microsoftsqlserver/microsoftsqlserver-original.svg'),
+      },
+      {
+        name: 'PostgreSQL',
+        icon: 'PG',
+        color: '#336791',
+        image: devicon('postgresql/postgresql-original.svg'),
+      },
+    ],
+  },
+  {
+    title: 'Mobile',
+    items: [
+      { name: 'Flutter', icon: 'FL', color: '#02569b', image: devicon('flutter/flutter-original.svg') },
+      { name: 'Dart', icon: 'D', color: '#0175c2', image: devicon('dart/dart-original.svg') },
+      { name: 'Kotlin', icon: 'K', color: '#7f52ff', image: devicon('kotlin/kotlin-original.svg') },
+      {
+        name: 'Android Studio',
+        icon: 'AS',
+        color: '#3ddc84',
+        image: devicon('androidstudio/androidstudio-original.svg'),
+      },
+    ],
+  },
+  {
+    title: 'Herramientas',
+    items: [
+      { name: 'Git', icon: 'G', color: '#f05032', image: devicon('git/git-original.svg') },
+      { name: 'GitHub', icon: 'GH', color: '#181717', image: devicon('github/github-original.svg') },
+      { name: 'GitLab', icon: 'GL', color: '#fc6d26', image: devicon('gitlab/gitlab-original.svg') },
+      { name: 'Vite', icon: 'V', color: '#646cff', image: devicon('vitejs/vitejs-original.svg') },
+      { name: 'npm', icon: 'npm', color: '#cb3837', image: devicon('npm/npm-original-wordmark.svg') },
+      {
+        name: 'Visual Studio Code',
+        icon: 'VS',
+        color: '#007acc',
+        image: devicon('vscode/vscode-original.svg'),
+      },
+      {
+        name: 'IntelliJ IDEA',
+        icon: 'IJ',
+        color: '#000000',
+        image: devicon('intellij/intellij-original.svg'),
+      },
+      {
+        name: 'Visual Studio 2026',
+        icon: 'VS',
+        color: '#5c2d91',
+        image: devicon('visualstudio/visualstudio-original.svg'),
+      },
+    ],
+  },
+  {
+    title: 'IA y automatización',
+    items: [
+      {
+        name: 'ChatGPT Codex',
+        icon: 'CX',
+        color: '#10a37f',
+        image: 'https://www.google.com/s2/favicons?domain=chatgpt.com&sz=64',
+      },
+      {
+        name: 'GitHub Copilot',
+        icon: 'CP',
+        color: '#181717',
+        image: simpleIcon('githubcopilot', '181717'),
+      },
+      { name: 'Claude Code', icon: 'CC', color: '#d97706', image: simpleIcon('claude', 'D97706') },
+      {
+        name: 'NotebookLM',
+        icon: 'NB',
+        color: '#4285f4',
+        image: 'https://www.google.com/s2/favicons?domain=notebooklm.google.com&sz=64',
+      },
+      { name: 'n8n', icon: 'n8n', color: '#ea4b71', image: simpleIcon('n8n', 'EA4B71') },
+      { name: 'ComfyUI', icon: 'CU', color: '#7c3aed' },
+    ],
+  },
+];
+
+export const professionalLinks = [
+  {
+    label: 'Portfolio',
+    value: 'porfolio-47ceb.web.app',
+    href: 'https://porfolio-47ceb.web.app/',
+  },
+  {
+    label: 'Carta de recomendación',
+    value: 'Última empresa',
+    href: '/documents/Carta_Recomendacion_Adrian_Tebar_Galvez.pdf',
+  },
+];

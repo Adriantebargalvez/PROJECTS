@@ -626,6 +626,23 @@
   line-height: 1.65;
 }
 
+.backend-build {
+  display: flex;
+  margin-top: 20px;
+}
+
+.backend-build span {
+  padding: 10px 14px;
+  border: 1px solid rgba(52, 211, 153, 0.38);
+  border-radius: 999px;
+  background: rgba(52, 211, 153, 0.1);
+  color: #bbf7d0;
+  font-size: 0.78rem;
+  font-weight: 950;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 .timeline {
   position: relative;
   display: grid;

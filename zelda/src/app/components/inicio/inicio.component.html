@@ -1,1 +1,51 @@
-<p>inicio  ee works!</p>
+<section class="home-hero">
+  <div class="hero-content">
+    <p class="eyebrow">Compendium Collection</p>
+    <h1>Cartas legendarias de Hyrule</h1>
+    <p class="hero-copy">
+      Explora criaturas, armas, materiales, monstruos y tesoros con una presentacion de coleccion de lujo.
+    </p>
+    <div class="hero-actions">
+      <a routerLink="/zelda" class="hero-button primary">Ver coleccion</a>
+      <a routerLink="/treasure" class="hero-button secondary">Tesoros raros</a>
+    </div>
+  </div>
+
+  <div class="featured-card" aria-hidden="true">
+    <div class="featured-frame">
+      <span class="featured-badge">Legendary</span>
+      <div class="featured-image">
+        <img
+          class="featured-character"
+          src="https://cdn.wikimg.net/en/zeldawiki/images/thumb/1/15/TotK_Link_Artwork.png/2367px-TotK_Link_Artwork.png"
+          alt="Link"
+        >
+      </div>
+      <h2>Hylian Archive</h2>
+      <p>Edicion dorada</p>
+    </div>
+  </div>
+</section>
+
+<section class="category-strip" aria-label="Categorias de la coleccion">
+  <a routerLink="/creatures" class="category-tile">
+    <span>Criaturas</span>
+    <strong>Fauna y cocina</strong>
+  </a>
+  <a routerLink="/equipment" class="category-tile">
+    <span>Equipo</span>
+    <strong>Armas y armaduras</strong>
+  </a>
+  <a routerLink="/materials" class="category-tile">
+    <span>Materiales</span>
+    <strong>Ingredientes raros</strong>
+  </a>
+  <a routerLink="/monsters" class="category-tile">
+    <span>Monstruos</span>
+    <strong>Bestiario</strong>
+  </a>
+  <a routerLink="/treasure" class="category-tile">
+    <span>Tesoros</span>
+    <strong>Reliquias</strong>
+  </a>
+</section>
